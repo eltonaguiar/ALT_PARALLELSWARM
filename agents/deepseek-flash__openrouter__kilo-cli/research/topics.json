@@ -1,0 +1,546 @@
+[
+ {
+  "key": "discovery-root",
+  "title": "Discovery overview",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "7qT0WEcnXOPjGppEioi2pw",
+  "chars": 1432,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/7qT0WEcnXOPjGppEioi2pw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-get-started",
+  "title": "Exploring Discovery",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "aKGMbVqBDM_~1mhRf7iZtQ",
+  "chars": 7184,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/aKGMbVqBDM_~1mhRf7iZtQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-probes-sensors-flow",
+  "title": "Horizontal flow (probes/sensors)",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "jxL49V2EHei6N8w5BSt0CQ",
+  "chars": 3981,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/jxL49V2EHei6N8w5BSt0CQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-patterns-flow",
+  "title": "Horizontal flow (patterns)",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "44Ryv2v0bO9RisvMSdU84w",
+  "chars": 2852,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/44Ryv2v0bO9RisvMSdU84w/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-admin-workspace",
+  "title": "Discovery Admin Workspace",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "Z0_iAPSEA3PXW7K0I3v8GA",
+  "chars": 1884,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/Z0_iAPSEA3PXW7K0I3v8GA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-workspace-schedules",
+  "title": "DAW Schedules",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "H3nxs68YTmIERhCPx4AKJQ",
+  "chars": 7203,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/H3nxs68YTmIERhCPx4AKJQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-workspace-settings",
+  "title": "DAW Settings",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "eLIh8xohrZ_YbRo2zvHBdw",
+  "chars": 14996,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/eLIh8xohrZ_YbRo2zvHBdw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-configuration",
+  "title": "Configuring Discovery",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "0fAsJzW_4BYg8wLRwz_saA",
+  "chars": 1752,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/0fAsJzW_4BYg8wLRwz_saA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-setup",
+  "title": "Discovery setup",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "Pv92XoTfxZ822ZTCdjhJ5A",
+  "chars": 1754,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/Pv92XoTfxZ822ZTCdjhJ5A/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-config-steps",
+  "title": "Set up without Guided Setup",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "BdGKaASWIjqQEO2DIkknRQ",
+  "chars": 3937,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/BdGKaASWIjqQEO2DIkknRQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-quick-start",
+  "title": "Discovery Quick Start",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "ua_mfj4FABLK9jyISiN7UQ",
+  "chars": 10988,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/ua_mfj4FABLK9jyISiN7UQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-properties",
+  "title": "Discovery properties",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "NNWTC6v7iVGw9emOILPtPA",
+  "chars": 39980,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/NNWTC6v7iVGw9emOILPtPA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-ip-config",
+  "title": "Discovery IP configuration",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "91BEzK6jlBrt1pwkcnS3dA",
+  "chars": 3624,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/91BEzK6jlBrt1pwkcnS3dA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-ip-selection-props",
+  "title": "IP address selection properties",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "caM7~wk5mkE1DN5jUa9q5Q",
+  "chars": 1986,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/caM7~wk5mkE1DN5jUa9q5Q/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-generic-attributes",
+  "title": "Discovery generic attributes",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "VYDDB2TBmMQOT5QL2x4xzA",
+  "chars": 1617,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/VYDDB2TBmMQOT5QL2x4xzA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-classifiers",
+  "title": "Discovery classifiers",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "tDIQRDbErUcM02aixr66yg",
+  "chars": 7534,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/tDIQRDbErUcM02aixr66yg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-create-classification",
+  "title": "Create CI classification",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "Fs64xXpurvMIZaT1A4Jh3g",
+  "chars": 4955,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/Fs64xXpurvMIZaT1A4Jh3g/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-identifiers",
+  "title": "Discovery identifiers",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "pEjAIiQw44LSs2Fs5O_opQ",
+  "chars": 6387,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/pEjAIiQw44LSs2Fs5O_opQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-identifiers-how",
+  "title": "How Discovery identifiers work",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "VG3Z_Rawxpyn~qMR7YY_Sw",
+  "chars": 1393,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/VG3Z_Rawxpyn~qMR7YY_Sw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-identity-probes",
+  "title": "Configure identity probes",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "53fA1MXJ6RvKgyVxhThxEg",
+  "chars": 1371,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/53fA1MXJ6RvKgyVxhThxEg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-identity-sensors",
+  "title": "Configure identity sensors",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "Pm8PiKDDF8MSh~yLYjtHZA",
+  "chars": 1424,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/Pm8PiKDDF8MSh~yLYjtHZA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-serial-types",
+  "title": "Serial number types",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "0mLO8M8Z7nzuloNmpMAyIQ",
+  "chars": 2231,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/0mLO8M8Z7nzuloNmpMAyIQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-status",
+  "title": "Discovery status",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "MLmbbDYCigH65DDCMYS6ew",
+  "chars": 3724,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/MLmbbDYCigH65DDCMYS6ew/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-log",
+  "title": "Discovery logs",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "W6hntTvQey4XFbb_gH41rQ",
+  "chars": 3546,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/W6hntTvQey4XFbb_gH41rQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-behaviors",
+  "title": "Discovery behaviors",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "j0cqKYN60EMfEiHPOi7Inw",
+  "chars": 4682,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/j0cqKYN60EMfEiHPOi7Inw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-deletion-strategy",
+  "title": "CI deletion strategies",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "hSztgo5_6fEe0BApbAV1LA",
+  "chars": 2959,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/hSztgo5_6fEe0BApbAV1LA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-source-name",
+  "title": "Change discovery source",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "KPLRlkSh5jw3_~yrjQZxYw",
+  "chars": 1416,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/KPLRlkSh5jw3_~yrjQZxYw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-config-console",
+  "title": "Discovery Configuration Console",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "jxm03gKvyhebiCVQEIFgRA",
+  "chars": 16043,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/jxm03gKvyhebiCVQEIFgRA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-schedule",
+  "title": "Schedule horizontal discovery",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "t4Dn2c4~fvVAnYMefTaOGw",
+  "chars": 13006,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/t4Dn2c4~fvVAnYMefTaOGw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-schedule-daw",
+  "title": "Create IP schedule in DAW",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "8U1PKurOrxCBcD4VTDLDVA",
+  "chars": 3618,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/8U1PKurOrxCBcD4VTDLDVA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-schedule-form",
+  "title": "Discovery Schedule form reference",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "dktePWgUU_nZLIh1sl4n6w",
+  "chars": 11459,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/dktePWgUU_nZLIh1sl4n6w/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-schedule-form-new",
+  "title": "New schedule form reference",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "fZNtgqFZZEWpILFgJCI9ng",
+  "chars": 1915,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/fZNtgqFZZEWpILFgJCI9ng/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-snmp",
+  "title": "SNMP support",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "6WWdNTgeO72t89~cepbaUw",
+  "chars": 6162,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/6WWdNTgeO72t89~cepbaUw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-process-filters",
+  "title": "Running process filters",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "pHo6qUiJCmm~jZ~ifmzvRw",
+  "chars": 2336,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/pHo6qUiJCmm~jZ~ifmzvRw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-tracked-files",
+  "title": "Configuration file tracking",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "gsWTzmYhA3z~HjDautahMA",
+  "chars": 7500,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/gsWTzmYhA3z~HjDautahMA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "discovery-error-messages",
+  "title": "Discovery error messages",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "YZ6ghlIXH8ZnscnpFLc8dg",
+  "chars": 7963,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/YZ6ghlIXH8ZnscnpFLc8dg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ci-class-manager",
+  "title": "CI Class Manager",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "x4JJge7tCsN5~u2j3DCdLw",
+  "chars": 1512,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/x4JJge7tCsN5~u2j3DCdLw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "cmdb-ire",
+  "title": "CMDB Identification and Reconciliation",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "PY2vdmBkt0I1BgOSfvhYyA",
+  "chars": 1468,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ire-engine",
+  "title": "IRE engine",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "eRRb8Ck9OoY3~_A5xEjthg",
+  "chars": 14952,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/eRRb8Ck9OoY3~_A5xEjthg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ire-components-process",
+  "title": "IRE components and process",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "PrD4ENaqYnfHVkJHjNmTQA",
+  "chars": 5113,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PrD4ENaqYnfHVkJHjNmTQA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "identification-rules",
+  "title": "Identification rules",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "wXQcUyP5ceUXm3nZpvqd6w",
+  "chars": 7846,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "create-identification-rule",
+  "title": "Create CI identification rule",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "8zdJkh0UFUKfDR0DRokD9g",
+  "chars": 13225,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/8zdJkh0UFUKfDR0DRokD9g/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "id-inclusion-rule",
+  "title": "Identification inclusion rule",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "qDQ2J4CvInUNlytxLLOheg",
+  "chars": 2138,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/qDQ2J4CvInUNlytxLLOheg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "id-best-practices",
+  "title": "Identification guidelines",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "9c_c7yJAnorHS8a2KEL4yA",
+  "chars": 4595,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/9c_c7yJAnorHS8a2KEL4yA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "reconciliation-rules",
+  "title": "Reconciliation rules",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "k5Xor32nyO5z1zDdpUHnZw",
+  "chars": 6964,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/k5Xor32nyO5z1zDdpUHnZw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "create-reconciliation-rule",
+  "title": "Create reconciliation rule",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "9bZJruDIj0Ortumj_j29Tg",
+  "chars": 10615,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/9bZJruDIj0Ortumj_j29Tg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ci-reclassification",
+  "title": "CI reclassification",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "Q2WvCK1Im17OhPY2oB72cw",
+  "chars": 8231,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/Q2WvCK1Im17OhPY2oB72cw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ire-data-source-rule",
+  "title": "IRE data source rule",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "uKwDdWnyPdiZFZeI2LcBKg",
+  "chars": 3946,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/uKwDdWnyPdiZFZeI2LcBKg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ire-data-source-priority",
+  "title": "Dependent relationship rules",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "iUmudcEOJkGTs8~zhleE2A",
+  "chars": 6861,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/iUmudcEOJkGTs8~zhleE2A/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ire-import-sets",
+  "title": "Apply IRE to import sets",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "3N_Q8zTi8GaRDVP9VE6J3w",
+  "chars": 4231,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/3N_Q8zTi8GaRDVP9VE6J3w/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "detect-duplicate-ci",
+  "title": "Detecting duplicate CIs",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "eAHXI38R9HKeOKMBqxFTxQ",
+  "chars": 10488,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/eAHXI38R9HKeOKMBqxFTxQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "identification-simulation",
+  "title": "Identification simulation",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "JJzrViQd~VCwwZ8YWa_VLg",
+  "chars": 8335,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/JJzrViQd~VCwwZ8YWa_VLg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "dedup-remediation",
+  "title": "Duplicate CIs remediation",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "XosKdDKhK_Cfk~d9Vyhaig",
+  "chars": 13090,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/XosKdDKhK_Cfk~d9Vyhaig/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "dedup-properties",
+  "title": "Duplicate CI properties",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "xYZtpiw1Cw2Y5bnWS6pgdw",
+  "chars": 4135,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/xYZtpiw1Cw2Y5bnWS6pgdw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "dedup-components",
+  "title": "Duplicate remediation components",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "B~VZFTWIBnrEeton0A3_5A",
+  "chars": 3028,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/B~VZFTWIBnrEeton0A3_5A/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "cmdb360",
+  "title": "CMDB 360",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "Tl2f0CcrHDaDYS7FoGs2Wg",
+  "chars": 5232,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/Tl2f0CcrHDaDYS7FoGs2Wg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "cmdb-health",
+  "title": "CMDB Health",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "9WQbIoOa1GrhhHk4yl0aYA",
+  "chars": 1295,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/9WQbIoOa1GrhhHk4yl0aYA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "cmdb-health-props",
+  "title": "CMDB Health properties",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "rQ88gfdVdEDS3yTJLJH_Kg",
+  "chars": 3147,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/rQ88gfdVdEDS3yTJLJH_Kg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "cmdb-data-manager",
+  "title": "CMDB Data Manager",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "yv7TLFuukYRPGIbzqoBdaA",
+  "chars": 11373,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "cmdb-data-management",
+  "title": "CMDB data management",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "LB39AbIzTbybXHhm9L0Pcg",
+  "chars": 1007,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/LB39AbIzTbybXHhm9L0Pcg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "ire-properties",
+  "title": "Properties for IRE",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "rjKNaLRC6pTLNgUV3Yq9wA",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/rjKNaLRC6pTLNgUV3Yq9wA/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "run-options",
+  "title": "Run options for discovery schedules",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "D2ETmHBsu4mAXXuvjkdEZw",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/D2ETmHBsu4mAXXuvjkdEZw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "create-data-refresh-rule",
+  "title": "Create a data refresh rule",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "ZWHWQE_uf8LNI2g9a0mcPw",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/ZWHWQE_uf8LNI2g9a0mcPw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "dependent-relationship-rules",
+  "title": "Create dependent relationship rules",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "XHZYKW~Jnu8UYCdUN0xRXg",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/XHZYKW~Jnu8UYCdUN0xRXg/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "cmdb-classifications-dependency",
+  "title": "CMDB classifications and class dependency",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "Q8G8zPCM8BzsGVcziEO76A",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/Q8G8zPCM8BzsGVcziEO76A/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "create-ci-class",
+  "title": "Create a CI class",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "hIFyNjLNGj9RmtXizqEOyw",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/hIFyNjLNGj9RmtXizqEOyw/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "mid-properties",
+  "title": "MID Server properties",
+  "map": "zf4CFrQ4oaR8UN3GV4kT5g",
+  "content_id": "0TziWb4wjowW_vt9eWyzFQ",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/0TziWb4wjowW_vt9eWyzFQ/content?target=DESIGNED_READER"
+ },
+ {
+  "key": "daw-reference",
+  "title": "Discovery Admin Workspace reference",
+  "map": "bsp_DjPRMilbWYHwwVa4zQ",
+  "content_id": "yO3rNo1uo6H4t_VADmzEhA",
+  "chars": null,
+  "api_url": "https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/yO3rNo1uo6H4t_VADmzEhA/content?target=DESIGNED_READER"
+ }
+]

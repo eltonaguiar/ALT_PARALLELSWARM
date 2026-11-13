@@ -75,3 +75,33 @@ self_runs:
     wt: 1
     folder: agents/deepseek-v4-pro__deepseek__kilo/SNC_DISC__WT1
     note: "Kilo agent driving own tools (webfetch + ServiceNowDocs GitHub mirror); added shared/free_api_registry.py; orchestrated 3 local Ollama models via agents_kilo_local.yaml"
+
+  - id: deepseek-flash__openrouter__kilo-cli
+    model: deepseek/deepseek-flash
+    provider: openrouter           # inferred from model-ID namespace + OPENROUTER env
+    harness: kilo
+    wt: 1
+    folder: agents/deepseek-flash__openrouter__kilo-cli/SNC_DISC__WT1
+    note: "Self-driven via Kilo native tools + ServiceNow khub JSON API; then dispatched 3 workers (qwen3.5:4b, qwen2.5-coder:7b, particle-1:free) through its own worktree/budget harness. See agents/.../swarm/ORCHESTRATION.md"
+
+# Dispatched by the run above; not re-runnable by orchestrate.py (they used the
+# agent-local swarm harness, not shared/orchestrate.py). Kept for provenance.
+alt_swarm_workers:
+  - id: qwen3.5-4b__ollama__alt-swarm
+    model: qwen3.5:4b
+    provider: ollama
+    harness: alt-swarm
+    wt: 2
+    folder: agents/qwen3.5-4b__ollama__alt-swarm/SNC_DISC__WT2
+  - id: qwen2.5-coder-7b__ollama__alt-swarm
+    model: qwen2.5-coder:7b
+    provider: ollama
+    harness: alt-swarm
+    wt: 3
+    folder: agents/qwen2.5-coder-7b__ollama__alt-swarm/SNC_DISC__WT3
+  - id: particle-1__openrouter__alt-swarm
+    model: particle-ai/particle-1:free
+    provider: openrouter
+    harness: alt-swarm
+    wt: 4
+    folder: agents/particle-1__openrouter__alt-swarm/SNC_DISC__WT4

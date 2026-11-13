@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "note": "Caps are operator-set guards, not vendor-verified free-tier limits. Verify each provider's current terms before a large run. price_per_1k is USD per 1K tokens; free tiers use 0.0.",
+  "providers": {
+    "ollama": {
+      "kind": "ollama",
+      "base_url": "http://localhost:11434",
+      "api_key_env": "",
+      "max_inflight": 2,
+      "daily_calls": 300,
+      "daily_tokens": 6000000,
+      "price_per_1k": 0.0
+    },
+    "openrouter": {
+      "kind": "openai",
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "max_inflight": 2,
+      "daily_calls": 120,
+      "daily_tokens": 600000,
+      "price_per_1k": 0.0,
+      "extra_headers": {
+        "HTTP-Referer": "https://github.com/eltonaguiar/ALT_PARALLELSWARM",
+        "X-Title": "ALT_PARALLELSWARM"
+      }
+    },
+    "groq": {
+      "kind": "openai",
+      "base_url": "https://api.groq.com/openai/v1",
+      "api_key_env": "GROQ_API_KEY",
+      "max_inflight": 2,
+      "daily_calls": 100,
+      "daily_tokens": 400000,
+      "price_per_1k": 0.0
+    },
+    "cerebras": {
+      "kind": "openai",
+      "base_url": "https://api.cerebras.ai/v1",
+      "api_key_env": "CEREBRAS_API_KEY",
+      "max_inflight": 2,
+      "daily_calls": 100,
+      "daily_tokens": 800000,
+      "price_per_1k": 0.0
+    },
+    "gemini": {
+      "kind": "openai",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "api_key_env": "GEMINI_API_KEY",
+      "max_inflight": 2,
+      "daily_calls": 100,
+      "daily_tokens": 800000,
+      "price_per_1k": 0.0
+    },
+    "mistral": {
+      "kind": "openai",
+      "base_url": "https://api.mistral.ai/v1",
+      "api_key_env": "MISTRAL_API_KEY",
+      "max_inflight": 1,
+      "daily_calls": 80,
+      "daily_tokens": 300000,
+      "price_per_1k": 0.0
+    },
+    "deepseek": {
+      "kind": "openai",
+      "base_url": "https://api.deepseek.com/v1",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "max_inflight": 2,
+      "daily_calls": 100,
+      "daily_tokens": 500000,
+      "price_per_1k": 0.00028
+    }
+  },
+  "models": {
+    "qwen3.5:4b": {
+      "provider": "ollama",
+      "context": 262144,
+      "think": false
+    },
+    "qwen2.5-coder:7b": {
+      "provider": "ollama",
+      "context": 32768
+    },
+    "qwen2.5-coder:7b-instruct-q5_K_M": {
+      "provider": "ollama",
+      "context": 32768
+    },
+    "google/gemma-4-31b-it:free": {
+      "provider": "openrouter",
+      "context": 262144
+    },
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+      "provider": "openrouter",
+      "context": 256000
+    },
+    "baidu/ernie-5.5-flash-preview:free": {
+      "provider": "openrouter",
+      "context": 1024000
+    },
+    "google/gemma-4-26b-a4b-it:free": {
+      "provider": "openrouter",
+      "context": 262144
+    },
+    "particle-ai/particle-1:free": {
+      "provider": "openrouter",
+      "context": 1048576
+    }
+  }
+}

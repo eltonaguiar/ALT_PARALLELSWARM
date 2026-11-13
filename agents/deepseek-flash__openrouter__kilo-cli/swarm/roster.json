@@ -1,0 +1,44 @@
+{
+  "task": "SNC_DISC_RESEARCH",
+  "base_branch": "main",
+  "max_parallel": 3,
+  "note": "Each worker gets its own worktree, branch, folder, phase heartbeats, and evidence digest. Workers have no browser; the digest is the backup plan.",
+  "agents": [
+    {
+      "id": "qwen3.5-4b__ollama__alt-swarm",
+      "model": "qwen3.5:4b",
+      "provider": "ollama",
+      "wt": 2,
+      "evidence": "evidence/options.md",
+      "out": "CONFIG_OPTIONS_AND_ORDER.md",
+      "brief": "Produce the configuration-option inventory and the canonical order of operations for ServiceNow Discovery. Group options by: identity/IP/hostname, network scanning, scheduling/throughput, and deletion strategy. For the order of operations, start at subscription/roles and end at CMDB governance. Use tables and preserve exact property names and defaults.",
+      "max_tokens": 3000
+    },
+    {
+      "id": "qwen2.5-coder-7b__ollama__alt-swarm",
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "wt": 3,
+      "evidence": "evidence/duplicates.md",
+      "out": "DUPLICATE_PREVENTION.md",
+      "brief": "Produce the duplicate-prevention and insert-versus-update section. Explain identification-rule strength, the skip_duplicates/threshold behavior, source-native-key matching, data source rules, reconciliation and data refresh, de-duplication tasks, and the exact decision table for insert/update/fail/partial. Include a prevention checklist by layer (design, runtime, detection, remediation).",
+      "max_tokens": 3000,
+      "fallbacks": [
+        "qwen3.5:4b"
+      ]
+    },
+    {
+      "id": "particle-1__openrouter__alt-swarm",
+      "model": "particle-ai/particle-1:free",
+      "provider": "openrouter",
+      "wt": 4,
+      "evidence": "evidence/classmanager.md",
+      "out": "CI_CLASS_MANAGER_BREADCRUMBS.md",
+      "brief": "Produce the CI Class Manager breadcrumb and workflow section. Give the exact navigation path, role requirements, the class hierarchy navigation, every tab used for class definitions / identification / reconciliation / dependencies / health, the child-class wizard order, and the related screens outside the tool (identification simulation, IRE data source rule, properties). Add a short pre-flight checklist for configuring a new class.",
+      "fallbacks": [
+        "baidu/ernie-5.5-flash-preview:free"
+      ],
+      "max_tokens": 6000
+    }
+  ]
+}

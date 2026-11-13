@@ -1,0 +1,140 @@
+{
+  "started": "2026-11-13T09:04:04+00:00",
+  "finished": "2026-11-13T09:05:32+00:00",
+  "wall_s": 88.6,
+  "results": [
+    {
+      "agent_id": "particle-1__openrouter__alt-swarm",
+      "model": "particle-ai/particle-1:free",
+      "provider": "openrouter",
+      "wt": 4,
+      "out": "CI_CLASS_MANAGER_BREADCRUMBS.md",
+      "model_used": "particle-ai/particle-1:free",
+      "provider_used": "openrouter",
+      "fallback_used": false,
+      "attempts": [
+        {
+          "model": "particle-ai/particle-1:free",
+          "provider": "openrouter",
+          "chars": 9383,
+          "qa_pass": true,
+          "finish_reason": "stop",
+          "error": null
+        }
+      ],
+      "worktree": "/tmp/kilo/wt-particle-1__openrouter__alt-swarm",
+      "branch": "agent/particle-1__openrouter__alt-swarm",
+      "qa_pass": true,
+      "words": 1328,
+      "chars": 9383,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3291,
+        "completion_tokens": 3897,
+        "total_tokens": 7188,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 3072,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1754,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "error": null,
+      "committed": true,
+      "pushed": true,
+      "push_error": null,
+      "started": "2026-11-13T09:04:04+00:00",
+      "finished": "2026-11-13T09:04:59+00:00",
+      "returncode": 0
+    },
+    {
+      "agent_id": "qwen2.5-coder-7b__ollama__alt-swarm",
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "wt": 3,
+      "out": "DUPLICATE_PREVENTION.md",
+      "model_used": "qwen2.5-coder:7b",
+      "provider_used": "ollama",
+      "fallback_used": false,
+      "attempts": [
+        {
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "chars": 5186,
+          "qa_pass": true,
+          "finish_reason": "stop",
+          "error": null
+        }
+      ],
+      "worktree": "/tmp/kilo/wt-qwen2.5-coder-7b__ollama__alt-swarm",
+      "branch": "agent/qwen2.5-coder-7b__ollama__alt-swarm",
+      "qa_pass": true,
+      "words": 671,
+      "chars": 5186,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3656,
+        "completion_tokens": 963,
+        "total_tokens": 4619
+      },
+      "error": null,
+      "committed": true,
+      "pushed": true,
+      "push_error": null,
+      "started": "2026-11-13T09:04:04+00:00",
+      "finished": "2026-11-13T09:04:48+00:00",
+      "returncode": 0
+    },
+    {
+      "agent_id": "qwen3.5-4b__ollama__alt-swarm",
+      "model": "qwen3.5:4b",
+      "provider": "ollama",
+      "wt": 2,
+      "out": "CONFIG_OPTIONS_AND_ORDER.md",
+      "model_used": "qwen3.5:4b",
+      "provider_used": "ollama",
+      "fallback_used": false,
+      "attempts": [
+        {
+          "model": "qwen3.5:4b",
+          "provider": "ollama",
+          "chars": 8875,
+          "qa_pass": true,
+          "finish_reason": "stop",
+          "error": null
+        }
+      ],
+      "worktree": "/tmp/kilo/wt-qwen3.5-4b__ollama__alt-swarm",
+      "branch": "agent/qwen3.5-4b__ollama__alt-swarm",
+      "qa_pass": true,
+      "words": 1266,
+      "chars": 8875,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3883,
+        "completion_tokens": 1940,
+        "total_tokens": 5823
+      },
+      "error": null,
+      "committed": true,
+      "pushed": true,
+      "push_error": null,
+      "started": "2026-11-13T09:04:04+00:00",
+      "finished": "2026-11-13T09:05:32+00:00",
+      "returncode": 0
+    }
+  ],
+  "report": "/tmp/kilo/ALT_PARALLELSWARM/agents/deepseek-flash__openrouter__kilo-cli/swarm/ORCHESTRATION.md"
+}

@@ -1,0 +1,24 @@
+$ /usr/bin/python3 /tmp/kilo/ALT_PARALLELSWARM/agents/deepseek-flash__openrouter__kilo-cli/swarm/agent_runner.py --worktree /tmp/kilo/wt-gemma-4-26b__openrouter__alt-swarm --agent-id gemma-4-26b__openrouter__alt-swarm --model google/gemma-4-26b-a4b-it:free --provider openrouter --wt 4 --evidence /tmp/kilo/ALT_PARALLELSWARM/agents/deepseek-flash__openrouter__kilo-cli/swarm/evidence/classmanager.md --brief Produce the CI Class Manager breadcrumb and workflow section. Give the exact navigation path, role requirements, the class hierarchy navigation, every tab used for class definitions / identification / reconciliation / dependencies / health, the child-class wizard order, and the related screens outside the tool (identification simulation, IRE data source rule, properties). Add a short pre-flight checklist for configuring a new class. --out-name CI_CLASS_MANAGER_BREADCRUMBS.md --ledger /tmp/kilo/ALT_PARALLELSWARM/agents/deepseek-flash__openrouter__kilo-cli/swarm/state/usage_ledger.json --max-tokens 1500 --timeout 480 --max-evidence-chars 17000
+
+--- stdout ---
+{
+  "agent_id": "gemma-4-26b__openrouter__alt-swarm",
+  "model": "google/gemma-4-26b-a4b-it:free",
+  "provider": "openrouter",
+  "worktree": "/tmp/kilo/wt-gemma-4-26b__openrouter__alt-swarm",
+  "branch": "agent/gemma-4-26b__openrouter__alt-swarm",
+  "qa_pass": false,
+  "words": 0,
+  "chars": 0,
+  "finish_reason": null,
+  "usage": null,
+  "error": "RuntimeError: HTTP 429 from openrouter: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own provider key to use your own limits: https://openrouter.ai/workspaces/default/byok\",\"provider_name\":\"Google AI Studio\",\"is_byok\":false,\"provider_error_code\":\"429\",\"limit_source\":\"upstream_provider_shared_pool\",\"remedy_hint\":\"Retry shortly, add your own provider key to use your own limits (https://openrouter.ai/works",
+  "committed": true,
+  "pushed": true,
+  "push_error": null,
+  "started": "2026-11-13T09:00:15+00:00",
+  "finished": "2026-11-13T09:00:22+00:00"
+}
+
+--- stderr ---
+

@@ -1,0 +1,32 @@
+{
+  "providers": {
+    "ollama": {
+      "day": "2026-11-13",
+      "calls": 8,
+      "tokens": 34702,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 300,
+      "daily_tokens": 6000000,
+      "price_per_1k": 0.0,
+      "key_env": "",
+      "key_fingerprint": "local",
+      "last_used": "2026-11-13T09:04:04+00:00"
+    },
+    "openrouter": {
+      "day": "2026-11-13",
+      "calls": 25,
+      "tokens": 63578,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 120,
+      "daily_tokens": 600000,
+      "price_per_1k": 0.0,
+      "key_env": "OPENROUTER_API_KEY",
+      "key_fingerprint": "285f4ae1",
+      "last_used": "2026-11-13T09:04:04+00:00"
+    }
+  }
+}

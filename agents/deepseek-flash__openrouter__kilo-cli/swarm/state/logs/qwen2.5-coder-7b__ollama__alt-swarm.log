@@ -1,0 +1,43 @@
+$ /usr/bin/python3 /tmp/kilo/ALT_PARALLELSWARM/agents/deepseek-flash__openrouter__kilo-cli/swarm/agent_runner.py --worktree /tmp/kilo/wt-qwen2.5-coder-7b__ollama__alt-swarm --agent-id qwen2.5-coder-7b__ollama__alt-swarm --model qwen2.5-coder:7b --provider ollama --wt 3 --evidence /tmp/kilo/ALT_PARALLELSWARM/agents/deepseek-flash__openrouter__kilo-cli/swarm/evidence/duplicates.md --brief Produce the duplicate-prevention and insert-versus-update section. Explain identification-rule strength, the skip_duplicates/threshold behavior, source-native-key matching, data source rules, reconciliation and data refresh, de-duplication tasks, and the exact decision table for insert/update/fail/partial. Include a prevention checklist by layer (design, runtime, detection, remediation). --out-name DUPLICATE_PREVENTION.md --ledger /tmp/kilo/ALT_PARALLELSWARM/agents/deepseek-flash__openrouter__kilo-cli/swarm/state/usage_ledger.json --max-tokens 3000 --timeout 480 --max-evidence-chars 17000 --fallback-models qwen3.5:4b
+
+--- stdout ---
+{
+  "agent_id": "qwen2.5-coder-7b__ollama__alt-swarm",
+  "model": "qwen2.5-coder:7b",
+  "provider": "ollama",
+  "wt": 3,
+  "out": "DUPLICATE_PREVENTION.md",
+  "model_used": "qwen2.5-coder:7b",
+  "provider_used": "ollama",
+  "fallback_used": false,
+  "attempts": [
+    {
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "chars": 5186,
+      "qa_pass": true,
+      "finish_reason": "stop",
+      "error": null
+    }
+  ],
+  "worktree": "/tmp/kilo/wt-qwen2.5-coder-7b__ollama__alt-swarm",
+  "branch": "agent/qwen2.5-coder-7b__ollama__alt-swarm",
+  "qa_pass": true,
+  "words": 671,
+  "chars": 5186,
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 3656,
+    "completion_tokens": 963,
+    "total_tokens": 4619
+  },
+  "error": null,
+  "committed": true,
+  "pushed": true,
+  "push_error": null,
+  "started": "2026-11-13T09:04:04+00:00",
+  "finished": "2026-11-13T09:04:48+00:00"
+}
+
+--- stderr ---
+
