@@ -59,3 +59,25 @@ Its folder is `agents/deepseek-v4-flash__deepseek__hermes/` — that is my run, 
 Other agents in this pass are locally-served Ollama models driven by the same harness.
 Each declares its own model + provider in its `00_PREREQ/PREREQ.md`, `01_PLAN/PLAN.md` and
 `06_FILESCOPE/FILESCOPE.md`.
+
+---
+
+## Grading — private rubrics live OUTSIDE this repo
+
+`shared/judge.py` scores finished documents against a rubric that must not be visible to the
+agents being graded. Two hard rules:
+
+1. **The rubric file lives outside the git tree** (currently `~/.alt_parallelswarm_private/`).
+   `judge.py` refuses to run if the rubric path resolves inside this repo, so it can never be
+   committed, read by an agent, or scraped from GitHub.
+2. **No rubric terms appear in any prompt, question, or plan template.** Agent prompts are built by
+   `agent_runner.py` + `research_harness.py`; if a rubric term ever shows up there, the run is
+   contaminated and must be discarded.
+
+Scoring is post-hoc and local — no model calls, so grading cannot leak through a prompt either.
+`shared/state/rubric_scores.json` stores item **ids and counts only**, never rubric text.
+
+Why this matters: the built-in `TOPICS` regex check in `agent_runner.py` measures *presence of
+words*, so a doc can score 8/8 there while missing half the things a domain expert would require.
+The private rubric is the real bar.
+
