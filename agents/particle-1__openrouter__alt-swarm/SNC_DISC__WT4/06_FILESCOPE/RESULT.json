@@ -9,25 +9,25 @@
     {
       "model": "particle-ai/particle-1:free",
       "provider": "openrouter",
-      "chars": 2082,
-      "finish_reason": "length",
+      "chars": 8362,
+      "finish_reason": "stop",
       "error": null
     }
   ],
   "worktree": "/tmp/kilo/wt-particle-1__openrouter__alt-swarm",
   "branch": "agent/particle-1__openrouter__alt-swarm",
-  "qa_pass": false,
-  "words": 289,
-  "chars": 2082,
-  "finish_reason": "length",
+  "qa_pass": true,
+  "words": 1189,
+  "chars": 8362,
+  "finish_reason": "stop",
   "usage": {
     "prompt_tokens": 3291,
-    "completion_tokens": 1800,
-    "total_tokens": 5091,
+    "completion_tokens": 3378,
+    "total_tokens": 6669,
     "cost": 0,
     "is_byok": false,
     "prompt_tokens_details": {
-      "cached_tokens": 0,
+      "cached_tokens": 3072,
       "cache_write_tokens": 0,
       "audio_tokens": 0,
       "video_tokens": 0
@@ -38,7 +38,7 @@
       "upstream_inference_completions_cost": 0
     },
     "completion_tokens_details": {
-      "reasoning_tokens": 1286,
+      "reasoning_tokens": 1418,
       "image_tokens": 0,
       "audio_tokens": 0
     }
@@ -47,6 +47,6 @@
   "committed": true,
   "pushed": true,
   "push_error": null,
-  "started": "2026-11-13T09:01:58+00:00",
-  "finished": "2026-11-13T09:02:16+00:00"
+  "started": "2026-11-13T09:02:19+00:00",
+  "finished": "2026-11-13T09:02:43+00:00"
 }

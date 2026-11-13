@@ -1,17 +1,17 @@
 # QA — particle-1__openrouter__alt-swarm
 
-**Checked:** 2026-11-13T09:02:42+00:00
+**Checked:** 2026-11-13T09:03:27+00:00
 
 | Check | Pass | Evidence |
 |---|---|---|
-| non-empty output | YES | 8362 chars |
-| substantive length | YES | 1189 words |
-| has headings | YES | 7 headings |
+| non-empty output | YES | 1352 chars |
+| substantive length | NO | 183 words |
+| has headings | YES | 3 headings |
 | has citations | YES | citation markers |
 | has table or list | YES | table/list |
 | no placeholder | YES | no TODO/TBD |
 
-**Overall:** PASS
+**Overall:** FAIL
 
 ## Manual caveat
 
