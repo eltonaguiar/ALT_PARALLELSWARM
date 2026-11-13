@@ -28,3 +28,19 @@ so plan is then broken into phases where if a phase starts they drop a .MD or .t
  
 /filesscope
 
+
+
+== WRAP UP == 
+TASK: Review all files under 
+https://github.com/eltonaguiar/ALT_PARALLELSWARM/tree/62a9e1e32a4ff2ac5f66e81d2804c12cea5b4670/final
+where agents attempted to de-dup the rest of the agents's work all over the github and tried to research ServiceNow discovery in-depth and document every single potential configuration option , flow, system property related to Discovery and also CMDB, especially documenting extensively.. every single type of setting  / config , or combination of configs, related to Identification, Reconcilation, inserts vs update..
+
+So I'm Discovery Source A , vs Discovery Source B
+under cmdb_ci_computer class. 
+am i allowed to update.. 
+if its configured with a .. ___ rule, (data refresh? ire data source rule? .. other type of rule.. ) then what does it mean.. 
+on top of that there is inclusion rules for being included in metrics and more a LOT of detail! 
+
+its all in the details , but we need to de-dup and add some sort of infographics or flow chart 
+add your own .MD there.
+
