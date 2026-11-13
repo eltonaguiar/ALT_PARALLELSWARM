@@ -1,3 +1,26 @@
 {
-  "providers": {}
+  "providers": {
+    "ollama": {
+      "day": "2026-11-13",
+      "calls": 11,
+      "tokens": 54000,
+      "cost_usd": 0.0,
+      "inflight": 2,
+      "max_inflight": 2,
+      "daily_calls": 1000,
+      "daily_tokens": 5000000,
+      "price_per_1k": 0.0
+    },
+    "deepseek": {
+      "day": "2026-11-13",
+      "calls": 3,
+      "tokens": 18000,
+      "cost_usd": 0.00504,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 500,
+      "daily_tokens": 3000000,
+      "price_per_1k": 0.00028
+    }
+  }
 }

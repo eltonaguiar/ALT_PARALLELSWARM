@@ -1,0 +1,30 @@
+# Roster for deepseek-v4-pro__deepseek__kilo's local-model orchestration pass.
+# Dispatched via shared/orchestrate.py (harness authored by deepseek-v4-flash__deepseek__hermes).
+task: SNC_DISC_RESEARCH
+max_parallel: 2
+rounds: 3
+
+agents:
+  - id: qwen3.5-4b__ollama__kilocode
+    model: qwen3.5:4b
+    provider: ollama
+    base_url: http://localhost:11434/v1
+    api_key_env: ""
+    wt: 6
+    note: "Kilo-orchestrated local model: newest small Qwen, fast, good tool-call discipline"
+
+  - id: gemma2-9b__ollama__kilocode
+    model: gemma2:9b
+    provider: ollama
+    base_url: http://localhost:11434/v1
+    api_key_env: ""
+    wt: 7
+    note: "Kilo-orchestrated local model: Gemma2 9B, different lineage (Google)"
+
+  - id: phi4-mini__ollama__kilocode
+    model: phi4-mini:latest
+    provider: ollama
+    base_url: http://localhost:11434/v1
+    api_key_env: ""
+    wt: 8
+    note: "Kilo-orchestrated local model: Phi-4 mini, small + format-following"
