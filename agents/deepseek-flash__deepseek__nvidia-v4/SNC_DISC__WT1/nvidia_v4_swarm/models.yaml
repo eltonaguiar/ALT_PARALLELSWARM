@@ -1,0 +1,104 @@
+# Roster for the nvidia-v4 swarm.
+#
+# enabled: false  -> skipped unless named explicitly with --agents id
+# price_*_per_1k  -> USD per 1,000 tokens; 0 for local/free tiers
+# Caps are deliberately conservative. Verify current free-tier limits and model
+# IDs with the provider before enabling a cloud entry.
+#
+# Keys are read from environment variables. Never put keys in this file.
+
+defaults:
+  max_tokens: 1200
+  temperature: 0.2
+  max_inflight: 1
+  daily_calls: 200
+  daily_tokens: 400000
+  price_in_per_1k: 0.0
+  price_out_per_1k: 0.0
+
+agents:
+  # ---- local, free, verified on this box --------------------------------
+  - id: qwen3.5-4b__ollama__nvidia-v4
+    provider: ollama
+    model: qwen3.5:4b
+    base_url: http://localhost:11434/v1
+    enabled: true
+    max_tokens: 2500          # thinking model: needs headroom for reasoning
+    max_inflight: 2
+    daily_calls: 1000
+    daily_tokens: 5000000
+    note: "thinking model; may put tokens in reasoning before content"
+
+  - id: qwen2.5-coder-7b__ollama__nvidia-v4
+    provider: ollama
+    model: qwen2.5-coder:7b
+    base_url: http://localhost:11434/v1
+    enabled: true
+    max_tokens: 1200
+    max_inflight: 2
+    daily_calls: 1000
+    daily_tokens: 5000000
+    note: "fast non-thinking local model; good format adherence"
+
+  # ---- cloud free tiers / paid, disabled by default ---------------------
+  - id: deepseek-chat__deepseek__nvidia-v4
+    provider: deepseek
+    model: deepseek-chat
+    api_key_env: DEEPSEEK_API_KEY
+    enabled: false
+    max_inflight: 1
+    daily_calls: 200
+    daily_tokens: 500000
+    price_in_per_1k: 0.00027
+    price_out_per_1k: 0.0011
+    note: "paid; small cost ledger entries"
+
+  - id: gpt-oss-120b__groq__nvidia-v4
+    provider: groq
+    model: openai/gpt-oss-120b
+    api_key_env: GROQ_API_KEY
+    enabled: false
+    max_inflight: 1
+    daily_calls: 100
+    daily_tokens: 300000
+    note: "free tier; verified model id on this key 2026-11-13"
+
+  - id: gemini-2.5-flash__gemini__nvidia-v4
+    provider: gemini
+    model: gemini-2.5-flash
+    api_key_env: GEMINI_API_KEY
+    enabled: false
+    max_inflight: 1
+    daily_calls: 100
+    daily_tokens: 400000
+    note: "free tier via OpenAI-compatible endpoint"
+
+  - id: llama-3.3-70b__cerebras__nvidia-v4
+    provider: cerebras
+    model: llama-3.3-70b
+    api_key_env: CEREBRAS_API_KEY
+    enabled: false
+    max_inflight: 1
+    daily_calls: 100
+    daily_tokens: 400000
+    note: "free tier"
+
+  - id: mistral-small__mistral__nvidia-v4
+    provider: mistral
+    model: mistral-small-latest
+    api_key_env: MISTRAL_API_KEY
+    enabled: false
+    max_inflight: 1
+    daily_calls: 100
+    daily_tokens: 300000
+    note: "free tier"
+
+  - id: openrouter-free__openrouter__nvidia-v4
+    provider: openrouter
+    model: meta-llama/llama-3.3-70b-instruct:free
+    api_key_env: OPENROUTER_API_KEY
+    enabled: false
+    max_inflight: 1
+    daily_calls: 50
+    daily_tokens: 200000
+    note: "free model availability varies; check the OpenRouter catalog"

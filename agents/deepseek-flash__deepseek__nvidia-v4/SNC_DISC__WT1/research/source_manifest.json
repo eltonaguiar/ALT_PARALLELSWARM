@@ -1,0 +1,356 @@
+[
+ {
+  "map": "itom",
+  "title": "Discovery",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/r-discovery.html",
+  "file": "/tmp/sn_research/itom__discovery.md"
+ },
+ {
+  "map": "itom",
+  "title": "Exploring Discovery",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_GetStartedWithDiscovery.html",
+  "file": "/tmp/sn_research/itom__exploring-discovery.md"
+ },
+ {
+  "map": "itom",
+  "title": "Horizontal discovery process flow with patterns",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/disco-process-flow-patterns.html",
+  "file": "/tmp/sn_research/itom__horizontal-discovery-process-flow-with-patterns.md"
+ },
+ {
+  "map": "itom",
+  "title": "Horizontal discovery process flow with probes and sensors",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoProcessFlows.html",
+  "file": "/tmp/sn_research/itom__horizontal-discovery-process-flow-with-probes-and-sensors.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery setup",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-setup.html",
+  "file": "/tmp/sn_research/itom__discovery-setup.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery Guided Setup",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-guided-setup.html",
+  "file": "/tmp/sn_research/itom__discovery-guided-setup.md"
+ },
+ {
+  "map": "itom",
+  "title": "Set up Discovery without Guided Setup",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/t_ConfigureDiscovery.html",
+  "file": "/tmp/sn_research/itom__set-up-discovery-without-guided-setup.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery properties",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/r_DiscoveryProperties.html",
+  "file": "/tmp/sn_research/itom__discovery-properties.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery IP address configuration",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-ip-address-configuration.html",
+  "file": "/tmp/sn_research/itom__discovery-ip-address-configuration.md"
+ },
+ {
+  "map": "itom",
+  "title": "Create a Quick IP range for a Discovery schedule",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/t_CreateAQuickRange.html",
+  "file": "/tmp/sn_research/itom__create-a-quick-ip-range-for-a-discovery-schedule.md"
+ },
+ {
+  "map": "itom",
+  "title": "Configure auto-created Discovery schedules",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/config-auto-disco-schedules.html",
+  "file": "/tmp/sn_research/itom__configure-auto-created-discovery-schedules.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery classifiers",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-classifiers.html",
+  "file": "/tmp/sn_research/itom__discovery-classifiers.md"
+ },
+ {
+  "map": "itom",
+  "title": "Create a Discovery CI classification",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/create-discovery-ci-classification.html",
+  "file": "/tmp/sn_research/itom__create-a-discovery-ci-classification.md"
+ },
+ {
+  "map": "itom",
+  "title": "Create a Discovery process classification",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/t_CreateAProcessClassification.html",
+  "file": "/tmp/sn_research/itom__create-a-discovery-process-classification.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery identifiers",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryIdentifiers.html",
+  "file": "/tmp/sn_research/itom__discovery-identifiers.md"
+ },
+ {
+  "map": "itom",
+  "title": "How Discovery identifiers work",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_HowDiscoveryIdentifiersWork.html",
+  "file": "/tmp/sn_research/itom__how-discovery-identifiers-work.md"
+ },
+ {
+  "map": "itom",
+  "title": "Configure Discovery identity probes",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/t_ConfigureDiscoveryIdentityProbes.html",
+  "file": "/tmp/sn_research/itom__configure-discovery-identity-probes.md"
+ },
+ {
+  "map": "itom",
+  "title": "Configure Discovery identity sensors",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/t_ConfigDiscoIdentSens.html",
+  "file": "/tmp/sn_research/itom__configure-discovery-identity-sensors.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery status",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryStatus.html",
+  "file": "/tmp/sn_research/itom__discovery-status.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery timelines",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryStatusTimelines.html",
+  "file": "/tmp/sn_research/itom__discovery-timelines.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery device history",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/r_DiscoveryStatusDevices.html",
+  "file": "/tmp/sn_research/itom__discovery-device-history.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery behaviors",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryBehaviors.html",
+  "file": "/tmp/sn_research/itom__discovery-behaviors.md"
+ },
+ {
+  "map": "itom",
+  "title": "CI deletion strategies for pattern discovery",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/deletion-strategy.html",
+  "file": "/tmp/sn_research/itom__ci-deletion-strategies-for-pattern-discovery.md"
+ },
+ {
+  "map": "itom",
+  "title": "Change the source name of Discovery results",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/t_ChangeTheDiscoverySourceName.html",
+  "file": "/tmp/sn_research/itom__change-the-source-name-of-discovery-results.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery Configuration Console",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryConfigurationConsole.html",
+  "file": "/tmp/sn_research/itom__discovery-configuration-console.md"
+ },
+ {
+  "map": "itom",
+  "title": "Schedule a horizontal discovery",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/t_CreateADiscoverySchedule.html",
+  "file": "/tmp/sn_research/itom__schedule-a-horizontal-discovery.md"
+ },
+ {
+  "map": "itom",
+  "title": "Credentials required for host discovery",
+  "pretty_url": "/r/zurich/it-operations-management/service-mapping/r_Credentials4HostDiscovery.html",
+  "file": "/tmp/sn_research/itom__credentials-required-for-host-discovery.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery and SCCM together",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryAndSCCMTogether.html",
+  "file": "/tmp/sn_research/itom__discovery-and-sccm-together.md"
+ },
+ {
+  "map": "itom",
+  "title": "Advanced Discovery configuration",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryExtendedCapabilities.html",
+  "file": "/tmp/sn_research/itom__advanced-discovery-configuration.md"
+ },
+ {
+  "map": "itom",
+  "title": "Post-clone Discovery configuration",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/PostCloneDiscoveryConfig.html",
+  "file": "/tmp/sn_research/itom__post-clone-discovery-configuration.md"
+ },
+ {
+  "map": "itom",
+  "title": "Data collected by Discovery",
+  "pretty_url": "/r/zurich/it-operations-management/itom-visibility/r_DataCollDiscoStorageDevices.html",
+  "file": "/tmp/sn_research/itom__data-collected-by-discovery.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery Admin Workspace Settings",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-admin-workspace-setup.html",
+  "file": "/tmp/sn_research/itom__discovery-admin-workspace-settings.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery Admin Workspace Tuning",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-admin-workspace-tuning.html",
+  "file": "/tmp/sn_research/itom__discovery-admin-workspace-tuning.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery error messages",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/c_DiscoveryErrorMessages.html",
+  "file": "/tmp/sn_research/itom__discovery-error-messages.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery performance metrics",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-performance-framework.html",
+  "file": "/tmp/sn_research/itom__discovery-performance-metrics.md"
+ },
+ {
+  "map": "itom",
+  "title": "Discovery resource utilization",
+  "pretty_url": "/r/zurich/it-operations-management/discovery/discovery-resource-utilization.html",
+  "file": "/tmp/sn_research/itom__discovery-resource-utilization.md"
+ },
+ {
+  "map": "platcap",
+  "title": "CMDB Identification and Reconciliation (IRE)",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/c_CMDBIdentifyandReconcile.html",
+  "file": "/tmp/sn_research/platcap__cmdb-identification-and-reconciliation-ire.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Identification and Reconciliation engine (IRE)",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/ire.html",
+  "file": "/tmp/sn_research/platcap__identification-and-reconciliation-engine-ire.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Identification rules",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/c_IdentificationRules.html",
+  "file": "/tmp/sn_research/platcap__identification-rules.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Create a CI identification rule",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/t_CreateCIIdentificationRule.html",
+  "file": "/tmp/sn_research/platcap__create-a-ci-identification-rule.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Create an identification inclusion rule",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/create-id-inclusion-rule.html",
+  "file": "/tmp/sn_research/platcap__create-an-identification-inclusion-rule.md"
+ },
+ {
+  "map": "platcap",
+  "title": "General guidelines for using CMDB Identification",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/best-practices-id-reconcile.html",
+  "file": "/tmp/sn_research/platcap__general-guidelines-for-using-cmdb-identification.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Reconciliation rules",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/r_ReconciliationRulesPrinciples.html",
+  "file": "/tmp/sn_research/platcap__reconciliation-rules.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Create a CI reconciliation rule",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/create-reconciliation-rule.html",
+  "file": "/tmp/sn_research/platcap__create-a-ci-reconciliation-rule.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Create a data refresh rule",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/create-datasource-staleness-rule.html",
+  "file": "/tmp/sn_research/platcap__create-a-data-refresh-rule.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Create an IRE data source rule",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/create-ire-data-source-rule.html",
+  "file": "/tmp/sn_research/platcap__create-an-ire-data-source-rule.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Apply IRE to Import Sets",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/identification-import-sets.html",
+  "file": "/tmp/sn_research/platcap__apply-ire-to-import-sets.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Identification simulation",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/identification-simulation.html",
+  "file": "/tmp/sn_research/platcap__identification-simulation.md"
+ },
+ {
+  "map": "platcap",
+  "title": "IRE error messages",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/id-engine-error-messages.html",
+  "file": "/tmp/sn_research/platcap__ire-error-messages.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Dynamic IRE",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/dynamic-ire.html",
+  "file": "/tmp/sn_research/platcap__dynamic-ire.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Configure CI reclassification during IRE processing",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/c_CIReclassification.html",
+  "file": "/tmp/sn_research/platcap__configure-ci-reclassification-during-ire-processing.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Detecting duplicate CIs",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/id-detect-dup-ci.html",
+  "file": "/tmp/sn_research/platcap__detecting-duplicate-cis.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Duplicate CIs remediation",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/de-duplication-tasks.html",
+  "file": "/tmp/sn_research/platcap__duplicate-cis-remediation.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Properties related to remediation of duplicate CIs",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/properties-duplicate-ci.html",
+  "file": "/tmp/sn_research/platcap__properties-related-to-remediation-of-duplicate-cis.md"
+ },
+ {
+  "map": "platcap",
+  "title": "CI Class Manager",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/ci-class-manager-landing-page.html",
+  "file": "/tmp/sn_research/platcap__ci-class-manager.md"
+ },
+ {
+  "map": "platcap",
+  "title": "CMDB classifications and class dependency",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/c_CMDBClassifications.html",
+  "file": "/tmp/sn_research/platcap__cmdb-classifications-and-class-dependency.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Create a CI class",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/t_CreateCIType.html",
+  "file": "/tmp/sn_research/platcap__create-a-ci-class.md"
+ },
+ {
+  "map": "platcap",
+  "title": "CMDB CI class models",
+  "pretty_url": "/r/zurich/servicenow-platform/cmdb-ci-class-models/cmdb-ci-class-models.html",
+  "file": "/tmp/sn_research/platcap__cmdb-ci-class-models.md"
+ },
+ {
+  "map": "platcap",
+  "title": "Configuration identifiers framework",
+  "pretty_url": "/r/zurich/servicenow-platform/configuration-management-database-cmdb/configuration-identifiers-framework.html",
+  "file": "/tmp/sn_research/platcap__configuration-identifiers-framework.md"
+ }
+]

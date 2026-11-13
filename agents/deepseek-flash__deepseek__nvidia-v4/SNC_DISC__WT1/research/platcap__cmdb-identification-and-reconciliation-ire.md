@@ -1,0 +1,21 @@
+# CMDB Identification and Reconciliation (IRE)
+
+- Source: https://www.servicenow.com/docs/r/zurich/servicenow-platform/configuration-management-database-cmdb/c_CMDBIdentifyandReconcile.html
+- Release: Zurich
+- Map: platcap
+
+---
+
+# CMDB Identification and Reconciliation (IRE)
+
+The Identification and Reconciliation module provides a centralized framework for identifying and reconciling data from different data sources. It helps maintain the integrity of the CMDB and some non- CMDB tables when multiple data sources are used to create and update CI records.
+
+## Get started
+
+Explore Learn about benefits and how IRE helps maintain the integrity of the CMDB. Configure Configure identification, reconciliation, and other rules. IRE and Import Sets Apply IRE to Import Sets that are importing CIs into the CMDB. Identification rules Create the rules that uniquely identify CIs based on CI attributes. Reconciliation rules Create the rules that manage authorization and update priority between discovery sources. IRE and Duplicate CIs Learn and configure how IRE detects duplicate CIs and how to process de-duplication tasks. IRE and non-CMDB tables Apply IRE processes to supported non-CMDB tables. Identification Simulator Construct a validated payload and simulate running it through IRE processes. Reference Properties and tables associated with IRE, and how domain separation is supported in IRE functions.
+
+## Troubleshoot and get help
+
+- Ask questions and explore other resources for in the ServiceNow Community
+- Search the Known Error Portal for known error articles
+- Contact Customer Service and Support

@@ -1,0 +1,45 @@
+# Create an identification inclusion rule
+
+- Source: https://www.servicenow.com/docs/r/zurich/servicenow-platform/configuration-management-database-cmdb/create-id-inclusion-rule.html
+- Release: Zurich
+- Map: platcap
+
+---
+
+# Create an identification inclusion rule
+
+Narrow the scope of CIs that are included in the identification process by creating an identification inclusion rule.
+
+## Before you begin
+
+Role required: itil has read access, itil_admin (on top of itil) has full access.
+
+## About this task
+
+During duplication detection of independent CIs, the identification and reconciliation engine (IRE) processes only the CIs that satisfy the identification inclusion rules.
+For example, you can
+ set a filter to include only CIs whose state is operational. When no identification inclusion rules exist, all CIs are included in the identification process and in the CMDB Health duplicate metric calculations. In the base
+ system, there are no predefined identification inclusion rules. Identification inclusion rules are defined at the class level.
+
+Identification inclusion rules also indirectly impact what appears in CMDB health dashboards for duplicate CIs, in addition to any
+health inclusion rules
+.
+
+Note:
+Identification inclusion rules impact any script that calls IRE, therefore create them carefully. Identification inclusion rules can prevent the identification of certain types of CIs, affecting some features of Discovery
+ and Service Mapping.
+
+## Procedure
+
+- Navigate to All > Configuration > CI Class Manager .
+- Select Hierarchy to display the CI Classes list.
+- Select the class for which to create an identification inclusion rule.
+- In the class navigation bar, expand Class Info and then select Identification .
+- Create or edit a rule and specify its criteria. In the Inclusion Rule (Advanced) section, select Add to create a rule or select Edit to edit an existing rule. In the Create Inclusion Rules dialog box, specify a criteria in the Active record condition field. CIs must meet this criteria to be included in the identification process and in the duplicate CMDB Health metric.
+- Select Save .
+
+## What to do next
+
+Navigate to
+All > Configuration > Identification/Reconciliation > Identification Inclusion Rules >
+to see the list of all identification inclusion rules.

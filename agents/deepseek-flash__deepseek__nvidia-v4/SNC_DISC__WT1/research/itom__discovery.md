@@ -1,0 +1,31 @@
+# Discovery
+
+- Source: https://www.servicenow.com/docs/r/zurich/it-operations-management/discovery/r-discovery.html
+- Release: Zurich
+- Map: itom
+
+---
+
+# Discovery
+
+ServiceNow
+Discovery
+is an automated process that continuously scans and identifies all the components within the IT infrastructure. It plays a crucial role in maintaining an accurate and up-to-date
+CMDB 360
+with the information it finds.
+
+Discovery
+is available as a separate subscription from the rest of the
+ServiceNow AI Platform
+. See
+Request Discovery
+for details.
+
+Discovery
+supports database encryption and full-disk encryption. See
+Database Encryption
+for details.
+
+## Get started
+
+Introduction Exploring Discovery Set up Request Discovery Discovery setup MID Server installation Create and test your credentials Migrate from CAPI to Patterns Configure Configuring Discovery Discovery properties Create a Discovery behavior Create a Discovery CI classification Create a Discovery process classification Use Schedule a horizontal discovery Run a Quick Discovery Discovery status Validate discovery results Discovery Admin Workspace Discovery for cloud environment Certificate Inventory and Management Integrate and develop Activate SCCM Asset Intelligence scheduled imports Discovery APIs on the ServiceNowÂ® Developer Site Troubleshoot and get help Discovery monitoring and issue resolution Search the Known Error Portal for known error articles Ask or answer questions in the ITOM forum Contact Customer Service and Support

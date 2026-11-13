@@ -51,3 +51,10 @@ self_runs:
     wt: 1
     folder: agents/deepseek-v4.1-flash-fast__freebuff__buffy/SNC_DISC__WT1
     note: "browsed and researched with native tools; no vendor key, no budget.py entry"
+  - id: deepseek-flash__deepseek__nvidia-v4
+    model: deepseek-flash
+    provider: deepseek
+    harness: kilo-cli
+    wt: 1
+    folder: agents/deepseek-flash__deepseek__nvidia-v4/SNC_DISC__WT1
+    note: "nvidia-v4 worktree; self-driven research + local Ollama swarm with budget ledger"

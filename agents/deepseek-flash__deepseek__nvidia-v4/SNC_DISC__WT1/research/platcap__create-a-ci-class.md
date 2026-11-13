@@ -1,0 +1,69 @@
+# Create a CI class
+
+- Source: https://www.servicenow.com/docs/r/zurich/servicenow-platform/configuration-management-database-cmdb/t_CreateCIType.html
+- Release: Zurich
+- Map: platcap
+
+---
+
+# Create a CI class
+
+Create a CI class (table) that is an extension of an existing CI class. Then create
+ identification and reconciliation rules for the new class.
+
+## Before you begin
+
+The class that is being extended must have its
+Is_Extendable
+field checked, indicating that the class is
+ extendable.
+
+Role required:
+- Itil_admin and personalize_dictionary: Required for editing the dictionary
+ table
+- admin: Full access
+
+## About this task
+
+The CI Class Manager is a centralized location for managing CMDB tables and for
+ creating a class that is derived from another CMDB class. Creating a class requires
+ basic details such as a label and a name. Identification and reconciliation rules
+ are also required to ensure that the class can be successfully identified by the
+ identification engine.
+
+For more information about extending a class and how attributes are derived from a parent class in that process, see
+Table extension and classes
+.
+
+## Procedure
+
+- Navigate to All > Configuration > CI Class Manager .
+- Click Hierarchy to expand the CI Classes list.
+- Select the class that the new class is extended from.
+- Click Add Child Class . The Add Child Class option appears only if the selected
+ class is extendable.
+- On the Provide Basic Info tab, fill out the information
+ and then click Next . Field Description Display name A unique label for the class (such as Laptops or Thin Clients). The label appears on list and form views for the class. Updating the Label field also updates the label record in the
+ language file for the current language. See Field Labels in Data dictionary tables . Maximum string length is 80 characters. Table name Automatically populated based on the table label and the
+ prefix string
+ 'u_cmdb_ci'. You cannot modify the prefix; however, you can modify the
+ rest of the table name. The name can contain only
+ lowercase, alphanumeric ASCII characters and underscores
+ (_). Maximum string length is 80 characters. Description Explanation of the use purpose of the class. Icon The icon associated with the class. Extensible Indicator of whether this class can be extended. Principal Class Denotes whether this class is included in the Principal
+ Class filter . If this class is included in the
+ Principal Class filter, then CIs from this class appear in
+ CI list views when the Principal Class filter is
+ applied.
+- On the Add Attributes tab, click the + sign and enter details for each new class column.
+- Click Next . For description of the different columns in the list view, see Dictionary entry form . To designate an attribute as a CI identifier for class identification, double-click the attribute's Identification Rule column and set it to true .
+- On the Set Identification Rule tab, examine the Derived identification rule and its Identifier Entries . You can click Replace to replace the derived rule with a new identification rule and new identifier entries specific to the new class. See Identification rules for details about identification rules and identifier entries.
+- On the Dependencies tab, click Add
+ dependency to add dependent rules . The Dependencies tab appears only if there are
+ dependent identification rules for the selected class.
+- On the Add Reconciliation Rules tab, click Add to create the following rules: Reconciliation Rules Data Refresh
+ Rules
+- On the Add Suggested Relationships tab, review the diagram of the class derived suggested relationships.
+- Use the filter to display only inbound, outbound, or specific relationship types.
+- To add a suggested relationship for the class: Click New . In the Add Suggested Relationship dialog box, select a Relationship and a Target Class for the relationship. This Class and the Target
+ Class become parent or child in the suggested relationship, based on your selection of the Relationship . Click Save . When building relationships for the class in the Query Builder, the list of suggested relationships is updated.
+- Click Done .

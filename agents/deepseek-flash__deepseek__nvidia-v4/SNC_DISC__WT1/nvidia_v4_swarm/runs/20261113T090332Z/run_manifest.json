@@ -1,0 +1,53 @@
+{
+  "run": "20261113T090332Z",
+  "started_utc": "2026-11-13T09:05:00+00:00",
+  "wall_time_s": 88.2,
+  "max_parallel": 2,
+  "reference": "/tmp/ALT_PARALLELSWARM/agents/deepseek-flash__deepseek__nvidia-v4/SNC_DISC__WT1/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
+  "prompt_chars": 12684,
+  "results": [
+    {
+      "agent": "qwen2.5-coder-7b__ollama__nvidia-v4",
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "status": "ok",
+      "tokens_in": 3036,
+      "tokens_out": 725,
+      "elapsed_s": 32.8,
+      "error": "",
+      "folder": "/tmp/ALT_PARALLELSWARM/agents/deepseek-flash__deepseek__nvidia-v4/SNC_DISC__WT1/nvidia_v4_swarm/runs/20261113T090332Z/qwen2.5-coder-7b__ollama__nvidia-v4"
+    },
+    {
+      "agent": "qwen3.5-4b__ollama__nvidia-v4",
+      "model": "qwen3.5:4b",
+      "provider": "ollama",
+      "status": "ok",
+      "tokens_in": 3157,
+      "tokens_out": 2500,
+      "elapsed_s": 88.2,
+      "error": "",
+      "folder": "/tmp/ALT_PARALLELSWARM/agents/deepseek-flash__deepseek__nvidia-v4/SNC_DISC__WT1/nvidia_v4_swarm/runs/20261113T090332Z/qwen3.5-4b__ollama__nvidia-v4"
+    }
+  ],
+  "ledger": {
+    "ledger": "/tmp/ALT_PARALLELSWARM/agents/deepseek-flash__deepseek__nvidia-v4/SNC_DISC__WT1/nvidia_v4_swarm/state/usage.sqlite3",
+    "day": "2026-11-13",
+    "providers": {
+      "ollama": {
+        "provider": "ollama",
+        "day": "2026-11-13",
+        "calls": 2,
+        "tokens_in": 6193,
+        "tokens_out": 3225,
+        "tokens": 9418,
+        "cost_usd": 0.0,
+        "inflight": 0,
+        "max_inflight": 2,
+        "daily_calls": 1000,
+        "daily_tokens": 5000000,
+        "price_in_per_1k": 0.0,
+        "price_out_per_1k": 0.0
+      }
+    }
+  }
+}
