@@ -83,6 +83,7 @@ def _roll(entry: dict, provider: str) -> dict:
     today = date.today().isoformat()
     if entry.get("day") != today:
         entry.update(day=today, calls=0, tokens=0, cost_usd=0.0)
+    entry.setdefault("inflight", 0)
     for k, v in DEFAULTS.get(provider, DEFAULTS["ollama"]).items():
         entry.setdefault(k, v)
     return entry

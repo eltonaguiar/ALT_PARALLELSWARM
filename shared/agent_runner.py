@@ -193,7 +193,10 @@ or marked `UNVERIFIED`. Plus `04_QA/QA.md` self-scoring and `05_FINAL/FINAL_SUMM
     (root / "05_FINAL" / "DISCOVERY_CONFIG_REFERENCE.md").write_text(doc, encoding="utf-8")
 
     # ---- QA -----------------------------------------------------------------------
-    full = doc.lower()
+    # Score the BODY only: headings contain the topic words themselves and would
+    # otherwise give a false pass.
+    body_only = "\n".join(b.split("\n", 1)[-1] for b in body)
+    full = body_only.lower()
     got = {k: bool(re.search(v, full)) for k, v in TOPICS.items()}
     urls = sorted(set(re.findall(r"https?://[^\s\)\]\"'<>]+", doc)))
     score = sum(got.values())
