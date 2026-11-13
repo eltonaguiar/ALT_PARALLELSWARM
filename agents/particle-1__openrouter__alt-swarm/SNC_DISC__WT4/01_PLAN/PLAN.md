@@ -1,6 +1,6 @@
 # Plan — particle-1__openrouter__alt-swarm
 
-**Model:** `particle-ai/particle-1:free` · **Provider:** `openrouter` · **Started:** 2026-11-13T09:02:47+00:00
+**Model:** `particle-ai/particle-1:free` · **Provider:** `openrouter` · **Started:** 2026-11-13T09:04:04+00:00
 
 ## Goal
 
