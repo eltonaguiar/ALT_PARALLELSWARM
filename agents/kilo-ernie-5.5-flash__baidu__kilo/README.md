@@ -79,17 +79,21 @@ at a glance:
 
 ## Quick start
 
-```bash
-pip install -r swarm/requirements.txt      # (stdlib only — nothing required)
+All commands run **from this folder** (the namespace folder), because `swarm/` lives here:
 
+```bash
+cd agents/kilo-ernie-5.5-flash__baidu__kilo
+
+# (stdlib only — nothing to install)
 # 1) probe what each free key / local model can actually do
 python -m swarm.capability_probe --all
 
-# 2) scaffold a task's worktrees from a plan
-python -m swarm.worktree_manager --task SNC_DISC_RESEARCH --models ./swarm/registry.json
+# 2) scaffold a task's worktrees from task.json
+python -m swarm.worktree_manager --task SNC_DISC_RESEARCH
 
 # 3) run the swarm (respects usage caps)
-python -m swarm.orchestrator --task SNC_DISC_RESEARCH --plan tasks/SNC_DISC_RESEARCH/_PLAN/00_CHARTER.md
+python -m swarm.orchestrator --task SNC_DISC_RESEARCH \
+    --shared-context tasks/SNC_DISC_RESEARCH/_ORCHESTRATION/shared_context.md
 
 # 4) inspect usage
 python -m swarm.usage_tracker --report
