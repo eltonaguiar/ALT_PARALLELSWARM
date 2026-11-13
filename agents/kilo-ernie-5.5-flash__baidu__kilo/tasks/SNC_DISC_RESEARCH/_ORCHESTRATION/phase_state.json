@@ -1,0 +1,80 @@
+{
+  "task": "SNC_DISC_RESEARCH",
+  "note": "Consolidated final state across all worktrees (regenerated after the last --only WT2 run).",
+  "run_at": "2026-11-13T08:36:00Z",
+  "worktrees": [
+    {
+      "id": "WT1",
+      "worktree": "WT1_kilo-ernie-5.5-flash",
+      "model": "kilo/baidu/ernie-5.5-flash-preview:free",
+      "status": "done",
+      "deliverables": [
+        "02_order_of_operations.md",
+        "04_duplicate_avoidance_cmdb.md",
+        "03_ci_class_manager.md",
+        "01_discovery_config_options.md"
+      ],
+      "title": "02 \u2014 Discovery: Order of Operations",
+      "phases": [
+        "phase1.md",
+        "phase2.md"
+      ]
+    },
+    {
+      "id": "WT2",
+      "worktree": "WT2_llama-3.3-70b-openrouter",
+      "model": "openrouter/meta-llama/llama-3.3-70b-instruct",
+      "status": "done",
+      "deliverables": [
+        "ci_class_manager.md"
+      ],
+      "title": "CI Class Manager",
+      "phases": [
+        "phase1.md",
+        "phase2.md"
+      ]
+    },
+    {
+      "id": "WT3",
+      "worktree": "WT3_gemini-2.5-flash",
+      "model": "gemini/gemini-2.5-flash",
+      "status": "done",
+      "deliverables": [
+        "duplicate_avoidance.md"
+      ],
+      "title": "Duplicate Avoidance",
+      "phases": [
+        "phase1.md",
+        "phase2.md"
+      ]
+    },
+    {
+      "id": "WT4",
+      "worktree": "WT4_deepseek-chat",
+      "model": "deepseek/deepseek-chat",
+      "status": "done",
+      "deliverables": [
+        "ire_engine.md"
+      ],
+      "title": "Identification and Reconciliation Engine (IRE)",
+      "phases": [
+        "phase1.md",
+        "phase2.md"
+      ]
+    },
+    {
+      "id": "WT5",
+      "worktree": "WT5_mistral-nemo",
+      "model": "mistral/open-mistral-nemo",
+      "status": "done",
+      "deliverables": [
+        "cmdb_write_behaviour.md"
+      ],
+      "title": "CMDB Insert/Update Behavior",
+      "phases": [
+        "phase1.md",
+        "phase2.md"
+      ]
+    }
+  ]
+}

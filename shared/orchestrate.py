@@ -51,7 +51,7 @@ def ensure_worktree(slug: str) -> Path:
     return wt
 
 
-def run_agent(agent: dict, rounds: str) -> dict:
+def run_agent(agent: dict, rounds: str, no_push: bool = False) -> dict:
     slug = agent["id"]
     t0 = time.time()
     try:
@@ -79,6 +79,9 @@ def run_agent(agent: dict, rounds: str) -> dict:
     sh(["git", "add", folder], cwd=wt)
     c = sh(["git", "commit", "-m", f"agent({slug}): {agent['model']} via {agent['provider']} — {agent.get('note','')}"], cwd=wt)
     out["commit"] = "ok" if c.returncode == 0 else (c.stdout + c.stderr).strip()[:200]
+    if no_push:
+        out["push"] = "skipped (--no-push)"
+        return out
     p = sh(["git", "push", "-u", "origin", f"agent/{slug}"], cwd=wt, timeout=300)
     out["push"] = "ok" if p.returncode == 0 else (p.stdout + p.stderr).strip()[:200]
     return out
@@ -104,7 +107,7 @@ def main():
     print(f"task={cfg.get('task')} agents={len(agents)} max_parallel={max_par} rounds={rounds}", flush=True)
     t0 = time.time()
     with ThreadPoolExecutor(max_workers=max_par) as ex:
-        results = list(ex.map(lambda a: run_agent(a, rounds), agents))
+        results = list(ex.map(lambda a: run_agent(a, rounds, args.no_push), agents))
 
     lines = [f"# Orchestration report — {cfg.get('task')}", "",
              f"Generated: {time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}",

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+**/usage_tracker.json
+**/usage_tracker.json.lock
+**/usage_tracker.json.tmp
+**/usage_log.jsonl
+.DS_Store
