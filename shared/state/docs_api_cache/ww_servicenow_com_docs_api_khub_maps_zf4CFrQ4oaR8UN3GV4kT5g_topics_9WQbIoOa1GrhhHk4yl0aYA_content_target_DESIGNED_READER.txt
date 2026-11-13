@@ -1,0 +1,17 @@
+CMDB Health
+ Release version: Brazil 
+ Updated September 10, 2026 
+ 1 minute to read
+ A healthy CMDB, based on health benchmarks in an organization, is essential to an effective and continuous use of the product. Health indicators such as duplicate CIs, required CI fields, and audits are evaluated and
+ aggregated into health scores at the class, health group, and service levels. CMDB Health also provides a framework for applying standardized CI remediation.
+ Get started
+ Explore Explore the KPIs and metrics that are evaluated for health, and the health results dashboards. 
+ Configure Select the health metric to monitor and configure any associated rules. 
+ Use CMDB Health in a workspace Access CMDB Health dashboards and related tasks in CMDB Workspace or in Service Graph Workspace . 
+ Remediate Create and apply remediation rules to CIs that failed health tests. 
+ Track processes Use logging and other troubleshooting methods to resolve issues with CMDB Health processes. 
+ Reference Details about properties, scheduled jobs, and tables, used by CMDB Health, and domain separation. 
+ Troubleshoot and get help
+ Ask questions and explore other resources for in the ServiceNow Community 
+ Search the Known Error Portal for known error articles 
+ Contact Customer Service and Support

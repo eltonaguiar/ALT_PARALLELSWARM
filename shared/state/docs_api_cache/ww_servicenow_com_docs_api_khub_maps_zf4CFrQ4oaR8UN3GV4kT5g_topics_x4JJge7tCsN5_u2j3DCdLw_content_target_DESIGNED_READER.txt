@@ -1,0 +1,38 @@
+CI Class Manager
+ Release version: Brazil 
+ Updated September 10, 2026 
+ 1 minute to read
+ Use the CI Class Manager to centrally view, create, or edit basic class definitions, class settings for Identification and Reconciliation Engine (IRE), CMDB
+ Health, and manage some Service Mapping definitions.
+ Note: CI Class Manager doesn't support working with non-CMDB tables. For more details, see
+ IRE support for non-CMDB tables .
+ To access the CI Class Manager, navigate to All > Configuration > CI Class Manager . In general, the sn_cmdb_admin role has full access to all sections of the CI Class Manager and the sn_cmdb_editor user role has read access only.
+ Class basics
+ Create a class 
+ View class basic information 
+ View and edit class definitions and metadata 
+ Add a suggested relationship 
+ Show all CIs for a class 
+ Create or modify Dependency Views map icons 
+ Delete CIs 
+ Update the list of classes in the Principal Class filter 
+ CMDB Health
+ Create a compliance audit 
+ Create a certification template 
+ Create a CMDB Health orphan rule 
+ Create a CMDB Health staleness rule 
+ Set a CI field to be recommended 
+ Set a CI attribute to be mandatory 
+ Create health inclusion rule 
+ IRE
+ Identification: 
+ Create a CI identification rule 
+ Create an identification inclusion rule 
+ Reconciliation: 
+ Create a CI reconciliation rule 
+ Create a data refresh rule 
+ Dependencies: 
+ Create a dependent relationship rule for a CMDB class (hosting and containment)
+ Service Mapping 
+ Entry point types for Service Mapping 
+ CI types for Service Mapping and Discovery

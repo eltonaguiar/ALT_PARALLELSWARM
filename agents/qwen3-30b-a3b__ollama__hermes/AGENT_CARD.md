@@ -24,8 +24,8 @@ or explicitly marked UNVERIFIED; plus `04_QA/QA.md` and `05_FINAL/FINAL_SUMMARY.
 ## Self-reported status
 - capability gate: **browsing OK**
 - internal topic check: **7/8**
-- private rubric (external): **2/4 mentioned, 0/4 quality**
-- sources cited: **7**
+- private rubric (external): **?/4 mentioned, ?/4 quality**
+- sources cited: **?**
 
 ## Files modified (14)
 ```

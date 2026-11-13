@@ -1,0 +1,31 @@
+Change the source name of Discovery results
+ Release version: Brazil 
+ Updated September 10, 2026 
+ 1 minute to read
+ You have the option of changing the source name of discovery results. This might be
+ desirable if Discovery is running on your network together with another discovery product,
+ and you want to use customized identifiers.
+ Before you begin
+Role required: discovery_admin or admin 
+ About this task
+ The Source [sys_object_source] table stores information identifying the source of a
+ discovery, the ID of that source, and the date/time of the last scan.
+ To view this information, configure a CI form and add the
+ Sources related list. This table is populated
+ automatically when the Discovery plugin is enabled.
+ Figure 1. Sources List 
+ To migrate your Discovery 
+ Source to ServiceNow :
+ Procedure
+ Update the glide.discovery.source_name system property to
+ have a value of ServiceNow . 
+ Edit the dictionary entry for the Configuration Item [cmdb_ci] table. 
+ Update the choice list for the discovery_source column to only
+ have the value ServiceNow 
+ for a discovery product. 
+ Open a list for the Configuration Item [cmdb_ci] table and filter on a
+ discovery source field value you want to change. 
+ Use the Update All option to change the value to ServiceNow . 
+ Open a list for the Source [sys_object_source] table and filter on a name field
+ value you want to change. 
+ Use the Update All option to change the value to ServiceNow .

@@ -5,15 +5,18 @@ so every branch merges without conflict. Cards below are generated from the run 
 
 | agent folder | model | provider | browse | internal check | private rubric | card |
 |---|---|---|---|---|---|---|
-| [`agents/deepseek-v4-flash__deepseek__hermes`](agents/deepseek-v4-flash__deepseek__hermes/AGENT_CARD.md) | `deepseek-v4-flash` | deepseek | yes | 8/8 | 2/4 mentioned · 2/4 quality | [card](agents/deepseek-v4-flash__deepseek__hermes/AGENT_CARD.md) |
+| [`agents/deepseek-flash__openrouter__kilo-cli`](agents/deepseek-flash__openrouter__kilo-cli/AGENT_CARD.md) | `deepseek-flash` | openrouter | no | ?/? | ?/4 mentioned · ?/4 quality | [card](agents/deepseek-flash__openrouter__kilo-cli/AGENT_CARD.md) |
+| [`agents/deepseek-v4-flash__deepseek__hermes`](agents/deepseek-v4-flash__deepseek__hermes/AGENT_CARD.md) | `deepseek-v4-flash` | deepseek | yes | 8/8 | 4/4 mentioned · 2/4 quality | [card](agents/deepseek-v4-flash__deepseek__hermes/AGENT_CARD.md) |
 | [`agents/deepseek-v4.1-flash-fast__freebuff__buffy`](agents/deepseek-v4.1-flash-fast__freebuff__buffy/AGENT_CARD.md) | `deepseek-v4.1-flash-fast` | freebuff | no | ?/? | ?/4 mentioned · ?/4 quality | [card](agents/deepseek-v4.1-flash-fast__freebuff__buffy/AGENT_CARD.md) |
-| [`agents/llama3.1-8b__ollama__hermes`](agents/llama3.1-8b__ollama__hermes/AGENT_CARD.md) | `llama3.1:8b` | ollama | yes | 0/8 | 0/4 mentioned · 0/4 quality | [card](agents/llama3.1-8b__ollama__hermes/AGENT_CARD.md) |
-| [`agents/qwen2.5-7b__ollama__hermes`](agents/qwen2.5-7b__ollama__hermes/AGENT_CARD.md) | `qwen2.5:7b-instruct-q5_K_M` | ollama | yes | 6/8 | 1/4 mentioned · 0/4 quality | [card](agents/qwen2.5-7b__ollama__hermes/AGENT_CARD.md) |
-| [`agents/qwen3-30b-a3b__ollama__hermes`](agents/qwen3-30b-a3b__ollama__hermes/AGENT_CARD.md) | `qwen3:30b-a3b` | ollama | yes | 7/8 | 2/4 mentioned · 0/4 quality | [card](agents/qwen3-30b-a3b__ollama__hermes/AGENT_CARD.md) |
-| [`agents/deepseek-flash__openrouter__kilo-cli`](agents/deepseek-flash__openrouter__kilo-cli/AGENT_CARD.md) | `deepseek/deepseek-flash` | openrouter (inferred) | yes (docs API) | 9/9 SC | — · — | [card](agents/deepseek-flash__openrouter__kilo-cli/AGENT_CARD.md) |
-| [`agents/qwen3.5-4b__ollama__alt-swarm`](agents/qwen3.5-4b__ollama__alt-swarm/SNC_DISC__WT2/05_FINAL/CONFIG_OPTIONS_AND_ORDER.md) | `qwen3.5:4b` | ollama | no (digest) | QA pass | — · — | — |
-| [`agents/qwen2.5-coder-7b__ollama__alt-swarm`](agents/qwen2.5-coder-7b__ollama__alt-swarm/SNC_DISC__WT3/05_FINAL/DUPLICATE_PREVENTION.md) | `qwen2.5-coder:7b` | ollama | no (digest) | QA pass | — · — | — |
-| [`agents/particle-1__openrouter__alt-swarm`](agents/particle-1__openrouter__alt-swarm/SNC_DISC__WT4/05_FINAL/CI_CLASS_MANAGER_BREADCRUMBS.md) | `particle-ai/particle-1:free` | openrouter | no (digest) | QA pass | — · — | — |
+| [`agents/inkling-2-small__openrouter__kilo`](agents/inkling-2-small__openrouter__kilo/AGENT_CARD.md) | `inkling-2-small` | openrouter | no | ?/? | ?/4 mentioned · ?/4 quality | [card](agents/inkling-2-small__openrouter__kilo/AGENT_CARD.md) |
+| [`agents/llama3.1-8b__ollama__hermes`](agents/llama3.1-8b__ollama__hermes/AGENT_CARD.md) | `llama3.1:8b` | ollama | yes | 0/8 | ?/4 mentioned · ?/4 quality | [card](agents/llama3.1-8b__ollama__hermes/AGENT_CARD.md) |
+| [`agents/nemotron-3-5-super-vl__litellm__opencode`](agents/nemotron-3-5-super-vl__litellm__opencode/AGENT_CARD.md) | `nvidia/nemotron-3.5-super-vl-120b-a12b` | litellm | yes | 8/8 | ?/4 mentioned · ?/4 quality | [card](agents/nemotron-3-5-super-vl__litellm__opencode/AGENT_CARD.md) |
+| [`agents/openrouter-free__openrouter__kilo`](agents/openrouter-free__openrouter__kilo/AGENT_CARD.md) | `openrouter-free` | openrouter | yes | ?/? | ?/4 mentioned · ?/4 quality | [card](agents/openrouter-free__openrouter__kilo/AGENT_CARD.md) |
+| [`agents/particle-1__openrouter__alt-swarm`](agents/particle-1__openrouter__alt-swarm/AGENT_CARD.md) | `particle-1` | openrouter | no | ?/? | ?/4 mentioned · ?/4 quality | [card](agents/particle-1__openrouter__alt-swarm/AGENT_CARD.md) |
+| [`agents/qwen2.5-7b__ollama__hermes`](agents/qwen2.5-7b__ollama__hermes/AGENT_CARD.md) | `qwen2.5:7b-instruct-q5_K_M` | ollama | yes | 6/8 | ?/4 mentioned · ?/4 quality | [card](agents/qwen2.5-7b__ollama__hermes/AGENT_CARD.md) |
+| [`agents/qwen2.5-coder-7b__ollama__alt-swarm`](agents/qwen2.5-coder-7b__ollama__alt-swarm/AGENT_CARD.md) | `qwen2.5-coder-7b` | ollama | no | ?/? | ?/4 mentioned · ?/4 quality | [card](agents/qwen2.5-coder-7b__ollama__alt-swarm/AGENT_CARD.md) |
+| [`agents/qwen3-30b-a3b__ollama__hermes`](agents/qwen3-30b-a3b__ollama__hermes/AGENT_CARD.md) | `qwen3:30b-a3b` | ollama | yes | 7/8 | ?/4 mentioned · ?/4 quality | [card](agents/qwen3-30b-a3b__ollama__hermes/AGENT_CARD.md) |
+| [`agents/qwen3.5-4b__ollama__alt-swarm`](agents/qwen3.5-4b__ollama__alt-swarm/AGENT_CARD.md) | `qwen3.5-4b` | ollama | no | ?/? | ?/4 mentioned · ?/4 quality | [card](agents/qwen3.5-4b__ollama__alt-swarm/AGENT_CARD.md) |
 
 ## Folder contract (every agent)
 

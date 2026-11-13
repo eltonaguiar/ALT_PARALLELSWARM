@@ -13,9 +13,9 @@
     },
     "deepseek": {
       "day": "2026-11-13",
-      "calls": 3,
-      "tokens": 18000,
-      "cost_usd": 0.00504,
+      "calls": 19,
+      "tokens": 114000,
+      "cost_usd": 0.03192,
       "inflight": 0,
       "max_inflight": 2,
       "daily_calls": 500,

@@ -1,0 +1,21 @@
+IP address selection properties
+ Release version: Brazil 
+ Updated September 10, 2026 
+ 1 minute to read
+ You can use system properties to control the selection of IP address for specified configuration item (CI) classes.
+ Use these properties to determine whether Discovery should replace the IP address in a device's CI record. Replacement occurs when the returned address doesn't match a network interface (NIC) on the device.
+ This matters for devices whose management IP differs from the IP addresses associated with one or more NICs. Because the management IP is used in the Discovery schedule, that is the address Discovery returns. Use these properties to determine which IP address to use for CIs of any class.
+ Field 
+ Description 
+ glide.discovery.exclude_ip_sync_classes 
+ Defines CI classes whose IP addresses shouldn’t be substituted if the address returned by Discovery doesn’t match one of the devices' NICs. Use a comma-separated list to define multiple classes. By default, the
+ system uses the management IP of a load balancer returned by Discovery in the CI record, rather than substituting it for the IP address of one of the load balancer's NICs. 
+ Type : string
+ Default value : cmdb_ci_lb
+ glide.discovery.enforce_unique_ips 
+ Enforce unique IP addresses: Ignores the IP address after Discovery encounters subsequent devices that use the same IP address. Each time a computer, printer, or network device with a valid IP address is discovered, the IP address field is cleared on
+ any other device sharing that address. If inactive, stores the IP address for each device.
+ Type : true | false
+ Default value false
+ Note: After you define your IP collections, you can use Discovery generic attributes to automatically set field values on CIs discovered within a schedule, range set, or IP address range. For example, you can assign different locations to CIs based on which IP
+ range they were discovered in. For more information, see Define CI field attributes .

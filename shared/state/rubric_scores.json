@@ -1,296 +1,37 @@
 [
   {
-    "doc": "agents/deepseek-v4.1-flash-fast__freebuff__buffy/SNC_DISC__WT1/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
+    "doc": "/home/eaguiar2015/wt-deepseek-v4-flash__deepseek__hermes/agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
     "passed": 4,
-    "strong": 4,
-    "sources": 4,
-    "chars": 42253,
-    "items": {
-      "identification_rules": {
-        "mentions": 12,
-        "detailed_hits": 8,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "reconciliation_rules": {
-        "mentions": 21,
-        "detailed_hits": 11,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "ire_data_source_rules": {
-        "mentions": 26,
-        "detailed_hits": 19,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "data_refresh_rules": {
-        "mentions": 39,
-        "detailed_hits": 12,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      }
-    }
-  },
-  {
-    "doc": "agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
-    "passed": 2,
     "strong": 2,
-    "sources": 26,
-    "chars": 22681,
+    "sources": 35,
+    "chars": 73113,
     "items": {
       "identification_rules": {
-        "mentions": 20,
-        "detailed_hits": 5,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "reconciliation_rules": {
-        "mentions": 22,
-        "detailed_hits": 8,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "ire_data_source_rules": {
-        "mentions": 0,
-        "detailed_hits": 2,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      },
-      "data_refresh_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      }
-    }
-  },
-  {
-    "doc": "agents/deepseek-flash__openrouter__kilo-cli/SNC_DISC__WT1/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
-    "passed": 4,
-    "strong": 4,
-    "sources": 40,
-    "chars": 59084,
-    "items": {
-      "identification_rules": {
-        "mentions": 21,
-        "detailed_hits": 9,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "reconciliation_rules": {
-        "mentions": 26,
-        "detailed_hits": 9,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "ire_data_source_rules": {
-        "mentions": 59,
-        "detailed_hits": 40,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      },
-      "data_refresh_rules": {
-        "mentions": 38,
-        "detailed_hits": 10,
-        "own_section": true,
-        "pass": true,
-        "quality": true
-      }
-    }
-  },
-  {
-    "doc": "agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
-    "passed": 2,
-    "strong": 0,
-    "sources": 7,
-    "chars": 4992,
-    "items": {
-      "identification_rules": {
-        "mentions": 3,
-        "detailed_hits": 1,
+        "mentions": 44,
+        "detailed_hits": 19,
         "own_section": false,
         "pass": true,
         "quality": false
       },
       "reconciliation_rules": {
-        "mentions": 3,
-        "detailed_hits": 0,
-        "own_section": false,
+        "mentions": 47,
+        "detailed_hits": 27,
+        "own_section": true,
         "pass": true,
-        "quality": false
+        "quality": true
       },
       "ire_data_source_rules": {
-        "mentions": 0,
-        "detailed_hits": 1,
-        "own_section": false,
-        "pass": false,
-        "quality": false
+        "mentions": 71,
+        "detailed_hits": 56,
+        "own_section": true,
+        "pass": true,
+        "quality": true
       },
       "data_refresh_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      }
-    }
-  },
-  {
-    "doc": "agents/qwen2.5-7b__ollama__hermes/SNC_DISC__WT2/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
-    "passed": 1,
-    "strong": 0,
-    "sources": 2,
-    "chars": 2067,
-    "items": {
-      "identification_rules": {
         "mentions": 1,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": true,
-        "quality": false
-      },
-      "reconciliation_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      },
-      "ire_data_source_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      },
-      "data_refresh_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      }
-    }
-  },
-  {
-    "doc": "agents/inkling-2-small__openrouter__kilo/SNC_DISC__WT1/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
-    "passed": 4,
-    "strong": 0,
-    "sources": 0,
-    "chars": 26464,
-    "items": {
-      "identification_rules": {
-        "mentions": 14,
-        "detailed_hits": 16,
-        "own_section": false,
-        "pass": true,
-        "quality": false
-      },
-      "reconciliation_rules": {
-        "mentions": 6,
-        "detailed_hits": 2,
-        "own_section": false,
-        "pass": true,
-        "quality": false
-      },
-      "ire_data_source_rules": {
-        "mentions": 12,
-        "detailed_hits": 7,
-        "own_section": false,
-        "pass": true,
-        "quality": false
-      },
-      "data_refresh_rules": {
-        "mentions": 12,
-        "detailed_hits": 4,
-        "own_section": false,
-        "pass": true,
-        "quality": false
-      }
-    }
-  },
-  {
-    "doc": "agents/openrouter-free__openrouter__kilo/SNC_DISC__WT5/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
-    "passed": 2,
-    "strong": 0,
-    "sources": 0,
-    "chars": 8172,
-    "items": {
-      "identification_rules": {
-        "mentions": 10,
-        "detailed_hits": 3,
-        "own_section": false,
-        "pass": true,
-        "quality": false
-      },
-      "reconciliation_rules": {
-        "mentions": 3,
         "detailed_hits": 1,
         "own_section": false,
         "pass": true,
-        "quality": false
-      },
-      "ire_data_source_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      },
-      "data_refresh_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      }
-    }
-  },
-  {
-    "doc": "agents/llama3.1-8b__ollama__hermes/SNC_DISC__WT3/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md",
-    "passed": 0,
-    "strong": 0,
-    "sources": 0,
-    "chars": 487,
-    "items": {
-      "identification_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      },
-      "reconciliation_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      },
-      "ire_data_source_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
-        "quality": false
-      },
-      "data_refresh_rules": {
-        "mentions": 0,
-        "detailed_hits": 0,
-        "own_section": false,
-        "pass": false,
         "quality": false
       }
     }

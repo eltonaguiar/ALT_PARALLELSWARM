@@ -1,0 +1,28 @@
+Discovery Admin Workspace 
+ Release version: Brazil 
+ Updated October 27, 2026 
+ 1 minute to read
+ The Discovery Admin Workspace serves as a central location for monitoring, tracking, and completing discovery-related tasks. Experience a streamlined discovery process and greater efficiency with the integration of
+ schedules, diagnostics, tuning, anomaly detection, and more within this single workspace.
+ Prerequisites
+ Install and activate the Discovery plugin (com.snc.discovery) before you install Discovery Admin Workspace (sn_disco_workspace). Warning: If you install Discovery Admin Workspace first, Discovery schedules may fail to run due to plugin dependencies.
+ You must also have the latest ServiceNow Store version of the following applications: 
+ Visibility Content 
+ (optional) Discovery and Service Mapping Patterns 
+ As of Discovery Admin Workspace v1.17.0, Discovery and Service Mapping Patterns is automatically installed and updated as a dependency. For earlier versions, install or update the application manually as needed.
+ Dependencies
+ Installing Discovery Admin Workspace (sn_disco_workspace) activates or installs the following applications: 
+ Service Operations Workspace Service Reliability Management (SRM) Common (sn_sow_srm_common)
+ CMDB Workspace (sn_cmdb_ws)
+ Discovery and Service Mapping Patterns (sn_itom_pattern)
+ ITOM 
+ Discovery Admin Workspace (com.snc.itom.daw)
+ ITOM Configuration Console (sn_itom_admin)
+ ITOM Guided Setup - New (sn_sow_guide_setup)
+ CMDB CI Class Models (sn_cmdb_ci_class)
+ Note: For on-premises deployments, dependencies aren't installed or updated automatically. For more information, see Getting apps as an on-premise customer .
+ For a list of Discovery Admin Workspace application dependencies, see Plugins or applications installed with ITOM Visibility .
+ Roles
+ The following roles have access to the Discovery Admin Workspace : 
+ discovery_admin
+ admin
