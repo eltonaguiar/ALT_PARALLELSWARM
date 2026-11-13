@@ -1,0 +1,41 @@
+# Roster for the SNC_DISC_RESEARCH parallel pass.
+# Each entry gets its own git worktree + branch + folder named <model>__<provider>__<harness>.
+
+task: SNC_DISC_RESEARCH
+max_parallel: 3
+rounds: 3
+
+agents:
+  # --- my own run (the agent writing this repo) --------------------------------
+  - id: deepseek-v4-flash__deepseek__hermes
+    model: deepseek-v4-flash
+    provider: deepseek
+    base_url: https://api.deepseek.com/v1
+    api_key_env: DEEPSEEK_API_KEY
+    wt: 1
+    note: "Hermes CLI agent's own attempt (orchestrator + author of this repo)"
+
+  # --- locally served models, same harness -------------------------------------
+  - id: qwen2.5-7b__ollama__hermes
+    model: qwen2.5:7b-instruct-q5_K_M
+    provider: ollama
+    base_url: http://localhost:11434/v1
+    api_key_env: ""
+    wt: 2
+    note: "small local model; known to emit malformed tool calls"
+
+  - id: llama3.1-8b__ollama__hermes
+    model: llama3.1:8b
+    provider: ollama
+    base_url: http://localhost:11434/v1
+    api_key_env: ""
+    wt: 3
+    note: "small local model, different lineage (may hallucinate less / follow format better)"
+
+  - id: qwen3-30b-a3b__ollama__hermes
+    model: qwen3:30b-a3b
+    provider: ollama
+    base_url: http://localhost:11434/v1
+    api_key_env: ""
+    wt: 4
+    note: "largest local model in the pool; MoE so it is usable on this box"
