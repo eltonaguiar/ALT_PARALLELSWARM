@@ -1,0 +1,8 @@
+# swarm framework dependencies.
+# Intentionally empty: llm_router/usage_tracker/capability_probe/worktree_manager/orchestrator
+# use only the Python standard library (urllib, json, fcntl, concurrent.futures).
+# Python 3.9+ required (uses `X | None` type unions).
+#
+# Probing/using providers needs only the relevant API key in the environment, e.g.:
+#   export GROQ_API_KEY=...  GEMINI_API_KEY=...  OPENROUTER_API_KEY=...  DEEPSEEK_API_KEY=...
+# Local models need `ollama` running on localhost:11434.

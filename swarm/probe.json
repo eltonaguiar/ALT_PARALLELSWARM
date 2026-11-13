@@ -1,0 +1,255 @@
+{
+  "probed_at": "2026-11-13T08:34:25Z",
+  "results": [
+    {
+      "model": "cerebras/gpt-oss-120b",
+      "provider": "cerebras",
+      "context": 128000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.214,
+      "reply": "The user says: \"ping (reply 'pong')\". So",
+      "error": null
+    },
+    {
+      "model": "cerebras/qwen-3.8-27b",
+      "provider": "cerebras",
+      "context": 128000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.0,
+      "reply": null,
+      "error": "usage gate blocked cerebras: concurrency 1/1"
+    },
+    {
+      "model": "chutes/deepseek-ai/DeepSeek-V3.2-TEE",
+      "provider": "chutes",
+      "context": 64000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.532,
+      "reply": null,
+      "error": "chutes HTTP 402: {\"detail\":{\"message\":\"Quota exceeded and account balance is $0.0, please pay with fiat or send tao to 5DEwtG4Avuci6YsrRPJT71Jb1buZ77FxaZ9AhNxCBWfeqCq3\"}}"
+    },
+    {
+      "model": "deepseek/deepseek-chat",
+      "provider": "deepseek",
+      "context": 64000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 1.144,
+      "reply": "pong",
+      "error": null
+    },
+    {
+      "model": "gemini/gemini-2.5-flash",
+      "provider": "gemini",
+      "context": 1000000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.721,
+      "reply": "pong",
+      "error": null
+    },
+    {
+      "model": "gemini/gemini-flash-latest",
+      "provider": "gemini",
+      "context": 1000000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.0,
+      "reply": null,
+      "error": "usage gate blocked gemini: concurrency 1/1"
+    },
+    {
+      "model": "groq/openai/gpt-oss-120b",
+      "provider": "groq",
+      "context": 128000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.251,
+      "reply": "The user says \"ping (reply 'pong')\". So we",
+      "error": null
+    },
+    {
+      "model": "groq/openai/gpt-oss-20b",
+      "provider": "groq",
+      "context": 128000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.457,
+      "reply": "The user says: \"ping (reply 'pong')\". They",
+      "error": null
+    },
+    {
+      "model": "groq/qwen/qwen3.8-27b",
+      "provider": "groq",
+      "context": 128000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.002,
+      "reply": null,
+      "error": "could not acquire groq: concurrency 2/2"
+    },
+    {
+      "model": "huggingface/Qwen/Qwen3.8-27B",
+      "provider": "huggingface",
+      "context": 128000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.625,
+      "reply": "We need to respond to user: \"ping (reply 'pong')\". Need",
+      "error": null
+    },
+    {
+      "model": "huggingface/meta-llama/Llama-3.1-8B-Instruct",
+      "provider": "huggingface",
+      "context": 128000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.0,
+      "reply": null,
+      "error": "usage gate blocked huggingface: concurrency 1/1"
+    },
+    {
+      "model": "kimi/moonshot-v1-8k",
+      "provider": "kimi",
+      "context": 8192,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.238,
+      "reply": null,
+      "error": "kimi HTTP 401: {\"error\":{\"message\":\"Incorrect API key provided\",\"type\":\"incorrect_api_key_error\"}}"
+    },
+    {
+      "model": "llm7/L3-8B-Lunaris-v1-Turbo",
+      "provider": "llm7",
+      "context": 8192,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.349,
+      "reply": null,
+      "error": "llm7 HTTP 402: {\"error\":{\"message\":\"Insufficient balance. Please top up your balance to continue.\",\"type\":\"insufficient_quota\",\"param\":null,\"code\":\"insufficient_balance\"}}"
+    },
+    {
+      "model": "llm7/anthropic/claude-haiku-5-5",
+      "provider": "llm7",
+      "context": 200000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.157,
+      "reply": null,
+      "error": "llm7 HTTP 400: {\"error\":{\"message\":\"Model 'anthropic/claude-haiku-5-5' is currently unavailable.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"model_unavailable\"}}"
+    },
+    {
+      "model": "mistral/mistral-small-latest",
+      "provider": "mistral",
+      "context": 32000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.3,
+      "reply": null,
+      "error": "mistral HTTP 429: {\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}"
+    },
+    {
+      "model": "mistral/open-mistral-nemo",
+      "provider": "mistral",
+      "context": 128000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.523,
+      "reply": "Here's a simple Python script that responds with \"pong\" when you send",
+      "error": null
+    },
+    {
+      "model": "nous/baidu/ernie-light-dt-1.0-intl",
+      "provider": "nous",
+      "context": 32768,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 2.779,
+      "reply": "The user is asking me to reply with 'pong' to a ping. This",
+      "error": null
+    },
+    {
+      "model": "ollama/deepseek-r1:32b",
+      "provider": "ollama",
+      "context": 64000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 12.397,
+      "reply": "pong",
+      "error": null
+    },
+    {
+      "model": "ollama/gemma2:9b",
+      "provider": "ollama",
+      "context": 8192,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 6.941,
+      "reply": "pong",
+      "error": null
+    },
+    {
+      "model": "ollama/llama3.2:3b",
+      "provider": "ollama",
+      "context": 128000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 4.2,
+      "reply": "Pong",
+      "error": null
+    },
+    {
+      "model": "ollama/qwen2.5-coder:7b",
+      "provider": "ollama",
+      "context": 32768,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.309,
+      "reply": "Pong!",
+      "error": null
+    },
+    {
+      "model": "ollama/qwen2.5:7b",
+      "provider": "ollama",
+      "context": 32768,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 2.439,
+      "reply": "pong",
+      "error": null
+    },
+    {
+      "model": "ollama/qwen3.5:35b-a3b",
+      "provider": "ollama",
+      "context": 32768,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 33.952,
+      "reply": "Thinking Process:\n\n1.  **Analyze the Request:** The user is",
+      "error": null
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "provider": "openai",
+      "context": 128000,
+      "key_present": true,
+      "ok": false,
+      "latency_s": 0.75,
+      "reply": null,
+      "error": "openai HTTP 429: {\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n"
+    },
+    {
+      "model": "openrouter/meta-llama/llama-3.3-70b-instruct",
+      "provider": "openrouter",
+      "context": 128000,
+      "key_present": true,
+      "ok": true,
+      "latency_s": 0.493,
+      "reply": "pong",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "task": "SNC_DISC_RESEARCH",
+  "title": "ServiceNow Discovery \u2014 configuration, order of operations, CI Class Manager, duplicate avoidance & CMDB insert/update",
+  "release_target": "current GA (Washington/DC-lineage)",
+  "escalation_note": "First pass used local small models (qwen2.5-coder:7b, llama3.2:3b, deepseek-r1:32b, gemma2:9b). They produced unfocused summaries, so the swarm escalated to stronger FREE API models. See 06_FINALSUMMARY.md.",
+  "worktrees": [
+    {
+      "id": "WT1",
+      "slug": "kilo-ernie-5.5-flash",
+      "model": null,
+      "skip_dispatch": true,
+      "role": "lead + live web research",
+      "goal": "Fetch vendor docs and author the authoritative sections on (1) Discovery configuration options and (2) order of operations; assemble the combined report.",
+      "output_file": "files/output.md",
+      "files_scope": "Only files under this worktree's files/."
+    },
+    {
+      "id": "WT2",
+      "slug": "llama-3.3-70b-openrouter",
+      "model": "openrouter/meta-llama/llama-3.3-70b-instruct",
+      "role": "CI Class Manager bread-crumbs",
+      "goal": "Write the 'CI Class Manager' section. Cover: how to open it (All > Configuration > CI Class Manager), the class hierarchy tree, and each class-nav tab (Class Info, Attributes, Identification and Reconciliation, Dependent Relationships, Suggested Relationships, All Relationship Rules, Health, CI List) \u2014 what each controls. Include the class-creation wizard steps and where to set an attribute as a CI identifier.",
+      "output_file": "files/ci_class_manager.md",
+      "max_tokens": 1800,
+      "temperature": 0.2
+    },
+    {
+      "id": "WT3",
+      "slug": "gemini-2.5-flash",
+      "model": "gemini/gemini-2.5-flash",
+      "role": "duplicate avoidance",
+      "goal": "Write the 'Duplicate avoidance' section. Explain how Discovery/IRE prevents duplicate CIs: identification rules and identifier entries (regular/lookup/hybrid), the skip_duplicates property and threshold, duplicate_of tagging, de-duplication tasks, lookup/related duplicate handling, and the exact property names and defaults.",
+      "output_file": "files/duplicate_avoidance.md",
+      "max_tokens": 1800,
+      "temperature": 0.2
+    },
+    {
+      "id": "WT4",
+      "slug": "deepseek-chat",
+      "model": "deepseek/deepseek-chat",
+      "role": "IRE deep-dive",
+      "goal": "Write the 'Identification and Reconciliation Engine (IRE)' section. Explain identification (source_name/source_native_key, identifier keys, identifier entries), reconciliation (static vs dynamic rules, data refresh rules), and precisely how IRE decides insert vs update. Name the tables (cmdb_reconciliation_definition, cmdb_dynamic_reconciliation_definition, cmdb_datasource_last_update).",
+      "output_file": "files/ire_engine.md",
+      "max_tokens": 2200,
+      "temperature": 0.3,
+      "timeout": 180
+    },
+    {
+      "id": "WT5",
+      "slug": "mistral-nemo",
+      "model": "mistral/open-mistral-nemo",
+      "role": "CMDB write behaviour",
+      "goal": "Write the 'CMDB insert/update behaviour' section. Explain what happens on insert vs update, that reconciliation is not applied on insert, how authoritative sources gate attribute writes, CI reclassification flags (updateWithoutUpgrade/Downgrade/Switch), payload hygiene (<=500 CIs, no dupes), and how to prevent accidental overwrites.",
+      "output_file": "files/cmdb_write_behaviour.md",
+      "max_tokens": 1800,
+      "temperature": 0.2
+    }
+  ]
+}

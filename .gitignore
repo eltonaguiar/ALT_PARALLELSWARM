@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+swarm/usage_tracker.json
+swarm/usage_tracker.json.lock
+swarm/usage_tracker.json.tmp
+swarm/usage_log.jsonl
+.DS_Store
