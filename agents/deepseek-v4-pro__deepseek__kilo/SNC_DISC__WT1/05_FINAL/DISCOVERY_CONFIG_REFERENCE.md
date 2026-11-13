@@ -9,6 +9,53 @@ Worktree `SNC_DISC__WT1`. Release target: **Brazil** (docs reflect `docs.service
 
 ---
 
+## Key links (all verified live — HTTP 200, checked 2026-11-13)
+
+**Official docs (`docs.servicenow.com`, Brazil release):**
+
+- IRE overview — https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/c_CMDBIdentifyandReconcile.html
+- Identification rules — https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/c_IdentificationRules.html
+- Reconciliation rules — https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/r_ReconciliationRulesPrinciples.html
+- IRE data source rule — https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/create-ire-data-source-rule.html
+- Data refresh rule — https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/create-datasource-staleness-rule.html
+- CI Class Manager — https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/ci-class-manager-landing-page.html
+- Identification best practices — https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/best-practices-id-reconcile.html
+- Discovery process flow (phases) — https://www.servicenow.com/docs/r/it-operations-management/discovery/c_DiscoProcessFlows.html
+- Configuring Discovery — https://www.servicenow.com/docs/r/it-operations-management/discovery/c_DiscoveryConfiguration.html
+- Discovery behaviors — https://www.servicenow.com/docs/r/it-operations-management/discovery/c_DiscoveryBehaviors.html
+- How Discovery identifiers work — https://www.servicenow.com/docs/r/it-operations-management/discovery/c_HowDiscoveryIdentifiersWork.html
+
+**Knowledge base (`support.servicenow.com`):**
+
+- KB1064718 — IRE fundamentals — https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB1064718
+- KB2558192 — duplicate CI tasks vs retired CIs — https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB2558192
+- KB3222102 — `sys_updated_on` refresh behavior — https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB3222102
+- KB0756709 — data precedence rules — https://support.servicenow.com/kb_view_customer.do?sysparm_article=KB0756709
+
+**Community (corroborating):**
+
+- CI Class Manager & IRE deep dive — https://www.servicenow.com/community/cmdb-forum/a-deep-dive-into-ci-class-manager-and-ire-servicenow-cmdb/m-p/3486406
+- Understanding IRE reconciliation rules — https://www.servicenow.com/community/cmdb-articles/understanding-ire-reconciliation-rules/ta-p/3289239
+- Avoid duplicate CI creation — https://www.servicenow.com/community/cmdb-forum/how-to-avoid-duplicate-ci-creation/m-p/3498456
+- Discovery overview — https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453
+
+---
+
+## Applicability at a glance (corrected)
+
+The four IRE controls are **not** uniformly "per class, on insert and update". Each has its own
+scope and insert-vs-update behaviour — see `IRE_RULE_APPLICABILITY_MATRIX.md` for the full
+permutation list (39 worked examples) and the controlling fields/system properties.
+
+| Rule family | INSERT? | UPDATE? |
+|---|---|---|
+| Identification rules | yes — no match → create | yes — match → update |
+| Reconciliation rules (static/dynamic) | no | yes |
+| IRE data source rules | **yes — blocks insert** | no |
+| Data refresh rules | no | yes — stale → lower-priority source may update |
+
+---
+
 ## 1. Discovery configuration options (the "what can I configure?" surface)
 
 Discovery is driven by these configuration elements (`c_DiscoveryConfiguration`):
