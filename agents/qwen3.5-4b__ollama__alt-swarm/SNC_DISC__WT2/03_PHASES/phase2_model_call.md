@@ -1,5 +1,5 @@
 # Phase 2 — model call
 
-**Started:** 2026-11-13T08:57:40+00:00
+**Started:** 2026-11-13T09:02:47+00:00
 
-Model `qwen3.5:4b` via `ollama`. Max tokens 1500. No tools; evidence-only.
+Candidates: `[('qwen3.5:4b', 'ollama')]` · Max tokens 2400. No tools; evidence-only. Fallbacks are tried on error or empty output.

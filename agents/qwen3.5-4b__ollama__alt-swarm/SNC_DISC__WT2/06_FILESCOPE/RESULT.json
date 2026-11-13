@@ -1,0 +1,22 @@
+{
+  "agent_id": "qwen3.5-4b__ollama__alt-swarm",
+  "model": "qwen3.5:4b",
+  "provider": "ollama",
+  "worktree": "/tmp/kilo/wt-qwen3.5-4b__ollama__alt-swarm",
+  "branch": "agent/qwen3.5-4b__ollama__alt-swarm",
+  "qa_pass": true,
+  "words": 974,
+  "chars": 6957,
+  "finish_reason": "length",
+  "usage": {
+    "prompt_tokens": 3860,
+    "completion_tokens": 1500,
+    "total_tokens": 5360
+  },
+  "error": null,
+  "committed": true,
+  "pushed": true,
+  "push_error": null,
+  "started": "2026-11-13T08:57:40+00:00",
+  "finished": "2026-11-13T08:58:08+00:00"
+}

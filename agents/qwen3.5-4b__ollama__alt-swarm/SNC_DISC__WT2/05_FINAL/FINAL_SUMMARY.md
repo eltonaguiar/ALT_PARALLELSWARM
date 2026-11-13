@@ -4,7 +4,7 @@
 
 ## Goal met?
 
-Yes, partially: the assigned section was produced and passed automated QA.
+No. The assigned section is incomplete or failed automated QA.
 
 ## Blockers
 
@@ -19,4 +19,4 @@ Yes, partially: the assigned section was produced and passed automated QA.
 
 ## QA
 
-See `04_QA/QA.md`. Automated result: **PASS**.
+See `04_QA/QA.md`. Automated result: **FAIL**.
