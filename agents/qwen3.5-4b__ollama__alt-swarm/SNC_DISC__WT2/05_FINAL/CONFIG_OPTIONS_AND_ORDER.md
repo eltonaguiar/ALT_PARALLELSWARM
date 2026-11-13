@@ -5,7 +5,7 @@
 **Model (used):** `qwen3.5:4b`
 **Provider:** `ollama`
 **Harness:** ALT_PARALLELSWARM `swarm/agent_runner.py`
-**Generated:** 2026-11-13T09:03:35+00:00
+**Generated:** 2026-11-13T09:05:31+00:00
 **Evidence:** `options.md` (pre-fetched; worker has no browser)
 **Assigned section:** Produce the configuration-option inventory and the canonical order of operations for ServiceNow Discovery. Group options by: identity/IP/hostname, network scanning, scheduling/throughput, and deletion strategy. For the order of operations, start at subscription/roles and end at CMDB governance. Use tables and preserve exact property names and defaults.
 
@@ -16,40 +16,59 @@
 
 # ServiceNow Discovery Configuration Reference (Brazil Release)
 
-## Identity and IP Management Properties
+## Identity, IP, and Hostname Management
 
-The following properties control how Discovery handles IP address substitution and uniqueness enforcement. These settings are critical for maintaining accurate CMDB records, particularly for load balancers and devices sharing network segments. The property `glide.discovery.exclude_ip_sync_classes` defines CI classes whose IP addresses should not be substituted if the returned address does not match a device's NIC. By default, this list includes `cmdb_ci_lb`, ensuring that load balancer management IPs are retained rather than replaced by individual NIC addresses [S1].
+The following table details the properties governing identity resolution and IP address handling during the horizontal discovery process. These settings control how discovered IPs are mapped to CI records and whether duplicate addresses are tolerated.
 
-The property `glide.discovery.enforce_unique_ips` determines whether Discovery ignores subsequent devices sharing an IP address. When set to `true`, the system clears the IP field on any device sharing a valid address with a previously discovered computer, printer, or network device; if inactive, it stores the IP for each device [S1]. The default value is `false`.
+| Field | Description | Type | Default Value |
+| :--- | :--- | :--- | :--- |
+| `glide.discovery.exclude_ip_sync_classes` | Defines CI classes whose IP addresses shouldn't be substituted if the address returned by Discovery doesn't match one of the devices' NICs. Use a comma-separated list to define multiple classes. By default, the system uses the management IP of a load balancer returned by Discovery in the CI record, rather than substituting it for the IP address of one of the load balancer's NICs. | string | `cmdb_ci_lb` [S1] |
+| `glide.discovery.enforce_unique_ips` | Enforce unique IP addresses: Ignores the IP address after Discovery encounters subsequent devices that use the same IP address. Each time a computer, printer, or network device with a valid IP address is discovered, the IP address field is cleared on any other device sharing that address. If inactive, stores the IP address for each device. | true \| false | `false` [S1] |
 
-## Network Scanning and Discovery Logic
+These properties are configured via **Discovery Definition > Properties** to manage the horizontal discovery process [S1]. The default behavior for load balancers is to retain the management IP rather than substituting a NIC IP unless explicitly excluded via `glide.discovery.exclude_ip_sync_classes`.
 
-Network discovery behavior is heavily influenced by properties governing netmask filtering, router selection, and interface classification. The property `glide.discovery.discoverable.network.max.netmask.bits` limits the maximum number of bits in a regular netmask for discoverable networks. A regular netmask consists of binary ones followed by zeroes (e.g., 255.255.255.0). Setting this value between 1 and 32 filters out small networks, such as those with 8 or fewer addresses, which are often used for loopback or point-to-point connections. The default value is `28`, meaning networks with 8 or fewer addresses are not discovered unless they are irregular [S1].
+## Network Scanning Configuration
 
-Router selection during network discovery is controlled by `glide.discovery.network_owner_method`. This property dictates which router is associated with a given IP Network. Options include `First Router` (the first router discovering the network), `Last Router`, `Most Networks` (router with the most attached networks), and `Least Networks`. The default value is `Most Networks` [S1].
+Network scanning parameters dictate how routers, switches, and networks are identified and associated. These settings influence performance, logging, and the logic used to select representative routers for IP networks.
 
-Interface classification relies on two comma-separated string properties: `glide.discovery.physical_interface_types` and `glide.discovery.switch_interface_types`. These define interface types considered physical for network discovery based on SNMP MIB-2 OID 1.3.6.1.2.1.2.2.1.3. The default values are `6,117,9,71,209` for physical interfaces and `7,8,9,26,53,62,69,71,78,115,117,209` for switch interfaces [S1]. Devices with interface types not in the switch list but possessing routing capabilities are classified as routers.
+| Field | Description | Type | Default Value |
+| :--- | :--- | :--- | :--- |
+| `glide.discovery.bgp_router_disable` | BGP router exploration disable: Disables running the SNMP – Routing probe or pattern when discovering a router running the BGP protocol. This exploration is inactive by default because BGP routing tables are large. These routers typically operate at the edge of large networks, where further network discovery is not relevant. Set this value to `false` if your organization uses BGP routers as edge routers between relatively small networks. Enabling this property can cause performance issues including out-of-memory issues on the MID Server. | true \| false | `true` [S1] |
+| `glide.discovery.debug.network_discovery` | Network discovery debugging: Enables extensive logging of all Network Discovery activities on the instance. | true \| false | `true` [S1] |
+| `glide.discovery.discoverable.network.max.netmask.bits` | Maximum netmask size for discoverable networks (bits): The maximum number of bits in a regular netmask for networks that are discovered by Network Discovery. A regular netmask is a netmask that can be expressed in binary as a string of ones followed by a string of zeroes. Setting this property to a value of 1 through 32 limits the sizes of regular networks that are discovered; setting it to any other value causes all networks to be discovered. Irregular networks are always discovered. The default value is 28, which means that regular networks with 8 or fewer addresses cannot be discovered. | integer | `28` [S1] |
+| `glide.discovery.network_owner_method` | Network router selection method: This property controls the method used to decide (during Network Discovery) which router should be selected as the router to be associated with a given IP Network. Possible values are: First Router, Last Router, Most Networks, Least Networks. | choice list | `Most Networks` [S1] |
+| `glide.discovery.physical_interface_types` | Physical interface types: A comma-separated list of interface types that are considered physical for the purposes of network discovery. If a router (or device capable of routing) has an interface of this type, the networks connected to that interface are considered locally connected to that device. The default interface types include Ethernet, 802.11, and Token Ring types. | string | `6,117,9,71,209` [S1] |
+| `glide.discovery.switch_interface_types` | Switch interface types: A comma-separated list of interface types that are considered. Devices with any interface types that do NOT appear in this list are classified as routers, when they have routing. | string | `7,8,9,26,53,62,69,71,78,115,117,209` [S1] |
 
-BGP router exploration is managed by `glide.discovery.bgp_router_disable`. This property disables the SNMP Routing probe or pattern for BGP-enabled routers by default to prevent performance issues, such as out-of-memory errors on the MID Server, caused by large routing tables [S1]. Setting this to `false` enables exploration if the organization uses BGP routers between relatively small networks, such as buildings on a single campus.
+The `glide.discovery.network_owner_method` determines which router is associated with an IP network, defaulting to the router with the most attached networks [S1]. Interface type definitions are based on SNMP MIB-2 OID 1.3.6.1.2.1.2.2.1.3 [S1].
 
-## Scheduling, Throughput, and Deletion Strategy
+## Scheduling and Throughput Management
 
-Discovery operations are orchestrated through schedules defined in the `glb_discovery_schedule` table, accessible via Discovery Definition > Schedules [S3]. The schedule form allows users to specify scan types including Configuration Items, IP addresses, Networks, Service, Serverless, Cloud application, Cloud resources, and Certificates. For Configuration Items, an IPv6 address list scan is enabled by default [S3].
+Scheduling properties control the execution of discovery jobs, including MID Server selection, job priorities within the Event Framework, and credential handling.
 
-MID Server selection within a schedule can be configured via `Auto-Select MID Server`, `Specific MID Cluster`, `Specific MID Server`, or `Use Behavior`. Auto-selection requires MID Servers to be assigned the Discovery or ALL applications and must have access to the configured IP ranges. IPv6 auto-select is not supported [S3].
+| Field | Description | Type | Default Value |
+| :--- | :--- | :--- | :--- |
+| `com.snc.use_external_credentials` | Allows the use of external storage of credentials. | true \| false | `true` [S1] |
+| `com.glide.codesigning.tracking.unsupported_script_tracking.enabled` | Controls script tracking for code signing on Cloud Discovery. When set to `true` and code signing is enabled, ECC queue records inserted through unsupported scripts are not notarized, which can cause Cloud Discovery operations to fail. Set this property to `false` to enable Cloud Discovery on code-signed instances. | true \| false | `true` [S1] |
+| `com.glide.queue.discovery.cloud.sensors.processing_jobs.priority` | Manages the background job's worker priority for Cloud-based Discovery jobs when using Event Framework. Increasing the value decreases the priority. This behavior only applies when `discovery.use.event.processing` is set to `true`. | integer | `100` [S1] |
+| `com.glide.queue.discovery.sensors.processing_jobs.priority` | Manages the background job's worker priority for IP-based Discovery jobs when using Event Framework. Increasing the value decreases the priority. | integer | *not stated in the supplied evidence* [S1] |
 
-Throughput and job management are handled by Event Framework properties. The property `com.glide.queue.discovery.cloud.sensors.processing_jobs.priority` manages worker priority for Cloud-based Discovery jobs; increasing this value decreases priority, with a default of `100`. This behavior applies only when `discovery.use.event.processing` is set to `true` [S4]. Similarly, `com.glide.queue.discovery.sensors.processing_jobs.priority` manages priority for IP-based Discovery jobs, though its specific default value is not stated in the supplied evidence [S4].
+MID Server selection within schedules can be configured via **Auto-Select**, **Specific MID Cluster**, **Specific MID Server**, or **Use Behavior** [S3]. Auto-select requires MID Servers to be assigned the Discovery or ALL applications and must be configured with the appropriate IP ranges; it is not supported with IPv6 [S3].
 
-Deletion strategy and credential management are governed by `glide.discovery.exclude_ip_sync_classes` (already noted) and `com.snc.use_external_credentials`. The latter allows external storage of credentials with a default value of `true` [S1]. Additionally, `com.glide.codesigning.tracking.unsupported_script_tracking.enabled` controls script tracking for code signing on Cloud Discovery. When set to `true`, ECC queue records from unsupported scripts are not notarized, which can cause operations to fail; setting it to `false` enables Cloud Discovery on code-signed instances [S1].
+## Deletion Strategy and Governance
 
-## Canonical Order of Operations
+The evidence provided does not contain explicit configuration properties for deletion strategies (e.g., `glide.discovery.delete.*` properties). The canonical order of operations for Discovery governance, starting from subscription/roles and ending at CMDB updates, is described below.
 
-The configuration lifecycle follows a strict sequence starting with role assignment and concluding with CMDB governance. First, the `discovery_admin` role must be granted to users responsible for configuring and executing Discovery, as this grants access to necessary tables [S2]. Second, physical or virtual servers hosting MID Servers must be installed and configured to communicate with the ServiceNow instance, ensuring they are assigned the Discovery or ALL applications [S2].
-
-Third, login credentials for all computers, printers, and network gear must be set on the instance. Discovery automatically determines which credentials work for a particular device, but UNIX, vCenter, and SNMP credentials require explicit configuration [S2]. Fourth, MID Server connectivity must be verified by navigating to Discovery > MID Servers and checking logs on both the instance and the host agent directory [S2].
-
-Fifth, Discovery schedules must be defined and run. The schedule controls when discoveries occur, defines the MID Server to use, and specifies the scan type (e.g., Configuration Items or Networks) [S3]. Finally, the Discovery Configuration Console is used to manage CI types and details. By default, Discovery finds all information specified in probes and patterns; users can control aspects like ARP data discovery or software package filtering before the instance updates the CMDB [S4].
+1.  **Role Assignment**: Users must have the `discovery_admin` role to configure and execute Discovery [S2]. This role grants access to tables in the Discovery application.
+2.  **MID Server Provisioning**: At least two MID Servers should be installed on physical or virtual servers meeting system requirements, assigned to different schedules and IP ranges to accelerate discovery [S2]. Starting with the Istanbul release, MID Servers must be assigned the Discovery or ALL applications [S2].
+3.  **Credential Configuration**: Credentials for Windows (WMI), UNIX, vCenter, and SNMP devices must be configured on the instance [S2]. The MID Server service on Windows hosts provides credentials for WMI protocols [S2].
+4.  **Schedule Definition**: Discovery Schedules define the CI types targeted, associated MID Servers, and run settings. Scan types include Configuration Items, IP addresses, Networks, Service, Serverless, Cloud application, Cloud resources, and Certificates [S3].
+5.  **Configuration Console Application**: The Discovery Configuration Console allows management of specific CI types, details (e.g., OS info), ARP data, software packages, and file-based discovery [S4].
+6.  **CMDB Update**: Discovery returns all data from the target to the instance before applying console settings; the instance ignores excluded data when updating the CMDB [S4].
 
 ## Assumptions / Gaps
 
-The evidence does not state the specific default value for `com.glide.queue.discovery.sensors.processing_jobs.priority` [S4]. The evidence also does not detail the exact behavior of "Use Behavior" when a single schedule requires multiple MID Servers, nor does it specify the maximum number of IP addresses Shazzam scans can handle beyond referencing the `Max range size Shazzam probe` property [S3]. Furthermore, the evidence does not explicitly describe the deletion strategy properties other than implying CMDB updates occur after discovery data is returned and filtered [S4].
+*   The default value for `com.glide.queue.discovery.sensors.processing_jobs.priority` is not stated in the supplied evidence [S1].
+*   Specific deletion strategy properties (e.g., rules for removing discovered CIs) are not detailed in the provided text; only the flow of data to the CMDB is described [S4].
+*   The exact behavior of "Use Behavior" regarding MID Server selection when a single schedule requires multiple servers is not fully elaborated in the evidence [S3].
+*   No specific properties for handling IPv6 discovery failures or recovery strategies are mentioned beyond the auto-select limitation [S3].
