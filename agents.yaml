@@ -39,3 +39,15 @@ agents:
     api_key_env: ""
     wt: 4
     note: "largest local model in the pool; MoE so it is usable on this box"
+
+# ---------------------------------------------------------------------------
+# Self-driven runs: an agent that used its OWN tools (no API dispatch), so
+# orchestrate.py must not re-run it. Read by humans, ignored by the orchestrator.
+self_runs:
+  - id: deepseek-v4.1-flash-fast__freebuff__buffy
+    model: deepseek-v4.1-flash-fast   # reported as "DeepSeek V4.1 Flash Fast"
+    provider: freebuff               # Freebuff / Codebuff agent runtime (Buffy)
+    harness: buffy-native            # web_search + read_url, no local browser
+    wt: 1
+    folder: agents/deepseek-v4.1-flash-fast__freebuff__buffy/SNC_DISC__WT1
+    note: "browsed and researched with native tools; no vendor key, no budget.py entry"
