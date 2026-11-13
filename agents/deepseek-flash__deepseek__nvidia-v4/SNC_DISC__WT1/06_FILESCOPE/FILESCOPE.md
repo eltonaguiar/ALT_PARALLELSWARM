@@ -12,7 +12,7 @@
 | Branch | `agent/deepseek-flash__deepseek__nvidia-v4` |
 | Task | `SNC_DISC__WT1` — ServiceNow Discovery configuration research |
 | Run window | 2026-11-13T08:51Z – 2026-11-13T09:25Z |
-| Commit | recorded after push |
+| Commit | `4197bf2` (branch pushed; this file updated in a follow-up commit) |
 
 ## Files written (all under this agent folder unless noted)
 
