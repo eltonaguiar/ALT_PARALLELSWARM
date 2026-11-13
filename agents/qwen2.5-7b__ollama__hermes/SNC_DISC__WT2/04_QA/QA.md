@@ -2,16 +2,17 @@
 
 | criterion | result |
 |---|---|
-| topic coverage | 5/8 (configuration_options, order_of_operations, ci_class_manager, duplicates, insert_vs_update) |
-| distinct sources cited | 0 |
-| document size | 603 chars |
+| topic coverage | 6/8 (configuration_options, order_of_operations, ci_class_manager, duplicates, insert_vs_update, identification) |
+| distinct sources cited | 2 |
+| document size | 2067 chars |
 | capability gate | PASS |
 
 ## Missing topics
-identification, reconciliation, mid_server
+reconciliation, mid_server
 
 ## Sources
-- none (no sources reached)
+- https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453
+- https://www.servicenow.com/community/itom-forum/deeper-understanding-of-the-discovery-processes/m-p/913596
 
 ## Verdict
-PARTIAL — see blockers
+PASS (with caveats noted in final summary)

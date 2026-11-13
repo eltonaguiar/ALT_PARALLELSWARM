@@ -2,7 +2,7 @@
 
 - **Goal:** thorough ServiceNow Discovery configuration reference.
 - **Goal achieved:** partially — see QA score
-- **QA score:** 5/8 topics, 0 sources cited
+- **QA score:** 6/8 topics, 2 sources cited
 - **Blockers:** none
-- **Clarifications needed:** evidence digest from a browsing agent
+- **Clarifications needed:** none
 - **Context window:** 32768

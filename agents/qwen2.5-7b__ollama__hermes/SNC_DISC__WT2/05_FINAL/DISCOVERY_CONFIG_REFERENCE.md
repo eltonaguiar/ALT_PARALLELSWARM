@@ -7,12 +7,12 @@
 
 ## 1. Configuration options and order of operations
 
-(budget/run error: KeyError: 'inflight')
+ServiceNow Discovery configuration options and properties include Probes and Sensors, Discovery Rules, Discovery Policies, and Discovery Probes and Sensors. The order of operations when a device is discovered is as follows: 1. Probe Execution, 2. Data Collection, 3. Data Parsing, 4. CMDB Update. For more detailed information, refer to the following sources: [ServiceNow Discovery Overview](https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453) and [Deeper Understanding of the Discovery Processes](https://www.servicenow.com/community/itom-forum/deeper-understanding-of-the-discovery-processes/m-p/913596)
 
 ## 2. CI Class Manager — key bread crumbs
 
-(budget/run error: KeyError: 'inflight')
+(none)
 
 ## 3. Preventing duplicates; insert vs update
 
-(budget/run error: KeyError: 'inflight')
+To configure ServiceNow to avoid duplicate CIs and control whether an existing CI is updated versus a new CI inserted into the CMDB, you should avoid creating inclusion rules for a parent class such as cmdb_ci_hardware with conditions that include 'Class'. This is because the inclusion rule applies to all child classes, and any child class passed to the IRE that is not included in the condition is not found by the engine. Instead, ensure that the identification rules are correctly configured to find CIs according to the CMDB hierarchy. You can check the rules that apply to a specific class by navigating to Configuration > CI Class Manager. If a custom identifier is necessary for a child class of cmdb_ci_hardware, you can refer to the guide on how to copy the Hardware Rule CMDB Identifier for specific Sub-Classes. For more detailed troubleshooting, refer to the article on How to troubleshoot duplicate CMDB CI records.
