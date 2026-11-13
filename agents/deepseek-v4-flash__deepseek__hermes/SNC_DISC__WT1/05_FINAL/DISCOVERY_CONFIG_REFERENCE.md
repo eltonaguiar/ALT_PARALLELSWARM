@@ -5,147 +5,700 @@
 > Evidence gathered with a search→digest wrapper. Anything the agent could not source is
 > marked UNVERIFIED. Verify against your instance release before production use.
 
-## 1. Configuration options and order of operations
+## 1. How does ServiceNow decide whether an incoming discovery payload refers to an existing CI 
 
-# ServiceNow Discovery: Configuration Options & Order of Operations
+# How ServiceNow decides whether a discovery payload updates an existing CI or creates a new one
 
-## 1. Order of Operations (the four phases)
+The decision is made by the **Identification and Reconciliation Engine (IRE)**, not by Discovery itself. Discovery (or any other data source) submits a payload; IRE resolves it against identification rules, and reconciliation rules then govern whether the matched record may be written to.
 
-Discovery processes each device in four sequential phases. ServiceNow's own overview describes these as visible in the ECC queue — **Port Scanning (Shazzam), Classification, Identification, and Exploration** — and notes that each phase follows the previous one only because of a positive result: "just like dominos falling, if the line stops at a certain point it's because something didn't happen the step before." Each phase maps to the ECC queue's two Queue column values and four State column values. (https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453)
+## 1. The decision is rule-driven, per CI class
 
-**Phase 1 — Port Scanning (Shazzam)**
-The Shazzam probe port-scans the IP ranges, primarily looking for responses from **WMI, SSH and SNMP**. When an IP shows a state of OPEN on any of those three ports, Discovery moves to the next phase. No response means the IP is not listed; a response other than "open" is noted as such. Results appear in the *input* of the Shazzam probe for that scan. (https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453)
+> "The CMDB identification process relies on identification rules to uniquely identify CIs."
 
-**Phase 2 — Classification**
-The classification phase begins immediately after the Shazzam port scanner probe and ends after its results are processed, which in turn triggers Identification. Right after Shazzam, Discovery looks up the **Port Probe table** to determine which Classify probe to launch. This is the first point where Discovery **uses credentials** to query a target. Computers are classified by Operating System; network devices by their capabilities. Supported classification protocols are **SSH, WMI, SNMP, and CIM**. The classification probe retrieves additional information (e.g., OS version) which determines the CI class. Examples: if the target communicates over SSH it could be Linux, Mac, AIX, or Solaris. **There is only one classification probe per discovered device.** (https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0535236 ; https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453)
+Key structural facts:
+- **One rule per class:** "Each CMDB class can be associated with a single identification rule." A rule applies to a CI class and "consists of a single CI [identifier]," plus **identifier entries** and **related entries** — the attributes (and related-table attributes) that must match.
+- **Attributes decide, not the payload:** "The identification process and identification rules use the CI's attributes for identification." Matching is computed from attribute values in the payload, not from an incoming sys_id.
+- **Inheritance:** "You can update a CI identification rule only at the class level that the rule is defined for. You can't update a derived rule." So a payload for a child class is evaluated against that class's rule or one inherited from a parent class.
+- IRE is the centralized framework that "helps maintain the integrity of the CMDB and some non-CMDB tables when multiple data sources are used to create and update CI records."
 
-**Phase 3 — Identification**
-Each classification type dictates the probes Discovery runs for Identification and Exploration. Identification determines whether a CI already exists (via the Identification & Reconciliation Engine using identifier keys) and inserts or updates the CMDB record. For example, the Network Router pattern checks for an existing `cmdb_ci_ip_router` CI using `serial_number` + `ip_address` as identifier keys, then creates or updates it via the CIIdentification and CIIdentifier script includes. Discovery knows which identification rules to use based on CI type, and makes inserts/updates to the CMDB based on those rules. (https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB3104470 ; https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453)
+Sources: [Identification rules](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER), [Create CI identification rule](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/8zdJkh0UFUKfDR0DRokD9g/content?target=DESIGNED_READER), [CMDB Identification and Reconciliation](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER)
 
-**Phase 4 — Exploration**
-In this final phase Discovery collects in-depth information about the device and its relationships. (https://www.servicenow.com/community/itom-articles/understand-phases-of-discovery/ta-p/3116984 ; https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453)
+## 2. The matching loop — the actual "existing vs. new" logic
 
-**Important variant — Pattern-based (Horizontal Pattern probe):** The trigger probe can also be the **Horizontal Pattern probe**, which tells Discovery to follow the operations in the specified pattern rather than sending out additional probes. The operations in the pattern cover **both the Identification and Exploration phases**, and probes and sensors are not used. (https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453)
+Within a rule, IRE walks the rule entries in order and performs a lookup for each:
 
-**How to validate / test:** Trigger a Quick Discovery from the Discovery Schedule — provide the IP and select the MID Server — then check the `cmdb_ci` table to confirm the CI was discovered. (https://www.servicenow.com/community/itom-articles/understand-phases-of-discovery/ta-p/3116984 ; https://www.servicenow.com/community/itom-articles/servicenow-discovery-overview/ta-p/2321453)
+> "...existing CI record. If no match is found, then the identification search continues to the next rule entry. **If after all the rules are exhausted without finding a match, a new CI record is created in the database.**"
+
+Flow:
+1. Take the payload's CI class → resolve its identification rule.
+2. Try the first identifier entry: look up a CMDB record whose attributes match.
+3. No match → continue to the next rule entry.
+4. Match → payload binds to that existing CI and the operation becomes an update (subject to reconciliation, §4).
+5. All entries exhausted with no match → **insert a new CI record**.
+
+Source: [Create CI identification rule](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/8zdJkh0UFUKfDR0DRokD9g/content?target=DESIGNED_READER)
+
+## 3. Rule strength, ordering, and the parent fallback
+
+- "Create **strong identification rules** that are set with the **highest priority** for related items."
+- "Do **not create conflicting identification rules** especially for lookup-based rule[s]."
+
+Because the search walks entries in sequence, entry order/precedence determines which lookup wins — a weak entry placed first can produce a spurious match, and conflicting rules create ambiguity about what gets matched.
+
+There is also an explicit parent fallback option: it "Allows the identification rules of the CI's parent to be used if a match isn't found for this identification rule. **Applies only for dependent identification rules.**" This is a common cause of "why did my payload create a new CI instead of updating the child record?" — the child entry missed and no (or no valid dependent) parent match was available.
+
+An additional matching capability is gated behind the system property `glide.identification_engine.enable_identifier_optional_condition`, which is **false by default**.
+
+Source: [Identification rules](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER), [Create CI identification rule](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/8zdJkh0UFUKfDR0DRokD9g/content?target=DESIGNED_READER)
+
+## 4. Identification is not reconciliation
+
+Once IRE concludes "this is CI X," a **separate** step decides whether the payload's values may overwrite CI X:
+
+> "Reconciliation rules — Create the rules that manage **authorization and update priority** between discovery sources."
+
+Identification answers *which record*; reconciliation answers *whether this source may write to it*. A correctly identified CI from a low-priority source can still be denied the update.
+
+Source: [CMDB Identification and Reconciliation](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER)
+
+## 5. How to verify a specific case safely
+
+> "Identification Simulator — Construct a validated payload and simulate running it through IRE processes."
+
+The simulator runs the real identification logic against a constructed payload and reports the outcome, which is the reliable way to answer "would this payload match or insert?" for a given case, without writing to production CMDB.
+
+Source: [CMDB Identification and Reconciliation](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER)
 
 ---
 
-## 2. Discovery Configuration Options (Discovery Behaviors)
+## Summary
 
-**Discovery Behavior records** define which protocol/port probes are used for a given discovery, rather than testing all credentials as Quick Discovery does. Key rules from ServiceNow community guidance:
-- Quick Discovery is "free" to check **all** the credentials; using a Behavior it will only check **based on the defined port probes**.
-- A Behavior **must have at least one "Discovery functionality"** defined, otherwise it does not work properly.
+IRE resolves the payload's CI class to its identification rule, tries each identifier entry's attribute-based lookup in priority order, binds to the first matching existing CI (then hands off to reconciliation rules to decide whether the update is authorized), and inserts a new CI record only when every entry — including a parent rule when the rule is dependent — fails to match.
 
-(https://www.servicenow.com/community/itom-forum/discovery-behavior-not-working-properly/m-p/3086779)
+**Evidence limits:** the retrieved documentation covers the rule structure, the match → next entry → insert-on-exhaustion loop, dependent-rule parent fallback, the optional-condition property, and separation from reconciliation. It did not surface the detailed catalog of built-in rule types (e.g., full lookup-based vs. dependent rule distinctions) or the precise precedence algorithm when multiple rules could conceivably apply, so those points are deliberately not asserted here.
 
-**Where properties are configured:** Discovery properties are found under **Discovery > Discovery Definition > Configuration Console** (filter/search for the specific property, e.g., `glide.discovery.L3_mapping`). (https://www.servicenow.com/community/itom-forum/best-way-to-block-the-data-insertion-for-discovery-tables/td-p/3424740)
+## 2. Which CMDB configuration objects define the attributes used for that matching, and how is 
 
-## 3. Key Discovery System Properties (glide.discovery.*)
+## 1. Configuration objects that define the matching attributes
 
-| Property | Purpose |
+Matching in the CMDB is governed by the Identification and Reconciliation Engine (IRE). The attributes used for matching are declared in identification rules, not in the CI class definition itself.
+
+- **Identification rules** — "The CMDB identification process relies on identification rules to uniquely identify CIs." They are described as creating "the rules that uniquely identify CIs based on CI attributes," and the process explicitly uses "the CI's attributes for identification."
+  Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER
+- **Identifier entries** — a rule is a container of entries: identification rules contain "entries, each with a different priority," where "each identifier entry defines a unique attribute set with a specific priority and each related entry defines rules for identifying … related items."
+  Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER
+
+So the *attribute sets* live at the identifier-entry level, not the rule level — one rule can carry several alternative attribute combinations.
+
+Related configuration objects mapped to specific tables in the docs are the **dependent relationship rules** (hosting, containment, reference), reached via **All > Configuration > Identification/Reconciliation > Metadata Editor** and stored in the CMDB Metadata Hosting Rules [cmdb_metadata_hosting], CMDB Metadata Containment Rules, and CMDB Metadata Reference Rules tables.
+Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/iUmudcEOJkGTs8~zhleE2A/content?target=DESIGNED_READER
+
+## 2. Priority handling
+
+There are two distinct priority mechanisms, and keeping them separate is the key point:
+
+**(a) Priority among identifier entries (candidate matching)** — Entry-level priority determines which attribute set is attempted first. The docs advise to "Create strong identification rules that are set with the highest priority," i.e. you control the order in which candidate matches are attempted by ordering entries.
+Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER
+
+**(b) Priority among data sources (reconciliation)** — Once a CI is matched, reconciliation rules decide whose data wins: they "manage authorization and update priority between discovery sources." Without them, "discovery sources can overwrite each other's updates." Two flavours exist:
+- Static rules keyed on discovery source.
+- Dynamic rules "based on attribute values processed by CMDB 360 rather than on discovery source" — these require CMDB 360 to be enabled.
+Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/k5Xor32nyO5z1zDdpUHnZw/content?target=DESIGNED_READER
+
+The docs point to a dedicated knowledge article for the detailed precedence semantics: "CMDB – Data Precedence Rules: Understanding the CMDB data precedence rules and troubleshooting" [KB0756709].
+Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/k5Xor32nyO5z1zDdpUHnZw/content?target=DESIGNED_READER
+
+The framework overall is "a centralized framework for identifying and reconciling data from different data sources," which "helps maintain the integrity of the CMDB and some non-CMDB tables when multiple data sources are used."
+Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+
+## 3. Gaps not confirmed by the retrieved evidence
+
+Rather than guess, these are explicitly unverified:
+1. The exact table names for the identifier and identifier-entry records (table names were confirmed only for the metadata hosting/containment/reference rules).
+2. The precise tie-breaking algorithm when multiple candidates match at the same entry priority — e.g. whether IRE errors, picks by most-recently-updated, or applies another deterministic rule. The evidence establishes that entry priority orders attempts and reconciliation rules order source authority, but not the resolution behaviour for a tied multi-candidate match.
+3. "Related entry" semantics for identifying dependent items are referenced but not expanded, so the containment/topology matching path is only partially characterised.
+
+To close these, the IRE configuration reference and KB0756709 are the next places to look.
+
+## 3. Is there a CMDB facility that matches incoming payloads by attribute sets, and what are it
+
+## Yes — the Identification and Reconciliation module (IRE)
+
+ServiceNow's CMDB has a centralized matching/reconciliation facility: the **Identification and Reconciliation** module, referred to in the documentation as **IRE**.
+
+> "The Identification and Reconciliation module provides a centralized framework for identifying and reconciling data from different data sources. It helps maintain the integrity of the CMDB and some non-CMDB tables when multiple data sources are used to create and update CI records."
+> — https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+
+It is described as being used "as part of Identification and Reconciliation (IRE) processes" (https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/8zdJkh0UFUKfDR0DRokD9g/content?target=DESIGNED_READER).
+
+## Official building-block names
+
+**1. Identification rules** — the core matching construct; each CMDB class gets one.
+> "Identification rules — Create the rules that uniquely identify CIs based on CI attributes."
+> "The CMDB identification process relies on identification rules to uniquely identify CIs."
+> "Each CMDB class can be associated with a single identification rule."
+> — PY2vdmBkt0I1BgOSfvhYyA (above) and https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER
+
+**2. CI identifier** — the record/definition inside an identification rule.
+> "In a CI identification rule, specify a CI identifier, and identifier entries and related entries that uniquely identify the CI."
+> — https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/8zdJkh0UFUKfDR0DRokD9g/content?target=DESIGNED_READER
+
+**3. Identifier entries** — the attribute sets/criteria matched against the payload, each with its own priority.
+> "…attribute set with a specific priority and each related entry defines rules for identifying related items."
+> "Check box that specifies the identifier entry is active. At least one identifier entry in an identification rule must be active for the rule to apply."
+> — wXQcUyP5ceUXm3nZpvqd6w and 8zdJkh0UFUKfDR0DRokD9g
+
+**4. Related entries** — entries defining matching rules for related items (relationships), used with dependent rules.
+
+**5. Independent vs. dependent rules** — how the rule may be used to match.
+> "Designation of whether the CI identifier can identify the CI independently of other CIs, or not. Note: To set the rule as Dependent, you must specify dependent relationship rules for the selected class."
+> "Allows the identification rules of the CI's parent to be used if a match isn't found for this identification rule. Applies only for dependent identification rules."
+> — 8zdJkh0UFUKfDR0DRokD9g
+
+Also: "A rule that identifies a CI based on the CI's own attributes, independently of other…" (wXQcUyP5ceUXm3nZpvqd6w).
+
+**6. Rule derivation down the class hierarchy** — a child class inherits its parent's rule unless it defines its own.
+> "…derives its identification rule, including any associated identification entries and related entries, from its parent class. Later, an own identification rule can be explicitly defined… and related entries in the newly created identification rule at the child class."
+> — wXQcUyP5ceUXm3nZpvqd6w
+
+**7. Reconciliation rules** — companion rules resolving which source wins on update.
+> "Reconciliation rules — Create the rules that manage authorization and update priority between discovery sources."
+> — PY2vdmBkt0I1BgOSfvhYyA
+
+**8. Identification Simulator** — test a payload against the rules before running it live.
+> "Identification Simulator — Construct a validated payload and simulate running it through IRE processes."
+> — PY2vdmBkt0I1BgOSfvhYyA
+
+**9. IRE and Import Sets** — integration point for bulk payloads.
+> "IRE and Import Sets — Apply IRE to Import Sets that are importing CIs into the CMDB."
+> — PY2vdmBkt0I1BgOSfvhYyA
+
+## Summary of the vocabulary
+The facility is **IRE (Identification and Reconciliation)**; the payload-matching building blocks are **identification rules → CI identifier → identifier entries** (attribute sets, each with a priority and an active flag) plus **related entries** (for dependent/relationship-based matching), with rules typed as **independent** or **dependent** (the latter optionally falling back to the parent class's rule). **Reconciliation rules** govern source priority/authorization, and the **Identification Simulator** lets you validate a payload against IRE.
+
+**Sources**
+- https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+- https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/wXQcUyP5ceUXm3nZpvqd6w/content?target=DESIGNED_READER
+- https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/8zdJkh0UFUKfDR0DRokD9g/content?target=DESIGNED_READER
+
+## 4. When two different data sources report conflicting values for the same CI attribute, how d
+
+# How ServiceNow resolves conflicting CI attribute values from different data sources
+
+## Short answer
+
+ServiceNow resolves the conflict using **reconciliation rules** evaluated by the **Identification and Reconciliation Engine (IRE)**, driven by **data source priority (source precedence)**. The source with the highest priority wins and its value is written to the CI attribute.
+
+## Mechanism
+
+**1. Reconciliation rules decide "who wins".**
+The IRE uses reconciliation rules to determine which data sources should be prioritized; the data source with the highest priority determines the attribute value. This prevents less reliable data sources from overwriting fields in a class. Without reconciliation rules, data sources would overwrite each other's updates — causing **attribute flapping** (multiple sources continuously updating the same fields with different values).
+— https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB1064718
+
+**2. Priority is numeric — lower number = higher priority.**
+ServiceNow uses Source Priority, where a lower number means higher priority. E.g., if a reconciliation rule ranks Discovery above SCCM, Discovery's values are kept when both report conflicting values.
+— https://www.servicenow.com/community/cmdb-articles/cmdb-understanding-identification-and-reconciliation-rules-and/ta-p/3520826
+
+**3. Base system defaults exist and are usually the culprit.**
+The base system includes reconciliation definitions and data source precedence rules that control which data sources can update CI attributes through the IRE. Unexpected attribute values should be traced to these rules rather than to the incoming data.
+— https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0756709
+
+## Important nuances
+
+- **New CI creation bypasses reconciliation rules.** When a CI is created through the IRE, the system creates it regardless of reconciliation rules because it is a new record. The IRE then writes an entry to the `cmdb_datasource_last_update` table with fields including `source`, `CI`, `attribute`, and `class` — the audit trail of which source last set which attribute.
+  — https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0756709
+
+- **Recency overrides static priority only in one narrow case.** If a payload is partial, the IRE matches it against stored partial payloads and merges them. To resolve conflicting attributes it uses **either `source_recency_timestamp` (when `source_native_key` and `source_name` are identical) or the static reconciliation rules specified for the class**. So "most recent timestamp wins" applies only for the same native key + same source name; otherwise static precedence governs.
+  — https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB1064718
+
+- **Two rule mechanisms: static vs. dynamic.** IRE **data source rules** are stored in the IRE Data Source Rules table. Child classes derive them from parent classes, and a rule specified for a child class **overrides** the parent's rule. However, IRE data source rules have **no impact when dynamic reconciliation rules are in force** for those CIs.
+  — https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/uKwDdWnyPdiZFZeI2LcBKg/content?target=DESIGNED_READER
+
+- **History is inspectable.** CMDB 360 retains a complete history of discovery sources and the proposed values involved in CI attribute updates — the practical way to prove why a given value won.
+  — https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB1064718
+
+## Practical takeaway
+
+The winning value is a **configuration outcome, not a data outcome** — it is whichever source your reconciliation rules rank highest for that CI class and attribute. To change which source wins, change the source priority in the reconciliation definition for the class (or the IRE data source rules, where dynamic reconciliation rules are not in play), not the discovery schedule.
+
+## Caveat on scope
+
+The evidence establishes the mechanism and the direction of priority (lower number wins) but does **not** enumerate the out-of-box precedence order across common sources such as Discovery, SCCM, or manual entry. That ordering must be read from your own instance's reconciliation definitions; the KB0756709 article is the correct starting point for that audit.
+
+## 5. Where is that authority or ordering configured, and how does it behave when the higher-pri
+
+## Where the authority/ordering lives
+
+Based on the ServiceNow documentation I retrieved, the authority and update-priority ordering between data sources is configured through **reconciliation rules**, which are part of the CMDB **Identification and Reconciliation (IRE)** framework:
+
+- **Reconciliation rules** — described as "Create the rules that manage authorization and update priority between discovery sources." This is the mechanism that determines which data source is authorized to write/win for a given attribute. ([CMDB Identification and Reconciliation](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER))
+- **Identification rules** are the separate, related set of rules that "uniquely identify CIs based on CI attributes" — identification decides *which CI record* a payload maps to; reconciliation decides *which source's values win*. ([same](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER))
+
+Configuration entry point: **All > Configuration > Identification/Reconciliation**, which exposes the identification, reconciliation, and related rule tables (e.g., the **IRE Data Source Rule** module). ([IRE data source rule](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/uKwDdWnyPdiZFZeI2LcBKg/content?target=DESIGNED_READER))
+
+Two important caveats surfaced in the docs:
+
+1. **IRE data source rules are not the precedence mechanism.** They exist to *prevent* a specific discovery (data) source from inserting new CIs for a specific class, and to govern updates to "those specific CIs if they exist." They are stored in the IRE Data Source table and **child classes inherit them from parent classes**. Crucially, "IRE data source rules have **no impact when dynamic reconciliation rules are in**" use — so if dynamic reconciliation is enabled, that becomes the operative authority path. ([IRE data source rule](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/uKwDdWnyPdiZFZeI2LcBKg/content?target=DESIGNED_READER))
+2. **Source identity is tracked per-CI** in the **Source [sys_object_source]** table, which "stores information identifying the source of a discovery, the ID of that source, and the date/time of the last scan" — i.e., source attribution and last-scan timestamps are persisted on the record. ([Change discovery source](https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/KPLRlkSh5jw3_~yrjQZxYw/content?target=DESIGNED_READER))
+
+## On behavior when the higher-priority source stops reporting
+
+**I could not confirm this from the evidence I was able to retrieve.** None of the documentation returned describes a failover, fallback, staleness, or re-authorization behavior for when a higher-precedence source ceases to report. I do not want to guess at this, because the two plausible answers have very different operational consequences and are governed by different features:
+
+- Reconciliation rules are evaluated **at the time a payload is processed**, so a higher-priority source that simply stops sending updates does not "release" ownership — the last-written value persists on the CI, with the old `last_scan` timestamp in `sys_object_source` as the only signal that it is going stale. Whether that staleness is acted on is a lifecycle question, not a reconciliation question.
+- Acting on stale/non-reporting CIs is the domain of a **different** product area: **CMDB Data Manager**, a "policy-driven framework for bulk management of CI life-cycle operations such as deletion, archival, and attestation," including attestation tasks that "verify the existence of actual IT infrastructure and applications," motivated by the fact that "large CMDBs can over time accumulate large amounts of stale CIs." ([CMDB Data Manager](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER))
+
+So the honest structuring of the answer is that precedence ordering is *not* a self-healing failover list — it is a write-time authorization/priority test — and reconciliation of "the owning source went silent" is handled (if at all) by Data Manager policies rather than by the ordering itself.
+
+**If you need the failover/staleness semantics confirmed precisely**, the specific thing to look up is dynamic reconciliation rules (since they supersede IRE data source rules) together with any documented "recalculate/re-apply reconciliation on attribute change" behavior. That detail was outside what my searches returned, and my research budget for this turn is exhausted, so I'd rather flag the gap than fabricate a rule name or behavior.
+
+## 6. What CMDB mechanism prevents sources from overwriting each other's fields, and where is it
+
+## Mechanism: CMDB Identification and Reconciliation (IRE) — specifically *reconciliation rules*
+
+ServiceNow's Identification and Reconciliation module is described as "a centralized framework for identifying and reconciling data from different data sources," which "helps maintain the integrity of the CMDB and some non-CMDB tables when multiple data sources are used to create and update CI records." Within that framework the two rule types do different jobs:
+
+| Rule type | Job |
 |---|---|
-| `glide.discovery.network_discovery.functionality` | Defines the protocol used for network discovery. Default and recommended value is `SNMP only`. **Do not change unless directed by ServiceNow Support.** |
-| `glide.discovery.L3_mapping` | Controls whether servers and network devices are mapped to their associated routers and layer-3 switches. Discovery of routers and L3 switches that populate the `Dscy_route_next_hop` table **requires this to be true**. Set to `false` to disable. |
-| `glide.discovery.enforce_ip_sync` | (Referenced in community discussion regarding IP synchronization behavior.) |
-| `glide.discovery.exclude_ip_sync_classes` | Comma-separated list of CI tables excluded from IP synchronization so their IP isn't changed repeatedly. OOB value is `cmdb_ci_lb`; e.g., add `cmdb_ci_netgear` for network devices. |
-| `glide.discovery.ire_err_exclusion_list` | IRE errors in this list are suppressed from the pattern log. OOB list includes `ABANDONED, INSERT_FAILED, UPDATE_FAILED, NO_IDENTIFIER_KEYS_GENERATED`. **Caution:** `NO_IDENTIFIER_KEYS_GENERATED` masks silent CI creation failures — temporarily remove it when troubleshooting missing router CIs. |
+| **Identification rules** | "Create the rules that uniquely identify CIs based on CI attributes" — i.e., deciding *which record* an incoming payload refers to. |
+| **Reconciliation rules** | "Create the rules that manage authorization and update priority between discovery sources" — i.e., deciding *whether a given source is permitted to write a given attribute*, and who wins on conflict. |
 
-Sources: https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB3104470 ; https://www.servicenow.com/community/itom-forum/best-way-to-block-the-data-insertion-for-discovery-tables/td-p/3424740 ; https://www.servicenow.com/community/itom-forum/whats-the-use-of-this-discovery-property-quot-glide-discovery/m-p/923606
+So the thing that stops sources from stomping on each other's fields is the **reconciliation rule**, which grants per-source (and per-source-priority) authorization over attributes. A source that isn't authorized for an attribute is ignored for that attribute rather than overwriting the incumbent value.
+
+## Where it's configured
+
+Within the **CMDB Identification and Reconciliation** module — the reconciliation rule definitions sit there alongside identification rules. IRE can also be applied to **Import Sets** that import CIs into the CMDB, so reconciliation is enforced on import-set loads as well as on Discovery/Service Mapping payloads.
+
+## Supporting detail on source tracking
+
+Source identity for discovery results is stored in the **Source [sys_object_source]** table, which "stores information identifying the source of a discovery, the ID of that source, and the date/time of the last scan." Related source attribution on the CI itself is exposed via the dictionary entry for the **Configuration Item [cmdb_ci]** table.
+
+## Related but distinct precedence mechanisms
+
+- **Discovery generic attributes** apply a precedence hierarchy *between Discovery scope levels* (schedule / range / range set): "attributes at a more specific scope override attributes with the same key at a broader scope," and they support "automatic CI field population." This is Discovery-internal scope precedence, not cross-source conflict resolution.
+- **Identifiers / identification rules** specify "the attributes that the probes look at when reconciling data with the CIs in the CMDB" — they determine record matching, not per-field write authorization.
+
+## Caveat on precision
+
+The evidence confirms the mechanism (reconciliation rules within IRE) and the module it belongs to, but it does not spell out the exact navigation path or the table name for the reconciliation rule records themselves. Verify the precise menu location in your instance's IRE module before documenting it.
+
+## Sources
+
+- CMDB Identification and Reconciliation: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+- Change discovery source (sys_object_source, cmdb_ci dictionary): https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/KPLRlkSh5jw3_~yrjQZxYw/content?target=DESIGNED_READER
+- Discovery generic attributes (scope precedence / CI field population): https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/VYDDB2TBmMQOT5QL2x4xzA/content?target=DESIGNED_READER
+- Exploring Discovery (identifiers / identification rules): https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/aKGMbVqBDM_~1mhRf7iZtQ/content?target=DESIGNED_READER
+- Discovery overview: https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/7qT0WEcnXOPjGppEioi2pw/content?target=DESIGNED_READER
+
+## 7. How does an administrator declare which upstream systems are permitted to send CI data int
+
+**Short answer:** ServiceNow scopes upstream trust through **IRE data source rules** — per-data-source, per-CI-class rules held by the Identification and Reconciliation Engine (IRE) that govern whether a given source is trusted to **insert (create)** CIs of a given class. Life-cycle/attestation governance of already-ingested CIs is a separate, policy-driven layer (CMDB Data Manager). Wide-area "which systems may send data at all" allow-listing and formal source-certification/scoring models are *not* documented in the evidence I retrieved.
+
+## 1. Declaring which upstream sources may create CIs — IRE data source rules
+
+The IRE data source rule is the mechanism that ties a discovery/data source to a CI class and constrains what that source is allowed to do. Per the documentation, these rules exist, among other uses, for "discovery sources that you don't trust in creating CIs but continue to trust in [i.e., for other operations]" — so trust is expressed as a granular per-source × per-class permission rather than a single global flag.
+https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/uKwDdWnyPdiZFZeI2LcBKg/content?target=DESIGNED_READER
+
+Structural properties of those rules (same source):
+- **Storage:** IRE data source rules are stored in the IRE Data Source Rules table (the doc refers to "the IRE Data [Source Rules] table").
+- **Inheritance:** child classes derive IRE data source rules from their parent classes, so a rule set on a high-level class governs its descendants by default.
+- **Override:** a rule specified for a child class **overrides** the rule inherited from the parent.
+- **Interaction with reconciliation:** IRE data source rules have **no impact** where dynamic reconciliation rules are in effect — so precedence against reconciliation configuration must be considered when relying on these rules to block or allow inserts.
+
+## 2. Classifying / governing trusted sources after ingestion — CMDB Data Manager
+
+CMDB Data Manager is a "policy-driven framework for bulk management of CI life-cycle operations such as deletion, archival, and attestation," explicitly framed around the fact that "CIs are continuously ingested into the CMDB from various data sources." Attestation policies "verify the existence of actual IT infrastructure and applications that you own" — the practical control that catches a trusted-but-wrong source feeding phantom CIs. Policies can be applied only to classes that extend Configuration Item [cmdb_ci].
+https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER
+
+The supporting data-management rationale — CMDB integrity is essential to dependent features, and CMDBs accumulate stale/duplicate/outdated CIs as infrastructure and source populations change, hence governed, automated life-cycle operations:
+https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/LB39AbIzTbybXHhm9L0Pcg/content?target=DESIGNED_READER
+
+## 3. How to describe the model
+
+- **Declaring permitted upstream systems:** not via a single central allow-list in the material available; it is expressed as IRE data source rules scoping trust to a specific source and specific CI class (e.g., "this source may not insert CIs of this class").
+- **Classification/trust axis:** the only classification axis evidenced is **trust to insert new CIs vs. continued trust for other treatments**, applied per class, inherited down the hierarchy, overridable at child level, and subordinate to dynamic reconciliation rules.
+- **Complementary control:** CMDB Data Manager attestation/archival/deletion policies enforce correctness and currency downstream of whatever sources were trusted.
+
+## 4. Explicit gaps (not evidenced — do not assume)
+
+No retrieved evidence covers: a named "authorized data sources" registry or approval workflow; a source-certification or source-health/confidence scoring model (e.g., CMDB 360-style scoring); the exact table/field names and admin navigation path for the IRE Data Source Rules record; or a complete documented precedence order between IRE data source rules, reconciliation rules, and dynamic reconciliation rules beyond the stated "no impact when dynamic reconciliation rules are in [effect]." Those specifics require a dedicated lookup on the IRE data source rules and Data Source record documentation rather than inference from the above.
+
+## 8. How is a payload's origin recorded and used when the same device is reported by several to
+
+## What the evidence supports
+
+The question maps onto ServiceNow **CMDB Identification and Reconciliation (IRE)** behaviour. Here's what the sources actually say, plus where the evidence is thin.
+
+### 1. Payload origin is tracked via a timestamp, and that timestamp is what decides "who wins"
+The clearest evidence is a ServiceNow KB article on IRE merge behaviour:
+
+- When several discovery/tooling sources submit **payloads with the same identification attributes** (i.e. they all look like the same device), IRE resolves the conflict using **`source_recency_timestamp`**, not by merging.
+- **The newer payload wins entirely.** IRE does *not* combine data from the competing payloads. If Source A created the CI with relationships at time T1, and Source B later submits the same CI **without** those relationships at T2 (T2 > T1), the relationships from Source A are **discarded**.
+- The stated remediation is a payload-design fix, not a reconciliation-rule fix: **make every source include the same relationship data in its payloads**, so the "winning" payload doesn't strip out what another source contributed.
+- Source: https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB3035161
+
+### 2. The practical consequence for multi-tool environments
+A Community thread on the exact scenario asked about — several discovery sources (ServiceNow Discovery, SCCM, Intune) reporting *different IPs* for the same machine — frames the fix as **Reconciliation Rules**, specifically to prevent "flapping" (the CI repeatedly being rewritten back and forth as each source's payload takes its turn as the most recent). The symptom described is the same physical asset ending up as multiple CIs (matched on serial number but divergent IPs).
+- Source: https://www.servicenow.com/community/cmdb-forum/multiple-cis-created-with-same-serial-number-but-different-ips/m-p/3465446
+
+### 3. Origin alone doesn't disambiguate class — concurrent payloads can create duplicates
+Even for a single device, more than one payload can arrive at IRE **simultaneously** with **different class types** (e.g. `cmdb_ci_ip_switch` vs `cmdb_ci_ip_router`), producing duplicate CIs. ServiceNow mitigated the volume of same-device payloads sent via multiple IPs in Madrid via PRB1301835 / KB0723645, but the underlying mechanism — multiple payloads for one CI racing at once — is the duplicate source.
+- Source: https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0715237
+
+### 4. Where IRE sits in the Discovery pipeline
+Discovery identifies the device, then "tries to determine if a CI for the device exists in the CMDB" and uses **identifiers (identification rules)** to update an existing CI or create a new one. This is the stage at which competing source payloads for "the same device" converge.
+- Source: https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/aKGMbVqBDM_~1mhRf7iZtQ/content?target=DESIGNED_READER
+
+### 5. Related Discovery settings that affect which address a device is recorded under
+Discovery's IP address selection properties govern whether the IP in a CI is replaced when the address returned doesn't match a NIC, and include an **"Enforce unique IP addresses"** option that ignores an IP after subsequent devices are found using it. These matter when the same physical device is reachable at several addresses (management IP vs NIC IPs) and are a common trigger for divergent records across sources.
+- Source: https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/caM7~wk5mkE1DN5jUa9q5Q/content?target=DESIGNED_READER
+
+## Gaps in the evidence — flagging these rather than guessing
+The research budget was exhausted before I could confirm the following, and I don't want to assert them without a source:
+
+- **The explicit origin/provenance field name** on CMDB records (the field conventionally holding the creating tooling source, and the Discovery source / data-source record it points to). The evidence shows precedence is computed from `source_recency_timestamp`, but I did not retrieve documentation confirming the field that *records* origin or how it is written per payload.
+- **Data Source precedence ordering** and how a per-source "discovery source" is selected when a payload carries no explicit source.
+- **Reconciliation rule syntax** (the rule types and their evaluation order) as applied to multi-source attribute conflicts specifically.
+
+If you need those three confirmed, re-running with a fresh budget against the ServiceNow docs on "CMDB Identification and Reconciliation data source precedence" and "reconciliation rules" would close the gap.
+
+**Bottom line from what is evidenced:** origin is captured as a recency signal, not as a merge arbitration — the most recent payload for a device wins wholesale, meaning a later, thinner payload from a second tooling source can silently drop relationships and attributes that an earlier source contributed. Same-device, same-time payloads with differing classes can additionally duplicate the CI, and multi-source IP divergence is handled downstream with Reconciliation Rules.
+
+## 9. Is there a registry or configuration list of permitted CI data providers, and what fields 
+
+## Answer
+
+**Short version:** I could not confirm the existence of a dedicated "registry of permitted CI data providers" with an enumerated field list. My research budget was exhausted after two documentation searches, so the following reflects only what the retrieved evidence actually supports, with the gaps explicitly flagged.
+
+### What the evidence does establish
+
+The closest documented construct to a permitted-provider control is the **IRE data source rule**, which gates which data source may act on CIs of a given class:
+
+- IRE data source rules govern whether a **discovery (data) source can insert new CIs for a specific class**.
+- They are stored in the **IRE Data Source Rules** table — a discrete, queryable configuration table rather than a free-form setting.
+- Rules **inherit through the class hierarchy**: child classes derive IRE data source rules from parent classes, and a rule specified for a child class **overrides** the inherited parent rule.
+- IRE data source rules **have no impact when dynamic reconciliation rules are in effect** for those specific CIs.
+- Source: [IRE data source rule](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/uKwDdWnyPdiZFZeI2LcBKg/content?target=DESIGNED_READER)
+
+### Related configuration surfaces (not provider registries)
+
+- **CMDB Data Manager** — policy-driven framework for bulk CI life-cycle operations (deletion, archival, attestation); policies apply only to classes extending Configuration Item `[cmdb_ci]`. This concerns CI life cycle, not permitting data providers. Sources: [CMDB Data Manager](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER), [CMDB data management](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/LB39AbIzTbybXHhm9L0Pcg/content?target=DESIGNED_READER)
+- **Discovery Configuration Console** — controls which CIs and CI attributes Discovery writes into the CMDB (e.g., ARP data is off by default). It filters what Discovery contributes, but is a console, not a list of permitted providers. Source: [Discovery Configuration Console](https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/jxm03gKvyhebiCVQEIFgRA/content?target=DESIGNED_READER)
+
+### What remains unconfirmed
+
+1. Whether a table or module named specifically for "CI data providers" exists.
+2. The **field list / schema** of any such registry. The evidence confirms that IRE data source rules exist with per-class scoping, inheritance/override behavior, and interaction with dynamic reconciliation rules, but it **does not enumerate the columns** on that table.
+
+### Recommended next step
+
+Clarify whether you mean (a) the **IRE Data Source Rules** table and its schema, or (b) a separate provider-allowlist construct I could not reach. A targeted lookup on the IRE Data Source Rules table dictionary, plus the CMDB identification-and-reconciliation data source configuration docs, should settle the field-list question. I deliberately did not guess at field names, since none appeared in the retrieved evidence.
+
+## 10. How is CMDB CI data kept fresh over time: what schedules periodic re-collection, and what 
+
+## Short answer
+
+Based on the ServiceNow documentation I retrieved, **periodic re-collection is driven by Discovery schedules** (which determine *what* is discovered, *when* it runs, and *which MID Servers* are used), and **out-of-date content is removed by CMDB Data Manager policies** running on scheduled jobs (archival/deletion/attestation of stale CIs).
+
+**Important caveat:** the evidence I was able to collect does **not** cover the second half of your question well — specifically, what happens to individual *attribute values* on a CI when a field stops being reported by a data source (e.g., whether the previous value is cleared, retained, or flagged as stale). I found no documentation on that behavior before my research budget ran out, so I'm not going to guess at it. See "Gap" below.
 
 ---
 
-## 4. Firewall / Connectivity Consideration (WMI)
+## 1. What schedules periodic re-collection
 
-For WMI communication, traffic only initiates on **port 135**, but two Windows systems then negotiate **unused high ports** to finish the conversation. Logical firewalls typically allow port 135 (as seen by the Discovery port scan probe) but block the high ports Discovery needs, breaking identification/exploration of Windows devices. ServiceNow notes this must be worked around (the KB offers options on this page). (https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0535236)
+**Discovery schedules are the primary mechanism.**
 
----
+- A discovery schedule "determines what horizontal discovery searches for, when it runs, and which MID Servers are used." You create one per local environment, or a schedule for discovering resources in a cloud service account.
+  — [Schedule horizontal discovery](https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/t4Dn2c4~fvVAnYMefTaOGw/content?target=DESIGNED_READER)
 
-**Note on coverage:** The evidence provides a solid picture of the four phases, the pattern-based alternative, Discovery Behavior requirements, and a set of `glide.discovery.*` properties. It does not enumerate the complete catalogue of every Discovery property (e.g., MID Server selection, credential affinity, schedule-level settings such as auto-start/priority), so that full list would need to come from the official product documentation.
+- Schedules launch horizontal discovery, "which uses probes, sensors, and pattern operations to scan your network for CIs," and are managed via the **Discovery Schedules** module in the Discovery application. Service Mapping additionally provides its own Discovery schedule for top-down discovery.
+  — [Schedule horizontal discovery](https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/t4Dn2c4~fvVAnYMefTaOGw/content?target=DESIGNED_READER)
 
-## 2. CI Class Manager — key bread crumbs
+- The Discovery Schedule form holds the details about the **configuration items (CIs) targeted**, the **associated MID Server**, and the **schedule settings for the discovery run**. Critically, it "uses Discovery identifiers to match devices with CIs in the CMDB and update the CMDB appropriately" — so re-runs are *reconciling* updates against the existing CI, not blind inserts. Networks/IP range scans likewise "update routers and layer 3 switches in the CMDB."
+  — [Discovery Schedule form reference](https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/dktePWgUU_nZLIh1sl4n6w/content?target=DESIGNED_READER)
 
-## What you can configure in CI Class Manager (Discovery / IRE areas)
+- Discovery **generic attributes** let you control how metadata/fields get populated during those recurring runs, using a declarative rule-based approach with scope, action, target, and value, applied via a precedence hierarchy (more specific scope overrides broader scope). Attributes can be defined at the **schedule, range, and range set** level to "influence CMDB field population and Discovery runtime behavior" and "automatically populate CI fields."
+  — [Discovery generic attributes](https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/VYDDB2TBmMQOT5QL2x4xzA/content?target=DESIGNED_READER)
 
-**Purpose and placement.** CI Class Manager is a centralised console: it shows the CMDB class hierarchy in a tree view and lets you view or edit class definitions plus class-level settings for **identification rules, reconciliation rules, and CMDB Health** — configuration that otherwise lives in separate modules (tables, relationships, health definitions) (https://servicenowwithrunjay.com/cmdb-ci-class-manager/).
+## 2. What happens to stale data over time
 
-**Where the settings are in the interface.** After opening a class in CI Class Manager, the identification/reconciliation settings appear on tabs within that class:
+The docs frame this as a **life-cycle / staleness problem addressed by CMDB Data Manager**, not by Discovery itself:
 
-- **Identification Rule tab** — search for and open the desired class (e.g. *Network Gear*), then click the **Identification Rule** tab (https://servicenowguru.com/cmdb/servicenow-cmdb-identification-and-reconciliation-engine-ire/). An identification rule applies to a CI class and can be single or multiple with different priorities (https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712). Same path described as **Configuration > CI Class Manager > Identification Rules** (https://www.servicenow.com/community/developer-forum/interview-help-how-to-answer-the-below-question-perfectly/m-p/3166023).
+- "Large CMDBs can over time accumulate large amounts of **stale CIs** that can impact overall performance," and custom fix-it scripts are "difficult to develop and to maintain, and are also prone to errors."
+  — [CMDB Data Manager](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER)
 
-- **Reconciliation Rules tab** — select the class (e.g. *Server*) and click **Reconciliation Rules**; you add new rules by specifying each **Discovery source** and its **Priority**, where a higher priority value indicates greater authority (e.g. ServiceNow Discovery ranked above manual entry) (https://www.servicenow.com/community/cmdb-forum/a-deep-dive-into-ci-class-manager-and-ire-servicenow-cmdb/m-p/3486406; https://servicenowguru.com/cmdb/servicenow-cmdb-identification-and-reconciliation-engine-ire/). Multiple reconciliation rules can exist for the same class, defining discovery sources and their priorities for various attributes (https://servicenowguru.com/cmdb/servicenow-cmdb-identification-and-reconciliation-engine-ire/). Reconciliation rules specify which data sources may update a table or a set of table attributes and can be defined at the **parent and/or child class level**; best practice is a rule for every data source authorised to update CIs (https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712).
+- "As the CMDB grows and infrastructures change, the CMDB can accumulate stale, duplicate, or **outdated CIs** and therefore no longer accurately reflect the IT infrastructure and applications in the organization."
+  — [CMDB data management](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/LB39AbIzTbybXHhm9L0Pcg/content?target=DESIGNED_READER)
 
-- **Basic Info tab** — display name, table name, the Extensible flag, and associating an icon to the class (https://servicenowwithrunjay.com/cmdb-ci-class-manager/).
+- CMDB Data Manager is "a policy-driven framework for **bulk management of CI life-cycle operations such as deletion, archival, and attestation**," designed to "scale to large CMDBs," replacing brittle custom solutions.
+  — [CMDB Data Manager](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER)
 
-- **Dependencies tab** — appears only if there are dependent identification rules for the selected class (https://www.servicenow.com/community/developer-forum/what-is-cmdb-how-its-work/m-p/2022262).
+**How those policies are scheduled:**
+- "A **daily scheduled job** processes all published CMDB Data Manager policies."
+- "Data Manager relies on the **Archive scheduled job** to run (**every hour by default**) and process CMDB Data Manager archive policies. The Archive scheduled job is stored in the Schedule [table]."
+  — [CMDB Data Manager](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER)
 
-- **Suggested Relationships** — determines which relationships are suggested in the Query Builder when building relationships for the class; the suggestion list updates accordingly (https://servicenowwithrunjay.com/cmdb-ci-class-manager/; https://www.servicenow.com/community/developer-forum/what-is-cmdb-how-its-work/m-p/2022262).
-
-**Related locations outside CI Class Manager.** Rules can also be reached via the Application Navigator: **Identification/Reconciliation > Reconciliation Definitions**, to view rules across all CI classes (https://www.servicenow.com/community/cmdb-forum/a-deep-dive-into-ci-class-manager-and-ire-servicenow-cmdb/m-p/3486406). To verify IRE behaviour or failures, use **CMDB Identification and Reconciliation > Identification Log** (https://www.servicenow.com/community/developer-forum/interview-help-how-to-answer-the-below-question-perfectly/m-p/3166023).
-
-**IRE context.** Identification and Reconciliation is known as the Identification Reconciliation Engine (IRE): a centralised method for identifying and reconciling data from different sources. When CI data arrives from discovery, integrations, or manual input, IRE decides whether to create, update, or ignore it (https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712; https://www.servicenow.com/community/developer-forum/interview-help-how-to-answer-the-below-question-perfectly/m-p/3166023).
-
-**Caveat:** the available evidence did not cover Discovery-specific configuration surfaced through CI Class Manager (e.g. classifiers, probes/sensors, discovery patterns, application-match/CI-type settings). The evidence establishes only the identification-rule, reconciliation-rule, class-metadata, dependency, and relationship-suggestion tabs described above.
-
-## 3. Preventing duplicates; insert vs update
-
-# Configuring ServiceNow to Avoid Duplicate CIs and Control Update vs. Insert
-
-The short answer: you don't do this with table-level coalesce settings on individual integrations — you do it with the **CMDB Identification and Reconciliation Engine (IRE)**, which is the centralized framework that "handles the creation of new configuration items (CIs) and updates to existing CIs" ([KB1064718 – IRE fundamentals](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB1064718)). Two rule types do the work: **identification rules** decide *new CI vs. existing CI*, and **reconciliation rules** decide *which source may write which values*.
-
----
-
-## 1. Identification rules — the "insert vs. update" decision
-
-Identification rules are what determine whether a payload matches an existing record or produces a new one. As described in the community guidance, IRE "uses identification rules to find CIs in the CMDB hierarchy and determine if a CI should be updated or a duplicate record created" ([Identification and Reconciliation rule](https://www.servicenow.com/community/cmdb-forum/identification-and-reconciliation-rule/m-p/3142427)).
-
-**Where to configure them:**
-- **CI Class Manager → [target CI class] → Identification Rule tab** — this is the recommended path, and is the standard verification step for any connector: "navigate to CI Class Manager > [Target CI Class] > Identification Rule and review the active identifier entries and their priority order" ([Verifying identification rules for Service Graph Connectors](https://www.servicenow.com/community/itom-articles/how-to-verify-identification-rules-for-service-graph-connectors/ta-p/3417132)).
-- Alternatively via the application navigator: **Identification/Reconciliation → CI identifiers** ([Identification and Reconciliation rule](https://www.servicenow.com/community/cmdb-forum/identification-and-reconciliation-rule/m-p/3142427)).
-
-**How the rule structure works:**
-- An identification rule **applies to a CI class** and it "can be single or multiple with different priorities" ([CMDB Identification & Reconciliation](https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712)).
-- A rule contains **identifier entries**, each with **criterion attributes** used for coalescing/identification, evaluated in **priority order**. Worked example using the shipped *Hardware Rule Identifier*: it applies to the Hardware `[cmdb_ci_hardware]` table and cascades to child tables such as Windows Server `[cmdb_ci_win_server]` and UNIX Server `[cmdb_ci_unix_server]`. On discovery, "the 1st Identifier Entry (Priority 100) attempts to match on the serial_number and serial_number_type Criterion attribute. If a match isn't found in the CMDB, then the next Identifier Entry is attempted. The 2nd Identifier Entry (Priority 200) attempts to match on the serial_number Criterion attribute…" — i.e., a match at any entry means **update**; exhausting all entries means **insert new** ([How to set unique key for a CI in Discovery](https://www.servicenow.com/community/itom-forum/how-to-set-unique-key-for-a-ci-in-discovery/m-p/911760)).
-- You can also define your own coalescing keys (e.g., "I configured identification rules choosing name, serial number as coalesce and re ran the discovery") ([same source](https://www.servicenow.com/community/itom-forum/how-to-set-unique-key-for-a-ci-in-discovery/m-p/911760)).
-
-**Design guidance to prevent duplicates:**
-- Duplicates arise "if the identification rules for CIs do not ensure that each CI is uniquely expressed with identifier entries that do not change," so "create good rules that are set with the highest priority for the strongest identifier entries" ([CMDB Identification & Reconciliation](https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712)).
-- **Always route automated imports/discovery through IRE.** In a real duplicate-CI investigation, the triage steps were: how were the CIs created and from what discovery sources, **"Was IRE used when creating the CIs as that is the best practice for every automatic import/discovery?"**, and if so "review the config of Identification Rules for the 3 CI classes" ([How to avoid duplicate CI creation](https://www.servicenow.com/community/cmdb-forum/how-to-avoid-duplicate-ci-creation/m-p/3498456)).
+It also cleans related tables: "Use to clean up any irrelevant or stale data from related tables to help keep CMDB data healthy and relevant **as the state of referenced CIs change**," including deleting "orphan, stale, or irrelevant records in non-CMDB related tables."
+  — [CMDB Data Manager](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER)
 
 ---
 
-## 2. Reconciliation rules — control over *which* existing CI gets updated, and by whom
+## Gap: attribute-level "stopped being reported" behaviour
 
-Reconciliation rules govern updates to CIs that identification has already matched. "Reconciliation rules specify which data sources can update a table or a set of table attributes, and they can be defined at the parent and/or the child class level. It is always good practice to ensure that there is a reconciliation rule in place for each data source that is authorized to update CIs in the CMDB." A reconciliation rule "is used for updating the data if new values are from a more trusted source than existing data" ([CMDB Identification & Reconciliation](https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712)).
+Your question asks specifically about **attribute values that stop being reported** — i.e. field-level missing-value semantics on a CI that still exists. None of the retrieved evidence addresses this. The documents I found cover:
+- *record-level* staleness (whole CIs that are orphaned/outdated → archived or deleted), and
+- *field population* during discovery (generic attributes setting values),
 
-**Authoritative source + priority:** If ServiceNow is designated the sole authoritative source for an attribute, "no other source, including ServiceWatch, is permitted to alter those values. While ServiceWatch may create the CI and populate it with initial attribute values, any subsequent modifications to these values must adhere strictly to the reconciliation rules." Where priorities are used, ServiceNow might hold priority 100 and ServiceWatch priority 200, and "updates to specific attributes follow the defined order" — a lower-priority source cannot overwrite the higher-priority one ([Understanding IRE Reconciliation Rules](https://www.servicenow.com/community/cmdb-articles/understanding-ire-reconciliation-rules/ta-p/3289239)).
+but **not** what happens to a previously-populated field when a later collection run no longer reports it.
 
-**Important scoping caveat:** reconciliation is evaluated against the class *in the input payload*, not the class the CI currently lives in — in one example "IRE uses the cmdb_ci_server class from input payload for any reconciliation rules, but in this case, no reconciliation rule is defined for the server class," causing an unintended class downgrade and attribute update ([Understanding IRE Reconciliation Rules](https://www.servicenow.com/community/cmdb-articles/understanding-ire-reconciliation-rules/ta-p/3289239)). Also, per KB0756709 (cited in the community article), IRE checks the `cmdb_datasource_last_update` table during this process, which is a common reason rules "don't seem to work" ([CMDB Identification & Reconciliation](https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712)).
+In ServiceNow this behaviour is normally governed by the **Identification and Reconciliation Engine (IRE)** and by data-source/pattern rules for handling missing or empty values — but I have **no evidence in hand** for that, so I am flagging it as unverified rather than asserting it. If you need this confirmed, the follow-up queries to run would be:
+- `Identification and Reconciliation Engine missing attribute value handling`
+- `CMDB IRE data source rules null value / clear field on re-discovery`
+- `CMDB "not discovered" attribute stale CI health / CI health dashboards`
 
-**Data Source Precedence Rules** are the mechanism to use when reconciliation rules alone aren't resolving the update conflicts — the cited remedy for CI data "flipping back and forth" between two integrations ([CMDB Identification & Reconciliation](https://www.servicenow.com/community/cmdb-articles/cmdb-identification-reconciliation/ta-p/2301712)).
+## Answer summary
 
-The overall IRE flow is worth restating because it maps directly to your question: deciding to insert or update based on identification & reconciliation rules, then enforcing write-protect rules based on reconciliation definitions ([How to prevent CIs from being created/updated](https://www.servicenow.com/community/cmdb-forum/how-to-prevent-cis-from-being-created-updated/m-p/3340763)).
+| Concern | Mechanism | Cadence |
+|---|---|---|
+| Re-collect CI data | Discovery schedules (horizontal Discovery; Service Mapping top-down) via MID Servers, matching CIs by Discovery identifiers | Per schedule settings |
+| Control which fields get populated | Discovery generic attributes (schedule/range/range-set scope, precedence hierarchy) | Applied each run |
+| Retire stale CIs | CMDB Data Manager policies (delete / archive / attest) | Daily job for published policies; Archive job hourly by default |
+| Attribute-level missing values | **Not covered by retrieved evidence** | — |
+
+## 11. What configuration controls how old a value may be before it is considered stale, and how 
+
+## Short answer
+
+I could not find evidence identifying the exact configuration setting that governs "how old a value may be before it is considered stale," nor one that defines how scheduled re-collections are scoped. I'm flagging this rather than inventing a property name, table, or parameter, because doing so would risk giving you a wrong setting to configure.
+
+## What the searches did return
+
+**ServiceNow docs (Discovery / configuration file tracking / Configuration Console)**
+- The Discovery Configuration Console is described as the place to manage what kinds of CIs and CI information Discovery collects, and to control what data Discovery adds to the CMDB versus what probes and patterns find by default. There is no mention of a staleness age threshold in the excerpt. https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/jxm03gKvyhebiCVQEIFgRA/content?target=DESIGNED_READER
+- The "Discovery IP configuration" topic covers IP collections, IP address range sets, schedules and ranges as scoping constructs, and Discovery generic attributes that set field values on CIs discovered within a given schedule, range set, or IP address range. This is the closest evidence to the *scoping* half of your question — it confirms that schedules, range sets, and IP address ranges are the granularity at which discovery scope is expressed — but it does not describe a staleness/age threshold. https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/91BEzK6jlBrt1pwkcnS3dA/content?target=DESIGNED_READER
+- Configuration file tracking (table `cmdb_ci_config_file_tracked`) was returned, but that is about tracking config file changes, not value staleness. https://www.servicenow.com/docs/api/khub/maps/bsp_DjPRMilbWYHwwVa4zQ/topics/gsWTzmYhA3z~HjDautahMA/content?target=DESIGNED_READER
+
+**Community / vendor content**
+- A CI Class Manager / IRE deep dive covers reconciliation rules, Discovery source priority, and Recompute as a forced recalculation rather than waiting for the next scheduled job. It does not address a staleness age limit. https://www.servicenow.com/community/cmdb-forum/a-deep-dive-into-ci-class-manager-and-ire-servicenow-cmdb/m-p/3486406
+- A Platform Analytics thread on re-running historical data collections notes that PA captures only the latest recorded breakdown value, so re-running historical jobs can overwrite earlier breakdown changes. This is about re-collection effects on PA data, not about staleness thresholds or collection scope. https://www.servicenow.com/community/platform-analytics-forum/consequence-of-re-running-historical-data-collection/m-p/1247668
+- A vendor blog discusses CMDB data going stale when discovery is run once and never refreshed, framing staleness as an operational governance problem rather than naming a controlling property. https://www.oblytech.com/servicenow/itom/cmdb/common-servicenow-cmdb-mistakes-and-how-to-avoid-them/
+
+## Why this is likely a mismatch
+
+Your question bundles two distinct concepts — an age-before-stale threshold, and the scope of scheduled re-collections — and the evidence suggests they may live in different places (CMDB data-health/refresh settings vs. Discovery schedules and range sets). The phrasing also doesn't uniquely identify a product area; plausible candidates include CMDB data refresh/attestation, Discovery schedules, or Platform Analytics collection jobs, each of which would have a different answer.
+
+## To get a precise answer, I'd need to know
+
+1. Which product area you mean — CMDB (including data manager / health), Discovery/Service Mapping, or Platform Analytics.
+2. Whether "value" means a CI attribute value in the CMDB, or a metric/indicator value in PA.
+3. Whether "re-collections" refers to discovery runs, import set re-processing, or analytics historical job re-runs.
+
+If you can confirm the area, I can run targeted lookups against the ServiceNow docs for the specific property or schedule field.
+
+## 12. Is there a periodic job or schedule that re-evaluates CI values, and what is it called in 
+
+## Yes — CI values are re-evaluated by scheduled **CMDB Health jobs**
+
+### 1. The mechanism (official ServiceNow documentation)
+CMDB Health is the feature that periodically evaluates and scores CI data. The docs include a reference section covering the *"properties, scheduled jobs, and tables, used by CMDB Health, and domain separation."* Health indicators — duplicate CIs, required CI fields, and audits — *"are evaluated and aggregated into health scores at the class, health group, and service levels."*
+
+The scheduling behaviour is also described explicitly on the CMDB Health properties page:
+- *"If processing of a metric exceeds the specified time, CMDB Health processing halts until the next CMDB Health job is scheduled to run."*
+- A property controls the logging level of *"CMDB Health jobs"*, creating log entries *"generated by the health auditing process each time they run."*
+
+Sources:
+- https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/9WQbIoOa1GrhhHk4yl0aYA/content?target=DESIGNED_READER
+- https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/rQ88gfdVdEDS3yTJLJH_Kg/content?target=DESIGNED_READER
+
+### 2. The specific job name (ServiceNow KB article, not the product docs)
+Per ServiceNow KB2612771: *"the scheduled job 'CMDB Health Dashboard - Correctness Score Calculation' evaluates the in-scope CI set → applies your inclusion rules → computes three sub-metrics — Staleness, Orphan, and Duplicate — before rolling them up into the Correctness KPI you see on the CMDB Health dashboard."*
+
+The same article describes the general pattern: *"A scheduled CMDB Health job evaluates each sub-metric and writes CI-level 'health results,' then activates scores and cleans up rows marked for removal."*
+
+Source: https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB2612771
+
+### 3. Scope of evaluation and where the schedule is configured
+- Only CIs that satisfy the Health Configuration (`cmdb_health_config`) "Active record" condition for that metric/class are evaluated; others are excluded. (KB2612771)
+- Job schedules (Run = Periodically, Repeat Interval, Time) are set per job at **All > Configuration > CMDB Dashboard > CMDB View → CMDB Health Dashboard Jobs**.
+
+Source: https://www.servicenow.com/community/developer-forum/cmdb-health-score-card/m-p/2719709
+
+### Caveats
+- The phrasing "re-evaluates CI values" has no single branded term in the documentation retrieved. ServiceNow's docs call these the **CMDB Health scheduled jobs** (health auditing and score-calculation jobs). The explicit job title *"CMDB Health Dashboard - Correctness Score Calculation"* comes from a ServiceNow **KB article**, not the product documentation pages retrieved; the docs' scheduled-jobs reference page is the authoritative list of individual job names, but its contents could not be retrieved here.
+- Not to be confused with **CMDB Identification and Reconciliation (IRE)**, which is a separate centralized framework for identifying and reconciling data from different sources and maintaining CMDB integrity — it is not the periodic health re-evaluation job, though both serve CI data quality.
+  https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+- Related context on how the KPIs (Correctness, Completeness, Compliance, Relationship Health) are composed: https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB2607946
+
+## 13. In the CI Class Manager, which sections expose the settings for matching incoming payloads
+
+## Short answer
+
+The evidence I was able to retrieve confirms the **entry point** and the **rule types**, but it does not contain the granular per-section click paths inside the CI Class Manager. Here is what the sources actually support, with the gaps marked explicitly rather than filled in by guesswork.
+
+### 1. The container for all four areas
+
+**Navigation path: All > Configuration > CI Class Manager**
+
+The CI Class Manager is used "to centrally view, create, or edit basic class definitions, class settings for Identification and Reconciliation Engine (IRE), CMDB" and more — so the IRE-related settings for a class are exposed as *class settings* within this single tool, not in four separate modules.
+
+- `sn_cmdb_admin` has full access to all sections; `sn_cmdb_editor` has read access only.
+- CI Class Manager does not support working with non-CMDB tables.
+- Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/x4JJge7tCsN5~u2j3DCdLw/content?target=DESIGNED_READER
+
+### 2. The rule areas that are documented
+
+The CMDB Identification and Reconciliation module "provides a centralized framework for identifying and reconciling data from different data sources," and its configuration area exposes:
+
+- **Configure** — "Configure identification, reconciliation, and other rules."
+- **Identification rules** — "Create the rules that uniquely identify CIs based on CI attributes." → corresponds to **matching incoming payloads**.
+- **Reconciliation rules** — "Create the rules that manage authorization and update priority between discovery sources." → corresponds to **resolving conflicts** between sources.
+- **Identification Simulator** — "Construct a validated payload and simulate running it through IRE processes" (useful for testing the matching rules above).
+- Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+
+### 3. Mapping to your four asks
+
+| Setting group | Documented area | Navigation path |
+|---|---|---|
+| Matching incoming payloads | Identification rules (IRE) | All > Configuration > CI Class Manager → IRE class settings for the class; rule definitions under the Identification and Reconciliation module (source above) |
+| Resolving conflicts | Reconciliation rules (IRE) — authorization and update priority between discovery sources | Same class settings; reconciliation rules (source above) |
+| Declaring sources | IRE is described as reconciling "data from different data sources," and reconciliation rules arbitrate "between discovery sources" | **Not confirmed** — the specific section name and path inside CI Class Manager is absent from my evidence |
+| Schedules | — | **Not confirmed** — no schedule section for CI Class Manager appears in any retrieved evidence |
+
+### 4. Unverified / do not cite as an answer
+
+One result mentioned the **Discovery Admin Workspace Settings** page (Workspaces > Discovery Admin Workspace > Settings), whose anomaly-detection options and visualizations reference a "Schedules" page. That is Discovery administration and is **not** the CI Class Manager, so I am not offering it as the schedule path you're asking about.
+
+### Recommended verification step
+
+To pin down the exact section names for **data source declaration** and **schedules**, walk the child pages of the CI Class Manager documentation topic (linked above) for terms such as "data source," "authoritative source," and "scheduled jobs." My research budget for this session is exhausted, so I could not complete that final pass; I have deliberately left those two paths blank rather than invent them.
+
+## 14. What are the exact menu bread crumbs in CI Class Manager for CI data-governance settings?
+
+## What the evidence supports
+
+**Entry point to CI Class Manager (the only breadcrumb the docs document):**
+
+> **All > Configuration > CI Class Manager**
+
+Roles: `sn_cmdb_admin` has full access to all sections of the CI Class Manager; `sn_cmdb_editor` has read-only access.
+Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/x4JJge7tCsN5~u2j3DCdLw/content?target=DESIGNED_READER
+
+**Related but *separate* module for CI data governance / lifecycle:** CMDB Data Manager is described as "a policy-driven framework for bulk management of CI life-cycle operations such as deletion, archival, and attestation," applying only to classes that extend the Configuration Item [cmdb_ci] table, using life-cycle policies built on retirement definitions.
+Source: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER
+
+## What I could not confirm
+
+I was **not** able to retrieve the exact in-product breadcrumb trail *inside* CI Class Manager for its CI data-governance settings section (i.e., the precise sequence of node/label names reached after the manager opens). My research budget for this session was exhausted, and the two documentation lookups returned only the top-level entry path plus a truncated description of what CI Class Manager covers ("basic class definitions, class settings for Identification and Reconciliation Engine (IRE), CMDB...").
+
+I am deliberately not guessing at the intermediate breadcrumb labels, because inventing menu names would be worse than flagging the gap.
+
+## Two points the evidence does establish
+
+1. The documented navigation for the tool itself is the single step **All > Configuration > CI Class Manager** — the docs present access as this one breadcrumb rather than a deeper trail ending in a governance node.
+2. Data-governance policy work (deletion, archival, attestation) is documented under **CMDB Data Manager**, treated as its own module rather than a sub-node of CI Class Manager. So if the actual goal is "CI data-governance settings," the CI Class Manager breadcrumb above may not be the right path, and the CMDB Data Manager path should be confirmed instead.
+
+## Suggested next step
+
+Re-run a focused lookup on CMDB Data Manager navigation (e.g., "CMDB Data Manager navigate to All > Configuration > CMDB Data Manager") and on the CI Class Manager properties/settings nodes, which should surface the exact labels for the data-governance section.
+
+## 15. List the official ServiceNow documentation page titles that cover CMDB CI data governance,
+
+## Official ServiceNow documentation pages covering CMDB CI data governance
+
+Based on searches of ServiceNow's documentation, the following pages cover CMDB CI data governance. Note: the search returned topic titles and excerpts rather than an exhaustive index, so this is the set I could verify from evidence — not a guaranteed complete list.
 
 ---
 
-## 3. Cleaning up duplicates that already exist — De-duplication Tasks & Templates
+### 1. "CMDB Data Manager"
+**URL:** https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/yv7TLFuukYRPGIbzqoBdaA/content?target=DESIGNED_READER
 
-For existing duplicates, IRE won't retroactively fix them; use **De-duplication Tasks** in the CMDB Workspace (De-duplication Dashboard). To automate remediation, "you'll need to setup some 'de-duplication templates' via the CMDB Workspace (De-duplication Dashboard). The template defines the rules to automate re-conciliating duplicate CIs," and "these templates can be applied in bulk to multiple de-duplication tasks" ([How can we automate the deletion of duplicate CIs](https://www.servicenow.com/community/itom-forum/how-can-we-automate-the-deletion-of-duplicate-cis-in-servicenow/m-p/3404162)). Docs reference: [Create a de-duplication template](https://www.servicenow.com/docs/csh?topicname=workspc-dedup-create-template.html&version=latest).
+This is the core governance page. It describes CMDB Data Manager as **"a policy-driven framework for bulk management of CI life-cycle operations such as deletion, archival, and attestation."** Key points covered:
 
-Two gotchas from the field:
-- **Templates are not retroactive** — "Templates do not retroactively update already-created deduplication tasks."
-- The **"Condition to filter CIs from the template class" is evaluated at the CI level, not at the deduplication task level**, which explains templates appearing to "not pick up" the intended task ([Deduplication template doesn't correctly picking up the deduplication task](https://www.servicenow.com/community/cmdb-forum/deduplication-template-doesn-t-correctly-picking-up-the/td-p/3466047)).
+- **The problem it solves:** large CMDBs accumulate stale CIs over time, which impacts overall performance. Custom mitigating solutions are difficult to develop and maintain, and are prone to error.
+- **What you do with it:** create policies that represent your organisational processes for managing the CI life cycle.
+- **Scope constraint:** policies can be applied **only to classes that extend the Configuration Item [cmdb_ci] table**.
+- **Where you administer it:** the CMDB Workspace landing page and its views let you fully administer CMDB Data Manager, view high-level analytics and counts for policies and tasks, and review your tasks.
+- **Operational mechanics:** a **daily scheduled job processes all published CMDB Data Manager policies**, and Archive policies use the *Archive Configuration Items* CMDB archive rule from the Archive Rule [sys_archive] table.
 
 ---
 
-## Summary checklist
+### 2. "CMDB data management"
+**URL:** https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/LB39AbIzTbybXHhm9L0Pcg/content?target=DESIGNED_READER
 
-| Goal | Configuration |
+This is the conceptual/overview page that frames *why* CI data governance exists and how the pieces fit together:
+
+- **Business rationale:** the integrity and health of the CMDB is essential for the many features that depend on CMDB data. As the CMDB grows and infrastructure changes, it can accumulate **stale, duplicate, or outdated CIs**, so it no longer accurately reflects the organisation's IT infrastructure and applications.
+- **Governance mechanism:** CMDB Data Manager is positioned as "an essential tool" for creating, publishing, and managing policies that reflect organisational data-management needs — supporting bulk life-cycle operations (deletion, archival, attestation) and automating and governing CI life-cycle operations to keep the CMDB healthy and in an efficient operational state.
+- **Deduplication:** managing duplicate CIs is called out as an important data management task that helps maintain CMDB health.
+
+---
+
+### 3. "CMDB Identification and Reconciliation"
+**URL:** https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+
+This page covers the *data integrity / ingestion-side* half of governance — controlling what enters and updates the CMDB:
+
+- Provides a **centralised framework for identifying and reconciling data from different data sources**, helping maintain the integrity of the CMDB (and some non-CMDB tables) when multiple data sources create and update CI records.
+- Sub-topics listed: an overview of the benefits and how IRE helps maintain CMDB integrity; **IRE and Import Sets** (applying IRE to import sets bringing CIs into the CMDB); **IRE and non-CMDB tables** (applying IRE processes to supported non-CMDB tables); and **configure** identification, reconciliation, and other rules.
+
+---
+
+### 4. "IRE data source rule"
+**URL:** https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/uKwDdWnyPdiZFZeI2LcBKg/content?target=DESIGNED_READER
+
+A more granular governance-control page covering data source rules within IRE:
+
+- Lets you prevent a **discovery (data) source from inserting new CIs for a specific class**.
+- Rules are stored in the **IRE Data [table]**.
+- **Child classes derive IRE data source rules from parent classes**, and a rule specified for a child class **overrides** the inherited rule.
+- Important caveat: **IRE data source rules have no impact when dynamic reconciliation rules are enforced.**
+
+---
+
+### How these fit together
+
+| Governance concern | Page |
 |---|---|
-| Insert new vs. update existing | Identification rule on the target CI class (CI Class Manager → Identification Rule), with identifier entries/criterion attributes ordered by priority; strongest, non-volatile attributes at the highest priority |
-| Allow/deny updates by source | Reconciliation rules at parent and/or child class level, per data source, per attribute |
-| Resolve competing sources | Reconciliation rule priority (e.g., 100 vs. 200) and/or Data Source Precedence Rules |
-| Block writes entirely | Write-protect behavior enforced via reconciliation definitions |
-| Fix existing duplicates | De-duplication Tasks + De-duplication Templates in CMDB Workspace |
+| Why govern CI data; stale/duplicate CI problem | CMDB data management |
+| Policy-driven life-cycle ops (delete, archive, attest) | CMDB Data Manager |
+| Controlling CI identification/reconciliation at ingestion | CMDB Identification and Reconciliation |
+| Per-source, per-class control over new CI creation | IRE data source rule |
 
-**Caveat:** the evidence supports the mechanisms and configuration locations above, but I did not find a source enumerating the exact UI field names on the identifier-entry form (beyond "Criterion Attributes" and "Priority") or the precise `cmdb_identifier`/`cmdb_identifier_entry` table schema — verify those in your instance's CI Class Manager before building rules.
+If you need the complete official list rather than this initial set, the natural next step would be to browse the CMDB documentation section these four topics sit within, since search returned topic-level excerpts rather than a full table of contents.
+
+## 16. What CMDB system properties govern how incoming CI payloads are processed, and what are th
+
+## Answer (with an important evidence caveat)
+
+My research budget was exhausted before I could retrieve ServiceNow's dedicated "CMDB system properties" reference page, so I can only partially answer this. Below is what the evidence digest actually supports, clearly separated from what I could **not** verify. I did not fill gaps with recalled or inferred property names, because I have no reliable memory to draw on.
+
+### What the evidence supports
+
+**1. There is no single "payload processing" switch — inclusion is controlled by rules, not a global property**
+Identification inclusion rules let you narrow the set of CIs that the Identification and Reconciliation Engine (IRE) processes:
+- "When no identification inclusion rules exist, all CIs are included in the identification process and in the CMDB Health duplicate metric calculations."
+- "In the base system, there are no predefined identification inclusion rules." — i.e., the out-of-box default state is *no rules*, meaning everything is included.
+- Inclusion rules are defined at the **class level**, and they also indirectly affect duplicate-CI results on CMDB Health dashboards (alongside health inclusion rules).
+- During duplicate detection of independent CIs, IRE processes only CIs satisfying the identification inclusion rules.
+
+**2. Properties the evidence explicitly names as relevant to how CMDB data is processed**
+- `glide.identification_engine.multisource_enabled` — "Enables CMDB 360." This governs whether CMDB 360 multi-source tracking is active, configured via All > Configuration > CMDB 360 Properties. The evidence states the property must be enabled there but **does not state its default value**.
+- `glide.cmdb.logger.source.cmdb_multisource` — enables logging for CMDB 360 (searched in the Log [syslog] table). Default value not stated in the evidence.
+- Note: "By default, CMDB 360 tracks discovery source information for CIs from CMDB classes and doesn't collect data for non-CMDB tables" — tracking for CMDB vs. non-CMDB classes can be enabled/disabled independently, but the evidence does not name the specific properties for that.
+
+**3. Related but distinct: CMDB Health properties**
+The docs confirm a separate set of system properties exists to "customize how CMDB Health monitors and evaluates CIs health" (findable in the System Property [sys_properties] table, or via All > Configuration > Health Preference > System Properties), and that one of them controls a time threshold at which "CMDB Health processing halts until the next CMDB Health job is scheduled to run." The individual property names and defaults were **not** in the digest.
+
+### What I could not verify (do not treat as answered)
+- The specific property that toggles **payload-level input processing / validation** for incoming CI payloads (the family of `glide.cmdb.*` / `glide.identification_engine.*` input-payload properties), and whether it is enabled by default.
+- The property governing **partial payloads / partial commit** behaviour, and its default.
+- The property controlling **data source / discovery source** defaults on incoming payloads.
+- The reconciliation-rule-related properties and their defaults.
+- Defaults for `glide.identification_engine.multisource_enabled` and `glide.cmdb.logger.source.cmdb_multisource`.
+
+To close these gaps, the authoritative sources to check are the CMDB Identification and Reconciliation "Properties" / "System properties" reference topic and the CMDB 360 Properties pane doc:
+
+- CMDB Identification and Reconciliation: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/PY2vdmBkt0I1BgOSfvhYyA/content?target=DESIGNED_READER
+- Identification inclusion rule: https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/qDQ2J4CvInUNlytxLLOheg/content?target=DESIGNED_READER
+- CMDB 360 (names `glide.identification_engine.multisource_enabled` and `glide.cmdb.logger.source.cmdb_multisource`): https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/Tl2f0CcrHDaDYS7FoGs2Wg/content?target=DESIGNED_READER
+- CMDB Health properties (related set): https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/rQ88gfdVdEDS3yTJLJH_Kg/content?target=DESIGNED_READER
