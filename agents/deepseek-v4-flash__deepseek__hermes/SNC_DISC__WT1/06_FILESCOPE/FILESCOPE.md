@@ -16,9 +16,19 @@
 04_QA/QA.md
 05_FINAL/DISCOVERY_CONFIG_REFERENCE.md
 05_FINAL/FINAL_SUMMARY.md
+06_FILESCOPE/FILESCOPE.md
+research/20261113_082225_deepseek_v4_flash.md
+research/20261113_082306_deepseek_v4_flash.md
+research/20261113_082359_deepseek_v4_flash.md
 ```
 
 ## git status (worktree)
 ```
-?? agents/
+M agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/03_PHASES/phase1_started.md
+ M agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/03_PHASES/phase2_research_started.md
+ M agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/03_PHASES/phase3_research_done.md
+ M agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/04_QA/QA.md
+ M agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md
+ M agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/05_FINAL/FINAL_SUMMARY.md
+?? agents/deepseek-v4-flash__deepseek__hermes/SNC_DISC__WT1/research/
 ```
