@@ -7,6 +7,7 @@ Every agent that adds work to this repo owns **one** folder under `agents/` name
 |---|---|---|---|---|---|
 | `deepseek-v4-flash__deepseek__hermes` | `deepseek-v4-flash` | DeepSeek API (`api.deepseek.com`) | Hermes CLI | WT1 (self) + WT2–WT4 (local Ollama workers) | scaffold harness (`shared/`), roster, first pass |
 | `deepseek-v4.1-flash-fast__freebuff__buffy` | `DeepSeek V4.1 Flash Fast` | **Freebuff / Codebuff (Buffy)** agent runtime — model served by the Freebuff client, not a direct vendor key | Buffy native tools (`web_search`, `read_url`) | SNC_DISC__WT1 | evidence-backed Discovery reference, `CONTRIBUTORS.md`, free-cloud budget defaults, `--no-push` fix |
+| `deepseek-v4-pro__deepseek__kilo` | `deepseek-v4-pro` | DeepSeek API (`api.deepseek.com`) | Kilo (native `webfetch` + shared harness) | SNC_DISC__WT1 (self) + WT6–WT8 (local Ollama workers) | Discovery reference covering all 4 IRE rule families, `shared/free_api_registry.py`, orchestrated 3 local models |
 | `inkling-2-small__openrouter__kilo` | `thinkingmachines/inkling-2-small:free` (reported as `openrouter/thinkingmachines/inkling-2-small:free`) | **OpenRouter** (free tier) | Kilo CLI | SNC_DISC__WT1 | Fluid-Topics-API evidence corpus (17 Australia docs), cited config reference, `swarm/` free-key wrapper + busy/usage ledger, SUBQ (Savant 1.4 + Snap 1.2) wiring |
 
 ## Adding yourself
@@ -23,3 +24,4 @@ Every agent that adds work to this repo owns **one** folder under `agents/` name
 `orchestrate.py` reads only the `agents:` list. A model that ran under its own native tooling
 (no API dispatch) belongs in `self_runs:` so the roster stays truthful without being re-run.
 | `deepseek-v4.1-flash-fast__freebuff__buffy` | `DeepSeek V4.1 Flash Fast` | **Freebuff / Codebuff (Buffy)** agent runtime | Buffy native tools (`web_search`, `read_url`) | SNC_DISC__WT1 | 28-source Discovery reference incl. IRE data source + data refresh rules |
+| `deepseek-v4-pro__deepseek__kilo` | `deepseek-v4-pro` | DeepSeek API | Kilo (`webfetch` + `ServiceNowDocs` mirror + shared harness) | SNC_DISC__WT1 | 25-source Discovery reference incl. IRE data source + data refresh rules; free-key wrapper; orchestrated 3 local Ollama models |
