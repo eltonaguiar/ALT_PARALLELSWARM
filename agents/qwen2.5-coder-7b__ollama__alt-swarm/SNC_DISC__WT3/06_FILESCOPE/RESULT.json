@@ -1,0 +1,34 @@
+{
+  "agent_id": "qwen2.5-coder-7b__ollama__alt-swarm",
+  "model": "qwen2.5-coder:7b",
+  "provider": "ollama",
+  "model_used": "qwen2.5-coder:7b",
+  "provider_used": "ollama",
+  "fallback_used": false,
+  "attempts": [
+    {
+      "model": "qwen2.5-coder:7b",
+      "provider": "ollama",
+      "chars": 4253,
+      "finish_reason": "stop",
+      "error": null
+    }
+  ],
+  "worktree": "/tmp/kilo/wt-qwen2.5-coder-7b__ollama__alt-swarm",
+  "branch": "agent/qwen2.5-coder-7b__ollama__alt-swarm",
+  "qa_pass": false,
+  "words": 610,
+  "chars": 4253,
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 3656,
+    "completion_tokens": 820,
+    "total_tokens": 4476
+  },
+  "error": null,
+  "committed": true,
+  "pushed": true,
+  "push_error": null,
+  "started": "2026-11-13T09:02:47+00:00",
+  "finished": "2026-11-13T09:03:24+00:00"
+}
