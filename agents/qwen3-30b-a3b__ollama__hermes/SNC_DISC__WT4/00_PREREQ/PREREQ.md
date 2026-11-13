@@ -8,7 +8,7 @@ Base URL: `http://localhost:11434/v1`
 | Outbound HTTP | YES | HTTP 200 in 0.0s |
 | Playwright + Chromium | YES | chromium 153.0.8010.12 |
 | JavaScript rendering | YES | js output='after' |
-| Web search reachable | YES | 28 servicenow.com results |
+| Web search reachable | YES | 36 servicenow.com results |
 | Context window | YES | qwen3:30b-a3b (ollama): 262144 tokens |
 
 ## Verdict

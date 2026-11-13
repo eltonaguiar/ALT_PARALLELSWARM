@@ -7,12 +7,72 @@
 
 ## 1. Configuration options and order of operations
 
-(budget/run error: KeyError: 'inflight')
+Based on the provided evidence, the following ServiceNow Discovery configuration options and properties are documented:
+
+### Configuration Options & Properties
+1. **AWS Cloud Discovery Configuration**:
+   - Supports two main approaches: **Credential-Based Discovery** and **Credential-less Discovery** (KB2184482).
+   - Requires matching configurations on both AWS portal and ServiceNow sides (e.g., member account setup for AWS credentials).
+
+2. **Trusted Hostname Source Properties**:
+   - Must be explicitly enabled for Discovery to function correctly (KB1380611).
+   - A configuration review play (Play 1) is recommended to verify these settings.
+
+3. **Application Toggling in Configuration Console**:
+   - The Discovery Configuration Console allows enabling/disabling *some* applications (KB0748325).
+   - It does **not** display all supported applications, limiting visibility of configuration options.
+
+4. **Operational Status Handling**:
+   - No system property or script automatically updates the `operational_status` field for retired CIs upon rediscovery (KB0755747).
+   - Manual remediation (e.g., creating a custom script named "Un-retire CI on rediscovery") is required.
+
+### Order of Operations
+**The evidence does not provide details on the sequence of Discovery processing steps** (e.g., scanning, identification, CI update workflows). The sources focus on configuration settings and known issues but do not describe the order of operations for device discovery.
+
+### Sources
+- [KB2184482: AWS Cloud Discovery Configuration](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB2184482)
+- [KB1380611: Trusted Hostname Source Properties](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB1380611)
+- [KB0748325: Discovery Configuration Console Limitations](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0748325)
+- [KB0755747: Operational Status Handling](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0755747)
 
 ## 2. CI Class Manager — key bread crumbs
 
-(budget/run error: KeyError: 'inflight')
+Based on the evidence:
+
+**Configuration in CI Class Manager related to Discovery, Identification, and Reconciliation:**
+- **Identification and Reconciliation Engine (IRE) rules** are configured centrally in CI Class Manager (e.g., rules for identifying CIs during discovery and reconciling them).
+- **Inclusion rules** for specific classes (e.g., Windows Server) are configured here.
+- **Reconciliation rules** (e.g., for fields like location) are defined here, though evidence notes issues with rules not working for certain classes (e.g., ESX Servers).
+
+**Interface Locations:**
+1. **CI Class Manager** (main configuration):  
+   `Configuration > CI Class Manager`
+   *(This is the central location for configuring IRE rules and settings, including identification and reconciliation rules for classes.)*
+2. **Identification Simulation** (testing tool):  
+   `Configuration > Identification/Reconciliation > Identification Simulation`
+   *(Used to simulate and test identification rules.)*
+
+**Additional Notes from Evidence:**
+- CI Class Manager displays **Class DB names** instead of **Class Labels** (KB0820379).
+- Reconciliation rules may fail for specific classes (e.g., ESX Servers) even when configured (KB0820379).
+
+Sources:
+- [KB1064718](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB1064718)
+- [KB0820379](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0820379)
 
 ## 3. Preventing duplicates; insert vs update
 
-(budget/run error: KeyError: 'inflight')
+To configure ServiceNow to avoid duplicate CIs and control whether an existing CI is updated versus a new CI inserted:
+
+1. **Configure Identification Rules via CI Class Manager**:
+   - Navigate to **Configuration > CI Class Manager**.
+   - Define or verify identification rules for the CI class (e.g., Windows Server) to specify unique attributes (e.g., **Correlation ID**).
+   - The Identification and Reconciliation Engine (IRE) uses these rules to determine if incoming data should update an existing CI or create a new one.
+
+2. **Use Correlation IDs**:
+   - Ensure incoming data includes a unique **Correlation ID** (or other configured identifier) to match existing CIs. For example, two Windows servers with the same Correlation ID will **not** be treated as duplicates.
+
+3. **Troubleshoot Duplicates**:
+   - If duplicates persist, verify IRE rules in **CI Class Manager** and confirm data sources provide correct identifiers.
+
+**Source**: [How to troubleshoot duplicate CMDB CI records - ServiceNow](https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0869861)

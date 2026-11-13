@@ -16,9 +16,20 @@
 04_QA/QA.md
 05_FINAL/DISCOVERY_CONFIG_REFERENCE.md
 05_FINAL/FINAL_SUMMARY.md
+06_FILESCOPE/FILESCOPE.md
+research/20261113_082640_qwen3_30b_a3b.md
+research/20261113_083100_qwen3_30b_a3b.md
+research/20261113_083130_qwen3_30b_a3b.md
 ```
 
 ## git status (worktree)
 ```
-?? agents/
+M agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/00_PREREQ/PREREQ.md
+ M agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/03_PHASES/phase1_started.md
+ M agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/03_PHASES/phase2_research_started.md
+ M agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/03_PHASES/phase3_research_done.md
+ M agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/04_QA/QA.md
+ M agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/05_FINAL/DISCOVERY_CONFIG_REFERENCE.md
+ M agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/05_FINAL/FINAL_SUMMARY.md
+?? agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/research/
 ```
