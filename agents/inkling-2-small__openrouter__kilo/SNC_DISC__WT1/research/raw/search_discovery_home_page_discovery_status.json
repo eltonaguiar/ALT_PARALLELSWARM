@@ -1,0 +1,30 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/neb5udgz5y36iZmb_mhEzw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery Home page",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Using Discovery > Discovery monitoring and issue resolution > Discovery Home page",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/discovery-home-page.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/810Q2NNilsHKkNVFNJ~WsQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Cloud Discovery home page in Cloud Discovery Workspace",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Using Discovery > Discovery monitoring and issue resolution > Cloud Discovery home page in Cloud Discovery Workspace",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/cloud-operations-discovery-home.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/~rRhgzPPYghrUfu2jj36Iw/content"
+ },
+ {
+  "map": "Australia Workflow Data Fabric",
+  "title": "Workflow Data Fabric Home",
+  "breadcrumb": "Workflow Data Fabric > Workflow Data Fabric Home",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/integrate-applications/wdf.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/u~ldaY8ZPxJiUgZ1Inf6mw/topics/bToL4ETWUpqQGrmdQ2WJQQ/content"
+ }
+]

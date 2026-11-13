@@ -1,0 +1,37 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Create a discovery schedule",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Discovery for cloud environment > Create a discovery schedule",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/cloud-operations-disco-create-schedule.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/vMtwQLyx9R6Je64oT_fX8w/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Create a Discovery schedule for Alibaba Cloud",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Discovery for cloud environment > Discovery for Alibaba Cloud > Create a Discovery schedule for Alibaba Cloud",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/create-alibaba-cloud-discovery-schedule.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/iQUA02mVQXWi6wWgnqn27w/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Create a new discovery schedule form reference",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Discovery reference > Create a new discovery schedule form reference",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/create-a-new-discovery-schedule-form.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/rwFw1UEzmRG_3g8bvZCY7A/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Create a VMware Discovery schedule",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Discovery for cloud environment > Discovery for VMware > Create a VMware Discovery schedule",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/create-vmware-schedule-DAW.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/zWQb3zpw1IABpkEOBvXTtQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Create a GCP Discovery schedule",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Discovery for cloud environment > Discovery for Google Cloud Platform > Create a GCP Discovery schedule",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/create-gcp-schedule-DAW.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/0hfEIwUbNHenScGHHEeUoQ/content"
+ }
+]

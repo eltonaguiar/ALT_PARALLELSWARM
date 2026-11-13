@@ -1,0 +1,30 @@
+[
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "MID Server properties",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Manage instance data sources > MID Server > MID Server reference > MID Server properties",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/mid-server/r_MIDServerProperties.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/2~UOl4~0DpoZZpaWMHIXhw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "MID Server properties used by Service Mapping",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Service Mapping > Service Mapping reference > MID Server properties used by Service Mapping",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/service-mapping/mid-server-properties-service-mapping.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/IRN9ifAvYchSbrvI54iO9w/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "MID Server",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Manage instance data sources > MID Server",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/mid-server/mid-server-landing.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/0jvlO3H5NzhG14LM3R2YPQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "MID Server configuration and exception handling",
+  "breadcrumb": "IT Operations Management > ITOM Optimization > ITOM Optimization reference > MID Server configuration and exception handling",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/configure-a-mid-server.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/Y5FLFvUEHyu~2PUsR7BgfQ/content"
+ }
+]

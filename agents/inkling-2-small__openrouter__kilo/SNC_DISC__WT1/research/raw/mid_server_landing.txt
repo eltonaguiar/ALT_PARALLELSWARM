@@ -1,0 +1,42 @@
+MID Server
+
+ 
+ 
+ Release version: Australia
+
+ Updated March 12, 2026
+
+ 1 minute to read
+
+The Management, Instrumentation, and Discovery (MID) Server is a Java application that runs as a Windows service or UNIX daemon on a server in your local network. The ServiceNow®
+ MID Server enables communication and the movement of data between a ServiceNow instance and external applications, data sources, and services.
+
+ 
+
+ 
+ 
+ 
+ 
+ Explore
+ 
+ Learn about MID Server deployment and uses.
+
+ 
+ 
+ Configure 
+ 
+ Prepare your network, then install and configure MID Servers.
+
+ 
+ 
+
+ 
+ 
+ Secure
+ Secure and encrypt your MID Server's data.
+
+ 
+ 
+ Reference
+ 
+ Get information about MID Server upgrades, issues, system requirements, and properties.

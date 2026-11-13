@@ -1,0 +1,30 @@
+[
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "MID Server",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Manage instance data sources > MID Server",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/mid-server/mid-server-landing.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/0jvlO3H5NzhG14LM3R2YPQ/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "MID Server dashboard",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Manage instance data sources > MID Server > MID Server reference > MID Server dashboard",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/mid-server/c_MIDServerDashboard.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/wt8wbkgh_RCxvSPPlMtK1g/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Exploring MID Server",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Manage instance data sources > MID Server > Exploring MID Server",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/mid-server/explore-mid-server.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/xaPvUUWIze1W_nc~0k0p7Q/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "MID Server Workspace",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Infra Services Workspace > Use ITOM Infra Services Workspace > MID Server Workspace",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/itom-infra-srv-wrksp-mid.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/p1IVyWU_SB9Dhng1cpmIig/content"
+ }
+]

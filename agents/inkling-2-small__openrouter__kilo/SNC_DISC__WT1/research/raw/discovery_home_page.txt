@@ -1,0 +1,327 @@
+Discovery Home page
+
+ 
+ 
+ Release version: Australia
+
+ Updated May 28, 2026
+
+ 6 minutes to read
+
+The Discovery Home page provides a summary of discoveries that were triggered by cloud and non-cloud schedules. You can view any errors that occurred during a Discovery and find remediation suggestions. Use the
+ Home page view to examine the cloud resources discovered for the service accounts you selected in a cloud schedule. 
+
+ 
+ To open the Discovery Home page, navigate to Discovery > Home. The Home page shows the Discovery totals for each of the following categories. Select a tile to view details for that category.Note: Discovery Admin Workspace provides an updated experience for monitoring discoveries, managing schedules, and resolving errors. For more information, see Discovery Admin Workspace Home.
+
+ 
+ 
+ 
+
+ 
+ 
+ Item
+ Description
+ 
+
+ 
+ 
+ Schedules
+ The number of Discovery schedules that are
+ configured to find cloud resources and virtual machines (IP addresses). 
+
+ Select View Active Schedules to open the configuration item (CI) schedule view, where you can see specific details about each CI schedule separately. View the results of
+ your cloud or IP address schedules and create schedules.
+
+ 
+
+ 
+ Discovered Devices
+ The total number of device CIs discovered. Devices include all the CIs in tables that extend the Hardware [cmdb_ci_hardware] table, such as Computer [cmdb_ci_computer] and Cisco UCS Equipment [cmdb_ci_ucs_equipment].
+
+ 
+
+ 
+ Cloud Resources
+ The total number of resources (virtual machines) discovered for the service accounts selected. See Enable discovery of virtual machines for details about setting up Discovery for your cloud resources.
+
+ Select View Cloud Resources to open a list of discovered cloud resources, by type.
+
+ 
+
+ 
+ Errors
+ The total number of unresolved errors that occurred during
+ discovery.
+
+ Select View Errors to drill down to specific types of errors.
+
+ 
+
+ 
+
+ 
+
+ Viewing all schedules
+
+ 
+ The schedule view displays details for each schedule that ran for the selected filter. By default, the list shows all of the active Discovery schedules in alphabetical order, regardless of their current running status.Note: You can also monitor and manage IP and cloud-based schedules in Discovery Admin Workspace Schedules.
+
+ 
+ 
+ 
+
+ Use these controls to filter Discovery results by schedules:
+ 
+ Schedule filters
+ You have the choice of these filters:
+ All: Results of all Discovery schedules that ran. This is the default filter.
+
+ Cloud Schedules: Results of all Cloud Discovery schedules that ran. When you select this filter, a second filter appears, allowing you to display cloud schedules by Service Account.
+ 
+ 
+ 
+
+ IP Based Schedules: Results of all Discovery schedules that ran for Configuration Items (CI), using IP ranges. When you select this filter, a second filter appears, allowing you to display the CI schedules by a specific location
+ or all locations.
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+ Schedule sorter
+ From the schedule selector in the left pane, select a sorting criteria, from left to right: 
+ 
+ 
+ 
+ Errors for each schedule listed.
+
+ Unidentified IP addresses.
+
+ Recent activity, which lists the schedules that are currently running first.
+
+ Alphabetical listing of schedules.
+
+ 
+
+ 
+ 
+ Schedule list
+ List of available Discovery schedules. Select a schedule to display its details. Select the pencil icon at the top of the page to edit the schedule.
+ 
+ 
+ Date/time indicator
+ Date and time the selected schedule ran.
+ 
+ 
+ Schedule topics
+ Tiles that show the Discovery result categories for the selected schedule. Select a tile to see more detail. 
+ Cloud resources: Displays the total number of CIs updated or created for this filter.
+
+ Virtual Machines: Displays the total number of virtual machines discovered with the selected schedule.
+
+ Errors: Displays the total number of errors that occurred from running the selected schedule.
+
+ Datacenters: Displays the number of datacenters selected during the creation of the Discovery schedule.
+
+ 
+
+ 
+ 
+ Cloud resources trend chart
+ Trend graph for the selected schedule. Each circle in the graph represents a specific Discovery run. Place the cursor over any circle to see a summary of that discovery.
+ 
+ 
+ 
+
+ Select the circle to filter the values you see in the Discovery topics. The results populate the appropriate tiles above the graph.
+
+ 
+ 
+ Errors by category
+ Category tiles for the errors encountered during the Discovery for the selected schedule. Select a tile to view the errors in that category and to see recommended actions for remediation. See Discovery error messages for additional details.
+ 
+ 
+ Discovered cloud resources
+ Breakdown of the cloud resources discovered for the selected schedule, presented in a horizontal bar chart.
+ 
+ 
+ Add schedules
+ Types of schedules to add. 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ Advanced View
+ Displays the Discovery status record for the selected schedule. Use this link to examine the results of the schedule in the ECC Queue and the Discovery log.
+ 
+ 
+
+ 
+
+ Viewing IP-based schedules
+
+ 
+ To display results from IP range discoveries, select IP Based Schedules in the primary filter. Use the secondary field that appears to filter the search results by Location. The
+ tiles show the result categories for the selected IP-based schedule. Select a tile to see more detail. 
+ Discovered devices: Total count of virtual machines discovered by the IP-based schedule, including both targeted and unidentified IP addresses.
+
+ Errors: Displays the total number of errors encountered running the selected IP-based schedule.
+
+ Unidentified IPs: Count of unidentified CIs discovered by the IP-based scheduled.
+
+ Targeted IPs: Count of CIs found that were configured in the IP-based schedule.
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ Resolve CI Discovery schedule errors
+
+ 
+ 
+ View and resolve Discovery errors from the ServiceNow Home page. Get suggestions for fixing errors and filter by all schedules or a single schedule.
+
+ Before you begin
+
+Role required: discovery_admin
+ Note: You can also investigate and resolve Discovery errors in Discovery Admin Workspace. For more information, see Discovery Admin Workspace Error Details.
+
+ 
+
+ Procedure
+
+ Navigate to All > Discovery > Home.
+ The summary page for all schedules appears.
+ 
+ 
+
+ 
+
+ 
+
+ View the errors, using one of these methods:
+ 
+ 
+ Select the Errors tile to see the errors by category for all configuration item (CI) discovery schedules.
+
+ Select the Schedules tile to display the errors for a single schedule. 
+ In the summary screen, select the schedule that you want to investigate for errors.If you have numerous schedules, you can filter by location, using the location drop-down list, or filter by the schedule name
+ in the Search by name field.
+
+ 
+ 
+
+ After you select the schedule, select the Errors tile.
+
+ Scroll down to view the errors by category.
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ Select a category tile to display the specific error codes that occurred in that category.
+ 
+
+ Select the tile for the error code you want to investigate.
+ 
+ 
+ 
+ The list displays all occurrences of that error code, either for a single CI schedule or for all schedules, depending on the path you took to view the errors. The list shows the IP address of each instance that
+ experienced the error and the error status Active error. The Recommended Actions pane on the right contains the recommended action for the selected error. The ACTION ON
+ ALL pane contains operations you can execute on all the errors in the list.
+ 
+ 
+ 
+
+ 
+
+ Select View instructions to see details and remediation suggestions for the error code.
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ To begin work, either select the check box next to an error to resolve that
+ specific error or select an action for ALL to resolve
+ that error code for all instances of that error.
+ In this example, the system recommends creating new Windows credentials to
+ resolve this error code.
+ 
+ 
+ 
+
+ 
+
+ Complete the suggested remediation tasks before attempting to retry Discovery.
+ In this example, the Create new Windows Credentials link opens a form for creating and testing new Windows credentials. 
+ 
+ 
+ 
+
+ 
+
+ After all the recommended tasks are complete, select Retry Discovery.
+ A possible course of action might be to retry discovery for ALL instances after creating the credentials. The new credentials might solve the issue for all the instances experiencing this error
+ code.
+
+ 
+
+ Check the Error Status column to see the results of your
+ remediation efforts.
+ Single retries complete quickly. Retries for large numbers of IP addresses can
+ take several minutes. An error can have one of these statuses:
+
+ 
+ Active error: Unresolved error. This is the
+ default status of all new errors.
+
+ Resolved: Resolved error. The recommended actions
+ show Error successfully resolved.
+
+ Assigned: Task assigned to resolve this error. Select Create a task to assign a user to a task for all active errors. Assigned errors are considered Active
+ errors, and actions can still be performed on them.
+
+ Pending Discovery: Waiting for Discovery to start after you execute the Retry Discovery action on all errors.
+
+ In Discovery: Discovery is currently active.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ Related concepts
+Discovery status
+Create Discovery schedules for cloud resources
+
+Related tasks
+Review the logs for horizontal discovery
+
+Related reference
+The ECC queue for Discovery

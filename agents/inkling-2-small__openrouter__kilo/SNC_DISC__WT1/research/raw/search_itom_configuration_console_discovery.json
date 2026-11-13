@@ -1,0 +1,30 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "ITOM Configuration Console",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery setup > ITOM Configuration Console",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/itom-conf-console.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/6zscqAljPkyO4XWknqt1gA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Access the ITOM Configuration Console",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery setup > ITOM Configuration Console > Access the ITOM Configuration Console",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/access-itom-config-console-disco.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/7qJ_2azi28_yRqLKXB0Zaw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/neb5udgz5y36iZmb_mhEzw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery Configuration Console",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Using Discovery > Running discoveries in your network > Discovery Configuration Console",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/c_DiscoveryConfigurationConsole.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/B6QjlaaZ4UXvEyXZxhcCrw/content"
+ }
+]
