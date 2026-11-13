@@ -1,0 +1,22 @@
+{
+  "agent_id": "qwen2.5-coder-7b__ollama__alt-swarm",
+  "model": "qwen2.5-coder:7b",
+  "provider": "ollama",
+  "worktree": "/tmp/kilo/wt-qwen2.5-coder-7b__ollama__alt-swarm",
+  "branch": "agent/qwen2.5-coder-7b__ollama__alt-swarm",
+  "qa_pass": false,
+  "words": 646,
+  "chars": 4968,
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 3633,
+    "completion_tokens": 990,
+    "total_tokens": 4623
+  },
+  "error": null,
+  "committed": true,
+  "pushed": true,
+  "push_error": null,
+  "started": "2026-11-13T08:58:13+00:00",
+  "finished": "2026-11-13T08:59:33+00:00"
+}

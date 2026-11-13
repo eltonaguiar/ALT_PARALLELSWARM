@@ -1,17 +1,17 @@
 # QA — qwen2.5-coder-7b__ollama__alt-swarm
 
-**Checked:** 2026-11-13T08:59:32+00:00
+**Checked:** 2026-11-13T09:00:51+00:00
 
 | Check | Pass | Evidence |
 |---|---|---|
-| non-empty output | YES | 4968 chars |
-| substantive length | YES | 646 words |
-| has headings | YES | 21 headings |
-| has citations | NO | citation markers |
+| non-empty output | YES | 4088 chars |
+| substantive length | YES | 586 words |
+| has headings | YES | 13 headings |
+| has citations | YES | citation markers |
 | has table or list | YES | table/list |
 | no placeholder | YES | no TODO/TBD |
 
-**Overall:** FAIL
+**Overall:** PASS
 
 ## Manual caveat
 

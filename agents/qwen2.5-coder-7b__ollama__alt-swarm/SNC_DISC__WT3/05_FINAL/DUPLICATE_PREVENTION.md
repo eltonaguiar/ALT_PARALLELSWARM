@@ -4,7 +4,7 @@
 **Model:** `qwen2.5-coder:7b`
 **Provider:** `ollama`
 **Harness:** ALT_PARALLELSWARM `swarm/agent_runner.py`
-**Generated:** 2026-11-13T08:59:32+00:00
+**Generated:** 2026-11-13T09:00:51+00:00
 **Evidence:** `duplicates.md` (pre-fetched; worker has no browser)
 **Assigned section:** Produce the duplicate-prevention and insert-versus-update section. Explain identification-rule strength, the skip_duplicates/threshold behavior, source-native-key matching, data source rules, reconciliation and data refresh, de-duplication tasks, and the exact decision table for insert/update/fail/partial. Include a prevention checklist by layer (design, runtime, detection, remediation).
 
@@ -13,115 +13,62 @@
 
 ---
 
-# Duplicate-Prevention and Insert-Versus-Update
+# Duplicate-Prevention and Insert-versus-Update
 
 ## Identification Rule Strength
 
-Identification rules in ServiceNow are crucial for uniquely identifying Configuration Items (CIs). The strength of an identification rule is determined by the priority of its identifier entries and related entries. Higher priority entries are considered more reliable for identifying CIs. The identification process uses the attributes of the CI to determine its uniqueness.
-
-### Example Identification Rule
-```plaintext
-Class: Hardware
-Identifier Entries:
-1. Serial Number (Priority: High)
-2. Asset Tag (Priority: Medium)
-Related Entries:
-1. Software Instance (Priority: High)
-```
+Identification rules in ServiceNow are crucial for uniquely identifying Configuration Items (CIs). The strength of an identification rule is determined by the priority of its identifier entries and related entries. Higher priority entries are considered more reliable for identifying CIs. It is essential to design strong identification rules by setting the highest priority for the strongest identifier entries and related entries [S1].
 
 ## Skip_Duplicates/Threshold Behavior
 
-The `glide.identification_engine.skip_duplicates` property controls whether duplicate CIs are automatically reconciled. When set to `true`, IRE will automatically reconcile duplicates if the number of duplicates is less than the threshold specified by `glide.identification_engine.skip_duplicates.threshold`. If set to `false`, duplicate reconciliation fails with an error.
-
-### Example Configuration
-```plaintext
-glide.identification_engine.skip_duplicates = true
-glide.identification_engine.skip_duplicates.threshold = 5
-```
+The `glide.identification_engine.skip_duplicates` property controls whether duplicate CIs are automatically reconciled. When set to `true`, IRE will automatically reconcile duplicate CIs if the number of duplicates is less than the threshold specified by `glide.identification_engine.skip_duplicates.threshold` (default is 5). If set to `false`, matching of duplicate CIs will fail with an error [S2].
 
 ## Source-Native-Key Matching
 
-Source-native-key matching is used to identify CIs based on their native keys from the source system. This ensures that CIs are correctly identified and updated based on their unique identifiers in the source system.
-
-### Example Configuration
-```plaintext
-cmdb_ci.source_native_key = '12345'
-```
+Source-native-key matching is a method used to identify and reconcile CIs based on their native keys from the source system. This ensures that CIs are correctly identified and updated based on their unique identifiers in the source system [S1].
 
 ## Data Source Rules
 
-Data source rules determine which discovery sources can update CI attributes. Static reconciliation rules set priorities for various discovery sources, while dynamic reconciliation rules use attribute values processed by CMDB 360.
-
-### Example Static Reconciliation Rule
-```plaintext
-Class: cmdb_ci_computer
-Attribute: name
-Discovery is authorized to update the name attribute.
-```
-
-### Example Dynamic Reconciliation Rule
-```plaintext
-Class: cmdb_ci_computer
-Attribute: name
-CMDB 360 selects the largest reported value across all discovery sources.
-```
+Data source rules determine which discovery sources can update CI attributes. There are two types of reconciliation rules: static and dynamic. Static reconciliation rules set priorities for discovery sources, while dynamic reconciliation rules are based on attribute values processed by CMDB 360. Static reconciliation rules are stored in the `Reconciliation Definition` table, and dynamic reconciliation rules are stored in the `Dynamic Reconciliation Definitions` table [S4].
 
 ## Reconciliation and Data Refresh
 
-Reconciliation processes ensure that CIs are updated based on the most recent data from discovery sources. Data refresh tasks are scheduled to run at regular intervals to update CIs.
-
-### Example Reconciliation Task
-```plaintext
-Task: Reconcile Hardware CIs
-Source: EventManagement
-```
+Reconciliation is the process of updating CI attributes based on data from discovery sources. It ensures that CIs are up-to-date and consistent across the CMDB. Data refresh can be triggered manually or automatically based on the configuration of reconciliation rules [S4].
 
 ## De-Duplication Tasks
 
-De-duplication tasks are created when IRE detects duplicate CIs. These tasks provide details about the duplication and allow for manual or automated remediation.
-
-### Example De-Duplication Task
-```plaintext
-Task: Resolve Duplicate Hardware CIs
-Duplicate CIs: CI1, CI2, CI3
-Main CI: CI1
-```
+De-duplication tasks are created when IRE detects duplicate CIs. These tasks provide details about the duplication, including a list of all duplicate CIs in the set. Reviewing and processing these tasks is essential for maintaining the integrity and reliability of the CMDB [S2].
 
 ## Decision Table for Insert/Update/Fail/Partial
 
-The decision table determines the outcome of the discovery process based on the attributes of the CI and the discovery source.
-
-### Example Decision Table
-```plaintext
-Discovery Source: EventManagement
-CI Type: Hardware
-Attributes:
-- Serial Number: 12345
-- Asset Tag: ABC123
-Outcome: Update
-```
+The decision table for insert/update/fail/partial is used to determine the action to take when a CI is detected. The table is based on the attributes of the CI and the configuration of reconciliation rules. The decision table is stored in the `Reconciliation Definition` table [S4].
 
 ## Prevention Checklist
 
-### Design Layer
-1. **Strong Identification Rules**: Ensure that identification rules are set with the highest priority for the strongest identifier entries and related entries.
-2. **Limit Identifier Entries**: Create strong identification rules with ideally one identifier entry to avoid performance issues.
-3. **Avoid Lookup Identifier Entries**: Use independent identification rules instead of lookup identifier entries to improve performance.
+### Design
 
-### Runtime Layer
-1. **Configure Skip_Duplicates/Threshold**: Set `glide.identification_engine.skip_duplicates` to `true` and adjust the threshold as needed.
-2. **Source-Native-Key Matching**: Ensure that CIs are correctly identified based on their native keys from the source system.
+- Create strong identification rules with the highest priority for the strongest identifier entries and related entries.
+- Limit the number of identifier entries within an identification rule to 1.
+- Avoid creating lookup identifier entries.
 
-### Detection Layer
-1. **Monitor De-Duplication Tasks**: Regularly review de-duplication tasks to ensure that duplicates are resolved in a timely manner.
-2. **Use Dynamic Reconciliation Rules**: Enable dynamic reconciliation rules to handle complex scenarios where static rules are insufficient.
+### Runtime
 
-### Remediation Layer
-1. **Select Main CI**: Choose a main CI for the remediation process and decide which attribute values, relationships, and related items to reconcile.
-2. **Review Duplicate CIs**: Manually review duplicate CIs and use the Duplicate CI Remediator wizard to process de-duplication tasks.
+- Configure the `glide.identification_engine.skip_duplicates` and `glide.identification_engine.skip_duplicates.threshold` properties based on the number of duplicate CIs.
+- Ensure that the identification rule is at the class level that it needs to be.
+
+### Detection
+
+- Review the details of each duplicate CI in the de-duplication task.
+- Ensure that the de-duplication task is processed in a timely manner.
+
+### Remediation
+
+- Select a main CI for the remediation process.
+- Choose which attribute values, relationships, and related items from the duplicate CIs to reconcile into the main CI.
+- Ensure that the duplicate_of attribute is used to store a reference to the main CI.
 
 ## Assumptions / Gaps
 
-- The evidence does not provide specific details on the default values for properties like `glide.identification_engine.skip_duplicates` and `glide.identification_engine.skip_duplicates.threshold`.
-- The evidence does not mention any specific roles or permissions required for managing de-duplication tasks.
-- The evidence does not provide information on the performance implications of having a large number of identifier entries in an identification rule.
+- The evidence does not provide information on the specific attributes that should be used for identification rules.
+- The evidence does not provide information on the specific roles required to add or update records in the `cmdb_duplicate_lookup_related_allowed_class` table.
+- The evidence does not provide information on the specific steps to follow when manually creating a de-duplication task.
