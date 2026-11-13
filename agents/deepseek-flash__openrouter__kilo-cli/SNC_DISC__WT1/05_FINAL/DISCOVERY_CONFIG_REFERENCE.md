@@ -368,12 +368,12 @@ commit to CMDB
 This is the terminology used in the ServiceNow CMDB guide's four-pillar comparison. Use
 these names exactly; the four are **not** interchangeable.
 
-| Mechanism | Exact name | Question it answers | Applies to | Configuration level |
-|---|---|---|---|---|
-| **Identification Rule** | Identification Rule (IRE identifier) | "Does this CI already exist?" | Matching an incoming item; create if no match | Class → identifier entry → attributes |
-| **IRE Data Source Rule** | **IRE Data Source Rule** (short: Data Source Rule) | "Can this source create a new CI of this class?" | **Insert only**, and only when identification found no match | Class only; not attribute-level |
-| **Reconciliation Rule** | Reconciliation Rule | "Which source may update this attribute?" | **Update only**, after identification matched | Class + attribute |
-| **Data Refresh Rule** | Data Refresh Rule (staleness rule) | "Has the higher-priority source's data gone stale?" | **Update only**, after reconciliation | Class + refresh criteria |
+| Mechanism | Exact name | Question it answers | Insert | Update | Configuration level |
+|---|---|---|---|---|---|
+| **Identification Rule** | Identification Rule (IRE identifier) | "Does this CI already exist?" | **YES** — no match creates | **YES** — match updates | Class → identifier entry → attributes |
+| **IRE Data Source Rule** | **IRE Data Source Rule** (short: Data Source Rule) | "Can this source create a new CI of this class?" | **YES — gate** (may block) | **NO** — cannot block updates | Class + source; not attribute-level |
+| **Reconciliation Rule** | Reconciliation Rule | "Which source may update this attribute?" | **NO** | **YES** — after match | Class + source + attribute |
+| **Data Refresh Rule** | Data Refresh Rule (staleness rule) | "Has the higher-priority source's data gone stale?" | **NO** | **YES** — after reconciliation | Class + source + refresh criteria |
 
 **Order of application:**
 
@@ -504,6 +504,16 @@ Key behaviors:
   sources do not overwrite each other.
 - `glide.reconciliation.override.null` (default `true`) allows a lower-priority source to
   fill an empty field.
+- Per-rule fields: `Active`, `Discovery source`, `Priority`, `Apply to all attributes`
+  vs. an explicit `Attributes` list, `Update with Null`, and `Filter Condition`.
+- A rule with `Update with Null` can set the listed attributes to null; without it, a
+  source cannot null out a populated field.
+- `Filter Condition` scopes the rule to a row subset (for example, `Department is
+  Finance`). `glide.identification_engine.enable_reconciliation_filter_before_update`
+  (default `false`) controls whether the filter runs before or after values change.
+- You **cannot** create a reconciliation rule for system fields or IRE-specific fields
+  such as `discovery_source`, and rules **cannot be dot-walked** through reference
+  fields.
 - Reconciliation is not a duplicate detector. If duplicate CIs are found, the handling
   is governed by the duplicate properties and de-duplication tasks in §7.
 
