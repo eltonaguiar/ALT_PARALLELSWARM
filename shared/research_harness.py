@@ -245,6 +245,13 @@ TOOLS = [
             "query": {"type": "string", "description": "what to research"}},
             "required": ["query"]}}},
     {"type": "function", "function": {
+        "name": "docs_search",
+        "description": ("Search ServiceNow's OWN documentation directly (bypasses web search and bot walls). "
+                        "Use this first for anything about ServiceNow configuration."),
+        "parameters": {"type": "object", "properties": {
+            "query": {"type": "string", "description": "what to look up in ServiceNow docs"}},
+            "required": ["query"]}}},
+    {"type": "function", "function": {
         "name": "answer", "description": "Final answer citing the URLs used.",
         "parameters": {"type": "object", "properties": {"text": {"type": "string"}}, "required": ["text"]}}},
 ]
@@ -322,6 +329,12 @@ def run(base_url, model, question, rounds, transcript):
                 return a.get("text", ""), None, calls
             if name == "research":
                 res = research(a.get("query", ""), a.get("focus", ""))
+            elif name == "docs_search":
+                try:
+                    import docs_api
+                    res = docs_api.search(a.get("query", ""))
+                except Exception as e:
+                    res = f"DOCS_API_ERROR: {type(e).__name__}: {str(e)[:120]}"
             else:
                 res = f"ERROR unknown tool {name}"
             calls += 1
