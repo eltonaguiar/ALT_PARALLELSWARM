@@ -85,7 +85,7 @@ Discovery identifier  ───────►  CMDB IRE Identification Rules
 
 ### 2.1 Release comparison (validated)
 
-The **Brazil** and **Australia** `r_DiscoveryProperties` pages contain the **same 97 properties**. 95 have documented defaults; two (`glide.discovery.sensors.netapp_native_7mode`, `glide.discovery.sensors.netapp_native_cluster_mode`) are listed as unset. A programmatic comparison found only four default-value differences, and all four are the same semantic change with a different release name:
+The **Brazil** `r_DiscoveryProperties` page contains **114 properties**; the **Australia** page contains **112**. Brazil adds two `sn_disco_certmgmt.*` properties (`find_and_attach_root_certificate`, `mark_self_signed_for_incomplete_chain`). Of the 112 common properties, 110 have documented defaults and two (`glide.discovery.sensors.netapp_native_7mode`, `glide.discovery.sensors.netapp_native_cluster_mode`) are listed as unset. A programmatic comparison found only four default-value differences, and all four are the same semantic change with a different release name:
 
 | Property | Brazil default | Australia default |
 |---|---|---|
@@ -128,6 +128,16 @@ These appear in `r_AvailableSystemProperties`, KB sources, or feature-specific d
 - `glide.discovery.source_name` (default `ServiceNow`; documented in *Change the Discovery source name*)
 - `glide.discovery.debug.classification` (default `false`; documented in *Discovery classifiers*)
 - `glide.discovery.ire_err_exclusion_list` (default includes `ABANDONED, INSERT_FAILED, UPDATE_FAILED, NO_IDENTIFIER_KEYS_GENERATED`)
+
+### 2.5 Release-specific behavior notes
+
+- **Dynamic IRE:** `glide.identification_engine.dynamic_ire_enabled` default `false`; `glide.identification_engine.dynamic_ire.auto_compare` default `true` compares Static IRE and Dynamic IRE for all payloads without switching. Class exemptions are stored in `cmdb_dynamic_ire_skip_class`.
+- **ADM updates:** `glide.discovery.adm.update.applications` default `true` on instances where Discovery was first activated beginning with the Tokyo release; older instances must add it manually.
+- **Probe-to-pattern migration:** `glide.discovery.ip_based.active` default `true` on migrated instances; Discovery does not attempt extra IP-address detection.
+- **IPv6 schedule cap:** `glide.discovery.schedule_ipv6_limit` default `20000`; on instances below ZP3/YP9 the maximum is `5,000`, which is also the default in Yokohama and earlier.
+- **HTTP classification:** from Madrid onward, the HTTP fallback runs last and only when Shazzam saw ports 80/443 open and WMI/SSH/SNMP failed.
+- **File-Based Discovery:** plugin `com.snc.discovery.file_based_discovery`; default frequency **Monthly**; does not run before the initial Content Data Service sync (~24 hours).
+- **Navigation repackaging:** IRE is repackaged under `Configuration > Identification/Reconciliation`; the classic `All > Discovery > Discovery Definition > {Schedules, Properties}` paths remain.
 
 ---
 
@@ -176,6 +186,8 @@ Alive, not active, not classified
 - `Active, couldn't classify` = credential/protocol/port problem at classification.
 - Classifies but never reaches `Identified CI` = identity probe or IRE problem at identification.
 - `Identified, ignored extra IP` = the device was seen under a second IP in the same run; no second CI is created.
+
+After identification, the `discovery.device.complete` event triggers the `IPAddressFixup` script include.
 
 **Patterns path:** when a pattern is used, the **Horizontal Pattern probe** covers identification and exploration together; the identity probe is not used. Pattern operations call the identifier rules for the CI type specified by the pattern.
 
@@ -241,6 +253,8 @@ Alive, not active, not classified
 - UNIX/SSH, vCenter, SNMP, IPMI, and HTTP credentials are configured **on the instance** (`All > Discovery > Credentials`).
 - Discovery automatically determines which credential works for a device and pins the pair in `dscy_credentials_affinity`. Changing credentials triggers a re-try cycle.
 - With Orchestration + Discovery and credential aliases enabled, the lowest-order affinity wins.
+- `mid.discovery.multiprobe.skip_others_on_error` (default `true`) stops a multi-probe from iterating through remaining credentials when another member probe has already failed or timed out.
+- With Orchestration + Discovery and credential aliases enabled, the lowest-order affinity wins.
 - External credential storage is controlled by `com.snc.use_external_credentials` (default `true`).
 - Test credentials before every broad run; bad credentials are the leading cause of failed discovery.
 - For multiple Windows domains, prefer **PowerShell** (one MID Server can authenticate across domains with instance-stored credentials), or use behaviors.
@@ -305,7 +319,7 @@ A **classifier** tells Discovery which probe(s) to run for identification and ex
 
 | Type | What it classifies | Notes |
 |---|---|---|
-| **Device** | Windows/UNIX/Linux computers, routers, switches, load balancers | Triggers identification and exploration probes; HTTP classification is the lowest-priority fallback (used only if WMI/SSH/SNMP fail) |
+| **Device** | Windows/UNIX/Linux computers, routers, switches, load balancers | Triggers identification and exploration probes; HTTP classification is the lowest-priority fallback (used only if WMI/SSH/SNMP fail). From Madrid onward, the HTTP fallback runs last and only when Shazzam saw ports 80/443 open. |
 | **Process** | Applications, based on running processes | Runs during exploration; creates child CIs with `Runs on::Runs`; process handler scripts strip unstable parameters (paths with PIDs, ports) to prevent duplicate application CIs; process classifier conditions are case-sensitive |
 | **IP address (IP scan)** | Credential-less scan by open ports/banners | Updates CIs without identifiers; used for discovery of devices at the edge |
 
@@ -331,9 +345,21 @@ FBD is a Discovery feature, **not one of the four IRE rule families**. It runs d
 
 Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive extensions) and `glide.discovery.file_discovery.blacklist.windows` (hard filter). Default FBD frequency is **Monthly**; FBD does not run until the initial Content Data Service sync (about 24 hours) completes. The plugin is `com.snc.discovery.file_based_discovery`.
 
+### 4.8.1 Deletion strategies (patterns only)
+
+Deletion strategies apply **only to patterns**, not probes/sensors. They are configured on the **Related CI Types [sa_ci_to_pattern]** table and apply when a pattern finds the main CI but not a related CI:
+
+| Strategy | Behavior |
+|---|---|
+| **Keep** (default) | Preserve the record; no changes. |
+| **Delete** | Delete the related CI and its relationship. |
+| **Mark as absent** | Set `install_status = Absent`; does not delete. Exception: `cmdb_ci_network_adapter` and `cmdb_ci_ip_address` are deleted when marked absent. |
+| **Delete relations** | Delete only the relationships. |
+| **Mark as retired** | Set `install_status = Retired`; does not delete. |
+
 ### 4.9 Property catalogs — Discovery, IRE, MID, remediation, Health
 
-**Discovery properties — full catalog.** 97 properties are present in both the Brazil and Australia `r_DiscoveryProperties` pages; 95 have documented defaults and two NetApp native-mode properties are unset. Seven additional properties appear in `r_AvailableSystemProperties` / KB / feature docs and are marked **[extra]**. All values below are the documented defaults; verify on your release.
+**Discovery properties — full catalog.** The Brazil `r_DiscoveryProperties` page has **114 properties**; Australia has **112**. Of the 112 common properties, 110 have documented defaults and two NetApp native-mode properties are unset. Brazil adds two `sn_disco_certmgmt.*` properties. Seven additional properties appear in `r_AvailableSystemProperties` / KB / feature docs and are marked **[extra]**. All values below are the documented defaults; verify on your release.
 
 **IP and identity**
 
@@ -435,7 +461,7 @@ Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive exte
 | `glide.discovery.schedule_monitoring.schedule_types_to_monitor` | `CIs` | Determines the type of statuses to track. |
 | `glide.discovery.schedule_monitoring.stale_check_seconds` | `1200 (20mins). If nothing is configured, the default is 2x the interval of the job.` | Determines the number in seconds in which a status is considered stale. |
 
-**Certificates, cloud, and AWS SSM**
+**Certificates, firewall, and Discovery Admin Workspace**
 
 | Property | Default | Effect |
 |---|---|---|
@@ -448,6 +474,23 @@ Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive exte
 | `glide.discovery.discover_azure_host_metadata` | `true` | When doing IP-based discovery against a given host, also run probes that retrieve Azure metadata. |
 | `glide.discovery.enable_ssm` | `false` | Enables AWS SSM-based discovery. |
 | `glide.discovery.ssm.enable_windows` | `false` | Enables AWS SSM-based discovery on Windows machines as a high-level system user that can run any command. |
+| `sn_disco_certmgmt.enable_csr_generation` | `false` | Enables automatic CSR generation on the Certificate Inventory and Management Request New Certificate and Request New Ceriticate (Automated) forms. |
+| `sn_disco_certmgmt.find_and_attach_root_certificate` | `false` | Certificate Inventory and Management Finds the root certificate by its subject common name and links it to the certificate chain during discovery. |
+| `sn_disco_certmgmt.mark_self_signed_for_incomplete_chain` | `true (if the property doesn't exist)` | Certificate Inventory and Management When discovery captures an incomplete certificate chain, sets the last captured certificate as its own root issuer and issuer. |
+| `sn_disco_certmgmt.private_key_size` | `2048` | Changes the private key size when using automatic CSR generation on the Certificate Inventory and Management Request New Certificate and Request New Ceriticate (Automated) forms. |
+| `sn_disco_firewall.default.rule.task.approval.group` | `Approval Group Name` | Firewall Audits and Reporting : Indicates the name of the approval group that is used to approve the firewall rule tasks. |
+| `sn_disco_firewall.default.rule.task.policy.owner.group` | `Task Owner Group Name` | Firewall Audits and Reporting : Indicates the name of the assignment group that owns or is assigned to firewall rule tasks |
+| `sn_disco_workspace.discovery_schedule_anomaly_detection_disabled` | `false` | Discovery Admin Workspace : Disables the anomaly detection feature. |
+| `sn_disco_workspace.discovery_schedule_anomaly_detection_method` | `ML-based` | Discovery Admin Workspace : Determines the approach used for anomaly detection in Discovery schedules. |
+| `sn_disco_workspace.discovery_schedule_anomaly_discover_type` | `CIs, Cloud Resources` | Discovery Admin Workspace : Determines the type of Discovery schedules for which anomaly detection is enabled, IP-based (CIs) and/or Cloud Discovery (Cloud Resources). |
+| `sn_disco_workspace.discovery_schedule_anomaly_ml_model_sensitivity` | `low` | Discovery Admin Workspace : Adjusts the sensitivity for ML-based Discovery schedule anomaly detection. |
+| `sn_disco_workspace.discovery_schedule_cis_discovered_anomaly_threshold` | `20` | Discovery Admin Workspace : Sets the threshold percentage for detecting anomalies in the number of configuration items (CIs) discovered during a Discovery schedule execution. |
+| `sn_disco_workspace.discovery_schedule_error_anomaly_threshold` | `20` | Discovery Admin Workspace : Sets the threshold percentage for detecting anomalies in Discovery schedule error counts. |
+| `sn_disco_workspace.discovery_schedule_runtime_anomaly_threshold` | `20` | Discovery Admin Workspace : Sets the threshold percentage for detecting anomalies in Discovery schedule execution time. |
+| `sn_disco_workspace.discovery_stats_time_scale` | `7` | Discovery Admin Workspace : Configures the time scale for all relevant charts in Discovery Admin Workspace . |
+| `sn_disco_workspace.enable_auto_create_schedules` | `false` | Discovery Admin Workspace : Enables automatic creation and management of Discovery schedules based on IPv6 network infrastructure data in IPAM. |
+| `sn_disco_workspace.enable_error_framework` | `true` | Discovery Admin Workspace : Controls whether the Error Framework is active for Discovery . |
+| `sn_disco_workspace.visibility_diagnostic_utility.enabled` | `false` | Discovery Admin Workspace : Enables a Virtual Agent to retrieve diagnostic information for troubleshooting issues with Discovery . |
 
 **ECC queue and platform**
 
@@ -481,13 +524,13 @@ Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive exte
 
 | Property | Default | Effect |
 |---|---|---|
+| `glide.discovery.debug.classification` | `false` | Logs which classifier ran and the criteria names/values. |
+| `glide.discovery.ire_err_exclusion_list` | `ABANDONED, INSERT_FAILED, UPDATE_FAILED, NO_IDENTIFIER_KEYS_GENERATED` | Suppresses IRE errors from the pattern log. |
 | `glide.discovery.log_debug_info` | `false` | Add ECC-derived debug information to the Discovery log. |
 | `glide.discovery.log_message_chars` | `200` | Log preview/message length. |
 | `glide.discovery.multi_page_serial_mode` | `false` | Process multi-page pattern payloads serially instead of in parallel; prevents duplicate CIs from concurrent multi-page payloads. |
 | `glide.discovery.sam_batch_update_size` | `100` | Batch size for cmdb_sam_sw_install updates where only last_scanned changed. |
-| `glide.discovery.source_name` | `ServiceNow` | Source written to `sys_object_source` / `discovery_source`. Documented in *Change the Discovery source name*; change only for coexistence/migration scenarios. |
-| `glide.discovery.debug.classification` | `false` | Logs which classifier ran and the criteria names/values. Documented in *Discovery classifiers*. |
-| `glide.discovery.ire_err_exclusion_list` | `ABANDONED, INSERT_FAILED, UPDATE_FAILED, NO_IDENTIFIER_KEYS_GENERATED` | Suppresses IRE errors from the pattern log. Caution: `NO_IDENTIFIER_KEYS_GENERATED` masks silent CI creation failures; remove temporarily when troubleshooting missing CIs. |
+| `glide.discovery.source_name` | `ServiceNow` | Source written to sys_object_source / discovery_source. |
 
 **IRE properties — `Configuration > CMDB Properties > Identification/Reconciliation Properties`**
 
@@ -516,7 +559,7 @@ Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive exte
 | `glide.identification_engine.platform_domain_separation_enabled` | `false` | Toggles domain separation support mode during IRE processing. |
 | `glide.identification_engine.reclassification_restriction_rules_enabled` | `true` | Globally enable or disable the application of active reclassification restriction rules. |
 | `glide.identification_engine.related_items_local_cache_count` | `15000` | For optimization, a custom number of locally cached query result entries of related/lookup items. |
-| `glide.identification_engine.skip_duplicates` | `true` | When true and the duplicate count is below the threshold, IRE picks the oldest CI as the match and tags the others with `duplicate_of`; de-duplication tasks are always created. |
+| `glide.identification_engine.skip_duplicates` | `true` | When true and the duplicate count is below the threshold, IRE picks the oldest CI as the match and tags the others with duplicate_of; de-duplication tasks are always created. |
 | `glide.identification_engine.skip_duplicates.threshold` | `5` | If the number of duplicate CIs exceeds the threshold, then identification processes the duplicate CIs as if glide.identification_engine.skip_duplicates is set to false. |
 | `glide.identification_engine.skip_sys_object_source_matching` | `false` | Determines whether IRE identification processes have the priority in being used to uniquely identify CIs in a payload, over the use of sys_object_source lookup. |
 | `glide.identification_engine.skip_updating_last_scan_if_older` | `true` | Determines how IRE uses the source_recency_timestamp value in a payload to determine whether to update the last_scan attribute in the Source [sys_object_source] table. |
@@ -524,7 +567,7 @@ Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive exte
 | `glide.identification_engine.update_without_downgrade_enabled` | `false` | Enable IRE to process CI updates with downgrade reclassification updates. |
 | `glide.identification_engine.update_without_switch_enabled` | `false` | Enable IRE to process CI updates with switch reclassification updates. |
 | `glide.identification_engine.update_without_upgrade_enabled` | `false` | Enable IRE to process CI updates with upgrade reclassification updates. |
-| `glide.identification_logs.max_run_ids` | `1000` | Maximum number of run IDs retained in `Configuration > Identification Logs`. |
+| `glide.identification_logs.max_run_ids` | `1000` | Maximum number of run IDs retained in Configuration > Identification Logs. |
 | `glide.reconciliation.override.null` | `true` | When true, a lower-priority source may update an empty field. |
 | `glide.required.attribute.enabled` | `true` | When true, required attributes may not be null during identification and reconciliation. |
 
@@ -598,7 +641,7 @@ Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive exte
 |---|---|---|
 | `glide.duplicate_ci_remediator.dry_run` | `false` | When set to false (default value), updates specified in the wizard are actually performed. |
 | `glide.duplicate_ci_remediator.enable_restricted_mode` | `false` | Enables restricted mode remediation in the Duplicate CI Remediator. |
-| `glide.duplicate_ci_remediator.max.cis` | `1000` | Maximum number of CIs processed per de-duplication task (≤ 5000). |
+| `glide.duplicate_ci_remediator.max.cis` | `1000` | Maximum number of CIs processed per de-duplication task (<= 5000). |
 | `glide.duplicate_ci_remediator.max.field_length` | `4000` | If the max_length for an attribute is equal to the property value, and the size of the data exceeds the property value, then the data is truncated to the property value and the ... |
 | `glide.duplicate_ci_remediator.merge_related_items_enhanced` | `true` | Enables the capability to ignore database errors and/or skip ALL business rules (disable workflow) in related tables referencing CIs, during duplicate CI remediation. |
 | `glide.duplicate_ci_remediator.related_items_blacklist` | `cert_task.cmdb_ci,cert_audit_result.configuration_item,discovery_log.cmdb_ci,alm_hardware.ci,alm_asset.ci,fm_expense_line.ci` | Related-item tables excluded from merge during remediation. |
@@ -611,7 +654,6 @@ Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive exte
 | `glide.cmdb.health.src.cmdb_health_audit_only` | `false` | When set to true, disables health results from sources other than CMDB Health audit (such as Cloud Discovery). |
 | `glide.cmdb.health.staleness_exclude_dependent_cis` | `false` | Exclude dependent CIs for the staleness CMDB Health metric. |
 | `glide.cmdb.logger.use_syslog.CMDBHealth` | `error` | A comma-separated list that controls the level of logging of CMDB Health jobs. |
-
 ---
 
 ## 5. IRE deep dive
@@ -743,6 +785,29 @@ IRE can upgrade, downgrade, or switch a CI's class when a match is found. Contro
 - `glide.identification_engine.granular_insert_locking` (default `true`) uses multiple granular insert locks; set `false` if lock contention is observed.
 - `glide.identification_engine.batch_update_last_discovered` (default `true`) batches `last_discovered` updates; set both it and `...use_execute_lazy` false for immediate consistency / deletion-race workarounds.
 
+### 5.8 Additional IRE internals and tables
+
+These are documented internals that explain behavior and are useful when debugging:
+
+| Item | Type | Purpose |
+|---|---|---|
+| `cmdb_datasource_precedence` | table | Ranked source list used by reconciliation on releases that expose it |
+| `cmdb_datasource_last_update` | table | Per-attribute record of which source last wrote the value; the first place to check when reconciliation "does not work" |
+| `cmdb_datasource_staleness` | table | Non-CMDB Data Source Staleness Definitions (`cmdb_datasource_staleness.list`) |
+| `source_recency_timestamp` | payload field | Resolves same-key conflicts; the newer payload wins wholesale, and relationships from the older payload are discarded |
+| `cmdb_dynamic_ire_skip_class` | table | Class exemptions that keep a class on static IRE while dynamic IRE is enabled |
+| `glide.identification_engine.dynamic_ire.auto_compare` | property | When true, runs a comparison between Static IRE and Dynamic IRE for all payloads without switching |
+| `glide.identification_engine.platform_domain_separation_enabled` | property | Toggles domain separation support mode during IRE processing |
+| `glide.identification_engine.non_dependency_relation.duplicate_detection` | property | Detects duplicate non-dependent relationships (identical parent/child relationship type) in a payload |
+| `glide.identification_engine.skip_updating_source_last_discovered_if_older` | property | Uses `source_recency_timestamp` to avoid rolling back `last_discovered` / `discovery_source` from a stale payload |
+| `glide.identification_engine.skip_updating_last_scan_if_older` | property | Same idea for the `last_scan` attribute in `sys_object_source` |
+| `glide.identification_engine.ire_message_listener_skip_updating_source_last_discovered_to_now` / `...last_scan_to_now` | properties | RTE fallback controls when the Robust Import Set Transformer does not pass the custom properties |
+| `glide.identification_engine.batch_update_last_discovered` / `...use_execute_lazy` | properties | Batch `first_discovered` / `last_discovered` updates; set both false for immediate consistency |
+| `glide.identification_engine.granular_insert_locking` | property | Multiple granular insert locks vs. one global lock; set false on lock contention |
+| `glide.cache.size.service_cache` | property | Maximum cache size (MB) for inbound/outbound relations (default `20`) |
+| `glide.identification_engine.related_items_local_cache_count` / `...dependent_items_local_cache_count` / `...independent_items_local_cache_count` | properties | Local cache entry counts (defaults `15000` / `10000` / `100000`); `0` disables the cache |
+| `glide.identification_logs.max_run_ids` | property | Cap on run IDs retained in `Configuration > Identification Logs` (default `1000`) |
+
 ---
 
 ## 6. Duplicate prevention and insert-vs-update control
@@ -845,6 +910,7 @@ All > Configuration > CI Class Manager
 
 - `sn_cmdb_admin` — full access.
 - `sn_cmdb_editor` — read-only.
+- Child-class creation may also require `personalize_dictionary`; dependent-rule write access may require `itil` / `itil_admin`; Identification Simulation may require `sn_cmdb_admin` + `admin`.
 - CI Class Manager **does not support non-CMDB tables**; use the non-CMDB IRE procedures for those.
 - It centrally manages class definitions, IRE settings, CMDB Health, and some Service Mapping definitions.
 
@@ -884,7 +950,7 @@ CI Class Manager
 1. **Provide Basic Info** — display name, table name (`u_cmdb_ci…` prefix is fixed), description, icon, extensible, principal class.
 2. **Add Attributes** — add columns; mark an attribute as an identifier by setting its **Identification** column to `true`.
 3. **Set Identification Rule** — inspect the derived rule; **Replace** it to define class-specific identifier entries.
-4. **Dependencies** — add dependent rules (only shown when dependent identification rules exist).
+4. **Dependencies** — add dependent rules (only shown when dependent identification rules exist). Hosting rules are stored in `cmdb_metadata_hosting`; containment and reference rules are managed in the **Metadata Editor** (`All > Configuration > Metadata Editor`), which is synchronized with CI Class Manager.
 5. **Add Reconciliation Rules** — add Reconciliation Rules and Data Refresh Rules.
 6. **Add Suggested Relationships** — review/add relationship targets.
 7. **Done.**
@@ -999,6 +1065,13 @@ All are performance killers at scale.
 | `sys_object_source_info` fast path | deepseek-v4.1, inkling, kilo-ernie |
 | Retired CI rediscovered is not auto-un-retired | deepseek-v4-pro, openrouter-free, kilo-ernie |
 | No data change → `sys_updated_on` not refreshed; `last_discovered`/`discovery_source` still update | deepseek-v4-pro |
+| Property catalog stability: Brazil 114 / Australia 112; 2 Brazil-only `sn_disco_certmgmt.*`; 4 release-name default differences | deepseek-flash, inkling |
+| `cmdb_datasource_precedence`, `cmdb_datasource_last_update`, `source_recency_timestamp` | deepseek-v4-pro, kilo-ernie, inkling |
+| `cmdb_dynamic_ire_skip_class`, `dynamic_ire.auto_compare` | inkling, deepseek-v4-pro |
+| `dscy_credentials_affinity` | inkling, kilo-ernie |
+| `sa_ci_to_pattern` deletion strategies (patterns only) | inkling, deepseek-flash |
+| `cmdb_metadata_hosting` / Metadata Editor synchronization | inkling, deepseek-v4.1 |
+| `discovery.device.complete` → `IPAddressFixup` | nemotron |
 
 ### 11.2 Conflicts and resolutions
 
@@ -1014,6 +1087,10 @@ All are performance killers at scale.
 | `glide.identificationengine.skipduplicates` | Docs typo | Use `glide.identification_engine.skip_duplicates` |
 | Auto-Select IPv6 support | "not supported" vs not mentioned | Treat as **not supported** until verified |
 | Menu labels (`ITOM` vs `IT Operations Management`, `Identifiers` vs `Identification`) | Release drift | Use table-name targets (`discovery_schedule_list.do`, `cmdb_ci_class_manager.do`, `ecc_queue_list.do`) as stable fallbacks |
+| Release property counts | Earlier comparison said "same 97"; corrected parser says Brazil 114 / Australia 112 | The 97 count missed `sn_disco_*` properties because of a prefix-regex bug. Use the corrected counts; the 4 default differences are unchanged. |
+| `glide.discovery.debug.classification` default | One source says `true` (debug); official classifiers doc says `false` | **`false`** per the official *Discovery classifiers* page |
+| `glide.discovery.log_debug` vs `glide.discovery.log_debug_info` | Both appear; easy to conflate | `log_debug` controls Discovery debug logging; `log_debug_info` adds ECC-derived debug to the Discovery log. Both default `false`. |
+| `glide.discovery.enforce_ip_sync` | Appears in one source; not in the official catalog | Likely a typo for `enforce_unique_ips` or a release-specific property; verify |
 
 ---
 
@@ -1060,6 +1137,13 @@ All are performance killers at scale.
 - KB0748325 — Configuration Console limitations
 - KB0820379 — CI Class Manager display / reconciliation issues
 - KB0750382 / KB0750383 / KB0750386 — IRE debug logs (referenced, not opened)
+- KB0535236 — WMI port 135 + dynamic high ports
+- KB3035161 — same-key merge; newer payload wins
+- KB0715237 / KB0723645 — concurrent same-device payloads (Madrid PRB1301835)
+- KB3104470 — identification rules
+- KB0853105 — de-duplication tasks (referenced, UNVERIFIED)
+- KB0951047 / KB0960404 / KB1542272 — SNMPv3
+- KB0687602 / KB0965884 — additional IRE/Discovery notes (referenced)
 
 ### 12.3 Learning guides (cross-reference)
 
@@ -1078,6 +1162,8 @@ All are performance killers at scale.
 - `agents/qwen3-30b-a3b__ollama__hermes/SNC_DISC__WT4/`
 - `agents/qwen2.5-7b__ollama__hermes/SNC_DISC__WT2/`
 - `agents/llama3.1-8b__ollama__hermes/SNC_DISC__WT3/`
+- `agents/nemotron-3-5-super-vl__litellm__opencode/SNC_DISC__WT5/`
+- `final/FINAL_deepseek-v4-pro.md`, `final/FINALINKLING-2-SMALL.MD`, `final/FINALdeepseek-flash.MD` (other agents' merged finals)
 
 ---
 
@@ -1094,3 +1180,7 @@ All are performance killers at scale.
 9. CMDB Health rule syntax and certification template JSON were not fetched.
 10. MID install steps/OS matrix are platform-specific; follow Now Support MID docs for your OS.
 11. The exact Shazzam maximum range size property name was not captured by every source; verify in the schedule form.
+12. `glide.discovery.enforce_ip_sync` is not in the official catalog; likely a typo for `enforce_unique_ips` or release-specific.
+13. `cmdb_dynamic_ire_skip_class` is documented for Brazil; verify on Australia/older releases.
+14. `source_recency_timestamp` merge behavior is documented via KB3035161 / KB1064718; the exact payload shape should be validated on the target release.
+15. The 114/112 property counts are from the 2026-11-13 fetched pages; re-fetch before relying on them in a later release.
