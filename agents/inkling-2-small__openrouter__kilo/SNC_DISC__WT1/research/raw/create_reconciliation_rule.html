@@ -1,0 +1,242 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article role="article" aria-labelledby="ariaid-title1"><article class="nested0" aria-labelledby="ariaid-title1" id="create-reconciliation-rule">
+   <h1 class="title topictitle1" id="ariaid-title1">Create a CI reconciliation rule</h1>
+   
+   
+   <div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class=" css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class=" css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 7 minutes  to read</div></div><div class="body conbody"><p class="shortdesc">Create a static or a dynamic CI reconciliation rule.</p>
+      <p class="p">If both, static and dynamic reconciliation rules exist for the same CI attribute, the dynamic
+   rule has  precedence.</p>
+      <div class="p"><div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">You can't create a reconciliation rule for system fields or for Identification and
+    Reconciliation Engine (IRE) specific fields such as the Discovery source (discovery_source)
+    field. Also, reconciliation rules can't be dot-walked using reference fields.</div></div></div>
+   </div>
+<nav role="navigation" class="related-links"><div class="linklist reltasks"><strong>Related tasks</strong><br><ul class="linklist"><li class="linklist"><span class="link ft-internal-link" title="Specify data refresh rules to determine if a CI is stale for a specific discovery source. Such CIs can then be updated by a lower-priority authorized discovery source." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="T9X6SeeRMMQ9Z134vetijg">Create a data refresh rule</span></li></ul></div></nav><article class="topic task nested1" aria-labelledby="ariaid-title2" id="t_CreateCIReconciliationRule">
+   <h2 class="title topictitle2" id="ariaid-title2">Create a static reconciliation rule</h2>
+   
+   
+   <div class="body taskbody"><p class="shortdesc">A static reconciliation rule specifies class attributes that discovery sources are
+        authorized to update, and prevents unauthorized discovery sources from overwriting the
+        attributes' values. A static reconciliation rule also specifies the prioritization among
+        multiple discovery sources. Without static reconciliation rules, discovery sources can
+        overwrite each other's updates to attribute values.</p>
+      <section class="section prereq"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Before you begin</h3></div> Role required: sn_cmdb_editor and itil have read access, sn_cmdb_admin and itil_admin (on top) have full access</section>
+      <section class="section context"><div class="tasklabel"><h3 class="sectiontitle tasklabel">About this task</h3></div>
+         <p class="p" id="t_CreateCIReconciliationRule__p_CreateReconciliationRuleContext">Static reconciliation rules are used in
+                conjunction with <span class="xref ft-internal-link" title="Specify data refresh rules to determine if a CI is stale for a specific discovery source. Such CIs can then be updated by a lower-priority authorized discovery source." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="T9X6SeeRMMQ9Z134vetijg">data refresh
+                    rules</span> to determine reconciliation steps for a CI. These rules determine
+                if, when, and by which discovery source a CI can be updated. If multiple discovery
+                sources are authorized to update the same class attributes, assign a priority to
+                each of these discovery sources to prevent them from overwriting each other's
+                updates.</p>
+         <div class="p" id="t_CreateCIReconciliationRule__p_DataSource_PrecedenceAbout1">After an authorized discovery source updates an
+                attribute, subsequent updates are accepted only from the same discovery source or
+                from a discovery source with a higher priority. Updates from a discovery source with
+                a lower priority are rejected, unless these two conditions are met: <ul class="ul" id="t_CreateCIReconciliationRule__ul_vwl_hwz_pz">
+               <li class="li">The lower priority source is the first source updating the CI.</li>
+               <li class="li">The CI became stale based on data refresh rules for the CI class. However, a reconciliation rule that applies to all attributes, doesn’t have precedence over a lower priority reconciliation rule that applies to a specific
+                  attribute, even if the CI is stale.</li>
+            </ul></div>
+         <div class="p">Precedence order of static reconciliation rules:<ul class="ul" id="t_CreateCIReconciliationRule__ul_hds_1gb_slb">
+               <li class="li">Rule configured for a specific attribute, has precedence over rule set with
+                            <span class="ph uicontrol">Apply to all attributes</span> (regardless of priority
+                        value).</li>
+               <li class="li">Between two rules for the same attribute or between two rules set with
+                            <span class="ph uicontrol">Apply to all attributes</span>, the rule that is
+                        specific directly for the class has precedence over the derived rule.​</li>
+               <li class="li">Between two rules for the same attribute or between two rules set with
+                            <span class="ph uicontrol">Apply to all attributes</span> at the same class level,
+                        precedence is determined by rule priorities.</li>
+            </ul></div>
+         <p class="p" id="t_CreateCIReconciliationRule__p_DataSource_PrecedenceAbout3">Information about the last discovery source that updates each attribute is stored in the Data Source History [cmdb_datasource_last_update] table, but only after enabling the reconciliation
+            rule. Therefore, there might be  unexpected updates after you enable the rule until the highest priority data source has updated the CI.</p>
+         <p class="p" id="t_CreateCIReconciliationRule__p_DataSource_PrecedenceAbout2">Static reconciliation rules affect reconciliation
+                of stale CI attributes. During reconciliation, the information in the Data Source
+                History table is considered along with the data refresh rules for the CI's class, to
+                determine if a CI attribute is stale. A CI attribute is determined to be stale if it
+                was not updated by the latest discovery source to update the CI, within a time
+                period. The time period is specified by the Effective Duration time in the data
+                refresh rule for the class for the discovery source. In this case, if another
+                authorized discovery source, with a lower priority attempts to update the stale CI
+                attribute, the update is allowed.</p>
+         <p class="p">If there is a dynamic reconciliation rule for the same CI attribute as in a static
+                reconciliation rule, the dynamic rule takes precedence.</p>
+      </section>
+      <section id="t_CreateCIReconciliationRule__steps_by1_1g3_45"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps" id="t_CreateCIReconciliationRule__steps_by1_1g3_45"><li class="li step stepexpand">
+            <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">All</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CI Class Manager</span></span>.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select <span class="ph uicontrol">Hierarchy</span> to open the CI Classes hierarchy list.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select a class for which to create a reconciliation rule.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">In the class navigation bar, expand <span class="ph uicontrol">Class Info</span> and then select  <span class="ph uicontrol">Reconciliation Rules</span>.</span>
+         </li><li class="li step stepexpand" id="t_CreateCIReconciliationRule__step_ReconciliationStep4">
+            <span class="ph cmd">In the Reconciliation Rules section, select <span class="ph uicontrol">Add</span> to create a rule or select an existing rule to edit.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Static Reconciliation Rule</span> tile if it appears.</span>
+            <div class="itemgroup info">If <span class="xref ft-internal-link" title="CMDB 360 retains complete history about discovery sources and proposed values, involved in updates of CI attributes. Use CMDB 360 data to track how the CMDB is populated by various discovery sources at the CI attribute level. Also, to revert CI updates from a specific discovery source, or to recompute attribute values using updated reconciliation rules." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="6TnrO1Jdq53J2fKTHQJ0Jw">CMDB 360</span> is not enabled, you can't create a dynamic reconciliation rule and the tiles to choose the rule type do not appear.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Fill out the fields on the <span class="ph uicontrol">Add Data Sources &amp; Prioritize</span> tab, and then select <span class="ph uicontrol">Next</span>.</span>
+            <div class="itemgroup info">
+               <table class="table frame-all" id="t_CreateCIReconciliationRule__table_md4_3cz_qlb"><caption></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead">
+                        <tr class="row">
+                           <th class="entry colsep-1 rowsep-1" id="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__1">Field</th>
+                           <th class="entry rowsep-1" id="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__2">Description</th>
+                        </tr>
+                     </thead><tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__1">Active</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__2">Check box to activate this reconciliation rule.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__1">Discovery Source</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__2">Discovery source that you are configuring this rule for.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1" headers="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__1">Priority</td>
+                           <td class="entry" headers="t_CreateCIReconciliationRule__table_md4_3cz_qlb__entry__2">Priority of <span class="ph uicontrol">Source</span> within other discovery sources for the specified attributes. Smaller numbers designate higher priority. Discovery sources without a reconciliation rule are assigned
+                              the lowest priority.</td>
+                        </tr>
+                     </tbody></table>You can add multiple pairs of <span class="ph uicontrol">Discovery Source</span> and <span class="ph uicontrol">Priority</span>.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Fill out the fields on the <span class="ph uicontrol">Select Attributes</span> tab, and then select  <span class="ph uicontrol">Next</span>.</span>
+            <div class="itemgroup info">
+               <table class="table frame-all" id="t_CreateCIReconciliationRule__table_hlk_ddz_qlb"><caption></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead">
+                        <tr class="row">
+                           <th class="entry colsep-1 rowsep-1" id="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__1">Field</th>
+                           <th class="entry rowsep-1" id="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__2">Description</th>
+                        </tr>
+                     </thead><tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__1">Apply to all attributes</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__2">Authorizes the specified discovery sources to update all attributes of the specified class. <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">This rule will be overridden by any rule that applies to a specific attribute. In which case, instead of
+                                 using this option, you can directly include all attributes for <span class="ph uicontrol">Attributes</span>.</div></div></td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__1">Attributes</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__2"><p class="p">Attributes, from the current or from a parent class, that the specified discovery sources are authorized to update.</p>
+                              <p class="p">Available only if <span class="ph uicontrol">Apply to all attributes</span> is not selected.</p></td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1" headers="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__1">Update with Null</td>
+                           <td class="entry" headers="t_CreateCIReconciliationRule__table_hlk_ddz_qlb__entry__2"><p class="p">Attributes that the specified discovery sources can update with a null value. By default, authorized discovery sources cannot overwrite a non-null value with a null value.</p>
+                              <p class="p">Attributes in this list, which are not in the <span class="ph uicontrol">Attributes</span> list, are not included with the attributes that the discovery sources can update with a null value.</p></td>
+                        </tr>
+                     </tbody></table>
+            </div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Fill out the fields on the <span class="ph uicontrol">Set Filter Condition</span> tab, and then select <span class="ph uicontrol">Save</span>.</span>
+            <div class="itemgroup info">
+               <table class="table frame-all" id="t_CreateCIReconciliationRule__table_mqc_22z_qlb"><caption></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead">
+                        <tr class="row">
+                           <th class="entry colsep-1 rowsep-1" id="t_CreateCIReconciliationRule__table_mqc_22z_qlb__entry__1">Field</th>
+                           <th class="entry rowsep-1" id="t_CreateCIReconciliationRule__table_mqc_22z_qlb__entry__2">Description</th>
+                        </tr>
+                     </thead><tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry colsep-1" headers="t_CreateCIReconciliationRule__table_mqc_22z_qlb__entry__1">Filter Condition</td>
+                           <td class="entry" headers="t_CreateCIReconciliationRule__table_mqc_22z_qlb__entry__2"><p class="p">Conditions that CIs must meet for the rule to be applicable.</p>
+                              <p class="p">For example, to apply this rule only to CIs that are associated with the Finance department, select this condition: <span class="ph uicontrol">[Department] [is] [Finance]</span>.</p></td>
+                        </tr>
+                     </tbody></table>
+               <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">The <span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">glide.identification_engine.enable_reconciliation_filter_before_update</span> system property determines when filter conditions are applied. By default, those filter
+                  conditions are applied after attribute values have changed during payload processing. Set this property to <span class="ph uicontrol">true</span> so that Identification and Reconciliation Engine (IRE) applies the filter conditions
+                  before attribute values change.</div></div>
+            </div>
+         </li></ol></section>
+      <section class="section postreq" id="t_CreateCIReconciliationRule__postreq_ewj_jsl_3bb"><div class="tasklabel"><h3 class="sectiontitle tasklabel">What to do next</h3></div>
+         <ul class="ul" id="t_CreateCIReconciliationRule__ul_hrz_flz_qlb">
+            <li class="li">Select the filter icon and then select:<ul class="ul" id="t_CreateCIReconciliationRule__ul_bds_qnw_bmb">
+                  <li class="li"><span class="ph uicontrol">Attributes</span>: To show only reconciliation rules for a specific attribute.</li>
+                  <li class="li"><span class="ph uicontrol">Discovery sources</span>: To show only reconciliation rules for a specific discovery source.</li>
+               </ul></li>
+            <li class="li">Select <span class="ph uicontrol">Preview Rule</span> to see per attribute, the precedence order between any discovery sources that are authorized to update that attribute and any dynamic reconciliation rules.</li>
+            <li class="li">If <span class="xref ft-internal-link" title="CMDB 360 retains complete history about discovery sources and proposed values, involved in updates of CI attributes. Use CMDB 360 data to track how the CMDB is populated by various discovery sources at the CI attribute level. Also, to revert CI updates from a specific discovery source, or to recompute attribute values using updated reconciliation rules." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="6TnrO1Jdq53J2fKTHQJ0Jw">CMDB 360</span> is enabled, you can:<ul class="ul" id="t_CreateCIReconciliationRule__ul_cws_htw_yqb">
+                  <li class="li">Select <span class="ph uicontrol">Preview Data</span> to see all attributes for a specific CI. Also, for each attribute, the current CMDB value and discovery sources reported values for the attribute.</li>
+                  <li class="li">Select <span class="ph uicontrol">Recompute</span> to <span class="xref ft-internal-link" title="Modify reconciliation rules, or exclude a discovery source which is found to be invalid. Then, use the updated reconciliation rules in recomputing CI attribute values, for which those reconciliation rules or discovery source are applicable to." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="p1ifr_o5I71OpSgvGZpr5A">recompute CI attribute values</span> after changing reconciliation rules.</li>
+               </ul></li>
+            <li class="li">Navigate to <span class="ph menucascade"><span class="ph uicontrol">All</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Reconciliation Definitions</span></span> to see a list view of all definitions of reconciliation
+                    rules.</li>
+         </ul>
+      </section>
+   </div>
+</article><article class="topic task nested1" aria-labelledby="ariaid-title3" id="create-dynamic-reconciliation-rule">
+   <h2 class="title topictitle2" id="ariaid-title3">Create a dynamic reconciliation rule</h2>
+   
+   
+   <div class="body taskbody"><p class="shortdesc">A dynamic reconciliation rule uses CMDB 360 data to choose a value such as the
+        largest value that is reported, for updating a CI.</p>
+      <section class="section prereq" id="create-dynamic-reconciliation-rule__prereq_b4t_jnf_xqb"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Before you begin</h3></div>
+         <span class="xref ft-internal-link" title="CMDB 360 retains complete history about discovery sources and proposed values, involved in updates of CI attributes. Use CMDB 360 data to track how the CMDB is populated by various discovery sources at the CI attribute level. Also, to revert CI updates from a specific discovery source, or to recompute attribute values using updated reconciliation rules." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="6TnrO1Jdq53J2fKTHQJ0Jw">CMDB 360</span> must be enabled. <p class="p">Role required: sn_cmdb_editor and itil have read access, sn_cmdb_admin and itil_admin (on top) have full access</p>
+      </section>
+      <section class="section context" id="create-dynamic-reconciliation-rule__context_c4t_jnf_xqb"><div class="tasklabel"><h3 class="sectiontitle tasklabel">About this task</h3></div>
+         <p class="p">If the same CI attribute has both, a static reconciliation rule and a dynamic
+                reconciliation rule, the dynamic reconciliation rule has precedence.</p>
+         <p class="p">A dynamic reconciliation rule supports several rule types, such as largest reported
+                value and most reported value. When applying a dynamic reconciliation rule, IRE
+                processes the current payload and then examines the CMDB 360 data store to select a
+                value with which to update the CMDB. Depending on the dynamic reconciliation rule
+                type, selecting the appropriate value might not be immediately conclusive. For
+                example, there might not be a single value that is most reported, or for some
+                values, the last discovered timestamp isn't reported. Therefore, when necessary, IRE
+                falls back to examining additional details such as last reported, last discovered,
+                and last updated values to select the most appropriate value.</p>
+         <div class="p">
+            <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">You can't add a dynamic reconciliation rule when creating a new child class in
+                    the CI Class Manager. You must first save the new child class and then add the
+                    dynamic reconciliation rule.</div></div></div>
+         
+      </section>
+      <section id="create-dynamic-reconciliation-rule__steps_by1_1g3_45"><div class="tasklabel"><h3 class="sectiontitle tasklabel">Procedure</h3></div><ol class="ol steps" id="create-dynamic-reconciliation-rule__steps_by1_1g3_45"><li class="li step stepexpand">
+            <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">All</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CI Class Manager</span></span>.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select <span class="ph uicontrol">Hierarchy</span> to open the CI Classes hierarchy list.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select a class for which to create a reconciliation rule.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">In the class navigation bar, expand <span class="ph uicontrol">Class Info</span> and then
+                    click <span class="ph uicontrol">Reconciliation Rules</span>.</span>
+         </li><li class="li step stepexpand" id="create-dynamic-reconciliation-rule__step_ReconciliationStep4">
+            <span class="ph cmd">In the Reconciliation Rules section, click <span class="ph uicontrol">Add</span> to create
+                    a rule or select an existing rule to edit.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select the <span class="ph uicontrol">Dynamic Reconciliation Rule</span> tile.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Select Rule</span> tab, select a rule type in the
+                        <span class="ph uicontrol">Dynamic Rule Type</span> list field, and then click
+                        <span class="ph uicontrol">Next</span>.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Select Attributes</span> tab, select the attributes for which to apply the rule.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select <span class="ph uicontrol">Next</span>.</span>
+            <div class="itemgroup info">Attributes that the specified rule type can't be applied to and attributes for which a dynamic reconciliation rule already exists for, don’t appear.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Fill out the fields on the <span class="ph uicontrol">Set Filter Condition</span> tab, and then select <span class="ph uicontrol">Save</span>.</span>
+            <div class="itemgroup info">
+               <table class="table frame-all" id="create-dynamic-reconciliation-rule__table_mqc_22z_qlb"><caption></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead">
+                        <tr class="row">
+                           <th class="entry colsep-1 rowsep-1" id="create-dynamic-reconciliation-rule__table_mqc_22z_qlb__entry__1">Field</th>
+                           <th class="entry rowsep-1" id="create-dynamic-reconciliation-rule__table_mqc_22z_qlb__entry__2">Description</th>
+                        </tr>
+                     </thead><tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry colsep-1" headers="create-dynamic-reconciliation-rule__table_mqc_22z_qlb__entry__1">Filter Condition</td>
+                           <td class="entry" headers="create-dynamic-reconciliation-rule__table_mqc_22z_qlb__entry__2"><p class="p">Conditions that CIs must meet for the rule to be applicable.</p>
+                              <p class="p">For example, to apply a rule only to CIs that are associated with the Finance department, select this condition: <span class="ph uicontrol">[Department] [is] [Finance]</span>.</p></td>
+                        </tr>
+                     </tbody></table>
+            </div>
+         </li></ol></section>
+      <section class="section postreq" id="create-dynamic-reconciliation-rule__postreq_ewj_jsl_3bb"><div class="tasklabel"><h3 class="sectiontitle tasklabel">What to do next</h3></div>
+         <ul class="ul" id="create-dynamic-reconciliation-rule__ul_hrz_flz_qlb">
+            <li class="li">Select the filter icon and then select:<ul class="ul" id="create-dynamic-reconciliation-rule__ul_bds_qnw_bmb">
+                  <li class="li"><span class="ph uicontrol">Attributes</span>: To show only reconciliation rules for a specific attribute.</li>
+                  <li class="li"><span class="ph uicontrol">Discovery sources</span>: To show only reconciliation rules for a specific discovery source.</li>
+               </ul></li>
+            <li class="li">Select <span class="ph uicontrol">Preview Rule</span> to see per attribute, the precedence order between any discovery sources that are authorized to update that attribute and any dynamic reconciliation rules.</li>
+            <li class="li">Select <span class="ph uicontrol">Preview Data</span> to see all attributes for a specific CI. Also, for each attribute, the current CMDB value and discovery sources reported values for the attribute.</li>
+            <li class="li"><span class="xref ft-internal-link" title="Modify reconciliation rules, or exclude a discovery source which is found to be invalid. Then, use the updated reconciliation rules in recomputing CI attribute values, for which those reconciliation rules or discovery source are applicable to." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="p1ifr_o5I71OpSgvGZpr5A">Recompute CI attribute values</span>.</li>
+            <li class="li">Navigate to <span class="ph menucascade"><span class="ph uicontrol">All</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Reconciliation Definitions</span></span> to see a list view of all definitions of reconciliation
+                    rules.</li>
+         </ul>
+      </section>
+   </div>
+</article></article></article></main></div>

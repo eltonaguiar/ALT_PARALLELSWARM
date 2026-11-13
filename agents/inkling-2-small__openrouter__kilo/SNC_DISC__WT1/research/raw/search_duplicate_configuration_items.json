@@ -1,0 +1,58 @@
+[
+ {
+  "map": "Australia Security Management",
+  "title": "Resolving duplicate configuration items",
+  "breadcrumb": "Security Operations > Security Posture Control > Use the workspace > Resolving duplicate configuration items",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/spc-using-dedup-template.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/JuC04Upna5BFaPgMb0RciA/content"
+ },
+ {
+  "map": "Australia Security Management",
+  "title": "Resolve duplicate configuration items",
+  "breadcrumb": "Security Operations > Security Posture Control > Use the workspace > Resolving duplicate configuration items > Resolve duplicate configuration items",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/spc-resolve-duplicate-cis.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/_HwPxFrVVTxoEf9I1i9OIA/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Components installed for duplicate CI remediation",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB data management > Duplicate CIs remediation > Components installed for duplicate CI remediation",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/components-installed-with-dup-ci.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/PJ8qcQmW4A1EcwSL4u_1wg/content"
+ },
+ {
+  "map": "Australia Security Management",
+  "title": "De-duplicating existing configuration items",
+  "breadcrumb": "Security Operations > Unified Security Exposure Management > Vulnerability Response > Vulnerability Response remediation overview > Working with unmatched CIs > De-duplicating existing configuration items",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/vulnerability-response/reapply-deduplication.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/azqGPIwk7jJpaRs~gqBECw/content"
+ },
+ {
+  "map": "Australia Security Management",
+  "title": "Steps to help prevent duplicate or orphaned records after running Vulnerability Response CI lookup rules",
+  "breadcrumb": "Security Operations > Unified Security Exposure Management > Vulnerability Response > Vulnerability Response remediation overview > Working with unmatched CIs > Steps to help prevent duplicate or orphaned records after running Vulnerability Response CI lookup rules",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/vulnerability-response/ci-identifier-rules-impl-test.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/vZwDX79q4IiMYi33lRcikQ/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Duplicate CIs remediation",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB data management > Duplicate CIs remediation",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/de-duplication-tasks.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/sD3xzOUCUCm09YdWfNVjLA/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Properties related to remediation of duplicate CIs",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB data management > Duplicate CIs remediation > Properties related to remediation of duplicate CIs",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/properties-duplicate-ci.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/jyyk7irkwkZmX8spFjxVTQ/content"
+ },
+ {
+  "map": "Australia Workflow Data Fabric",
+  "title": "Zero Copy Connectors",
+  "breadcrumb": "Workflow Data Fabric > Zero Copy Connectors",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/integrate-applications/zero-copy-connectors.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/u~ldaY8ZPxJiUgZ1Inf6mw/topics/Wgtj7M8Ii7AJLf~jxKyj0Q/content"
+ }
+]

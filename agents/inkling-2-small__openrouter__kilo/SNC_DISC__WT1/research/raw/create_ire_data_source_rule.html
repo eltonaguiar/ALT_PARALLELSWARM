@@ -1,0 +1,101 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+   <h1 class="title topictitle1" id="ariaid-title1">Create an IRE data source rule</h1>
+   
+   
+   <div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class=" css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class=" css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 2 minutes  to read</div></div><div class="body taskbody"><p class="shortdesc">When using Identification and Reconciliation Engine (IRE), you can prevent a specific
+        discovery (data) source from inserting new CIs for a specific class. Create IRE data source
+        rules for discovery sources that you don't trust in creating CIs but continue to trust in
+        updating those CIs that exist.</p>
+      <section class="section prereq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>Role required: sn_cmdb_admin or itil_admin</section>
+      <section class="section context" id="create-ire-data-source-rule__context_q3t_nlz_jjb"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+         <p class="p">IRE data source rules have no impact when dynamic reconciliation rules are in
+                effect.</p>
+         <p class="p">For example, an IP scan tool that discovers network gear but does not discover
+                servers and therefore creates server CIs without details. You can prevent such
+                discovery source from creating specific CIs, while still permitting it to update
+                those specific CIs if they exist. IRE data source rules are stored in the IRE Data
+                Source Rule [cmdb_ire_data_source_rule] table.</p>
+         <div class="p"><ul class="ul" id="create-ire-data-source-rule__ul_all_5r1_kjb">
+               <li class="li">Child classes derive IRE data source rules from parent classes like
+                        identification rules do.</li>
+               <li class="li">IRE data source rules that are specified for a child class, override any IRE
+                        data source rules derived from a parent class.</li>
+            </ul></div>
+         <div class="p">When IRE processes an insert operation that is prohibited by an IRE data source rule,
+                the insert operation fails. This failure happens when the discovery source and CI
+                class in the insert operation and in an IRE data source rule, match. When <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" target="_blank" rel="noopener">CreateOrUpdateCIEnhanced()</a> is used, IRE stores the
+                failed payload in the CMDB IRE Partial Payloads [cmdb_ire_partial_payloads] table
+                for future potential use.<div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">When an insert operation is not allowed by the IRE
+                    data source rule, then when using <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=c_IdentEngineScriptAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" target="_blank" rel="noopener">createOrUpdateCI()</a>, the entire IRE payload fails
+                    since <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=c_IdentEngineScriptAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" target="_blank" rel="noopener">createOrUpdateCI()</a> doesn't allow partial
+                    commits.</div></div></div>
+         <p class="p">If later, a permitted discovery source attempts to insert that same CI, then IRE
+                inserts the CI after merging it with the matching CI from the partial payloads. IRE
+                then deletes the partial payload from the CMDB IRE Partial Payloads
+                [cmdb_ire_partial_payloads] table, and allows future updates by the discovery source
+                specified in the rule.</p>
+         <p class="p">IRE data source rules do not apply to lookup and related items, and only a single
+                rule can be active for any class/discovery source pair.</p>
+      </section>
+      <section><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+            <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">All</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">IRE Data Source Rule</span></span>.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">In the list view, click <span class="ph uicontrol">New</span> and fill out the IRE Data
+                    Source Rule form.</span>
+            <div class="itemgroup info">
+               <table class="table frame-all" id="create-ire-data-source-rule__table_wfk_yvz_jjb"><caption></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead">
+                        <tr class="row">
+                           <th class="entry colsep-1 rowsep-1" id="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__1">Field</th>
+                           <th class="entry rowsep-1" id="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__2">Description</th>
+                        </tr>
+                     </thead><tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__1">Active</td>
+                           <td class="entry rowsep-1" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__2">Activates the IRE data source rule.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__1">Applies to</td>
+                           <td class="entry rowsep-1" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__2">The class (and child classes) that the specified
+                                        discovery (data) source is not allowed to create CIs
+                                        of.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__1">Data source</td>
+                           <td class="entry rowsep-1" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__2">Discovery (data) source that is not allowed to create CIs
+                                        of the specified class.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__1">Insert Not Allowed</td>
+                           <td class="entry" headers="create-ire-data-source-rule__table_wfk_yvz_jjb__entry__2">Disables the specified discovery (data) source from
+                                        inserting new CIs from the specified class, to the
+                                        CMDB.</td>
+                        </tr>
+                     </tbody></table>
+            </div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Submit</span>.</span>
+         </li></ol></section>
+      <section class="section result" id="create-ire-data-source-rule__result_azm_xyz_jjb"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Result</h2></div>If a payload item with an insert request, and in which the
+            discovery source and the CI class match the discovery source and the CI class specified
+            in the IRE data source rule:<ol class="ol" id="create-ire-data-source-rule__ol_kz4_241_kjb">
+            <li class="li">The insert operation fails and IRE logs the following message:
+                    <p class="p">INSERT_NOT_ALLOWED_FOR_SOURCE Insert into [xyz] is blocked
+                        for data source [xyz] by IRE data source rule.</p></li>
+            <li class="li">If using <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" target="_blank" rel="noopener">CreateOrUpdateCIEnhanced()</a>, then IRE stores the
+                    payload item as a partial payload in the CMDB IRE Partial Payloads
+                    [cmdb_ire_partial_payloads] table.</li>
+         </ol>
+         <div class="p">If later, a permitted discovery source successfully inserts a CI that matches
+                the CI from a partial payload item:<ol class="ol" id="create-ire-data-source-rule__ol_esn_wn1_kjb">
+               <li class="li">The current CI is merged with the matching CI from the partial payload,
+                        applying static reconciliation rules as needed.</li>
+               <li class="li">The respective partial payload in the CMDB IRE Partial Payloads
+                        [cmdb_ire_partial_payloads] table is deleted.</li>
+               <li class="li">Later payloads in which the non-permitted discovery source updates the
+                        respective CI, run successfully.</li>
+               <li class="li">IRE allows the discovery source, that was previously prohibited from
+                        inserting the CI, to update that same CI which now exists in the CMDB.</li>
+            </ol></div>
+      </section>
+   </div>
+</article></main></div>

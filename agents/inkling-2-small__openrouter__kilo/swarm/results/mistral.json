@@ -1,0 +1,5 @@
+{
+  "provider": "mistral",
+  "ok": false,
+  "error": "HTTPError: HTTP Error 429: Too Many Requests"
+}

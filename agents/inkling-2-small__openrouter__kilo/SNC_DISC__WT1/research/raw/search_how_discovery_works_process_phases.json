@@ -1,0 +1,44 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/neb5udgz5y36iZmb_mhEzw/content"
+ },
+ {
+  "map": "Australia Platform Analytics",
+  "title": "Process Mining",
+  "breadcrumb": "Platform Analytics > Process Mining",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/now-intelligence/process-mining/process-mining.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/J7UfGStUvhlVOcoqiM3zlQ/topics/~D9irlCk8olINQ~NeYDfJg/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "How Discovery identifiers work",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery identifiers > How Discovery identifiers work",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/c_HowDiscoveryIdentifiersWork.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/wR1lIbwSkx6H5KJyR130Ew/content"
+ },
+ {
+  "map": "Australia Workflow Data Fabric",
+  "title": "Integration Hub Remote Process Sync",
+  "breadcrumb": "Workflow Data Fabric > Integration Hub Remote Process Sync",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/integrate-applications/integration-hub-remote-process-sync/integrationhub-remote-process-sync.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/u~ldaY8ZPxJiUgZ1Inf6mw/topics/oUii9iHbaD3fZQHgNphfcg/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "How CIM Discovery works",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Visibility reference > Data collected by ITOM Visibility > Storage discovery > Storage Discovery via SMI-S and CIM > How CIM Discovery works",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/r_HowCIMDiscoveryWorks.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/yHmp3fPuH85FXgYNZI1yxQ/content"
+ },
+ {
+  "map": "Australia Platform Analytics",
+  "title": "Platform Analytics",
+  "breadcrumb": "Platform Analytics",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/now-intelligence/c_performanceAnalyticsAndReporting.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/J7UfGStUvhlVOcoqiM3zlQ/topics/6_lMJ8AKkkZDzuqSES~wzw/content"
+ }
+]

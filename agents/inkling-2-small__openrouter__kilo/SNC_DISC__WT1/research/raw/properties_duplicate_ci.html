@@ -1,0 +1,134 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article aria-labelledby="ariaid-title1" role="article">
+<h1 class="title topictitle1" id="ariaid-title1">Properties related to remediation of duplicate CIs</h1>
+<div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class="css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class="css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 2 minutes  to read</div></div><details class="ai-summary-container">
+<summary class="summarize-button">
+<span><svg class="summarize-icon" fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.2295 2.89015C11.1143 3.57545 10.5774 4.1124 9.89208 4.22754L9.74705 4.25191C9.46895 4.29864 9.46895 4.69827 9.74705 4.745L9.89211 4.76937C10.5774 4.88451 11.1143 5.42143 11.2295 6.10671L11.2535 6.2498C11.3003 6.52795 11.7 6.52787 11.7466 6.24971L11.7706 6.10678C11.8856 5.42101 12.4229 4.88367 13.1087 4.76872L13.2836 4.7394C13.5608 4.69294 13.5623 4.29516 13.2855 4.2466L13.1073 4.21534C12.4313 4.09676 11.9021 3.56748 11.7835 2.89152L11.7519 2.71168C11.7034 2.43494 11.3057 2.43637 11.2592 2.71346L11.2295 2.89015Z" fill="currentColor" />
+<path d="M6.79749 5.17055C6.50606 6.48197 5.48188 7.50616 4.17046 7.79758L2.76623 8.10963C2.34859 8.20244 2.34859 8.79777 2.76623 8.89058L4.17046 9.20263C5.48188 9.49406 6.50606 10.5182 6.79749 11.8297L7.10954 13.2339C7.20235 13.6515 7.79768 13.6515 7.89049 13.2339L8.20254 11.8297C8.49397 10.5182 9.51815 9.49406 10.8296 9.20263L12.2338 8.89058C12.6514 8.79777 12.6514 8.20244 12.2338 8.10963L10.8296 7.79758C9.51815 7.50616 8.49397 6.48197 8.20254 5.17056L7.89049 3.76632C7.79768 3.34869 7.20235 3.34869 7.10954 3.76632L6.79749 5.17055Z" fill="currentColor" />
+</svg></span>
+<span>Summarize</span>
+</summary>
+<div class="ai-summary-wrapper">
+<div class="ai-disclaimer-header">
+<div class="disclaimer-left">
+<img alt="AI sparkle icon" aria-hidden="true" class="sparkle-icon" height="24" src="https://servicenow.com/docs/portal-asset/ai-sparkle-icon" width="24">
+<span class="disclaimer-text">Summarized using AI</span>
+<div class="info-tooltip-wrapper">
+<span><svg class="info-icon" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10" stroke="#9CA3AF" stroke-width="2" />
+<path d="M12 16V12M12 8H12.01" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+<div class="tooltip-content">
+                                This content was generated using new OpenAI-powered functionality. Results are provided on an as is basis and are not guaranteed to be accurate or complete.
+                            </div>
+</div>
+</div>
+</div>
+<div class="summary-content-wrapper">
+<h2 class="summary-title">Summary of Properties related to remediation of duplicate CIs</h2>
+<div class="summary-overview">
+<p><span class="sentence">This content explains configuration properties that control how the remediation of duplicate Configuration Items (CIs) is handled in ServiceNow’s Duplicate CI Remediator and the De-duplication Dashboard within CMDB Workspace.</span>
+<span class="sentence">These properties require thesncmdbadminoradminrole to view or edit, allowing you to tailor de-duplication tasks to your CMDB environment while balancing performance and accuracy.</span>
+</p>
+</div>
+<details class="summary-details">
+<summary class="summary-toggle">
+<span class="toggle-text-expand">Show full answer</span>
+<span class="toggle-text-collapse">Show less</span>
+<span><svg class="toggle-arrow" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 10l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+</summary>
+<div class="summary-full-content">
+<h2>Key Properties and Their Functions</h2>
+<ul> <li><b>glide.duplicateciremediator.max.fieldlength</b>: Sets the maximum attribute length (default 4000) considered during remediation. Attributes exceeding this length are excluded from key remediation steps to optimize performance. Data exceeding this length is truncated if the maxlength equals this property’s value.</li> <li><b>glide.duplicateciremediator.relateditemsblacklist</b>: Defines a comma-separated list of related tables and reference columns excluded from merging during remediation, preventing unintended updates to sensitive or critical related records.</li> <li><b>glide.duplicateciremediator.max.cis</b>: Sets a threshold (default 1000, max 5000) for the number of duplicate CIs where reconciliation support is limited, ensuring system stability during large remediation tasks.</li> <li><b>glide.duplicateciremediator.dryrun</b>: When true, enables a test run mode where no actual updates occur, but change details are logged as work notes. This helps validate remediation plans before execution (default is false, meaning updates are performed).</li> <li><b>glide.duplicateciremediator.enablerestrictedmode</b>: Enables a restricted remediation mode that limits use of related items and allows blocked remediations to proceed. This is useful in complex environments where related item updates can cause issues.</li> <li><b>glide.duplicateciremediator.mergerelateditemsenhanced</b>: When true (default), allows ignoring database errors and disabling workflows/business rules on related tables during remediation. This prevents workflow-induced failures and ensures remediation completion.</li></ul>
+<h2>Why This Matters</h2>
+<p>Configuring these properties lets you control the behavior and performance of duplicate CI remediation to fit your organization’s unique CMDB scale and complexity. Proper settings help prevent performance bottlenecks, avoid unwanted updates to related records, and enable safe testing of remediation plans before applying changes.</p>
+<h2>What You Can Expect</h2>
+<ul> <li>Improved control over how attributes and related tables are handled during duplicate CI remediation.</li> <li>Enhanced stability for large de-duplication tasks by defining thresholds and exclusion lists.</li> <li>Ability to safely test remediation scenarios without impacting production data using dry run mode.</li> <li>Options to bypass workflow-related errors to ensure remediation tasks complete successfully.</li></ul>
+</div>
+</details>
+</div>
+</div>
+</details><div class="body refbody"><p class="shortdesc">Use de-duplication properties to configure how remediation of duplicate CIs works when using the Duplicate CI Remediator, or the De-duplication Dashboard in CMDB Workspace .</p>
+<section class="section">
+<p class="p">To view and edit these properties, the sn_cmdb_admin or admin role is required.</p>
+<p class="p">Although the properties below reference the <span class="xref ft-internal-link" title="Remediate a single de-duplication task by using the Duplicate CI Remediator wizard. Use the wizard to guide you through the duplicate CI reconciliation process or to apply a custom workflow." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="4X2hdJTiOvMsodE62bbHKQ">Duplicate CI Remediator</span>, these properties have an equivalent effect in <span class="xref ft-internal-link" title="Create libraries of de-duplication templates in CMDB Workspace, to process de-duplication tasks which remediate duplicate CIs, in a consistent manner and in bulk. De-duplication templates are pre-configured with all necessary settings for remediating duplicate CIs in de-duplication tasks, per class." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="lDHFFH4nhQMG4y2jRSxtYg">CI de-duplication experience in CMDB Workspace</span>.</p>
+<div class="p"><table class="table frame-all" id="properties-duplicate-ci__table_thf_j3w_5gb"><caption></caption><colgroup><col><col></colgroup><thead class="thead">
+<tr class="row">
+<th class="entry colsep-1 rowsep-1" id="properties-duplicate-ci__table_thf_j3w_5gb__entry__1">Property</th>
+<th class="entry rowsep-1" id="properties-duplicate-ci__table_thf_j3w_5gb__entry__2">Description</th>
+</tr>
+</thead><tbody class="tbody">
+<tr class="row">
+<td class="entry colsep-1 rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__1"><p class="p">Attributes in which <span class="keyword parmname">max_length</span> exceeds this property value (4000 by default) are excluded from the <span class="ph uicontrol">Select Main CI</span>, <span class="ph uicontrol">Merge Attribute Values</span>, and
+                                 <span class="ph uicontrol">Determine Duplicate CI Actions</span> tabs in the Duplicate CI Remediator wizard.</p>
+<p class="p">glide.duplicate_ci_remediator.max.field_length</p></td>
+<td class="entry rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__2">If the <span class="keyword parmname">max_length</span> for an attribute is equal to the property value, and the size of the data exceeds the property value, then the data is truncated to the property value and the attribute
+                           appears in attribute lists.<ul class="ul" id="properties-duplicate-ci__ul_hk4_4jw_5gb">
+<li class="li">Type: integer</li>
+<li class="li">Default value: 4000</li>
+<li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Duplicate CI Remediator Properties</span></span></li>
+</ul>
+<div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">This property impacts the performance of de-duplication tasks, therefore be cautious about setting this value.</div></div></td>
+</tr>
+<tr class="row">
+<td class="entry colsep-1 rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__1"><p class="p">Comma separated list of related tables in the format '&lt;table&gt;.&lt;reference column&gt;', that are excluded from merging during duplicate CI remediation.</p>
+<p class="p">glide.duplicate_ci_remediator.related_items_blacklist</p></td>
+<td class="entry rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__2"><ul class="ul" id="properties-duplicate-ci__ul_dh1_pjw_5gb">
+<li class="li">Type: string</li>
+<li class="li">Default value: cert_task.cmdb_ci,cert_audit_result.configuration_item,discovery_log.cmdb_ci,alm_hardware.ci,alm_asset.ci,fm_expense_line.ci</li>
+<li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Duplicate CI Remediator Properties</span></span></li>
+</ul></td>
+</tr>
+<tr class="row">
+<td class="entry colsep-1 rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__1"><p class="p">Threshold for the number of duplicate CIs, which if exceeded, support for reconciliation in the Duplicate CI Remediator is limited (1,000 by default).</p>
+<p class="p">glide.duplicate_ci_remediator.max.cis</p></td>
+<td class="entry rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__2"><ul class="ul" id="properties-duplicate-ci__ul_lr4_jkw_5gb">
+<li class="li">Type: integer</li>
+<li class="li">Default value: 1000</li>
+<li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Duplicate CI Remediator Properties</span></span></li>
+<li class="li">Learn more: See 'Large number of duplicate CIs' in <span class="xref ft-internal-link" title="Remediate a single de-duplication task by using the Duplicate CI Remediator wizard. Use the wizard to guide you through the duplicate CI reconciliation process or to apply a custom workflow." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="4X2hdJTiOvMsodE62bbHKQ">Remediate a de-duplication task (manual)</span>.</li>
+</ul>This threshold never exceeds 5,000, even if you set the property to a value greater than 5,000.</td>
+</tr>
+<tr class="row">
+<td class="entry colsep-1 rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__1"><p class="p">Determines whether the Duplicate CI Remediator actually remediates CI duplication by updating records in the CMDB, or not.</p>
+<p class="p">glide.duplicate_ci_remediator.dry_run</p></td>
+<td class="entry rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__2"><p class="p">When set to false (default value), updates specified in the wizard are actually performed.</p>
+<p class="p">You can set this property to true and then test run through the Duplicate CI Remediator without any records actually being updated. In this case, the work notes for the task describe the changes that will
+                              happen in an actual remediation.</p>
+<div class="p"><ul class="ul" id="properties-duplicate-ci__ul_uvv_n4y_rw">
+<li class="li">Type: true | false</li>
+<li class="li">Default value: false</li>
+<li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Duplicate CI Remediator Properties</span></span></li>
+</ul></div></td>
+</tr>
+<tr class="row">
+<td class="entry colsep-1 rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__1">glide.duplicate_ci_remediator.enable_restricted_mode</td>
+<td class="entry rowsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__2"><p class="p">Enables restricted mode remediation in the Duplicate CI Remediator. This option restricts the use of related items in de-duplication remediation and allows a blocked remediation to proceed using the
+                                 <span class="ph uicontrol">Use the Duplicate CI Remediator (Restricted Mode)</span> option. For more information, see <a class="xref ft-external-link" href="https://support.servicenow.com/kb_view_customer.do?sysparm_article=KB1542272" rel="noopener" target="_blank">Using restricted mode within the Duplicate CI Remediator [KB1542272]</a>.</p>
+<div class="p"><ul class="ul" id="properties-duplicate-ci__ul_ryn_znv_czb">
+<li class="li">Type: true | false</li>
+<li class="li">Default value: false</li>
+<li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" rel="noopener" target="_blank">Add to System Properties [sys_properties]</a></li>
+<li class="li">Learn more: <span class="xref ft-internal-link" title="Remediate a single de-duplication task by using the Duplicate CI Remediator wizard. Use the wizard to guide you through the duplicate CI reconciliation process or to apply a custom workflow." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="4X2hdJTiOvMsodE62bbHKQ">Remediate a de-duplication task (manual)</span></li>
+</ul></div>
+<p class="p">Set to <span class="ph uicontrol">true</span> to enable restricted mode remediation.</p></td>
+</tr>
+<tr class="row">
+<td class="entry colsep-1" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__1">glide.duplicate_ci_remediator.merge_related_items_enhanced</td>
+<td class="entry" headers="properties-duplicate-ci__table_thf_j3w_5gb__entry__2">Enables the capability to ignore database errors and/or skip ALL business rules (disable workflow) in related tables referencing CIs, during duplicate CI remediation. In such related tables, automated
+                           workflows such as business rules might prevent the update of the referenced CI to the main CI, causing de-duplication tasks to fail. In these situations, blocking business rules and other automated workflows, and
+                           ignoring errors allows remediation to complete.<div class="p">
+<ul class="ul" id="properties-duplicate-ci__ul_cxw_pn3_vgc">
+<li class="li">Type: true | false</li>
+<li class="li">Default value: true</li>
+<li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" rel="noopener" target="_blank">Add to System Properties [sys_properties]</a></li>
+<li class="li">Learn more: <span class="xref ft-internal-link" title="Configure de-duplication remediation processes for related tables, to turn off the execution of business rules, workflows, and any other automatic processes that might be turning off the update of referenced duplicate CIs to the main CI. Disabling all these workflows of related tables, allow de-duplication tasks, that would otherwise fail, to complete." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="b9BCw7fOiHHIM_dtcntSwA">Turn off workflows of related tables during remediation</span>.</li>
+</ul>
+</div></td>
+</tr>
+</tbody></table></div>
+</section>
+</div>
+</article></main></div>

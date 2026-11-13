@@ -1,0 +1,19 @@
+{
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "latency_s": 1.87,
+  "content": "- **Identification Rules** (IRE rule) \u2013 match discovered data to an existing CI using key attributes.  \n- **Reconciliation Rules** (IRE rule) \u2013 decide whether to update the matched CI or create a new one.  \n- **System property `discovery.ire.identify_by`** \u2013 specifies the attribute(s) that serve as the unique identifier.  \n- **System property `discovery.ire.reconcile`** \u2013 toggles reconciliation behavior to prevent unnecessary CI creation.  \n- **CMDB Health \u201cDuplicate CI Detection\u201d** (remediation) \u2013 scans the CMDB and flags duplicate CIs.  \n- **CMDB Health \u201cDuplicate CI Remediation\u201d job** \u2013 automatically merges or removes flagged duplicates.",
+  "usage": {
+    "queue_time": 0.147362921,
+    "prompt_tokens": 137,
+    "prompt_time": 0.005580491,
+    "completion_tokens": 758,
+    "completion_time": 1.574843756,
+    "total_tokens": 895,
+    "total_time": 1.5804242469999998,
+    "completion_tokens_details": {
+      "reasoning_tokens": 601
+    }
+  },
+  "ok": true
+}

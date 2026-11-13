@@ -1,0 +1,58 @@
+[
+ {
+  "map": "Australia Build or modify applications",
+  "title": "System update sets",
+  "breadcrumb": "Building applications > Deploying applications > System update sets",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/application-development/system-update-sets/system-update-sets.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/zUlSbxoxKPAWFDGUdAoSCw/topics/kx1ifC2dRAyF5wEYZRGpqw/content"
+ },
+ {
+  "map": "Australia Build or modify applications",
+  "title": "ReleaseOps",
+  "breadcrumb": "Building applications > Deploying applications > ReleaseOps",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/application-development/releaseops/releaseops-landing.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/zUlSbxoxKPAWFDGUdAoSCw/topics/wE_Sar9~qUSrTHWVzpCnnw/content"
+ },
+ {
+  "map": "Australia Build or modify applications",
+  "title": "Developer Sandboxes",
+  "breadcrumb": "Building applications > Developing your application > Developer Sandboxes",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/application-development/developer-sandboxes/sandboxes-landing.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/zUlSbxoxKPAWFDGUdAoSCw/topics/AG_5Yl0_ZJfvTXgD71C7aA/content"
+ },
+ {
+  "map": "Australia Build or modify applications",
+  "title": "Guided Application Creator",
+  "breadcrumb": "Building applications > Developing your application > Building pro-code applications > Guided Application Creator",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/application-development/guided-application-creator/guided-app-creator.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/zUlSbxoxKPAWFDGUdAoSCw/topics/X4_G6snRd7jAHtpwX7DHKQ/content"
+ },
+ {
+  "map": "Australia Build or modify applications",
+  "title": "Table Builder",
+  "breadcrumb": "Building applications > Developing your application > Builder library > Table Builder",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/application-development/form-builder-glide-family-release/tb-landing-page.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/zUlSbxoxKPAWFDGUdAoSCw/topics/d5ZRlpbHLSRU1kUpe_tjEg/content"
+ },
+ {
+  "map": "Australia Build or modify applications",
+  "title": "Service Creator",
+  "breadcrumb": "Building applications > Developing your application > Building pro-code applications > Service Creator",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/application-development/service-creator/c_ServiceCreator.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/zUlSbxoxKPAWFDGUdAoSCw/topics/0TqHH_CIVCVStIUnrvj1og/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Dependency Views",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > Dependency Views",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/dependency-views/c_BusinesssServiceManagementMaps.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/KNXL5LBtNpKjaHblt7Dltw/content"
+ },
+ {
+  "map": "Australia Build workflows",
+  "title": "System Events",
+  "breadcrumb": "Build workflows > System Events > Exploring system events > System Events",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/build-workflows/system-events/events.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/HGWDpzjgkfvaJWTdMzNy2w/topics/TYk0gdVD4_kmtEENMgq7Dg/content"
+ }
+]

@@ -1,0 +1,90 @@
+{
+  "providers": {
+    "groq": {
+      "day": "2026-11-13",
+      "calls": 2,
+      "tokens": 2320,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 300,
+      "daily_tokens": 300000,
+      "price_per_1k": 0.0,
+      "present": true
+    },
+    "cerebras": {
+      "day": "2026-11-13",
+      "calls": 3,
+      "tokens": 3820,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 300,
+      "daily_tokens": 400000,
+      "price_per_1k": 0.0,
+      "present": true
+    },
+    "gemini": {
+      "day": "2026-11-13",
+      "calls": 2,
+      "tokens": 2320,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 300,
+      "daily_tokens": 500000,
+      "price_per_1k": 0.0,
+      "present": true
+    },
+    "mistral": {
+      "day": "2026-11-13",
+      "calls": 2,
+      "tokens": 2320,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 100,
+      "daily_tokens": 300000,
+      "price_per_1k": 0.0,
+      "present": true
+    },
+    "openrouter": {
+      "day": "2026-11-13",
+      "calls": 3,
+      "tokens": 3820,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 100,
+      "daily_tokens": 200000,
+      "price_per_1k": 0.0,
+      "present": true
+    },
+    "ollama": {
+      "day": "2026-11-13",
+      "calls": 3,
+      "tokens": 3820,
+      "cost_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 1,
+      "daily_calls": 2000,
+      "daily_tokens": 20000000,
+      "price_per_1k": 0.0,
+      "present": true
+    },
+    "subq_snap": {
+      "day": "2026-11-13",
+      "calls": 0,
+      "tokens": 0,
+      "tokens_actual": 0,
+      "cost_usd": 0.0,
+      "cost_actual_usd": 0.0,
+      "inflight": 0,
+      "max_inflight": 2,
+      "daily_calls": 100,
+      "daily_tokens": 200000,
+      "price_per_1k": 0.0,
+      "present": false
+    }
+  }
+}

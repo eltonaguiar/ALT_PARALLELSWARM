@@ -1,0 +1,103 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article aria-labelledby="ariaid-title1" role="article">
+<h1 class="title topictitle1" id="ariaid-title1">Horizontal discovery process flow with probes and sensors</h1>
+<div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class="css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class="css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 3 minutes  to read</div></div><details class="ai-summary-container">
+<summary class="summarize-button">
+<span><svg class="summarize-icon" fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.2295 2.89015C11.1143 3.57545 10.5774 4.1124 9.89208 4.22754L9.74705 4.25191C9.46895 4.29864 9.46895 4.69827 9.74705 4.745L9.89211 4.76937C10.5774 4.88451 11.1143 5.42143 11.2295 6.10671L11.2535 6.2498C11.3003 6.52795 11.7 6.52787 11.7466 6.24971L11.7706 6.10678C11.8856 5.42101 12.4229 4.88367 13.1087 4.76872L13.2836 4.7394C13.5608 4.69294 13.5623 4.29516 13.2855 4.2466L13.1073 4.21534C12.4313 4.09676 11.9021 3.56748 11.7835 2.89152L11.7519 2.71168C11.7034 2.43494 11.3057 2.43637 11.2592 2.71346L11.2295 2.89015Z" fill="currentColor" />
+<path d="M6.79749 5.17055C6.50606 6.48197 5.48188 7.50616 4.17046 7.79758L2.76623 8.10963C2.34859 8.20244 2.34859 8.79777 2.76623 8.89058L4.17046 9.20263C5.48188 9.49406 6.50606 10.5182 6.79749 11.8297L7.10954 13.2339C7.20235 13.6515 7.79768 13.6515 7.89049 13.2339L8.20254 11.8297C8.49397 10.5182 9.51815 9.49406 10.8296 9.20263L12.2338 8.89058C12.6514 8.79777 12.6514 8.20244 12.2338 8.10963L10.8296 7.79758C9.51815 7.50616 8.49397 6.48197 8.20254 5.17056L7.89049 3.76632C7.79768 3.34869 7.20235 3.34869 7.10954 3.76632L6.79749 5.17055Z" fill="currentColor" />
+</svg></span>
+<span>Summarize</span>
+</summary>
+<div class="ai-summary-wrapper">
+<div class="ai-disclaimer-header">
+<div class="disclaimer-left">
+<img alt="AI sparkle icon" aria-hidden="true" class="sparkle-icon" height="24" src="https://servicenow.com/docs/portal-asset/ai-sparkle-icon" width="24">
+<span class="disclaimer-text">Summarized using AI</span>
+<div class="info-tooltip-wrapper">
+<span><svg class="info-icon" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10" stroke="#9CA3AF" stroke-width="2" />
+<path d="M12 16V12M12 8H12.01" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+<div class="tooltip-content">
+                                This content was generated using new OpenAI-powered functionality. Results are provided on an as is basis and are not guaranteed to be accurate or complete.
+                            </div>
+</div>
+</div>
+</div>
+<div class="summary-content-wrapper">
+<h2 class="summary-title">Summary of Horizontal discovery process flow with probes and sensors</h2>
+<div class="summary-overview">
+<p><span class="sentence">The horizontal discovery process in ServiceNow systematically identifies and classifies devices across a network using probes and sensors.</span>
+<span class="sentence">It consists of four phases—scanning, classification, identification, and exploration—each leveraging specific probes executed via the MID Server to gather and process information about target machines.</span>
+<span class="sentence">This process enables accurate detection, classification, and updating of Configuration Items (CIs) in the CMDB.</span>
+</p>
+</div>
+<details class="summary-details">
+<summary class="summary-toggle">
+<span class="toggle-text-expand">Show full answer</span>
+<span class="toggle-text-collapse">Show less</span>
+<span><svg class="toggle-arrow" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 10l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+</summary>
+<div class="summary-full-content">
+<h2>Key Features</h2>
+<ul> <li><b>Discovery Initiation:</b> Discovery is triggered either by scheduling or on-demand using Discover Now or Quick Discovery, targeting specified IP addresses or ranges.</li> <li><b>Scanning Phase:</b> The Shazzam probe and port probes scan target machines for open ports and protocols (WMI, HTTP, SSH, SNMP). Responses help identify machine types (e.g., UNIX/Linux if port 22 is open).</li> <li><b>Classification Phase:</b> Based on scanning results, classification probes run to determine detailed device information such as operating system version, which helps define the CI class.</li> <li><b>Identification Phase:</b> Identification trigger probes run according to the CI class and classifier rules, determining if CIs should be inserted or updated in the CMDB. Sensors process probe data to support decision-making.</li> <li><b>Exploration Phase:</b> Exploration probes gather additional data about the CI, with sensors updating the CMDB as needed, similar to the identification phase.</li></ul>
+<h2>Practical Implications for ServiceNow Customers</h2>
+<ul> <li>This process allows customers to automate discovery of network devices accurately, ensuring the CMDB reflects the current state of infrastructure.</li> <li>By utilizing MID Servers and ECC queues, discovery probes execute efficiently and securely across networks.</li> <li>The phased approach ensures devices are properly classified and identified before updates are made, reducing errors in CMDB data.</li> <li>Understanding this flow helps customers customize discovery schedules and interpret discovery results for better IT operations management.</li></ul>
+</div>
+</details>
+</div>
+</div>
+</details><div class="body conbody"><p class="shortdesc">The horizontal discovery process passes through the four phases of discovery using probes, which gather information on the target machine. Sensors then help Discovery determine what to do with that information.</p>
+<section class="section"><h2 class="title sectiontitle">Kicking off Discovery</h2>
+<p class="p">A user triggers horizontal discovery by configuring a discovery schedule or by launching an on-demand discovery with Discover now or Quick Discovery. The schedule specifies one or more IP addresses or
+            range of IP addresses.</p>
+</section>
+<section class="section"><h2 class="title sectiontitle">Scanning phase</h2>
+<div class="p">
+<ol class="ol" id="c_DiscoProcessFlows__ol_m13_l45_bz">
+<li class="li"><span class="ph">Discovery</span> first takes the Shazzam probe (and then <span class="xref ft-internal-link" title="Port probes are used in Discovery by the Shazzam probe to detect protocol activity on open ports on devices it encounters." data-ft-warning="excluded-from-rendering" data-mapid="sPnEbors95h6DhgBlE~f0A" data-tocid="2aY~7BvjUi~Ir2RC2cmgXA">port probes</span>) and places it in a request in the External Communication Channel (ECC) queue.</li>
+<li class="li">The MID Server checks the ECC queue, retrieves the discovery request, and runs the probes against the host and discovers open ports.</li>
+<li class="li">The port probes scan common ports using several protocols, such as WMI, HTTP, SSH, and SNMP.</li>
+<li class="li">If one or more ports respond, the Shazzam probe sends information about the port back to the ECC queue through the MID Server.</li>
+<li class="li">Discovery checks the ECC queue to find out which ports responded, which identifies the type of machine. For example, if Shazzam detects that the machine is listening on port 22, Discovery treats the machine as a UNIX or
+                  Linux machine.</li>
+</ol>
+</div>
+</section>
+<section class="section"><h2 class="title sectiontitle">Classification phase</h2>
+<div class="p">
+<ol class="ol" id="c_DiscoProcessFlows__ol_ey2_pqt_lx">
+<li class="li">The Discovery application determines which classification probe to send to the newly discovered device by using information in the record of the port probe that successfully responded.</li>
+<li class="li">Discovery puts the classification probe into the ECC queue.</li>
+<li class="li">The MID Server checks the ECC queue, retrieves the discovery request, and runs the classification probe.</li>
+<li class="li">The classification probe retrieves additional information, such as which version of the operating system is running on a machine. This information determines the class of the CI that Discovery found. There is only one
+                  classification probe per discovered device.</li>
+<li class="li">The classification probe sends information back to the instance ECC queue through the MID Server.</li>
+</ol>
+</div>
+</section>
+<section class="section"><h2 class="title sectiontitle">The Identification phase</h2>
+<div class="p"><ol class="ol" id="c_DiscoProcessFlows__ol_thp_zst_lx">
+<li class="li">Discovery determines which classifier to use based on the class of the CI and the criteria specified in all CI classifier records. The classifier specifies which probes to use for the next two phases.</li>
+<li class="li">Discovery puts the identification trigger probe for the CI classifier into the ECC queue. For example, a <span class="ph">UNIX</span> machine running <span class="ph">HP-UX</span> would require the <span class="ph">HP-UX</span> classifier, which specifies that the Multi Probe-<span class="ph">HP-UX</span> Identity identification trigger probe. These probes use identification rules to determine whether or not to insert or update a CI in the CMDB.<div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">The trigger probe could also be the Horizontal
+                     Pattern probe, which tells Discovery to follow the operations in the specified pattern, rather than sending out additional probes. The operations in the pattern cover both the identification and exploration phases.
+                     Discovery knows which identification rules to use based on the CI type, and Discovery makes inserts or updates to the CMDB based on these rules. Probes and sensors are not used.</div></div></li>
+<li class="li">The MID Server checks the ECC queue, retrieves the discovery request, and runs the identification trigger probe.</li>
+<li class="li">The identification probe accumulates identification data for each device and sends that data back to the instance via the MID Server.</li>
+<li class="li">Discovery uses sensors for the identifier probe to process the information.</li>
+<li class="li">Discovery performs the analysis on the CMDB using <span class="xref ft-internal-link" title="After Discovery classifies a configuration item (CI), it uses identifiers to determine if the device already exists in the Configuration Management Database (CMDB)." data-ft-warning="excluded-from-rendering" data-mapid="sPnEbors95h6DhgBlE~f0A" data-tocid="OrODyO9cRjzjKzI2Pv_bcA">CI identifiers</span>. Discovery can update existing CIs in the CMDB or create new ones.</li>
+</ol></div>
+</section>
+<section class="section"><h2 class="title sectiontitle">The Exploration phase</h2>
+<div class="p"><ol class="ol" id="c_DiscoProcessFlows__ol_y3p_445_bz">
+<li class="li">Discovery looks at the Triggers Probes related list in the classifier to find exploration probes to run.</li>
+<li class="li">Discovery puts the exploration trigger probe into the ECC queue.</li>
+<li class="li">The MID Server checks the ECC queue, retrieves the discovery request, and runs the exploration trigger probes.</li>
+<li class="li">The probes send data back to the instance via the MID Server and sensors make updates to the CMDB, just as in the identification phase.</li>
+</ol></div>
+</section>
+</div>
+<nav class="related-links" role="navigation"><div class="linklist relconcepts"><strong>Related concepts</strong><br><ul class="linklist"><li class="linklist"><span class="link ft-internal-link" title="Horizontal discovery with patterns has four phases, just as horizontal discovery with probes does. However, for the last two phases, Discovery triggers operations from a pattern, rather than additional sets of probes." data-ft-warning="excluded-from-rendering" data-mapid="sPnEbors95h6DhgBlE~f0A" data-tocid="SotY1kbxGXkCxDgjjGC1lA">Horizontal discovery process flow with patterns</span></li><li class="linklist"><span class="link ft-internal-link" title="A pattern is a series of operations that tell Discovery which CIs to find on your network and what credentials to use. Patterns also define what tables to populate in the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="sPnEbors95h6DhgBlE~f0A" data-tocid="WtfJx~H7mHHJKPMU3hBM9w" data-section="c-UsingPatternsForHorizontalDiscovery">Patterns and horizontal discovery</span></li></ul></div></nav>
+</article></main></div>

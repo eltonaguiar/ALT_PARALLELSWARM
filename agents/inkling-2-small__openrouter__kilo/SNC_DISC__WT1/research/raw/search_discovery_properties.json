@@ -1,0 +1,58 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery properties",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery properties",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r_DiscoveryProperties.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/nAdOkxdVSItcy~_vNc28pA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "ACC File-Based Discovery properties",
+  "breadcrumb": "IT Operations Management > Agent Client Collector > Agent Client Collector reference > ACC-VC reference > ACC File-Based Discovery properties",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/agent-client-collector/file-based-discovery-configuration-properties.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/84D4wAs87KaBN2khIds_wQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Running process-based discovery platform coverage and properties",
+  "breadcrumb": "IT Operations Management > Agent Client Collector > Agent Client Collector reference > ACC-VC reference > Running process-based discovery platform coverage and properties",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/agent-client-collector/running-process-based-discovery-platform-coverage-properties.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/3XMTU8wUmKLiDC~gXmZsnw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Properties related to tag-based discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Service Mapping > Service Mapping reference > Properties related to tag-based discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/service-mapping/properties_tag_mapping.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/imgIF5~uDhYfz1HK8eHSYg/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/neb5udgz5y36iZmb_mhEzw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "ACC-VC system properties",
+  "breadcrumb": "IT Operations Management > Agent Client Collector > Agent Client Collector reference > ACC-VC reference > ACC-VC system properties",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/agent-client-collector/accvc-system-properties.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/WnlDZUI9cH2wswFpaqbVuQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "IP address selection properties",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery IP address configuration > IP address selection properties",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r_CIIPAddressSelection.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/dAqOzQmdlnpBh7i31tXCwA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Using push and horizontal IP-based Discovery together",
+  "breadcrumb": "IT Operations Management > Agent Client Collector > Configuring Agent Client Collector > ACC deployment - servers > ACC Discovery > Using push and horizontal IP-based Discovery together",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/agent-client-collector/using-enhanced-discovery-and-agent-less-discovery-together.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/8StKHvvPVdKxg5T80KKlmg/content"
+ }
+]

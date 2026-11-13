@@ -1,0 +1,58 @@
+[
+ {
+  "map": "Australia Security Management",
+  "title": "Creating CIs using the Identification and Reconciliation engine",
+  "breadcrumb": "Security Operations > Unified Security Exposure Management > Explore > Security Exposure Management workflow > Automating prioritization and triaging > Creating CIs using the Identification and Reconciliation engine",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/sem-ci-creation-using-IRE.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/IDgcDPwbCrz7uE0CMe6d6g/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Identification and Reconciliation Engine (IRE)",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB Identification and Reconciliation (IRE) > Explore > Components and process of Identification and Reconciliation > Identification and Reconciliation Engine (IRE)",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/ire.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/gvM5t9MKAN_mSOV5KTNHPQ/content"
+ },
+ {
+  "map": "Australia Security Management",
+  "title": "Creating CIs for Configuration Compliance using the Identification and Reconciliation Engine",
+  "breadcrumb": "Security Operations > Unified Security Exposure Management > Configuration Compliance > Explore > Creating CIs for Configuration Compliance using the Identification and Reconciliation Engine",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/configuration-compliance/cc-ci-creation-using-ire.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/cBtO3vhegZcGZYEYEBmAng/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Components and process of Identification and Reconciliation",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB Identification and Reconciliation (IRE) > Explore > Components and process of Identification and Reconciliation",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/c_CompsandProcessIDandReconcil.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/aNIELqb~b2PdcbKv4cQZ~A/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "CMDB Identification and Reconciliation (IRE)",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB Identification and Reconciliation (IRE)",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/c_CMDBIdentifyandReconcile.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/5Pc1~JMnu8BR49CU5K1qNg/content"
+ },
+ {
+  "map": "Australia API Reference",
+  "title": "Identification and Reconciliation API",
+  "breadcrumb": "API implementation and reference > API reference > REST API reference > Identification and Reconciliation API",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/api-reference/rest-apis/c_IdentifyReconcileAPI.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/eJIqiaxRKVcMaR8XQU6_oA/topics/siLa~1_7PaDCW1bBUdIfuA/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Identification simulation",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB Identification and Reconciliation (IRE) > Identification simulation",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/identification-simulation.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/6nvl3lKOH4aVk_ai0nmRyg/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Create a CI reconciliation rule",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB Identification and Reconciliation (IRE) > Configure > Reconciliation rules > Create a CI reconciliation rule",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-reconciliation-rule.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/4N2THgn8Dj8_B9coNoQiBg/content"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery identifiers",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery identifiers",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/c_DiscoveryIdentifiers.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/hNYpwqJKmGsA99EqEWKhSA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "How Discovery identifiers work",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery identifiers > How Discovery identifiers work",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/c_HowDiscoveryIdentifiersWork.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/wR1lIbwSkx6H5KJyR130Ew/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Network device discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Visibility reference > Data collected by ITOM Visibility > Network device discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/c_NetworkDevices.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/_VYiC52GLB6SFYgob4BGiA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/neb5udgz5y36iZmb_mhEzw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Operating systems discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Visibility reference > Data collected by ITOM Visibility > Operating systems discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/c_Computers.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/zyc6k2X2x_qCeqB8lQyQ2w/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Software discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Visibility reference > Data collected by ITOM Visibility > Software discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/c_Software.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/P5q4QaItT9~XPHFwI~w_LQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discover CIs identified as generic applications",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Service Mapping > Using Service Mapping > Application service mapping using classic Service Mapping > Fine-tune application services to implement owner requests > Discover CIs identified as generic applications",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/service-mapping/create-pattern-from-generic-application.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/tEXV1qh45KUWaPLhT4omRA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery classifiers",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery classifiers",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/discovery-classifiers.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/K~wUNTGCDMMIaioUb3s9Ow/content"
+ }
+]

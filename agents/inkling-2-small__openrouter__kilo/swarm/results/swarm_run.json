@@ -1,0 +1,18 @@
+{
+  "ts": "2026-11-13T09:02:02Z",
+  "wall_s": 0.0,
+  "prompt": "Context: ServiceNow Discovery writes CIs to the CMDB via the Identification and Reconciliation Engine (IRE). In <=120 words, list the controls that prevent duplicate CIs, and say whether each is a system property, an IRE rule type, or a CMDB Health/remediation feature. Be terse; bullet list.",
+  "results": [
+    {
+      "provider": "subq_free",
+      "ok": false,
+      "error": "RuntimeError: NO_KEY provider=subq_free"
+    },
+    {
+      "provider": "subq_paid",
+      "ok": false,
+      "error": "RuntimeError: NO_KEY provider=subq_paid"
+    }
+  ],
+  "ok_count": 0
+}

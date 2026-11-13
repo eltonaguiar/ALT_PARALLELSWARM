@@ -1,0 +1,132 @@
+Properties related to remediation of duplicate CIs
+
+ Release version: Australia
+
+ Updated March 12, 2026
+
+ 2 minutes to read
+
+Summarize
+
+Summarized using AI
+
+ This content was generated using new OpenAI-powered functionality. Results are provided on an as is basis and are not guaranteed to be accurate or complete.
+ 
+
+Summary of Properties related to remediation of duplicate CIs
+
+This content explains configuration properties that control how the remediation of duplicate Configuration Items (CIs) is handled in ServiceNow’s Duplicate CI Remediator and the De-duplication Dashboard within CMDB Workspace.
+These properties require thesncmdbadminoradminrole to view or edit, allowing you to tailor de-duplication tasks to your CMDB environment while balancing performance and accuracy.
+
+Show full answer
+Show less
+
+Key Properties and Their Functions
+
+ glide.duplicateciremediator.max.fieldlength: Sets the maximum attribute length (default 4000) considered during remediation. Attributes exceeding this length are excluded from key remediation steps to optimize performance. Data exceeding this length is truncated if the maxlength equals this property’s value.
+ glide.duplicateciremediator.relateditemsblacklist: Defines a comma-separated list of related tables and reference columns excluded from merging during remediation, preventing unintended updates to sensitive or critical related records.
+ glide.duplicateciremediator.max.cis: Sets a threshold (default 1000, max 5000) for the number of duplicate CIs where reconciliation support is limited, ensuring system stability during large remediation tasks.
+ glide.duplicateciremediator.dryrun: When true, enables a test run mode where no actual updates occur, but change details are logged as work notes. This helps validate remediation plans before execution (default is false, meaning updates are performed).
+ glide.duplicateciremediator.enablerestrictedmode: Enables a restricted remediation mode that limits use of related items and allows blocked remediations to proceed. This is useful in complex environments where related item updates can cause issues.
+ glide.duplicateciremediator.mergerelateditemsenhanced: When true (default), allows ignoring database errors and disabling workflows/business rules on related tables during remediation. This prevents workflow-induced failures and ensures remediation completion.
+
+Why This Matters
+
+Configuring these properties lets you control the behavior and performance of duplicate CI remediation to fit your organization’s unique CMDB scale and complexity. Proper settings help prevent performance bottlenecks, avoid unwanted updates to related records, and enable safe testing of remediation plans before applying changes.
+
+What You Can Expect
+
+ Improved control over how attributes and related tables are handled during duplicate CI remediation.
+ Enhanced stability for large de-duplication tasks by defining thresholds and exclusion lists.
+ Ability to safely test remediation scenarios without impacting production data using dry run mode.
+ Options to bypass workflow-related errors to ensure remediation tasks complete successfully.
+
+Use de-duplication properties to configure how remediation of duplicate CIs works when using the Duplicate CI Remediator, or the De-duplication Dashboard in CMDB Workspace .
+
+To view and edit these properties, the sn_cmdb_admin or admin role is required.
+
+Although the properties below reference the Duplicate CI Remediator, these properties have an equivalent effect in CI de-duplication experience in CMDB Workspace.
+
+Property
+Description
+
+Attributes in which max_length exceeds this property value (4000 by default) are excluded from the Select Main CI, Merge Attribute Values, and
+ Determine Duplicate CI Actions tabs in the Duplicate CI Remediator wizard.
+
+glide.duplicate_ci_remediator.max.field_length
+
+If the max_length for an attribute is equal to the property value, and the size of the data exceeds the property value, then the data is truncated to the property value and the attribute
+ appears in attribute lists.
+Type: integer
+
+Default value: 4000
+
+Location: Configuration > CMDB Properties > Duplicate CI Remediator Properties
+
+Note: This property impacts the performance of de-duplication tasks, therefore be cautious about setting this value.
+
+Comma separated list of related tables in the format '<table>.<reference column>', that are excluded from merging during duplicate CI remediation.
+
+glide.duplicate_ci_remediator.related_items_blacklist
+
+Type: string
+
+Default value: cert_task.cmdb_ci,cert_audit_result.configuration_item,discovery_log.cmdb_ci,alm_hardware.ci,alm_asset.ci,fm_expense_line.ci
+
+Location: Configuration > CMDB Properties > Duplicate CI Remediator Properties
+
+Threshold for the number of duplicate CIs, which if exceeded, support for reconciliation in the Duplicate CI Remediator is limited (1,000 by default).
+
+glide.duplicate_ci_remediator.max.cis
+
+Type: integer
+
+Default value: 1000
+
+Location: Configuration > CMDB Properties > Duplicate CI Remediator Properties
+
+Learn more: See 'Large number of duplicate CIs' in Remediate a de-duplication task (manual).
+
+This threshold never exceeds 5,000, even if you set the property to a value greater than 5,000.
+
+Determines whether the Duplicate CI Remediator actually remediates CI duplication by updating records in the CMDB, or not.
+
+glide.duplicate_ci_remediator.dry_run
+
+When set to false (default value), updates specified in the wizard are actually performed.
+
+You can set this property to true and then test run through the Duplicate CI Remediator without any records actually being updated. In this case, the work notes for the task describe the changes that will
+ happen in an actual remediation.
+
+Type: true | false
+
+Default value: false
+
+Location: Configuration > CMDB Properties > Duplicate CI Remediator Properties
+
+glide.duplicate_ci_remediator.enable_restricted_mode
+Enables restricted mode remediation in the Duplicate CI Remediator. This option restricts the use of related items in de-duplication remediation and allows a blocked remediation to proceed using the
+ Use the Duplicate CI Remediator (Restricted Mode) option. For more information, see Using restricted mode within the Duplicate CI Remediator [KB1542272].
+
+Type: true | false
+
+Default value: false
+
+Location: Add to System Properties [sys_properties]
+
+Learn more: Remediate a de-duplication task (manual)
+
+Set to true to enable restricted mode remediation.
+
+glide.duplicate_ci_remediator.merge_related_items_enhanced
+Enables the capability to ignore database errors and/or skip ALL business rules (disable workflow) in related tables referencing CIs, during duplicate CI remediation. In such related tables, automated
+ workflows such as business rules might prevent the update of the referenced CI to the main CI, causing de-duplication tasks to fail. In these situations, blocking business rules and other automated workflows, and
+ ignoring errors allows remediation to complete.
+
+Type: true | false
+
+Default value: true
+
+Location: Add to System Properties [sys_properties]
+
+Learn more: Turn off workflows of related tables during remediation.

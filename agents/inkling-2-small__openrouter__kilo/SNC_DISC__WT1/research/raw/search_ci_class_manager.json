@@ -1,0 +1,72 @@
+[
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "CI Class Manager",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CI Class Manager",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/ci-class-manager-landing-page.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/SylGfPSqxtj2LrtS84i5Kg/content"
+ },
+ {
+  "map": "Australia Operational Technology Management",
+  "title": "CMDB CI classes for Operational Technology Manager",
+  "breadcrumb": "Operational Technology > Operational Technology Manager > Explore > CMDB CI classes for Operational Technology Manager",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/operational-technology/operational-technology-manager/cmdb_ci_classes_operational_technology_manager.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/B0Z4zoSWAekbvp6dQcybtA/topics/2g82_zVnrx4R~YR7U0Fm8Q/content"
+ },
+ {
+  "map": "Australia Operational Technology Management",
+  "title": "Operational Technology Manager (OT) configuration item extension classes",
+  "breadcrumb": "Operational Technology > Operational Technology Manager > Explore > Operational Technology Manager (OT) configuration item extension classes",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/operational-technology/operational-technology-manager/ot-configuration-item-extension-classes.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/B0Z4zoSWAekbvp6dQcybtA/topics/ayvxyqLbfnUFeZXdOwsecQ/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Create a CI class",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB classifications and class dependency > Create a CI class",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_CreateCIType.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/gulNQcIL7wf6aBBzIztOrQ/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "CMDB CI class models",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB CI class models",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/cmdb-ci-class-models/cmdb-ci-class-models.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/whefVbg6wGYapcVS360xIw/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "CI class recommendations",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB success advisor > Use Data Foundations advisor > CI class recommendations",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-sa-df-class-recom.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/mBOiljcfr0fuJJRyX43rAw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Create a CI class for a virtual cloud resource",
+  "breadcrumb": "IT Operations Management > ITOM Cloud Accelerate > Cloud Provisioning and Governance > Cloud API (CAPI) > Add a product to an existing provider in CAPI > Create a CI class for a virtual cloud resource",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/cloud-configuration-governance/create-a-ci-class-cloud.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/~Z1G9zb8Mibiavxe6q0XSA/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "NIDS CI class",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB) > CMDB CI class models > NIDS CI class",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/cmdb-ci-class-models/cmdb-network-ids-nids-ci-extension-class.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/B_n2gW0i_9uUBSoV0AR02w/content"
+ },
+ {
+  "map": "Australia ServiceNow AI Platform Capabilities",
+  "title": "Configuration Management Database (CMDB)",
+  "breadcrumb": "Extend ServiceNow AI Platform capabilities > Configuration Management > Configuration Management Database (CMDB)",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/c_ITILConfigurationManagement.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/q4dSP2Icgr1SFv5wanVXvQ/topics/TWapvFkBRG6eQTu7R3FYQw/content"
+ },
+ {
+  "map": "Australia Security Management",
+  "title": "Ignore CI classes",
+  "breadcrumb": "Security Operations > Unified Security Exposure Management > Vulnerability Response > Vulnerability Response implementation > Advanced Vulnerability Response configuration tasks > Create a Vulnerability Response CI lookup rule > Ignore CI classes",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/vulnerability-response/ignore-CI-classes.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/D1txSpeYyNjKjrivMKgJQQ/content"
+ }
+]

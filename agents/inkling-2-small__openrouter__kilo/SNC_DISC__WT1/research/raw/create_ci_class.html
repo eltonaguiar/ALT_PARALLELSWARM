@@ -1,0 +1,131 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+   <h1 class="title topictitle1" id="ariaid-title1">Create a CI class</h1>
+   
+   
+   <div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class=" css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class=" css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 3 minutes  to read</div></div><div class="body taskbody"><p class="shortdesc">Create a CI class (table) that is an extension of an existing CI class. Then create
+        identification and reconciliation rules for the new class.</p>
+      <section class="section prereq" id="t_CreateCIType__prereq_d12_tcf_nsb"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Before you begin</h2></div>
+         <p class="p">The class that is being extended must have its
+                    <span class="keyword parmname">Is_Extendable</span> field checked, indicating that the class is
+                extendable.</p>Role required:<ul class="ul" id="t_CreateCIType__ul_wph_s1n_lbb">
+            <li class="li">sn_cmdb_admin or Itil_admin, and personalize_dictionary: Required for editing the dictionary table</li>
+            <li class="li">sn_cmdb_admin or admin: Full access</li>
+         </ul>
+      </section>
+      <section class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">About this task</h2></div>
+         <p class="p">The CI Class Manager is a centralized location for managing CMDB tables and for
+                creating a class that is derived from another CMDB class. Creating a class requires
+                basic details such as a label and a name. Identification and reconciliation rules
+                are also required to ensure that the class can be successfully identified by the
+                identification engine.</p>
+         <p class="p">For more information about extending a class and how attributes are derived from a parent class in that process, see <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=table-extension-and-classes&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Table extension and classes</a>.</p>
+      </section>
+      <section><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand">
+            <span class="ph cmd">Navigate to <span class="ph menucascade"><span class="ph uicontrol">All</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CI Class Manager</span></span>.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Hierarchy</span> to expand the CI Classes list.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Select the class that the new class is extended from.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Add Child Class</span>.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Add Child Class</span> option appears only if the selected
+                    class is extendable.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Provide Basic Info</span> tab, fill out the information
+                    and then click <span class="ph uicontrol">Next</span>.</span>
+            <div class="itemgroup info" id="t_CreateCIType__step_BasicInfoStep4">
+               <table class="table frame-all" id="t_CreateCIType__table_mqb_32s_y1b"><caption></caption><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead class="thead">
+                        <tr class="row">
+                           <th class="entry colsep-1 rowsep-1" id="t_CreateCIType__table_mqb_32s_y1b__entry__1">Field</th>
+                           <th class="entry rowsep-1" id="t_CreateCIType__table_mqb_32s_y1b__entry__2">Description</th>
+                        </tr>
+                     </thead><tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__1">Display name</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__2">A unique label for the class (such as Laptops or Thin Clients). The label appears on list and form views for the class. Updating the <span class="ph uicontrol">Label</span> field also updates the label record in the
+                              language file for the current language. See Field Labels in <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=c_DataDictionaryTables&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Data dictionary tables</a>.<p class="p">Maximum string length is 80 characters.</p></td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__1">Table name</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__2"><p class="p">Automatically populated based on the table label and the
+                                            prefix string
+                                            'u_cmdb_ci'.</p>
+                              <p class="p">You cannot modify the prefix; however, you can modify the
+                                            rest of the table name. The name can contain only
+                                            lowercase, alphanumeric ASCII characters and underscores
+                                            (_).</p>
+                              <p class="p">Maximum string length is 80 characters.</p></td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__1">Description</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__2">Explanation of the use purpose of the class.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__1">Icon</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__2">The icon associated with the class.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1 rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__1">Extensible</td>
+                           <td class="entry rowsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__2">Indicator of whether this class can be extended.</td>
+                        </tr>
+                        <tr class="row">
+                           <td class="entry colsep-1" headers="t_CreateCIType__table_mqb_32s_y1b__entry__1">Principal Class</td>
+                           <td class="entry" headers="t_CreateCIType__table_mqb_32s_y1b__entry__2">Denotes whether this class is included in the <span class="xref ft-internal-link" title="Manage the list of classes in the Principal Class filter so that those classes are prioritized for tracking, health, certification, lifecycle management, and class list views." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="ESs3_Swnu2fAVc24C9q1ow">Principal
+                                            Class filter</span>. If this class is included in the
+                                        Principal Class filter, then CIs from this class appear in
+                                        CI list views when the Principal Class filter is
+                                        applied.</td>
+                        </tr>
+                     </tbody></table>
+            </div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Add Attributes</span> tab, click the + sign and enter details for each new class column.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Next</span>.</span>
+            <div class="itemgroup info">For description of the different columns in the list view, see <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=r_DictionaryEntryForm&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Dictionary entry form</a>. To designate an attribute as a CI identifier for class identification, double-click the attribute's Identification Rule column and set it to
+                  <span class="ph uicontrol">true</span>.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Set Identification Rule</span> tab, examine the <span class="ph uicontrol">Derived</span> identification rule and its <span class="ph uicontrol">Identifier Entries</span>.</span>
+            <div class="itemgroup info"> You can click <span class="ph uicontrol">Replace</span> to replace the derived rule with a new identification rule and new identifier entries specific to the new class. See <span class="xref ft-internal-link" title="Identification rules are used to uniquely identify CIs in the CMDB, as part of Identification and Reconciliation (IRE) processes. Each CMDB class can be associated with a single identification rule." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="XeHgHGmCieUlQ6rwpgEmdA">Identification rules</span> for details about identification rules and identifier entries.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Dependencies</span> tab, click <span class="ph uicontrol">Add
+                        dependency</span> to add <span class="xref ft-internal-link" title="Service definitions consist of CI types and relationship types. Dependent relationship rules define the dependency structure of the CI types and the relationship types in these service definitions, helping in CI identification and in the construction of business service maps." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="anOHXTLGvIyRdufhLZERYw">dependent rules</span>.</span>
+            <div class="itemgroup info">The <span class="ph uicontrol">Dependencies</span> tab appears only if there are
+                    dependent identification rules for the selected class.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Add Reconciliation Rules</span> tab, click
+                        <span class="ph uicontrol">Add</span> to create the following rules:</span>
+            <ol type="a" class="ol substeps" id="t_CreateCIType__substeps_zgf_2ms_y1b">
+               <li class="li substep">
+                  <span class="ph cmd"><span class="xref ft-internal-link" title="Create a static or a dynamic CI reconciliation rule." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="lNMe386Hcpze0Pu3QdW1yQ" data-section="create-reconciliation-rule">Reconciliation Rules</span></span>
+               </li>
+               <li class="li substep">
+                  <span class="ph cmd"><span class="xref ft-internal-link" title="Specify data refresh rules to determine if a CI is stale for a specific discovery source. Such CIs can then be updated by a lower-priority authorized discovery source." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="T9X6SeeRMMQ9Z134vetijg">Data Refresh
+                                Rules</span></span>
+               </li>
+            </ol>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">On the <span class="ph uicontrol">Add Suggested Relationships</span> tab, review the diagram of the class derived suggested relationships.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Use the filter to display only inbound, outbound, or specific relationship types.</span>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">To add a suggested relationship for the class:</span>
+            <ol type="a" class="ol substeps" id="t_CreateCIType__substeps_rsr_kf5_5cb">
+               <li class="li substep">
+                  <span class="ph cmd">Click <span class="ph uicontrol">New</span>.</span>
+               </li>
+               <li class="li substep">
+                  <span class="ph cmd">In the Add Suggested Relationship dialog box, select a <span class="ph uicontrol">Relationship</span> and a <span class="ph uicontrol">Target Class</span> for the relationship. <span class="ph uicontrol">This Class</span> and the <span class="ph uicontrol">Target
+                        Class</span> become parent or child in the suggested relationship, based on your selection of the <span class="ph uicontrol">Relationship</span>.</span>
+               </li>
+               <li class="li substep">
+                  <span class="ph cmd">Click <span class="ph uicontrol">Save</span>.</span>
+               </li>
+            </ol>
+            <div class="itemgroup stepresult"> When building relationships for the class in the Query Builder, the list of suggested relationships is updated.</div>
+         </li><li class="li step stepexpand">
+            <span class="ph cmd">Click <span class="ph uicontrol">Done</span>.</span>
+         </li></ol></section>
+   </div>
+   <nav role="navigation" class="related-links"><div class="linklist relconcepts"><strong>Related concepts</strong><br><ul class="linklist"><li class="linklist"><span class="link ft-internal-link" title="A life cycle update for a CI affects its dependent CIs. For example, when the CI that a dependent CI depends on is deleted, the dependent CI becomes orphan with no further use. To maintain the integrity and health of the CMDB, the system applies cascade-cleanup processes to dependent CIs that are affected by a life cycle update." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="6uIdsynd7u96MF49x0l4bg">Dependent CIs management</span></li><li class="linklist"><span class="link ft-internal-link" title="A Principal Class is a designation for those CMDB classes that are most critical for foundational data health and governance in the organization. Those classes are then prioritized for tracking, health, certification, lifecycle management, and class list views." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="ENE4G2KZHXZ4qUyd2nyztg">Principal Class</span></li><li class="linklist"><span class="link ft-internal-link" title="The Identification and Reconciliation module provides a centralized framework for identifying and reconciling data from different data sources. It helps maintain the integrity of the CMDB and some non-CMDB tables when multiple data sources are used to create and update CI records." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="Z8diB6pYFbsGQMgZmJZYfg">CMDB Identification and Reconciliation (IRE)</span></li></ul></div><div class="linklist reltasks"><strong>Related tasks</strong><br><ul class="linklist"><li class="linklist"><span class="link ft-internal-link" title="You can upgrade, downgrade, or switch the class of a CI by modifying its Class attribute." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="AWEQF6hRbfplBZvBqpk5VA">Reclassify a CI</span></li><li class="linklist"><span class="link ft-internal-link" title="You can use the CI Class Manager to delete CIs that are no longer needed." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="UerocPe6cpz79N2H~lVuwQ">Delete CIs</span></li><li class="linklist"><span class="link ft-internal-link" title="Use the CI Class Manager as a central location to explore the CMDB class hierarchy, CI table definitions, and class CIs. View the details of each table such as its label and fields, relationships, and all related metadata definitions." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HgN3Kyy5jbQGOy5JQ_xN5Q">View and edit class definitions and metadata</span></li></ul></div><div class="linklist relref"><strong>Related reference</strong><br><ul class="linklist"><li class="linklist"><span class="link ft-internal-link" title="The CMDB contains the following major record types." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="FebUNZpm3IUWhouAvxrpew">CMDB record types</span></li><li class="linklist"><span class="link ft-internal-link" title="Related lists in CI records display additional components contained by that CI, such as disk drives on a server and the rules that control the behavior of a network router." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="1mhwfKRbbTibrz7rD7koAw">Related Lists of CI components</span></li></ul></div></nav>
+</article></main></div>

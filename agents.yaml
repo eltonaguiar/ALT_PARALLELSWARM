@@ -60,3 +60,10 @@ self_runs:
     wt: 1
     folder: agents/deepseek-v4.1-flash-fast__freebuff__buffy/SNC_DISC__WT1
     note: "browsed and researched with native tools; no vendor key, no budget.py entry"
+  - id: inkling-2-small__openrouter__kilo
+    model: thinkingmachines/inkling-2-small:free
+    provider: openrouter             # OpenRouter free tier (kilo harness)
+    harness: kilo
+    wt: 1
+    folder: agents/inkling-2-small__openrouter__kilo/SNC_DISC__WT1
+    note: "self-driven Kilo run; Fluid Topics khub-API corpus; swarm/ wrapper incl. SUBQ (unkeyed) — not re-runnable by orchestrate.py"

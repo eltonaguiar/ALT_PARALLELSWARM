@@ -1,0 +1,72 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configuring Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/c_DiscoveryConfiguration.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/WfTYCR8aISxpwVHO04rEjw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configure Discovery identity probes",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery identifiers > Configure Discovery identity probes",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/t_ConfigureDiscoveryIdentityProbes.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/XazGi7EU22scCitX2Ie0mg/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configure Discovery identity sensors",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Discovery identifiers > Configure Discovery identity sensors",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/t_ConfigDiscoIdentSens.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/shubMmShbGljleAkUBkOFA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configure Discovery to use Event Framework",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Advanced Discovery configuration > Configure Discovery to use Event Framework",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/t_ConfigureDiscoveryEventFramework.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/OsTbUAlw2X8E05FXxFd6rw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configure Discovery for Windows hosts",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Visibility reference > Data collected by ITOM Visibility > Storage discovery > Configure discovery of hosts with attached storage > Configure Discovery for Windows hosts",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/t_ConfigureDiscoveryWindowsHosts.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/vKVJxNNCd05v5tYejShidQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configure discovery of hosts with attached storage",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Visibility reference > Data collected by ITOM Visibility > Storage discovery > Configure discovery of hosts with attached storage",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/configure-discovery-of-hosts-with-attached-storage.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/MPVdv2rc4PuCx7N77a2PPg/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configure Discovery for UNIX or Linux hosts",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > ITOM Visibility reference > Data collected by ITOM Visibility > Storage discovery > Configure discovery of hosts with attached storage > Configure Discovery for UNIX or Linux hosts",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/t_ConfigureDiscoveryUNIXLinuxHosts.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/xrKJPgwoa0COPkOGdzNDJA/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configure for VMware Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery > Configuring Discovery > Configure for VMware Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/configuration-vmware-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/XQNcN2I9ViO9VPS1avpmDQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Configuring the discovery of cryptographic assets",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Cryptographic Asset Compliance > Configure > Configuring the discovery of cryptographic assets",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/set-up-cryptographic-asset-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/jxTYoj_6vXJatAuGrvZwDw/content"
+ },
+ {
+  "map": "Australia Operational Technology Management",
+  "title": "Configure the OT Discovery Collector",
+  "breadcrumb": "Operational Technology > Operational Technology Discovery > Operational Technology Native Discovery components > Operational Technology Discovery Collector > Configure the OT Discovery Collector",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/operational-technology/configuring-the-collector.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/B0Z4zoSWAekbvp6dQcybtA/topics/w6RDG4pdhBCvuwQvmp9N9A/content"
+ }
+]

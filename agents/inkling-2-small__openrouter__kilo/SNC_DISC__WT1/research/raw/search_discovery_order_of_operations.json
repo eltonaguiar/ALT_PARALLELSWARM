@@ -1,0 +1,58 @@
+[
+ {
+  "map": "Australia IT Operations Management",
+  "title": "Discovery",
+  "breadcrumb": "IT Operations Management > ITOM Visibility > Discovery",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r-discovery.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/neb5udgz5y36iZmb_mhEzw/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "IT Operations Management",
+  "breadcrumb": "IT Operations Management",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/r_ITOMApplications.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/Ofe39UIOMf69YPo6SvT3xA/content"
+ },
+ {
+  "map": "Australia Security Management",
+  "title": "Security Operations",
+  "breadcrumb": "Security Operations",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/security-management/security-operations-landing-page.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/x8~ohSTeWLioGLVI5x3Vgg/topics/JdKULC4vOErmucjVRK_shQ/content"
+ },
+ {
+  "map": "Australia Manufacturing",
+  "title": "Manufacturing Commercial Operations",
+  "breadcrumb": "Manufacturing Commercial Operations",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/manufacturing/manufacturing-overview.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/IZ7nXXf~AeKkfLY4WmhNmw/topics/179pRVMjpRvnZWP_4R4jYQ/content"
+ },
+ {
+  "map": "Australia IT Operations Management",
+  "title": "ITOM Visibility",
+  "breadcrumb": "IT Operations Management > ITOM Visibility",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/it-operations-management/itom-visibility/itom-visibility-landing-page.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/sPnEbors95h6DhgBlE~f0A/topics/Dlko3frsFH8o8xkFGKO63Q/content"
+ },
+ {
+  "map": "Australia Finance and Supply Chain",
+  "title": "Accounts Payable Operations",
+  "breadcrumb": "Finance and Supply Chain > Accounts Payable Operations",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/source-to-pay-operations/accounts-payable-operations/acc-pay-mgmt-landing-page.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/jU~ctnBMOlCbro_3WEobbw/topics/DZCk30f~wafiBwDayTvV4A/content"
+ },
+ {
+  "map": "Australia Finance and Supply Chain",
+  "title": "Supplier Lifecycle Operations",
+  "breadcrumb": "Finance and Supply Chain > Supplier Lifecycle Operations",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/source-to-pay-operations/supplier-lifecycle-operations/supp-mgmt-landing-page.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/jU~ctnBMOlCbro_3WEobbw/topics/MP0rblZ_cf_Xprlf8B0wvw/content"
+ },
+ {
+  "map": "Australia Finance and Supply Chain",
+  "title": "Source-to-Pay Operations",
+  "breadcrumb": "Finance and Supply Chain > Source-to-Pay Operations",
+  "readerUrl": "https://www.servicenow.com/docs/r/australia/source-to-pay-operations/source-to-pay-operations-overview.html",
+  "contentUrl": "https://www.servicenow.com/docs/api/khub/maps/jU~ctnBMOlCbro_3WEobbw/topics/kM42bhtG~tulqoIFTxwFmA/content"
+ }
+]

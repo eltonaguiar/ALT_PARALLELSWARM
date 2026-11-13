@@ -1,0 +1,20 @@
+{
+  "provider": "cerebras",
+  "model": "gpt-oss-120b",
+  "latency_s": 0.41,
+  "content": "- **Discovery\u202fUnique\u202fKey** \u2013 System property (`discovery.identify.unique_key`) that defines the attribute(s) used to uniquely identify a CI.  \n- **CMDB\u202fUnique\u202fIndex** \u2013 System property (`cmdb.uniqueness.index`) that enforces a database\u2011level unique index on the chosen key fields.  \n- **Identification Rule** \u2013 IRE rule type (Class\u202f+\u202fAttribute\u202f+\u202fCondition) that matches incoming data to an existing CI.  \n- **Reconciliation Rule \u2013 Merge** \u2013 IRE rule type that merges duplicate records into a single CI.  \n- **Reconciliation Rule \u2013 Update** \u2013 IRE rule type that updates an existing CI instead of creating a new one.  \n- **CMDB\u202fHealth\u202fDuplicate\u202fDetection** \u2013 CMDB Health feature that flags potential duplicates for review.  \n- **CMDB\u202fHealth\u202fDuplicate\u202fRemediation** \u2013 CMDB Health remediation action that automatically merges or removes flagged duplicates.  \n- **CI\u202fClass\u202fUniqueness\u202fConstraint** \u2013 System property (`cmdb.class.uniqueness`) that prevents creation of duplicate CIs within the same class.",
+  "usage": {
+    "total_tokens": 569,
+    "completion_tokens": 436,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "reasoning_tokens": 191
+    },
+    "prompt_tokens": 133,
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    }
+  },
+  "ok": true
+}

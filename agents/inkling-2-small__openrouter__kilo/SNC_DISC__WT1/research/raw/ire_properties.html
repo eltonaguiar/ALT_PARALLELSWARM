@@ -1,0 +1,619 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+   <h1 class="title topictitle1" id="ariaid-title1">Properties for Identification and Reconciliation</h1>
+  
+   
+   
+   <div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class=" css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class=" css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 12 minutes  to read</div></div><div class="body refbody"><p class="shortdesc">Use the Identification and Reconciliation properties to configure the identification
+    and reconciliation engine (IRE).</p>
+      <section class="section">
+         <div class="p">These properties are available for Identification and Reconciliation. To view and edit these properties, the sn_cmdb_admin or admin role is
+          required.<div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">To open the System Properties
+          [sys_properties] table, enter <kbd class="ph userinput">sys_properties.list</kbd> in the navigation filter.</div></div>
+        <table class="table frame-all" id="properties-id-reconciliation__table_cny_5y4_ts"><caption><span class="table--title-label">Table 1. </span><span class="title">Properties for Identification and Reconciliation</span></caption><colgroup><col><col></colgroup><thead class="thead">
+              <tr class="row">
+                <th class="entry colsep-1 rowsep-1" id="properties-id-reconciliation__table_cny_5y4_ts__entry__1">Property</th>
+                <th class="entry rowsep-1" id="properties-id-reconciliation__table_cny_5y4_ts__entry__2">Description</th>
+              </tr>
+            </thead><tbody class="tbody">
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Enforce the requirement that required attributes cannot be null during identification and reconciliation.</p>
+                  <p class="p">glide.required.attribute.enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_xfd_44h_ht">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Allow class upgrade during IRE identification and reconciliation.</p>
+                  <p class="p">glide.class.upgrade.enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_erm_44h_ht">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</li>
+                    </ul>
+                  </div>
+                  <p class="p">When <span class="ph uicontrol">false</span>, IRE rejects a payload (or a payload item in Enhanced IRE) with the respective reclassification update, and creates a <span class="xref ft-internal-link" title="Reclassification tasks are created for CIs that couldn't be automatically reclassified during the identification process. Review these tasks to locate the CIs and decide if to reclassify them." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="DwKntd9HEBBQfeUKJl3G3Q">reclassification task</span>.</p>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Allow class downgrades during IRE identification and reconciliation.</p>
+                  <p class="p">glide.class.downgrade.enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_hhr_44h_ht">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</li>
+                    </ul>
+                  </div>
+                  <p class="p">When <span class="ph uicontrol">false</span>, IRE rejects a payload (or a payload item in Enhanced IRE) with the respective reclassification update, and creates a <span class="xref ft-internal-link" title="Reclassification tasks are created for CIs that couldn't be automatically reclassified during the identification process. Review these tasks to locate the CIs and decide if to reclassify them." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="DwKntd9HEBBQfeUKJl3G3Q">reclassification task</span>.</p>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Allow class switching during IRE identification and reconciliation.</p>
+                  <p class="p">glide.class.switch.enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_gcw_44h_ht">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</li>
+                    </ul>
+                  </div>
+                  <p class="p">When <span class="ph uicontrol">false</span>, IRE rejects a payload (or a payload item in Enhanced IRE) with the respective reclassification update, and creates a <span class="xref ft-internal-link" title="Reclassification tasks are created for CIs that couldn't be automatically reclassified during the identification process. Review these tasks to locate the CIs and decide if to reclassify them." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="DwKntd9HEBBQfeUKJl3G3Q">reclassification task</span>.</p>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">glide.identification_engine.update_without_upgrade_enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Enable IRE to process CI updates with upgrade reclassification updates. This property takes precedence over the <span class="keyword parmname">glide.class.upgrade.enabled</span> property.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_lsv_mx4_bnb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: false</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</li>
+                    </ul>
+                  </div>
+                  <div class="p">Depending on the property setting, IRE processes or skips the upgrade update:<ul class="ul" id="properties-id-reconciliation__ul_jjr_ky4_bnb">
+                      <li class="li"><span class="ph uicontrol">true</span>: IRE processes the CI updates but doesn't process the CI upgrade reclassification update.</li>
+                      <li class="li"><span class="ph uicontrol">false</span>: IRE processes the CI updates including the CI upgrade reclassification update.</li>
+                    </ul></div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">glide.identification_engine.update_without_downgrade_enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Enable IRE to process CI updates with downgrade reclassification updates. This property takes precedence over the <span class="keyword parmname">glide.class.downgrade.enabled</span> property.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_pdf_sy4_bnb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: false</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</li>
+                    </ul>
+                  </div>
+                  <div class="p">Depending on the property setting, IRE processes or skips the downgrade update:<ul class="ul" id="properties-id-reconciliation__ul_qdf_sy4_bnb">
+                      <li class="li"><span class="ph uicontrol">true</span>: IRE processes the CI updates, but doesn't process the CI downgrade reclassification update.</li>
+                      <li class="li"><span class="ph uicontrol">false</span>: IRE processes the CI updates including the CI downgrade reclassification update.</li>
+                    </ul></div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">glide.identification_engine.update_without_switch_enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Enable IRE to process CI updates with switch reclassification updates. This property takes precedence over the <span class="keyword parmname">glide.class.switch.enabled</span> property.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_klm_wy4_bnb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: false</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</li>
+                    </ul>
+                  </div>
+                  <div class="p">Depending on the property setting, IRE processes or skips the switch update:<ul class="ul" id="properties-id-reconciliation__ul_llm_wy4_bnb">
+                      <li class="li"><span class="ph uicontrol">true</span>: IRE processes the CI updates, but doesn't process the CI switch reclassification update.</li>
+                      <li class="li"><span class="ph uicontrol">false</span>: IRE processes the CI updates including the CI switch reclassification update.</li>
+                    </ul></div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">glide.identification_engine.reclassification_restriction_rules_enabled</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Globally enable or disable the application of active reclassification restriction rules.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_kfy_rz4_bnb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Allow the update of an empty field by a lower priority data source.</p>
+                  <p class="p">glide.reconciliation.override.null</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_sgd_p4h_ht">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Controls how identification processes a small set of duplicate CIs.</p>
+                  <p class="p">glide.identification_engine.skip_duplicates</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_gb2_wdk_w5">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Other values:<dl class="dl">
+                          
+                            <dt class="dt dlterm">true</dt>
+                            <dd class="dd">
+                              <p class="p">If the number of duplicate CIs is less than the threshold specified by <span class="keyword parmname">glide.identification_engine.skip_duplicates.threshold</span>, then the oldest of the duplicate CIs is picked as a match
+                                and gets updated. That oldest CI is also designated as the main CI for that set of duplicate CIs.</p>
+                              <p class="p">For the rest of the duplicate CIs, the <span class="keyword parmname">duplicate_of</span> field is set as a reference to the main CI.</p>
+                            </dd>
+                          
+                          
+                            <dt class="dt dlterm">false</dt>
+                            <dd class="dd">Matching a CI fails, and an error is logged.</dd>
+                          
+                        </dl></li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Maximum number of CIs that can be in a set of duplicate CIs to allow identification to process the duplicate CIs according to the setting of <span class="keyword parmname"> glide.identification_engine.skip_duplicates</span>.</p>
+                  <p class="p">glide.identification_engine.skip_duplicates.threshold</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">If the number of duplicate CIs exceeds the threshold, then identification processes the duplicate CIs as if <span class="keyword parmname">glide.identification_engine.skip_duplicates</span> is set to false.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_cck_wdk_w5">
+                      <li class="li">Type: Integer</li>
+                      <li class="li">Default value: 5</li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">Maximum number of log runs that can be displayed when navigating to <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification Logs</span></span>.</p>
+                  <p class="p">glide.identification_logs.max_run_ids</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_ngf_yh1_4z">
+                      <li class="li">Type: integer</li>
+                      <li class="li">Default value: 1000</li>
+                      <li class="li">Location: <span class="ph menucascade"><span class="ph uicontrol">Configuration</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">CMDB Properties</span><abbr title="and then"> &gt; </abbr><span class="ph uicontrol">Identification/Reconciliation Properties</span></span></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">
+                  <p class="p">glide.cache.size.service_cache</p>
+                </td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">Maximum cache size (in MB) that is used by the identification engine for inbound and outbound relations. When the limit is reached, the least recently used cached data is discarded, releasing space for new
+                    data.<div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">You cannot disable the service cache.</div></div>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_asb_5rq_dv">
+                      <li class="li">Type: Integer</li>
+                      <li class="li">Default value: 20</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div></td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.granular_insert_locking</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">Determines whether to use multiple granular insert locks or single global insert lock. <p class="p">Set to false if there are performance issues associated with the usage of multiple granular insert locks.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_eqy_dhl_kbb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div></td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.batch_update_last_discovered</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">Controls batch update of <span class="keyword parmname">last_discovered</span> field in CIs that are being processed by the identification engine. <p class="p">Set to false if there are business rules that apply to the
+                      <span class="keyword parmname">last_discovered</span> field, and you want to trigger these rules when calling an Identification and Reconciliation API.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_jqc_2hl_kbb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default value: true</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div></td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.related_items_local_cache_count</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">For optimization, a custom number of locally cached query result entries of related/lookup items.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_nxw_jtp_qfb">
+                      <li class="li">Type: integer</li>
+                      <li class="li">Default value: 15000</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                  <div class="p">
+                    <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">If there is a memory issue due to optimization related to using local cache, set the <span class="keyword parmname">glide.identification_engine.related_items_local_cache_count</span> and the
+                        <span class="keyword parmname">glide.identification_engine.dependent_items_local_cache_count</span> properties to 0.</div></div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.dependent_items_local_cache_count</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">For optimization, a custom number of locally cached query result entries of dependent CIs.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_tfz_jtp_qfb">
+                      <li class="li">Type: integer</li>
+                      <li class="li">Default value: 10000</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                  <div class="p">
+                    <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">If there is a memory issue due to optimization related to using local cache, set the <span class="keyword parmname">glide.identification_engine.related_items_local_cache_count</span> and the
+                        <span class="keyword parmname">glide.identification_engine.dependent_items_local_cache_count</span> properties to 0.</div></div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.independent_items_local_cache_count</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">For optimization, a custom number of locally cached query result entries of independent CIs.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_ptg_zyb_shb">
+                      <li class="li">Type: integer</li>
+                      <li class="li">Default value: 100000</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                  <p class="p">Setting the value to 0 avoids using local cache for independent CIs which might affect performance.</p>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.cmdb.logger.source.identification_engine</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Enable and configure what type of details the system logs when using IRE outside the scope of identification simulation. For example, when using an API, ECC queue or scheduled jobs.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_n2d_d1v_phb">
+                      <li class="li">Type: string</li>
+                      <li class="li">Values: info, warn, error, debug, or debugVerbose</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                    <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">Depending on the setting, the system can generate large amounts of data that might affect overall system performance. Set the value with caution, and limit the level of details and use time to the minimum necessary
+                      for testing or debugging.</div></div>
+                  </div>
+                  <p class="p">For more troubleshooting information, see the <a class="xref ft-external-link" href="https://support.servicenow.com/kb_view_customer.do?sysparm_article=KB0750382" target="_blank" rel="noopener">How to capture IRE [identification and reconciliation engine] debug logs [KB0750382]</a> knowledge base article.</p>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.partial_payload_items_max_size</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Maximum number of items allowed when creating a partial payload. When that limit is reached, the partial payload is split.</p>
+                  <p class="p">For example, when IRE creates a partial payload, items and associated relations and references, are all merged in one partial payload. This merge could result in a large partial payload.</p>
+                  <p class="p">Adjusting this property can help with performance issues related to IRE processing of partial items.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_wmb_3g2_hlb">
+                      <li class="li">Type: integer</li>
+                      <li class="li">Default: 1000</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">Identification and Reconciliation Engine (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.partial_items_process_limit</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Maximum number of partial items to be fetched in a single IRE call. After reaching this limit, IRE fetches only partial items corresponding to complete items in the input payload.</p>
+                  <p class="p">Adjusting the value can help with performance issues related to IRE processing of partial items.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_bzf_3g2_hlb">
+                      <li class="li">Type: integer</li>
+                      <li class="li">Default: 2000</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.partial_items_process_absolute_limit</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Absolute limit of the number of partial items for IRE to fetch, after which, IRE stops fetching partial payloads from the CMDB IRE Partial Payloads [cmdb_ire_partial_payloads] table. Adjusting the value can help with
+                    performance issues related to IRE processing of partial items.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_qwn_3g2_hlb">
+                      <li class="li">Type: integer</li>
+                      <li class="li">Default: 5000</li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.skip_updating_source_last_discovered_if_older</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">Determines how IRE updates the <span class="keyword parmname">last_discovered</span> and the <span class="keyword parmname">discovery_source</span> attributes in the CMDB.<ul class="ul" id="properties-id-reconciliation__ul_xcm_pfp_yqb">
+                      <li class="li">true: If <span class="keyword parmname">last_discovered</span> is provided in the payload and it is older than the <span class="keyword parmname">last_discovered</span> of the CI in the CMDB, IRE does not use the payload values to update the
+                          <span class="keyword parmname">last_discovered</span> and the <span class="keyword parmname">discovery_source</span> attributes in the CMDB.</li>
+                      <li class="li">false: Even if the <span class="keyword parmname">last_discovered</span> provided in the payload is older than the <span class="keyword parmname">last_discovered</span> of the CI in the CMDB, IRE uses the payload values to update the
+                          <span class="keyword parmname">last_discovered</span> and the <span class="keyword parmname">discovery_source</span> attributes in the CMDB.</li>
+                    </ul></div>
+                  <div class="p">
+                    <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">Only the attributes mentioned above are affected by this property in an update operation.</div></div>
+                  </div>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_bdq_1fp_yqb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: true</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">Identification and Reconciliation Engine (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.ire_message_listener_skip_updating_source_last_discovered_to_now</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">If Robust Transform Engine (RTE) does not pass the <span class="keyword parmname">ire.skip_updating_last_scan_to_now</span> custom property on the <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=create-robust-import-set-transformer&amp;version=australia&amp;pubname=australia-integrate-applications&amp;ft:locale=en-US" target="_blank" rel="noopener">Robust Import Set Transformer form</a>, IRE uses the value of this property for the <span class="keyword parmname">skip_updating_source_last_discovered_to_now</span>
+                    <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">IRE option</span>.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_qtl_1fp_yqb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">Identification and Reconciliation Engine (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.skip_updating_last_scan_if_older</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">Determines how IRE uses the <span class="keyword parmname">source_recency_timestamp</span> value in a payload to determine whether to update the <span class="keyword parmname">last_scan</span> attribute in the Source [sys_object_source] table.<ul class="ul" id="properties-id-reconciliation__ul_dfn_2cw_yqb">
+                      <li class="li">true: If <span class="keyword parmname">source_recency_timestamp</span> is provided in the payload and it is older than the <span class="keyword parmname">last_scan</span> of the CI in the CMDB, IRE does not update the
+                          <span class="keyword parmname">last_scan</span> attribute in the Source [sys_object_source] table.</li>
+                      <li class="li">false: Even if the <span class="keyword parmname">source_recency_timestamp</span> provided in the payload is older than the <span class="keyword parmname">last_scan</span> of the CI in the CMDB, IRE uses the payload value to update the
+                          <span class="keyword parmname">last_scan</span> attribute in the Source [sys_object_source] table.</li>
+                    </ul></div>
+                  <p class="p">You can check the input payload for a CI and the <span class="keyword parmname">last_scan</span> attribute value in the Source [sys_object_source] table to learn if IRE will update that <span class="keyword parmname">last_scan</span> value or not.</p>
+                  <div class="p">
+                    <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">Only the attributes mentioned above are affected by this property in an update operation.</div></div>
+                  </div>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_efn_2cw_yqb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: true</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="There are several requirements and guidelines for mapping source data to target CMDB classes and attributes. Also, there is an option of deactivating class mappings while preserving the settings for an easy reactivation. Review these concepts to ensure proper processing by the Identification and Reconciliation Engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="8lH1LlzsD_kJHWwvWWziFw" data-section="etl-about-mapping-to-cmdb-classes">About mapping data columns to CMDB classes and attributes</span> and <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">Identification and Reconciliation Engine (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.ire_message_listener_skip_updating_last_scan_to_now</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">If RTE does not pass the <span class="keyword parmname">ire.skip_updating_last_scan_to_now</span> custom property on the <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=create-robust-import-set-transformer&amp;version=australia&amp;pubname=australia-integrate-applications&amp;ft:locale=en-US" target="_blank" rel="noopener">Robust Import Set Transformer form</a>, IRE uses the value of this property for the <span class="keyword parmname">ire.skip_updating_last_scan_to_now</span>
+                    <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">IRE option</span>.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_pfc_p2w_yqb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="There are several requirements and guidelines for mapping source data to target CMDB classes and attributes. Also, there is an option of deactivating class mappings while preserving the settings for an easy reactivation. Review these concepts to ensure proper processing by the Identification and Reconciliation Engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="8lH1LlzsD_kJHWwvWWziFw" data-section="etl-about-mapping-to-cmdb-classes">About mapping data columns to CMDB classes and attributes</span> and <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">Identification and Reconciliation Engine (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.platform_domain_separation_enabled</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">Toggles domain separation support mode during IRE processing.<ul class="ul" id="properties-id-reconciliation__ul_wjc_y2n_crb">
+                      <li class="li">false: IRE processes run only within the current domain. Basically disabling parent domains access to child domains during IRE processing.</li>
+                      <li class="li">true: IRE domain separation follows the platform domain separation behavior. Basically, enabling parent domains to look access into all its child domains during IRE processing.</li>
+                    </ul></div>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_m2s_gbn_crb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="Domain separation is supported in the CMDB Identification and Reconciliation feature. Domain separation enables you to separate data, processes, and administrative tasks into logical groupings called domains. You can control several aspects of this separation, including which users can see and access data." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="sNm6A219maNIK6Sh_UaZzw">Domain separation and CMDB Identification and Reconciliation</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.enable_identifier_optional_condition</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <div class="p">Enables advanced options for regular identifier entries in identification rules. Those advanced options let you add conditions to narrow the set of records that will be searched for a matching CI.<div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">
+                      <p class="p">This property affects only regular identifier entries (it doesn't affect lookup or hybrid identifier entries).</p>
+                      <p class="p">In the base system, identifier entries of various classes are pre-configured with advanced options conditions. All these pre-configured conditions in regular identifier entries will automatically apply when you set
+                        this property to <span class="ph uicontrol">true</span>.</p>
+                      <p class="p">To prevent unexpected behavior, review those predefined conditions in regular identifier entries before setting this property to <span class="ph uicontrol">true</span>. In the <span class="ph uicontrol">Filter</span> box in the primary
+                        navigation, enter <kbd class="ph userinput">cmdb_identifier_entry.list</kbd>. Then, in the Identifier Entry list view, review the 'Optional condition' column.</p>
+                    </div></div></div>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_cj4_1pk_btb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="Identification rules are used to uniquely identify CIs in the CMDB, as part of Identification and Reconciliation (IRE) processes. Each CMDB class can be associated with a single identification rule." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="XeHgHGmCieUlQ6rwpgEmdA">Create a CI identification rule</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.enable_reconciliation_filter_before_update</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Determines whether filter conditions of a reconciliation rule are applied before a value change during payload processing, or after.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_lyc_fbt_lvb">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="A static reconciliation rule specifies class attributes that discovery sources are authorized to update, and prevents unauthorized discovery sources from overwriting the attributes' values. A static reconciliation rule also specifies the prioritization among multiple discovery sources. Without static reconciliation rules, discovery sources can overwrite each other's updates to attribute values." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="lNMe386Hcpze0Pu3QdW1yQ" data-section="t_CreateCIReconciliationRule">Create a static reconciliation rule</span>, <span class="xref ft-internal-link" title="A dynamic reconciliation rule uses CMDB 360 data to choose a value such as the largest value that is reported, for updating a CI." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="lNMe386Hcpze0Pu3QdW1yQ" data-section="create-dynamic-reconciliation-rule">Create a dynamic reconciliation rule</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.skip_sys_object_source_matching</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Determines whether IRE identification processes have the priority in being used to uniquely identify CIs in a payload, over the use of <span class="keyword parmname">sys_object_source</span> lookup.</p>
+                  <p class="p">When set to true, the system prioritizes sending any payload that contains a criterion attribute to be processed by IRE identification instead of using <span class="keyword parmname">sys_object_source</span> lookup. This can be useful
+                    in situation that can potentially generate duplicate CIs. For example, using sources in which identifying attributes are changing while the source native key isn't.</p>
+                  <p class="p">However, when <span class="keyword parmname">source_native_key</span> is the only identifiable attribute (for example, if none of the identification rules can run because attributes and values for rule identifiers aren't present in the
+                    payload), then <span class="keyword parmname">source_native_key</span> is used for identification even when the property is set to <span class="ph uicontrol">true</span>.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_nm3_gqz_v2c">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="IRE is an underlying key component in Identification and Reconciliation, providing a centralized framework to perform identification and reconciliation processes across different data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules when processing incoming data before inserting that data to the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="7cYVySk8Za0O29HjENzRlw">Identification and Reconciliation Engine (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.lookup_match.create_duplicate_task_ci.enabled</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Enables IRE behavior of creating de-duplication tasks for duplicate related items in a lookup table detected during a lookup-based identification.</p>
+                  <p class="p">Set the property to reflect on whether such duplication is valid in the organization and doesn't require remediation, or isn't valid and the duplication should be remediated.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_ghx_bvk_ygc">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="When IRE identification process detects duplicate CIs, it groups each set of duplicate CIs into a de-duplication task for review and remediation. A large number of duplicate CIs might be due to weak identification rules. You can configure the identification engine to reconcile duplicate CIs." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="Wp6FCdRPBBMMV9K3P3B7BQ">Detecting duplicate CIs</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.dynamic_ire_enabled</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Switch between using Dynamic IRE or Static IRE. Set to 'true' to use Dynamic IRE and to turn off Static IRE.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_j5t_yys_4hc">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="Dynamic Identification and Reconciliation Engine (IRE) processes CI identification for maximum accuracy and efficiency and eliminates the requirement to manually create or maintain rules." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="GugIpMta2oqoDRjUBhXKtA">Dynamic IRE</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1">glide.identification_engine.dynamic_ire.auto_compare</td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2">
+                  <p class="p">Enables comparison between the processing outputs of Dynamic IRE and Static IRE for all payloads.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_v15_jjh_rjc">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: true</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="Dynamic Identification and Reconciliation Engine (IRE) processes CI identification for maximum accuracy and efficiency and eliminates the requirement to manually create or maintain rules." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="GugIpMta2oqoDRjUBhXKtA">Dynamic IRE</span></li>
+                      <li class="li">Location: System Properties [sys_properties] table</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1 rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1"><span class="ph" id="properties-id-reconciliation__patch-rn-ap4-1">glide.identification_engine.non_dependency_relation.duplicate_detection</span></td>
+                <td class="entry rowsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2"><div class="div" id="properties-id-reconciliation__patch-rn-ap4-2">
+                  <p class="p">Set IRE behavior when the payload contains duplicate non-dependent relationships (identical parent/child relationship type).</p>
+                  <p class="p">When set to <span class="ph uicontrol">true</span>, IRE detects duplicate non-dependent relationships in a payload.</p>
+                  <p class="p">When set to <span class="ph uicontrol">false</span>, IRE doesn't detect duplicate non-dependent relationships in a payload.</p>
+                  <div class="p">
+                    <ul class="ul" id="properties-id-reconciliation__ul_csm_mlp_gjc">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: false</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="The Identification and Reconciliation module provides a centralized framework for identifying and reconciling data from different data sources. It helps maintain the integrity of the CMDB and some non-CMDB tables when multiple data sources are used to create and update CI records." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="Z8diB6pYFbsGQMgZmJZYfg">CMDB Identification and Reconciliation (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul>
+                  </div>
+                </div></td>
+              </tr>
+              <tr class="row">
+                <td class="entry colsep-1" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__1"><span class="ph" id="properties-id-reconciliation__patch-rn-ap5-1">glide.identification_engine.batch_update_last_discovered.use_execute_lazy</span></td>
+                <td class="entry" headers="properties-id-reconciliation__table_cny_5y4_ts__entry__2"><div class="div" id="properties-id-reconciliation__patch-rn-ap5-2">
+                  <p class="p">Sets IRE mode for processing batch updates of the discovery timestamp fields <span class="keyword parmname">first_discovered</span> and <span class="keyword parmname">last_discovered</span>.</p>
+                  <p class="p">For optimized performance, when IRE processes CI records, it updates discovery timestamp fields in batches. This property controls when these batch updates are executed.</p>
+                  <div class="p">
+                    <dl class="dl">
+                      
+                        <dt class="dt dlterm">true</dt>
+                        <dd class="dd">IRE defers database updates and uses batched operations, which improves performance.<div class="p">Usage:<ul class="ul" id="properties-id-reconciliation__ul_u35_tkq_ljc">
+                              <li class="li">For standard production operations</li>
+                              <li class="li">When performance is critical</li>
+                              <li class="li">When no race conditions are observed</li>
+                            </ul></div></dd>
+                      
+                      
+                        <dt class="dt dlterm">false</dt>
+                        <dd class="dd">IRE processes updates synchronously without delay, ensuring immediate database consistency.<div class="p">Usage:<ul class="ul" id="properties-id-reconciliation__ul_sc2_pkq_ljc">
+                              <li class="li">When race conditions between discovery and CI deletion exist</li>
+                              <li class="li">A deletion strategy is aggressively removing recently discovered CIs</li>
+                              <li class="li">If immediate timestamp consistency is required</li>
+                            </ul></div></dd>
+                      
+                    </dl>
+                  </div>
+                  <div class="p">General details:<ul class="ul" id="properties-id-reconciliation__ul_gnh_phq_ljc">
+                      <li class="li">Type: true | false</li>
+                      <li class="li">Default: true</li>
+                      <li class="li">Learn more: <span class="xref ft-internal-link" title="The Identification and Reconciliation module provides a centralized framework for identifying and reconciling data from different data sources. It helps maintain the integrity of the CMDB and some non-CMDB tables when multiple data sources are used to create and update CI records." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="Z8diB6pYFbsGQMgZmJZYfg">CMDB Identification and Reconciliation (IRE)</span></li>
+                      <li class="li">Location: <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=t_AddAPropertyUsingSysPropsList&amp;version=australia&amp;pubname=australia-platform-administration&amp;ft:locale=en-US" target="_blank" rel="noopener">Add to System Properties [sys_properties]</a> table.</li>
+                    </ul></div>
+                </div></td>
+              </tr>
+            </tbody></table></div>
+      </section>
+   </div>
+</article></main></div>

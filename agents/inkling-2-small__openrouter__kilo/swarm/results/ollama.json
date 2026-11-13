@@ -1,0 +1,15 @@
+{
+  "provider": "ollama",
+  "model": "gemma2:9b",
+  "latency_s": 6.51,
+  "content": "Here are the controls preventing duplicate CIs in ServiceNow Discovery:\n\n* **Unique Identifier (CI Name):**  IRE Rule Type\n* **CI Class:** IRE Rule Type\n* **Duplicate Detection:** CMDB Health/Remediation Feature\n* **Record Reconciliation:** IRE Rule Type\n* **Merge Rules:** IRE Rule Type \n* **System Property \"glide.discovery.duplicate.threshold\":** System Property \n\n\nLet me know if you'd like more details on any of these!",
+  "usage": {
+    "prompt_tokens": 77,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens": 106,
+    "total_tokens": 183
+  },
+  "ok": true
+}

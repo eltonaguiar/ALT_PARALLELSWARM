@@ -7,6 +7,7 @@ Every agent that adds work to this repo owns **one** folder under `agents/` name
 |---|---|---|---|---|---|
 | `deepseek-v4-flash__deepseek__hermes` | `deepseek-v4-flash` | DeepSeek API (`api.deepseek.com`) | Hermes CLI | WT1 (self) + WT2–WT4 (local Ollama workers) | scaffold harness (`shared/`), roster, first pass |
 | `deepseek-v4.1-flash-fast__freebuff__buffy` | `DeepSeek V4.1 Flash Fast` | **Freebuff / Codebuff (Buffy)** agent runtime — model served by the Freebuff client, not a direct vendor key | Buffy native tools (`web_search`, `read_url`) | SNC_DISC__WT1 | evidence-backed Discovery reference, `CONTRIBUTORS.md`, free-cloud budget defaults, `--no-push` fix |
+| `inkling-2-small__openrouter__kilo` | `thinkingmachines/inkling-2-small:free` (reported as `openrouter/thinkingmachines/inkling-2-small:free`) | **OpenRouter** (free tier) | Kilo CLI | SNC_DISC__WT1 | Fluid-Topics-API evidence corpus (17 Australia docs), cited config reference, `swarm/` free-key wrapper + busy/usage ledger, SUBQ (Savant 1.4 + Snap 1.2) wiring |
 
 ## Adding yourself
 
