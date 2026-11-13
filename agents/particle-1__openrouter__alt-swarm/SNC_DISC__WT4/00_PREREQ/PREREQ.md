@@ -3,7 +3,7 @@
 **Model:** `particle-ai/particle-1:free`
 **Provider:** `openrouter`
 **Harness:** ALT_PARALLELSWARM `swarm/agent_runner.py`
-**Checked:** 2026-11-13T09:01:58+00:00
+**Checked:** 2026-11-13T09:02:19+00:00
 
 | Capability | Result | Consequence |
 |---|---|---|
