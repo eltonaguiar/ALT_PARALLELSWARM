@@ -1,0 +1,179 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article aria-labelledby="ariaid-title1" role="article">
+<h1 class="title topictitle1" id="ariaid-title1">Reconciliation rules</h1>
+<div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class="css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class="css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 5 minutes  to read</div></div><details class="ai-summary-container">
+<summary class="summarize-button">
+<span><svg class="summarize-icon" fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.2295 2.89015C11.1143 3.57545 10.5774 4.1124 9.89208 4.22754L9.74705 4.25191C9.46895 4.29864 9.46895 4.69827 9.74705 4.745L9.89211 4.76937C10.5774 4.88451 11.1143 5.42143 11.2295 6.10671L11.2535 6.2498C11.3003 6.52795 11.7 6.52787 11.7466 6.24971L11.7706 6.10678C11.8856 5.42101 12.4229 4.88367 13.1087 4.76872L13.2836 4.7394C13.5608 4.69294 13.5623 4.29516 13.2855 4.2466L13.1073 4.21534C12.4313 4.09676 11.9021 3.56748 11.7835 2.89152L11.7519 2.71168C11.7034 2.43494 11.3057 2.43637 11.2592 2.71346L11.2295 2.89015Z" fill="currentColor" />
+<path d="M6.79749 5.17055C6.50606 6.48197 5.48188 7.50616 4.17046 7.79758L2.76623 8.10963C2.34859 8.20244 2.34859 8.79777 2.76623 8.89058L4.17046 9.20263C5.48188 9.49406 6.50606 10.5182 6.79749 11.8297L7.10954 13.2339C7.20235 13.6515 7.79768 13.6515 7.89049 13.2339L8.20254 11.8297C8.49397 10.5182 9.51815 9.49406 10.8296 9.20263L12.2338 8.89058C12.6514 8.79777 12.6514 8.20244 12.2338 8.10963L10.8296 7.79758C9.51815 7.50616 8.49397 6.48197 8.20254 5.17056L7.89049 3.76632C7.79768 3.34869 7.20235 3.34869 7.10954 3.76632L6.79749 5.17055Z" fill="currentColor" />
+</svg></span>
+<span>Summarize</span>
+</summary>
+<div class="ai-summary-wrapper">
+<div class="ai-disclaimer-header">
+<div class="disclaimer-left">
+<img alt="AI sparkle icon" aria-hidden="true" class="sparkle-icon" height="24" src="https://servicenow.com/docs/portal-asset/ai-sparkle-icon" width="24">
+<span class="disclaimer-text">Summarized using AI</span>
+<div class="info-tooltip-wrapper">
+<span><svg class="info-icon" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10" stroke="#9CA3AF" stroke-width="2" />
+<path d="M12 16V12M12 8H12.01" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+<div class="tooltip-content">
+                                This content was generated using new OpenAI-powered functionality. Results are provided on an as is basis and are not guaranteed to be accurate or complete.
+                            </div>
+</div>
+</div>
+</div>
+<div class="summary-content-wrapper">
+<h2 class="summary-title">Summary of Reconciliation rules</h2>
+<div class="summary-overview">
+<p><span class="sentence">Reconciliation rules in ServiceNow determine which discovery sources are authorized to update configuration item (CI) attributes, preventing conflicts where multiple sources overwrite each other.</span>
+<span class="sentence">These rules apply when using discovery sources such as Event Management, Import Set, Manual Entry, and Tivoli in conjunction with the createOrUpdateCI() API.</span>
+</p>
+</div>
+<details class="summary-details">
+<summary class="summary-toggle">
+<span class="toggle-text-expand">Show full answer</span>
+<span class="toggle-text-collapse">Show less</span>
+<span><svg class="toggle-arrow" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 10l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+</summary>
+<div class="summary-full-content">
+<p>There are two main types of reconciliation rules:</p>
+<h2>Key Features</h2>
+<ul> <li><b>Static Reconciliation Rules:</b> Legacy rules that define priority order among discovery sources for updating CI attributes. They specify which sources can update specific class attributes and store these definitions in the <i>Reconciliation Definition [cmdbreconciliationdefinition]</i> table. They can be set at both parent and child class levels, allowing granular control.</li> <li><b>Dynamic Reconciliation Rules:</b> Rules that leverage CMDB 360 data to select the most accurate attribute value based on data across all discovery sources, rather than relying on source priority. Dynamic rules require CMDB 360 to be enabled and are stored in the <i>Dynamic Reconciliation Definitions [cmdbdynamicreconciliationdefinition]</i> table. Only one dynamic rule can exist per class attribute, and these rules take precedence over static rules.</li></ul>
+<h2>Using Reconciliation Rules</h2>
+<ul> <li><b>Precedence:</b> Dynamic reconciliation rules override static rules for the same CI attribute.</li> <li><b>Authorization Scope:</b> Static rules can authorize a discovery source to update all attributes in a class or restrict updates to specific attributes. Child class rules override parent class rules, enabling more precise control for subclasses.</li> <li><b>Overlapping Rules:</b> Multiple static rules can authorize different discovery sources to update the same attribute without conflict, as rules prevent overwriting of each other's updates.</li> <li><b>Domain Separation:</b> When enabled, reconciliation rules can be scoped to specific domains, with parent domain rules applying to child domains unless overridden.</li></ul>
+<h2>Practical Examples</h2>
+<ul> <li>Discovery source authorized exclusively to update the <code>name</code> attribute on the <code>cmdbcicomputer</code> class and its child classes.</li> <li>ServiceWatch source authorized exclusively to update the <code>name</code> attribute specifically on the <code>cmdbcilinuxserver</code> child class, overriding the parent class rule.</li> <li>ServiceWatch authorized to update all attributes on <code>cmdbcilinuxserver</code> by leaving the attributes list empty in the rule.</li></ul>
+<h2>Additional Notes</h2>
+<ul> <li>Creating static reconciliation rules requires ensuring each authorized discovery source has a defined rule for the attributes it can update.</li> <li>Data refresh rules can be created to mark CIs as stale for a specific discovery source, allowing updates by lower-priority authorized sources.</li></ul>
+<h2>What ServiceNow Customers Can Expect</h2>
+<p>By configuring reconciliation rules, customers gain fine-grained control over how CI attributes are updated from multiple discovery sources, ensuring data integrity and preventing conflicting updates. Dynamic reconciliation rules provide advanced data-driven resolution when simple priority ordering is insufficient. Domain-scoped rules support multi-domain environments, and the ability to create data refresh rules helps maintain CI accuracy over time.</p>
+</div>
+</details>
+</div>
+</div>
+</details><div class="body refbody"><p class="shortdesc"><span class="ph" id="r_ReconciliationRulesPrinciples__ph_ReconciliationShortDesc">Reconciliation rules determine which discovery
+      sources can update CI attributes.</span></p>
+<section class="section">
+<p class="p">Discovery sources, such as EventManagement, ImportSet, ManualEntry, and Tivoli, are used
+        with the <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=c_IdentEngineScriptAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">createOrUpdateCI()</a> API to simulate manual updates to CIs.
+        Without reconciliation rules, discovery sources can overwrite each other's updates to
+        attribute values.</p>
+<div class="p">There are two types of reconciliation rules:<dl class="dl">
+<dt class="dt dlterm">Static reconciliation rules</dt>
+<dd class="dd"><p class="p">Static reconciliation rules are the legacy reconciliation rules that set priorities
+                for the various discovery sources for updating CI attributes. Static reconciliation
+                rules specify which discovery sources can update class attributes, and the
+                precedence order among these discovery sources.</p>
+<p class="p">When creating static reconciliation rules, ensure that there is a reconciliation
+                rule for each discovery source that is authorized to update an attribute.
+                Reconciliation rules can be defined at the parent and the child class level.</p>
+<p class="p">Static reconciliation rules are stored in the Reconciliation Definition
+                [cmdb_reconciliation_definition] table.</p></dd>
+<dt class="dt dlterm">Dynamic reconciliation rules</dt>
+<dd class="dd"><p class="p">Dynamic reconciliation rules are based on attribute values processed by <span class="xref ft-internal-link" title="CMDB 360 retains complete history about discovery sources and proposed values, involved in updates of CI attributes. Use CMDB 360 data to track how the CMDB is populated by various discovery sources at the CI attribute level. Also, to revert CI updates from a specific discovery source, or to recompute attribute values using updated reconciliation rules." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="6TnrO1Jdq53J2fKTHQJ0Jw">CMDB 360</span> rather than on discovery source
+                priority. First, CMDB 360 processes the current payload data into the CMDB 360 data
+                store. Then, applying a dynamic reconciliation rule, IRE selects the largest or most
+                reported value, for example, across all discovery sources. Because dynamic
+                reconciliation rules leverage CMDB 360, you must enable that feature to use dynamic
+                reconciliation rules.</p>
+<p class="p">Creating dynamic reconciliation rules can be useful, for example, if it becomes
+                difficult to set priority order for multiple discovery sources. Only a single
+                dynamic reconciliation rule can exist per class attribute.</p>
+<p class="p">Dynamic reconciliation rules are stored in the Dynamic Reconciliation Definitions
+                [cmdb_dynamic_reconciliation_definition] table.</p></dd>
+</dl></div>
+</section>
+<section class="section" id="r_ReconciliationRulesPrinciples__section_mzm_tlg_q5b"><h2 class="title sectiontitle">Examples of static reconciliation rules</h2>
+<div class="p">The following sample static reconciliation rules are created for the
+          <span class="keyword parmname">cmdb_ci_computer</span> class and its
+          <span class="keyword parmname">cmdb_ci_linux_server</span> child class:<ol class="ol" id="r_ReconciliationRulesPrinciples__ol_gk5_gg4_ft">
+<li class="li">Discovery is exclusively authorized to update the <span class="keyword parmname">name</span> attribute
+            in the <span class="keyword parmname">cmdb_ci_computer</span> class.<p class="p">Because reconciliation rules are
+              derived by child classes from parent classes, this rule also authorizes Discovery to
+              update the <span class="keyword parmname">name</span> attribute in any child classes for the
+                <span class="keyword parmname">cmdb_ci_computer</span> class.</p></li>
+<li class="li">ServiceWatch is exclusively authorized to update the <span class="keyword parmname">name</span>
+            attribute in the <span class="keyword parmname">cmdb_ci_linux_server</span> class.</li>
+<li class="li">ServiceWatch is exclusively authorized to update all attributes in the
+              <span class="keyword parmname">cmdb_ci_linux_server</span> class, as configured by leaving the
+              <span class="ph uicontrol">Attributes</span> field empty in the rule.</li>
+</ol></div>
+<p class="p">See <span class="xref ft-internal-link" title="Create a static or a dynamic CI reconciliation rule." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="lNMe386Hcpze0Pu3QdW1yQ" data-section="create-reconciliation-rule">Create a CI reconciliation rule</span> for details about creating a
+        static reconciliation rule that, for example, authorizes a discovery source to update a
+        specific attribute such as <span class="keyword parmname">name</span>.</p>
+</section>
+<section class="section" id="r_ReconciliationRulesPrinciples__section_dtq_nty_p5b"><h2 class="title sectiontitle">Using reconciliation rules</h2>
+<p class="p">As you create reconciliation rules, keep in mind the following principles which are
+        designed for flexibility and the refinement of rules at the attributes level:</p>
+<div class="p"><dl class="dl">
+<dt class="dt dlterm">Precedence of dynamic reconciliation rules</dt>
+<dd class="dd"><p class="p">When both, static and dynamic reconciliation rules exist for the same CI attribute,
+                the dynamic reconciliation rule takes precedence over the static reconciliation
+                rule.</p></dd>
+<dt class="dt dlterm">Authorization for all attributes in a class</dt>
+<dd class="dd"><p class="p">A static reconciliation rule lets you authorize a discovery source to update all
+                attributes in a class. However, this authorization can be overridden for some of the
+                attributes by rules for child classes in which specific attributes are listed.</p>
+<p class="p">For example, if only example rules #1 and #3 above are created, then Discovery is
+                authorized to update the <span class="keyword parmname">name</span> attribute in the
+                  <span class="keyword parmname">cmdb_ci_linux_server</span> class. ServiceWatch is authorized to
+                update all other attributes in the class except for the <span class="keyword parmname">name</span>
+                attribute.</p>
+<p class="p">To override the authorization of Discovery to update the <span class="keyword parmname">name</span>
+                attribute, example rule #2 above is added to specifically authorize ServiceWatch to
+                update the attribute.</p></dd>
+<dt class="dt dlterm">Authorization to only specific attributes in a class</dt>
+<dd class="dd"><p class="p">To
+                authorize a discovery source to update specific attributes in a class, create a
+                static reconciliation rule for the discovery source, and list these attributes in
+                the rule. A rule that grants access to specific attributes in a class overrides
+                other static reconciliation rules with an empty attribute list that grants access to
+                the entire class.</p>
+<p class="p">Example rule #1 above grants Discovery with exclusive authority to update the
+                  <span class="keyword parmname">name</span> attribute of the <span class="keyword parmname">cmdb_ci_computer</span>
+                class. All other discovery sources are prevented from updating the
+                  <span class="keyword parmname">name</span> attribute of any CI in the
+                  <span class="keyword parmname">cmdb_ci_computer</span> class.</p></dd>
+<dt class="dt dlterm">Child class rules overrides parent class rules</dt>
+<dd class="dd">
+<p class="p">Any reconciliation rules defined for a child class override the rules defined for its parent class.  So if an attribute of a derived rule is overridden by a child's class rule for a specific class, then the derived rule has
+                no effect on that attribute. This behavior applies also when the child's reconciliation rule is static and the parent's rule is dynamic (dynamic reconciliation rules have precedence over static reconciliation rules when they
+                are for same level class).</p>
+<p class="p">For example, rule #1 above lets Discovery update the <span class="keyword parmname">name</span>
+                attribute in the <span class="keyword parmname">cmdb_ci_computer</span> class and all of its child
+                classes. However, rule #2 for the <span class="keyword parmname">cmdb_ci_linux_server</span> child
+                class, which overrides rule #1 for the parent class, explicitly authorizes
+                ServiceWatch to update this attribute in the child class.</p>
+<div class="p">As a result:<ul class="ul" id="r_ReconciliationRulesPrinciples__ul_y1x_yzy_3t">
+<li class="li">Discovery cannot update the <span class="keyword parmname">name</span> attribute of the child
+                      <span class="keyword parmname">cmdb_ci_linux_server</span> class. Only ServiceWatch is
+                    authorized to update this attribute.</li>
+<li class="li">Discovery is authorized to update the <span class="keyword parmname">name</span> attribute of
+                    CI records in all other child classes of the
+                      <span class="keyword parmname">cmdb_ci_computer</span> class.</li>
+</ul></div></dd>
+<dt class="dt dlterm">Overlapping static reconciliation rules</dt>
+<dd class="dd"><p class="p">Static reconciliation rules that authorize different discovery sources for the same
+                attributes of the same class can coexist and do not exclude each other.</p>
+<p class="p">For example, assume the following rule is added. It is similar to example rule #1
+                above but authorizes a different discovery source:</p>
+<p class="p">ServiceWatch is authorized to update the <span class="keyword parmname">name</span> attribute in the
+                  <span class="keyword parmname">cmdb_ci_computer</span> class.</p>
+<p class="p">Like example rule #1 above, this new rule applies to the <span class="keyword parmname">name</span>
+                attribute in the <span class="keyword parmname">cmdb_ci_computer</span> class so both Discovery and
+                ServiceWatch can update the attribute. Any reconciliation rules are enforced to
+                prevent the discovery sources from overwriting each other's updates.</p></dd>
+</dl></div>
+<p class="p">For more information about reconciliation rules, see the <a class="xref ft-external-link" href="https://support.servicenow.com/kb_view_customer.do?sysparm_article=KB0756709" rel="noopener" target="_blank">CMDB - Data Precedence Rules Understanding the CMDB data precedence rules and troubleshooting [KB0756709]</a> knowledge base article.</p>
+</section>
+<section class="section"><h2 class="title sectiontitle">Domain separation</h2>
+<p class="p">If Domain Separation is enabled, then you can scope reconciliation
+        rules to specific domains. Rules of the parent domain, if not overridden, apply to CIs of child domain. All rules that are visible to a domain are applied, and a rule overriding the parent domain displays the child domain
+        version.</p>
+</section>
+</div>
+<nav class="related-links" role="navigation"><ul class="ullinks"><li class="link ulchildlink"><strong><span class="ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="lNMe386Hcpze0Pu3QdW1yQ" data-section="create-reconciliation-rule">Create a CI reconciliation rule</span></strong><br>Create a static or a dynamic CI reconciliation rule.</li><li class="link ulchildlink"><strong><span class="ft-internal-link" data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="T9X6SeeRMMQ9Z134vetijg">Create a data refresh rule</span></strong><br><span class="ph">Specify data refresh rules to determine             if a CI is stale for a specific discovery source. Such CIs can then be updated by a             lower-priority authorized discovery source.</span></li></ul></nav></article></main></div>

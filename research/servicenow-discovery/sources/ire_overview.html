@@ -1,0 +1,338 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article aria-labelledby="ariaid-title1" role="article">
+<h1 class="title topictitle1" id="ariaid-title1">Identification and Reconciliation Engine (IRE)</h1>
+<div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class="css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class="css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 10 minutes  to read</div></div><details class="ai-summary-container">
+<summary class="summarize-button">
+<span><svg class="summarize-icon" fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.2295 2.89015C11.1143 3.57545 10.5774 4.1124 9.89208 4.22754L9.74705 4.25191C9.46895 4.29864 9.46895 4.69827 9.74705 4.745L9.89211 4.76937C10.5774 4.88451 11.1143 5.42143 11.2295 6.10671L11.2535 6.2498C11.3003 6.52795 11.7 6.52787 11.7466 6.24971L11.7706 6.10678C11.8856 5.42101 12.4229 4.88367 13.1087 4.76872L13.2836 4.7394C13.5608 4.69294 13.5623 4.29516 13.2855 4.2466L13.1073 4.21534C12.4313 4.09676 11.9021 3.56748 11.7835 2.89152L11.7519 2.71168C11.7034 2.43494 11.3057 2.43637 11.2592 2.71346L11.2295 2.89015Z" fill="currentColor" />
+<path d="M6.79749 5.17055C6.50606 6.48197 5.48188 7.50616 4.17046 7.79758L2.76623 8.10963C2.34859 8.20244 2.34859 8.79777 2.76623 8.89058L4.17046 9.20263C5.48188 9.49406 6.50606 10.5182 6.79749 11.8297L7.10954 13.2339C7.20235 13.6515 7.79768 13.6515 7.89049 13.2339L8.20254 11.8297C8.49397 10.5182 9.51815 9.49406 10.8296 9.20263L12.2338 8.89058C12.6514 8.79777 12.6514 8.20244 12.2338 8.10963L10.8296 7.79758C9.51815 7.50616 8.49397 6.48197 8.20254 5.17056L7.89049 3.76632C7.79768 3.34869 7.20235 3.34869 7.10954 3.76632L6.79749 5.17055Z" fill="currentColor" />
+</svg></span>
+<span>Summarize</span>
+</summary>
+<div class="ai-summary-wrapper">
+<div class="ai-disclaimer-header">
+<div class="disclaimer-left">
+<img alt="AI sparkle icon" aria-hidden="true" class="sparkle-icon" height="24" src="https://servicenow.com/docs/portal-asset/ai-sparkle-icon" width="24">
+<span class="disclaimer-text">Summarized using AI</span>
+<div class="info-tooltip-wrapper">
+<span><svg class="info-icon" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10" stroke="#9CA3AF" stroke-width="2" />
+<path d="M12 16V12M12 8H12.01" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+<div class="tooltip-content">
+                                This content was generated using new OpenAI-powered functionality. Results are provided on an as is basis and are not guaranteed to be accurate or complete.
+                            </div>
+</div>
+</div>
+</div>
+<div class="summary-content-wrapper">
+<h2 class="summary-title">Summary of Identification and Reconciliation Engine (IRE)</h2>
+<div class="summary-overview">
+<p><span class="sentence">The Identification and Reconciliation Engine (IRE) is a crucial component for managing identification and reconciliation processes across various data sources, ensuring data integrity within the Configuration Management Database (CMDB).</span>
+<span class="sentence">It prevents duplicate Configuration Items (CIs) by uniquely identifying them and allows only authoritative data sources to update CI attributes.</span>
+<span class="sentence">IRE can be utilized by ServiceNow applications like Service Mapping and discovery processes through APIs.</span>
+</p>
+</div>
+<details class="summary-details">
+<summary class="summary-toggle">
+<span class="toggle-text-expand">Show full answer</span>
+<span class="toggle-text-collapse">Show less</span>
+<span><svg class="toggle-arrow" fill="none" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 10l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg></span>
+</summary>
+<div class="summary-full-content">
+<h2>Key Features</h2>
+<ul><li><b>Identification and Reconciliation Rules:</b> IRE employs specific rules to process incoming data, maintaining a clear and authoritative CI record.</li><li><b>Payload Processing:</b> It generates identifier keys for payload items, allowing for efficient matching and processing of incoming data.</li><li><b>Partial Payload Handling:</b> IRE can manage incomplete data by categorizing them as partial or incomplete items, allowing for later processing or logging.</li><li><b>Enhanced IRE Features:</b> Includes APIs like CreateOrUpdateCIEnhanced() to enable features such as partial commits, deduplication, and summary generation.</li><li><b>Custom Scripting:</b> IntegrationHub ETL allows for custom Java scripts to manipulate payloads before and after processing, enhancing flexibility in data handling.</li></ul>
+<h2>Key Outcomes</h2>
+<p>By implementing IRE, ServiceNow customers can expect improved data accuracy and integrity in their CMDB, reduced duplication of CIs, and the ability to effectively manage and process incoming data from various sources. This ensures that the CMDB remains a reliable source of truth for IT operations, ultimately enhancing service delivery and decision-making.</p>
+</div>
+</details>
+</div>
+</div>
+</details><div class="body conbody"><p class="shortdesc">IRE is an underlying key component in Identification and Reconciliation, providing a
+    centralized framework to perform identification and reconciliation processes across different
+    data sources. IRE uses identification rules, reconciliation rules, and IRE data source rules
+    when processing incoming data before inserting that data to the CMDB.</p>
+<section class="section" id="ire__section_wk1_rk1_ljb">
+<div class="p">IRE processes help maintain data integrity in the CMDB.<ul class="ul" id="ire__ul_qcp_tk1_ljb">
+<li class="li">IRE prevents duplicate CIs by uniquely identifying CIs.​</li>
+<li class="li">IRE reconciles CI attributes by allowing only authoritative data sources to write to
+            CMDB.</li>
+</ul>
+<span class="ph">ServiceNow®</span> applications such as <span class="ph">Service Mapping</span>,
+        horizontal discovery, and pattern discovery, use APIs to apply identification and
+        reconciliation processes. You can also apply IRE processes to data imported by import sets.
+        When using other data sources including third-party data sources, you can leverage REST or
+        scriptable IRE APIs to perform identification and reconciliation.​</div>
+<div class="p">Additional information:<ul class="ul" id="ire__ul_mj5_hjv_dmb">
+<li class="li">About properties that affect some functions of IRE: See <span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">Properties for Identification and Reconciliation</span>.</li>
+<li class="li">About using IRE APIs: See <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">IdentificationEngine -
+              Scoped</a>.</li>
+<li class="li">About enabling debugging and checking on issues with a payload: See <a class="xref ft-external-link" href="https://support.servicenow.com/kb_view_customer.do?sysparm_article=KB0750382" rel="noopener" target="_blank">How to log the payload sent to IRE and check the issues
+              with the payload [KB0750382]</a>.</li>
+<li class="li">About the steps that IRE performs illustrating how IRE works, such as validating the
+            payload, applying reconciliation, and committing the data to the CMDB: See <a class="xref ft-external-link" href="https://support.servicenow.com/kb_view_customer.do?sysparm_article=KB0750386" rel="noopener" target="_blank">[CMDB - IRE] How the CMDB Identification and
+              Reconciliation Engine works when passing a CI (as payload) to the createOrUpdateCI()
+              [KB0750386]</a>.</li>
+<li class="li">About how to run a payload through IRE: See <a class="xref ft-external-link" href="https://support.servicenow.com/kb_view_customer.do?sysparm_article=KB0750383" rel="noopener" target="_blank">[CMDB IRE] How to run the CI identification on demand using the payload [KB0750383]</a>.</li>
+</ul></div>
+</section>
+<section class="section" id="ire__section_c3q_jv2_mjb"><h2 class="title sectiontitle">CI identification</h2>
+<p class="p">The CMDB identification process relies on identification rules to uniquely identify CIs.
+        When possible, CIs can also be uniquely identified using <span class="keyword parmname">source_name</span>
+        and <span class="keyword parmname">source_native_key</span> values provided in the
+          <span class="keyword parmname">sys_object_source_info</span> section of the payload, and the Source
+        [sys_object_source] table. If identification is successful using that method, then it is not
+        necessary to apply matching algorithms that rely on identification rules, which is a slower
+        identification method.</p>
+<p class="p">You can configure the system to prioritize the use of IRE identification rules, even when <span class="keyword parmname">source_name</span> and <span class="keyword parmname">source_native_key</span> are provided and can be used for unique identification. For more
+        information about using the <span class="keyword parmname">glide.identification_engine.skip_sys_object_source_matching</span> system property to manage this behavior, see <span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">Properties for Identification and Reconciliation</span>.</p>
+<div class="p">A unique CI identifier can be provided in the optional
+          <span class="keyword parmname">sys_object_source_info</span> object in the IRE payload.<pre class="pre codeblock"><code>{
+  "items": [
+    {
+      "className": "cmdb_ci_win_server",
+      "values": {
+        "name": "SAMLABVM52"
+      },
+      "sys_object_source_info": {
+            "source_native_key": "16777219",
+            "source_name": "SCCM",
+            "source_feed": "SCCM Computer Identity",
+            "source_recency_timestamp": "2019-08-26 13:00:00"
+      }
+     }
+    ]
+  }</code></pre></div>
+<p class="p">Identification processes rely on <span class="xref ft-internal-link" title="CMDB classifications are groups of CIs that share attributes and are stored in their own class table. Classifications let administrators to define a class hierarchy for the CIs within the CMDB." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="Hbp9Nnl3Ji4nqSA2NkFi0w">CIs dependency classification</span> to uniquely identify CIs. For example, to identify a Tomcat CI which is a dependent CI. Assuming a Windows Server CI (independent class) which is running a Tomcat
+        application (dependent class). Relying on 'config file path' to uniquely identify the Tomcat CI, isn't sufficient because the Tomcat application can run on multiple machines with identical paths. The identification engine won't be
+        able to choose a CI to update. Dependent relationships force the identification process to first identify the Windows Server host on which the Tomcat application is running, and only then, in the context of the host, to uniquely
+        identify the Tomcat application itself.</p>
+</section>
+<section class="section" id="ire__section_zml_kv1_njb"><h2 class="title sectiontitle">Payload items identification</h2>
+<div class="p">IRE generates identifier keys for all payload items in an incoming payload and then uses
+        those keys when trying to match partial and incoming payloads. An identifier key is based
+        either on:<ul class="ul" id="ire__ul_nry_rr1_njb">
+<li class="li">Combination of the <span class="keyword parmname">source_name</span> and
+              <span class="keyword parmname">source_native_key</span> values from the
+              <span class="keyword parmname">sys_object_source_info</span> object.</li>
+<li class="li">Identification criterion attributes.</li>
+</ul>IRE stores the identifier keys associated with partial items in the CMDB IRE Partial
+        Payloads Index [cmdb_ire_partial_payloads_index] table, and then uses those keys to try to
+        match with identifier keys of incoming payloads.</div>
+</section>
+<section class="section" id="ire__section_myr_bg3_yqb"><h2 class="title sectiontitle">Timestamps in key attributes</h2>
+<div class="p">To help resolve conflicting attribute values, IRE uses timestamps in the following
+        attributes to identify records that are older than the current record and therefore can be
+          ignored:<ul class="ul" id="ire__ul_sf3_dg3_yqb">
+<li class="li"><p class="p">Most recent discovery (<span class="keyword parmname">last_discovered</span>) and Discovery source
+                (<span class="keyword parmname">discovery_source</span>):</p>
+<p class="p">Most recent discovery (<span class="keyword parmname">last_discovered</span>) is the timestamp of when
+              the CI was last discovered. IRE always updates CIs’
+                <span class="keyword parmname">last_discovered</span> and <span class="keyword parmname">discovery_source</span>
+              attributes during payload processing, even when no other CI attributes are updated.
+              When <span class="keyword parmname">last_discovered</span> is provided in the payload, IRE updates the
+              CI with the provided value only if the <span class="keyword parmname">last_discovered</span> time in
+              the payload is newer than the one in the CMDB. If <span class="keyword parmname">last_discovered</span>
+              is not provided in the payload, IRE updates the <span class="keyword parmname">last_discovered</span>
+              attribute with the current timestamp.</p>
+<p class="p">You can use the <span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">glide.identification_engine.skip_updating_source_last_discovered_if_older</span>
+              and the <span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">glide.identification_engine.ire_message_listener_skip_updating_source_last_discovered_to_now</span>
+              system properties to modify this default behaviour.</p>
+</li>
+<li class="li"><p class="p">First discovered (<span class="keyword parmname">first_discovered</span>) is the timestamp of when the
+              CI was first created.</p>
+<div class="p"><ul class="ul" id="ire__ul_ubm_jj3_yqb">
+<li class="li">When the CI is first created: If a value is provided in the payload, IRE inserts
+                  that value. Otherwise, IRE inserts the current timestamp.</li>
+<li class="li">In subsequent updates: If a value is provided, IRE updates the CI with the
+                  provided value. Otherwise, the attribute is not updated.</li>
+</ul></div></li>
+</ul></div>
+<div class="p">You can also use the following system properties to modify how IRE uses the
+          <span class="keyword parmname">source_recency_timestamp</span> value in a payload to update the
+          <span class="keyword parmname">last_scan</span> attribute in the Source [sys_object_source] table:<ul class="ul" id="ire__ul_hl5_ffw_yqb">
+<li class="li"><span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">glide.identification_engine.skip_updating_last_scan_if_older</span></li>
+<li class="li"><span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">glide.identification_engine.ire_message_listener_skip_updating_last_scan_to_now</span></li>
+</ul></div>
+</section>
+<section class="section" id="ire__section_y12_myk_mjb"><h2 class="title sectiontitle">Enhanced IRE features</h2>
+<div class="p">The <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">CreateOrUpdateCIEnhanced()</a>​​ and <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=c_IdentEngineScriptAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">identifyCIEnhanced</a> scriptable APIs provides the functionality
+        for the following enhanced IRE features, which can be enabled or disabled as needed:<dl class="dl">
+<dt class="dt dlterm">Partial payloads</dt>
+<dd class="dd"><p class="p">IRE isolates items for which data sources did not provide enough information to
+                uniquely identify the CI and therefore processing cannot continue. Some of these
+                items are identified as partial items, which get stored for potential later
+                processing. Other items are identified as incomplete items, which get stored for
+                logging purposes only.</p>
+<p class="p">For example: SCCM has multiple feeds such as a disk feed and a computer feed. The
+                disk feed might have complete information about the disk but insufficient
+                information about the computer CI that it depends on.</p>
+<p class="p">API option: <span class="keyword parmname">partial_payloads</span> which is enabled by default. When
+                  <span class="keyword parmname">partial_payloads</span> is enabled,
+                  <span class="keyword parmname">partial_commits</span> and <span class="keyword parmname">deduplicate_payloads</span>
+                are automatically enabled regardless of their setting in options.</p></dd>
+<dt class="dt dlterm">Partial commits</dt>
+<dd class="dd"><p class="p">Errors in some items do not prevent committing the rest of the items in a payload.
+                Therefore, when a payload contains items with errors, IRE still commits the
+                remaining valid items in the payload. In this situation, some of the uncommitted
+                items are saved as partial payloads and other uncommitted items are saved as
+                incomplete payloads.</p>
+<p class="p">API option: <span class="keyword parmname">partial_commits</span> which is enabled by default.</p></dd>
+<dt class="dt dlterm">Deduplicate payload items</dt>
+<dd class="dd"><p class="p">IRE deduplicates duplicate items within the payload, merging those duplicates into
+                a single payload item for processing.</p>
+<p class="p">API option: <span class="keyword parmname">deduplicate_payloads</span> which is enabled by
+                default.</p></dd>
+<dt class="dt dlterm">Generate summary</dt>
+<dd class="dd"><p class="p">IRE generates summaries in the output payload with processing details such as the
+                number of updates per class.</p>
+<p class="p">API option: <span class="keyword parmname">generate_summary</span> which is disabled by default.</p></dd>
+</dl></div>
+</section>
+<section class="section" id="ire__section_vsm_5v2_mjb"><h2 class="title sectiontitle">Partial items</h2>
+<p class="p">A payload item is determined to be a partial item if it doesn't contain the necessary data for unique identification and if it has one of the following errors. Unique identification requires that the payload item has the
+          <span class="keyword parmname">sys_object_source_info</span> section with <span class="keyword parmname">source_name</span> and <span class="keyword parmname">source_native_key</span> values, or the full set of the identification criterion attributes specified for the CI class, or
+        both.</p>
+<div class="p">IRE errors for a partial item:<ul class="ul" id="ire__ul_knr_5v2_mjb">
+<li class="li">MISSING_MATCHING_ATTRIBUTES –— Item does not have identification criterion attributes
+            to use at least one identifier entry for matching.​</li>
+<li class="li">REQUIRED_ATTRIBUTE_EMPTY –— Unable to create a CI because a required attribute is
+            missing​.</li>
+<li class="li">MISSING_DEPENDENCY –— Dependent CI is missing a dependency relation which is specified
+            in the payload​.</li>
+<li class="li">INSERT_NOT_ALLOWED_FOR_SOURCE –— An IRE data source rule prevents the specified data
+            sources from creating CIs of the specified class.</li>
+</ul></div>
+<p class="p">For more details about IRE error messages, see <span class="xref ft-internal-link" title="The Identification and Reconciliation Engine (IRE) generates the following errors and messages. Depending on settings, these messages appear in the Identification Logging pane and in the system logs." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="pkLc1m7X3qjVjqjwkw6W4g">IRE error messages</span>.</p>
+<p class="p">If processing fails because payload items are determined to be partial items, then the
+        partial items are saved as partial payloads in the CMDB IRE Partial Payloads
+        [cmdb_ire_partial_payloads] table in JSON format for later potential processing.​ IRE uses
+        identifier keys to attempt to match incoming payloads with stored partial payloads.</p>
+<p class="p">If later, a data source sends the data that was missing in the partial item, IRE matches
+        the incoming payload with the stored partial payloads. IRE then merges any matching partial
+        payloads with the incoming payload. To resolve any conflicting attributes, IRE uses either
+          <span class="keyword parmname">source_recency_timestamp</span> (when <span class="keyword parmname">source_native_key</span>
+        and <span class="keyword parmname">source_name</span> are identical), or static reconciliation rules
+        specified for the class. The result is a complete and valid payload which IRE then processes
+        to create or update the respective CIs.</p>
+<p class="p">Partial payloads older than 90 days are deleted from the CMDB IRE Partial Payloads
+        [cmdb_ire_partial_payloads] table.</p>
+<div class="p">Sample of a partial payload: <pre class="pre codeblock"><code>Disk feed:
+{
+  "items": [
+    {
+      "className": "cmdb_ci_computer",
+      "sys_object_source_info": {
+            "source_native_key": "Server001",
+            "source_name": "SCCM",
+            "source_feed": "DISK_FEED",
+            "source_recency_timestamp": "2019-08-26 13:00:00"
+      }
+    },
+    {
+      "className": "cmdb_ci_disk",
+      "values": {
+        "name": "disk1"
+      }
+    }
+  ],
+  "relations": [{
+              "parent": 0,
+              "child": 1,
+              "type": "Contains::Contained by"}
+              ]
+}</code></pre>The computer item in the above payload does not have any attributes and therefore
+        IRE can't process it. However, <span class="keyword parmname">source_name</span> and
+          <code class="ph codeph">source_native_key</code> are provided making it a partial item. Because the
+        computer item is partial, the disk item that depends on the computer item, is a partial item
+        too.</div>
+<div class="p">Sample of a subsequent payload that completes the previous partial payload by providing the
+        missing details:<pre class="pre codeblock"><code>Server/Computer feed:
+ {
+  "items": [
+    {
+      "className": "cmdb_ci_linux_server",
+      "values": { "name": 'linux001',
+                "ip_address": "100.126.38.19",
+                "mac_address": "DSWER4587" },
+      "sys_object_source_info": {
+            "source_native_key": "Server001",
+            "source_name": "SCCM",
+            "source_feed": "COMPUTER_IDENTITY",
+            "source_recency_timestamp": "2019-08-26 14:00:00"
+      }
+    }
+  ]
+}</code></pre> The computer in the partial payload and the server in the new payload match
+        because they have identical <span class="keyword parmname">source_name</span> and
+          <span class="keyword parmname">source_native_key</span>. Therefore, the partial payload and the new payload
+        are merged, the operation is committed, and the partial payload is deleted from the Partial
+        Payloads table.</div>
+<p class="p">There is a limit on the number of items per partial payload, which is set by the <span class="xref ft-internal-link" title="Use the Identification and Reconciliation properties to configure the identification and reconciliation engine (IRE)." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="HEqbR2g66O8HVoWp93RQrQ">glide.identification_engine.partial_payload_items_max_size</span> property (1000 by
+        default). Storing associated relationships, references, and dependent items, in one partial
+        payload, can result in reaching that limit, in which case, the payload is split into
+        multiple partial payloads.</p>
+<p class="p">For more information about partial payloads, see <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">CreateOrUpdateCIEnhanced()</a>​​.</p>
+</section>
+<section class="section" id="ire__section_zqn_mv2_mjb"><h2 class="title sectiontitle">Incomplete items</h2>
+<div class="p">A payload item is determined to be an incomplete item if:<ul class="ul" id="ire__ul_fbd_mgx_sjb">
+<li class="li">It does not contain all the data necessary for unique identification</li>
+<li class="li">It has an error that is not associated with a partial item</li>
+</ul>Unique identification is not possible if neither <span class="keyword parmname">source_name</span> and
+          <span class="keyword parmname">source_native_key</span> within the
+          <span class="keyword parmname">sys_object_source_info</span> object, nor the full set of identification
+        criterion attributes specified for the CI class, is provided.</div>
+<p class="p">Incomplete items are saved as incomplete payloads in the CMDB IRE Incomplete Payloads
+        [cmdb_ire_incomplete_payloads] table in JSON format. Incomplete items are stored for the
+        purpose of logging payloads with irrecoverable errors, and are never processed again.</p>
+</section>
+<section class="section" id="ire__section_a5h_ltf_mjb"><h2 class="title sectiontitle">Adding relationships</h2>
+<p class="p">Add relationships by using either indices, or the optional JSON internal_id element.</p>
+<div class="p">Use the <span class="keyword parmname">relations</span> object in the payload to add or update relationships
+        by referring to <span class="keyword parmname">internal_ids</span> of items. Relationships can be created
+        using main items and related items in the payload. For example:<ul class="ul" id="ire__ul_yvc_nfx_njb">
+<li class="li">Relation (parent Index, child Index, Relation Type)</li>
+<li class="li">Relation (parent Internal Id, child Internal Id, Relation Type)​</li>
+</ul></div>
+<p class="p">For more information and for code samples, see <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">CreateOrUpdateCIEnhanced()</a>​​.</p>
+</section>
+<section class="section" id="ire__section_psb_4cx_njb"><h2 class="title sectiontitle">Adding references between payload items</h2>
+<p class="p">Add references between two payload items by using the optional JSON
+          <span class="keyword parmname">internal_id</span> element, which uniquely identifies payload items.</p>
+<p class="p">Use the <span class="keyword parmname">referenceItems</span> block to add or update references. You can add
+        references between any two items, including main items, lookup items, and related items, in
+        a single payload.</p>
+<p class="p">For more information and for code samples, see <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">CreateOrUpdateCIEnhanced()</a>​​.</p>
+</section>
+<section class="section" id="ire__section_vfy_zyl_mjb"><h2 class="title sectiontitle">CI reclassification</h2>
+<p class="p">Use the <span class="keyword parmname">updateWithoutUpgrade</span>,
+          <span class="keyword parmname">updateWithoutDowngrade</span>, and <span class="keyword parmname">updateWithoutSwitch</span>
+        flags in the settings block in a payload, to prevent unintentional updates to CIs' class.
+        These flags prevent upgrading, downgrading, or switching the class of a CI that multiple
+        data sources unintentionally might attempt while updating the same CI. For more information
+        and for code samples, see <a class="xref ft-external-link" href="https://www.servicenow.com/docs/access?context=IdentificationEngineScopedAPI&amp;version=australia&amp;pubname=australia-api-reference&amp;ft:locale=en-US" rel="noopener" target="_blank">CreateOrUpdateCIEnhanced()</a>​​.</p>
+<p class="p">Reclassification flags have precedence over any other system settings for <span class="xref ft-internal-link" title="During the Identification and Reconciliation Engine (IRE) CI identification process, a CI might need to be reclassified to a different sys_class_name type. By default, CIs are reclassified automatically. If automatic reclassification is disabled, then the CI is not reclassified and the system generates a reclassification task for your review." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="~be0GRrB3ODVJEPflP66Zw" data-section="c_CIReclassification">Configure CI reclassification during IRE processing</span>.</p>
+</section>
+<section class="section" id="ire__section_xt3_v5p_kpb"><h2 class="title sectiontitle">Adding custom before and after scripts</h2>
+<p class="p">Use the <span class="xref ft-internal-link" title="Use the IntegrationHub ETL store app to create and manage ETL transform maps, which integrate third-party data into the CMDB or into non-CMDB tables without compromising the integrity of data. IntegrationHub ETL provides a simplified user interface that guides you through the integration process end-to-end, including a test integration run of sample data." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="_zqPaqbG5vaxHRfrZ6bq7Q">IntegrationHub ETL</span> to <span class="xref ft-internal-link" title="Add custom before and after scripts for a data source of a CMDB integration application. Those scripts provide access to the input and output payloads of IRE. When a CMDB integration invokes Identification and Reconciliation Engine (IRE), those scripts run before and after IRE processes the integration payload." data-ft-warning="excluded-from-rendering" data-mapid="q4dSP2Icgr1SFv5wanVXvQ" data-tocid="XI4roQMmcmLie5wlJuBRxw">add custom Java scripts for a data
+          source of a CMDB integration application</span>. Those scripts provide access to the IRE
+        input and output payloads, while processing CMDB integrations.</p>
+<div class="p">Before scripts provide access to a batch of input payloads that will be sent to IRE. Using
+        a custom before script lets you: <ul class="ul" id="ire__ul_tcc_k3l_lpb">
+<li class="li">Skip a payload in the batch by setting the <span class="keyword parmname">status</span> to
+              <kbd class="ph userinput">SKIPPED</kbd>. Optionally, provide a reason for skipping the payload
+            which will appear as a comment on the respective import set row table.</li>
+<li class="li">Modify the input payload.</li>
+<li class="li">Write other custom logic inside the script that uses the IRE payload.</li>
+</ul></div>
+<div class="p">After scripts provide access to the IRE input and output payloads. Using a custom after
+        script lets you:<ul class="ul" id="ire__ul_ljp_wjl_lpb">
+<li class="li">Easily compare the input and output payloads and identify the different operations
+            that IRE performed on each CI.</li>
+<li class="li">Access the sys_ids of the CIs that IRE created or updated.</li>
+<li class="li">Write other custom logic inside the script that uses the IRE output payload.</li>
+</ul></div>
+</section>
+</div>
+</article></main></div>

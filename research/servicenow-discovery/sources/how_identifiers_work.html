@@ -1,0 +1,15 @@
+<div class="content-locale-en-US content-locale-en"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+   <h1 class="title topictitle1" id="ariaid-title1">How <span class="ph">Discovery</span> identifiers work</h1>
+   
+   
+   <div class="zDocsTopicPageDetails"><div class="zDocsTopicPageCluster"><span class=" css-cinqea" for="clusteredTopics"> Release version:  </span><span class="version-name">Australia</span></div><div class="spacer"></div><div class="zDocsTopicPageDate css-cinqea"> Updated <span class=" css-cinqea">March 12, 2026</span></div><div class="spacer"></div><div class="zDocsTopicReadTime css-cinqea"><img aria-hidden="true" class="ico-clock" src="https://www.servicenow.com/docs/portal-asset/ico-clock"> 1 minute  to read</div></div><div class="body conbody"><p class="shortdesc">When <span class="ph">Discovery</span> has determined the device's class, it launches an identity probe that is configured to run one or more commands with a single authentication.</p>
+      <p class="p">The identity probe in the base <span class="ph">Discovery</span> system can be configured to ask the device for information such as its serial numbers, name, and network identification. The results of this scan are processed by an identity sensor, which then passes
+         the results to the identifier. The identifier then attempts to find a matching device in the <span class="ph">Configuration Management Database (CMDB)</span>. If the identifier finds a matching CI, the identifier either updates that CI or does nothing. If the identifier cannot find a matching CI, it either creates a new CI or does nothing.
+         If <span class="ph">Discovery</span> is configured to continue, the identifier launches the exploration probes configured in the classification record to gather additional information about the device. Exploration probes can be multiprobes
+         or simple probes.</p>
+      <div class="p"><div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">When you use patterns for <span class="ph">Discovery</span>, the identity probe isn’t used. <span class="ph">Discovery</span> uses the appropriate identifier rules based on the CI type that you’re trying to discover as specified in the pattern operations. The operations in the pattern along with these identifier rules
+               perform the identification and exploration phases of discovery.</div></div></div>
+      
+      
+   </div>
+</article></main></div>
