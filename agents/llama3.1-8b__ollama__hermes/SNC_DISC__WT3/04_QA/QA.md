@@ -2,13 +2,13 @@
 
 | criterion | result |
 |---|---|
-| topic coverage | 5/8 (configuration_options, order_of_operations, ci_class_manager, duplicates, insert_vs_update) |
+| topic coverage | 0/8 (none) |
 | distinct sources cited | 0 |
-| document size | 589 chars |
+| document size | 487 chars |
 | capability gate | PASS |
 
 ## Missing topics
-identification, reconciliation, mid_server
+configuration_options, order_of_operations, ci_class_manager, duplicates, insert_vs_update, identification, reconciliation, mid_server
 
 ## Sources
 - none (no sources reached)

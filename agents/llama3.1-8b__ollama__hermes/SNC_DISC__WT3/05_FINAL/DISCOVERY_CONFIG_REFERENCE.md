@@ -7,12 +7,12 @@
 
 ## 1. Configuration options and order of operations
 
-(budget/run error: KeyError: 'inflight')
+(none)
 
 ## 2. CI Class Manager — key bread crumbs
 
-(budget/run error: KeyError: 'inflight')
+(none)
 
 ## 3. Preventing duplicates; insert vs update
 
-(budget/run error: KeyError: 'inflight')
+(none)
