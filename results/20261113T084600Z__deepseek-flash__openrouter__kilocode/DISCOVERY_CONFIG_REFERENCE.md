@@ -5,7 +5,12 @@
 **Author agent:** `deepseek-flash__openrouter__kilo-cli` — model `deepseek/deepseek-flash`,
 provider OpenRouter (inferred), harness Kilo CLI. See `00_MODEL/MODEL_PROVIDER.md`.
 **Method:** 68 ServiceNow documentation topics retrieved from the docs FluidTopics API
-(`/api/khub/...`), cleaned, and cross-checked. Every section ends with the canonical pages.
+(`/api/khub/...`), cleaned, and cross-checked against the CMDB and Discovery learning
+guides. Every section ends with the canonical pages.
+**Terminology audit:** 2026-11-13 — the four rule families were rechecked against the
+CMDB guide's "Identification vs Reconciliation vs Data Source vs Data Refresh"
+comparison. IRE Data Source Rules are **insert-only**; Reconciliation and Data Refresh
+are **update-only**. See §6.2 and §6.10.
 **Confidence:** High for property names/defaults and documented behavior. Medium for
 UI wording, because ServiceNow relabels navigation between releases.
 
@@ -37,15 +42,21 @@ Discovery identifier  ───────►  CMDB IRE identification rules
 
 There are two important consequences:
 
-1. **"Discovery identifiers" and "CMDB identification rules" are not the same object.**
+1. **"Discovery identifiers" and "CMDB Identification Rules" are not the same object.**
    Probe-based discovery uses Discovery identifiers; pattern-based discovery uses the
-   CMDB Identification and Reconciliation Engine (IRE) rules. In Brazil, Discovery is
-   configured to use the CMDB API by default (`glide.discovery.use_cmdb_identifiers =
-   true`), but the conceptual paths remain distinct in the documentation.
-2. **Duplicate prevention is not one checkbox.** It is the combination of:
-   strong identification rules (design), authoritative reconciliation and data-source
-   rules (runtime writes), and de-duplication tasks (repair). Tuning one layer while
-   ignoring the other two produces either duplicates or silent overwrites.
+   CMDB Identification and Reconciliation Engine (IRE) **Identification Rules** (also
+   called **IRE identifiers**). In Brazil, Discovery is configured to use the CMDB API
+   by default (`glide.discovery.use_cmdb_identifiers = true`), but the conceptual paths
+   remain distinct in the documentation.
+2. **Duplicate prevention is not one checkbox.** It is the combination of four distinct
+   controls plus repair:
+   - **Identification Rule** — prevents duplicates by matching the right CI;
+   - **IRE Data Source Rule** — insert gate for untrusted sources;
+   - **Reconciliation Rule + Data Refresh Rule** — update authority and staleness;
+   - **de-duplication tasks** — repair when duplicates still occur.
+
+   Tuning one layer while ignoring the others produces either duplicates or silent
+   overwrites.
 
 > Source: [Exploring Discovery](https://www.servicenow.com/docs/r/it-operations-management/discovery/c_GetStartedWithDiscovery.html),
 > [Discovery identifiers](https://www.servicenow.com/docs/r/it-operations-management/discovery/c_DiscoveryIdentifiers.html),
@@ -69,7 +80,7 @@ it passes.
 | 6 | Run and watch the four phases | Scanning → classification → identification → exploration | Discovery Status reaches a terminal state |
 | 7 | Validate via ECC queue XML, Discovery Log, device history, Home page | Proves what was actually collected and written | Expected CIs created/updated; no credential errors |
 | 8 | Tune properties/classifiers/behaviors | Only after evidence from step 7 | Re-run improves coverage without new duplicates |
-| 9 | Configure CMDB governance: IRE identification, reconciliation, data refresh, inclusion, de-dup | Discovery writes through IRE; governance decides authority and duplicates | Identification simulation passes; duplicate metric stable |
+| 9 | Configure CMDB governance: Identification Rules, IRE Data Source Rules, Reconciliation Rules, Data Refresh Rules, inclusion, de-dup | Discovery writes through IRE; governance decides who may insert vs. update and how duplicates are repaired | Identification simulation passes; duplicate metric stable |
 | 10 | Operate: schedules, CMDB Health, Data Manager, CMDB 360 | Keeps the CMDB accurate over time | Health/duplicate KPIs trending correctly |
 
 **Critical ordering rule:** design the **CI class + identification rule** before you
@@ -98,6 +109,13 @@ name-only identifier is how duplicate floods are created.
   - `All > Configuration > Identification/Reconciliation > Identification Simulation`
   - `All > Configuration > Identification/Reconciliation > IRE Data Source Rule`
   - `All > Configuration > CMDB Properties > Identification/Reconciliation Properties`
+
+**Navigator-label variance:** the Discovery learning guide uses
+`All > Discovery > Discovery Definition > Schedules`, `All > Discovery > Credentials`,
+and `All > Discovery > Properties` / `discovery_private_properties.list`; the Brazil
+product docs use `Discovery Schedules` and `Discovery Definition > Properties`. Both are
+documented; use the path your release displays. The object and table behind it are the
+same.
 
 ### 3.2 MID Server
 
@@ -196,6 +214,31 @@ required only for Windows MID Servers in multi-domain scenarios.
 
 > Source: [Discovery behaviors](https://www.servicenow.com/docs/r/it-operations-management/discovery/c_DiscoveryBehaviors.html).
 
+### 3.7 Configuration Console and File-Based Discovery (FBD)
+
+The **Discovery Configuration Console** (`All > Discovery > Discovery Definition >
+Configuration Console`; role `admin`) is the toggle-based front end for which CI types
+and information Discovery collects, including **File-Based Discovery (FBD)**.
+
+FBD is a Discovery feature, **not one of the four IRE rule families**. It runs during the
+**Exploration** phase and records software found on disk:
+
+| Object | Purpose |
+|---|---|
+| `cmdb_file_information` | The files FBD kept, including name, size, version, path, and CI reference |
+| `samp_file_name` | Vendor-maintained allow-list of file names (synced from Content Data Service) |
+| `samp_custom_file_name` | Your additions for software the vendor list does not know |
+| `cmdb_sam_sw_install` | Software installation records, including FBD-sourced installs |
+| `cmdb_unidentified_file_set` | Files that were kept but matched no known product |
+| `cmdb_swid_tag` | SWID tags, when enabled in the console |
+
+Key properties: `glide.discovery.file_discovery.wildcard.windows` (additive extensions)
+and `glide.discovery.file_discovery.blacklist.windows` (hard filter). Default FBD
+frequency is **Monthly**; FBD does not run until the initial Content Data Service sync
+(about 24 hours) completes. The plugin is `com.snc.discovery.file_based_discovery`.
+
+> Source: [Discovery learning guide — Configuration Console and FBD](https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/discovery/discovery-guide/).
+
 ---
 
 ## 4. Classifiers and patterns
@@ -229,7 +272,9 @@ Three classification types:
 
 ## 5. Discovery properties that matter most
 
-Location: `All > Discovery > Discovery Definition > Properties`.
+Location: `All > Discovery > Discovery Definition > Properties`. The Discovery learning
+guide shows the same object as `All > Discovery > Properties` and via
+`discovery_private_properties.list`; the underlying properties are the same.
 The full reference is 26+ minutes of reading; the table below is the operational subset.
 
 ### 5.1 Identity, IP, and hostname
@@ -267,7 +312,7 @@ The full reference is 26+ minutes of reading; the table below is the operational
 |---|---|---|
 | `glide.discovery.max_concurrent_invocations_per_schedule` | `3` | Caps stacked runs of the same schedule. |
 | `glide.discovery.schedule_ipv4_limit` | `65,536` | Max IPv4 addresses in an auto-generated schedule. |
-| `glide.discovery.schedule_ipv6_limit` | `20,000` | Max IPv6 addresses in an auto-generated schedule. |
+| `glide.discovery.schedule_ipv6_limit` | `20,000` | Max IPv6 addresses in an auto-generated schedule. On releases below ZP3/YP9 the cap is 5,000. |
 | `discovery.use.event.processing` | `false` | Uses the Event Framework for sensor/cloud jobs. Enable for scale, then tune queue priorities. |
 | `discovery.event.separate.cloud.events` | `true` | Separates cloud and IP sensor queues when event processing is on. |
 | `discovery.event.pin.jobs` | `false` | Pins event processors to nodes; `false` can increase throughput. |
@@ -318,7 +363,40 @@ commit to CMDB
 
 **IRE only reconciles updates.** When it inserts a new CI, reconciliation is not applied.
 
-### 6.2 Identification rules
+### 6.2 The four rule families — canonical terminology
+
+This is the terminology used in the ServiceNow CMDB guide's four-pillar comparison. Use
+these names exactly; the four are **not** interchangeable.
+
+| Mechanism | Exact name | Question it answers | Applies to | Configuration level |
+|---|---|---|---|---|
+| **Identification Rule** | Identification Rule (IRE identifier) | "Does this CI already exist?" | Matching an incoming item; create if no match | Class → identifier entry → attributes |
+| **IRE Data Source Rule** | **IRE Data Source Rule** (short: Data Source Rule) | "Can this source create a new CI of this class?" | **Insert only**, and only when identification found no match | Class only; not attribute-level |
+| **Reconciliation Rule** | Reconciliation Rule | "Which source may update this attribute?" | **Update only**, after identification matched | Class + attribute |
+| **Data Refresh Rule** | Data Refresh Rule (staleness rule) | "Has the higher-priority source's data gone stale?" | **Update only**, after reconciliation | Class + refresh criteria |
+
+**Order of application:**
+
+1. **Identification** runs first.
+2. If a CI **matches** → **Reconciliation** decides which source may update each
+   attribute, then **Data Refresh** can let a lower-priority source refresh a stale
+   field.
+3. If **no match** → **IRE Data Source Rule** decides whether the source may insert.
+   Reconciliation and Data Refresh are skipped entirely.
+
+**Two boundaries that are easy to get wrong:**
+
+- An **IRE Data Source Rule** is a **create-only** gate. It cannot restrict which
+  attributes an allowed source updates, and it cannot block updates to an existing CI.
+- **Reconciliation** and **Data Refresh** are **update-only**. They are not applied when
+  IRE inserts a new CI.
+
+Both guides agree on this split. The official Brazil documentation adds additional
+mechanisms (identification inclusion rules, reclassification, partial payloads, dynamic
+reconciliation) that sit alongside these four families; they are labelled as extensions
+in §6.10.
+
+### 6.3 Identification Rules (IRE identifiers)
 
 Anatomy:
 
@@ -336,6 +414,19 @@ Types:
 |---|---|---|
 | **Independent** | Identifies a CI from its own attributes | Prefer this. Model CIs with a complete independent key. |
 | **Dependent** | Requires identifying a parent/dependent CI and the relationship first | Use only when the CI cannot exist alone (NIC, app on host). Minimize; docs state two dependency levels is the maximum supported. |
+
+**Identifier entry types** (within one Identification Rule, not separate rule
+categories):
+
+| Entry type | Matching fields come from | Guidance |
+|---|---|---|
+| **Regular** | The CI's own table (or inherited `cmdb_ci` fields) | Preferred; cheapest and least ambiguous |
+| **Lookup** | A related table that references the CI (e.g., `cmdb_ci_network_adapter` for MAC) | Costs a join; use only when the identifying attribute genuinely lives on the related table |
+| **Hybrid** | Both the CI table and a related table | Use when neither source alone is unique |
+
+A single rule can mix Regular, Lookup, and Hybrid entries, each with its own priority.
+The ServiceNow learning guide explicitly warns that Lookup entries can impact
+performance and should be avoided when a Regular entry is sufficient.
 
 Priority rules:
 
@@ -361,13 +452,40 @@ Default rules in the base system:
 CMDB Health duplicate metric. They affect every script that calls IRE, so apply them
 narrowly. Base system has none.
 
-**Data source rules** block a source from **inserting** new CIs of a class while still
-allowing it to update existing CIs. Stored in `cmdb_ire_data_source_rule`; child classes
-inherit, child rules override. A blocked insert produces
-`INSERT_NOT_ALLOWED_FOR_SOURCE`; with `CreateOrUpdateCIEnhanced()` the item is stored as
-a partial payload.
+### 6.4 IRE Data Source Rule (insert-only)
 
-### 6.3 Reconciliation rules
+**Purpose:** prevent a specific discovery/data source from **creating** new CIs of a
+class. It is a **create-only gate**, not an attribute-level update restriction, and it
+does not block updates to CIs that already exist.
+
+- Stored in the **IRE Data Source Rule** table `cmdb_ire_data_source_rule`.
+- Configuration: `All > Configuration > Identification/Reconciliation > IRE Data Source
+  Rule` (the CMDB learning guide shortens this to **Data Sources**).
+- Fields: **Active**, **Applies to** (CI class and children), **Data source**,
+  **Insert Not Allowed**.
+- Child classes inherit the rule; a child-class rule overrides the parent.
+- It is evaluated **only when identification found no match** and IRE is about to insert.
+- It has no effect on updates. A source blocked from inserting can still update an
+  existing CI, subject to Reconciliation Rules.
+- It works independently of **static** reconciliation priority and cannot authorize or
+  deny individual attributes. Official docs state it has no impact once **dynamic
+  reconciliation** is in effect; treat dynamic IRE as the documented exception.
+- A blocked insert logs `INSERT_NOT_ALLOWED_FOR_SOURCE`. With
+  `CreateOrUpdateCIEnhanced()` the item is stored as a partial payload;
+  `createOrUpdateCI()` does not allow partial commits, so the whole payload can fail.
+- IRE Data Source Rules do not apply to lookup or related items, and only one rule can
+  be active for a given class/source pair.
+- IRE Data Source Rules have no impact when dynamic reconciliation rules are in effect.
+
+**Example:** an IP-scan tool that discovers network gear but creates thin server CIs.
+Block that source from inserting `cmdb_ci_server`; it can still update server CIs that
+Discovery already created.
+
+### 6.5 Reconciliation Rules (update-only)
+
+**Purpose:** after Identification matches an existing CI, decide **which source may
+update which attribute**. Reconciliation is **update-only**; it is not applied when IRE
+inserts a new CI.
 
 | Type | Basis | Precedence | Requirements |
 |---|---|---|---|
@@ -376,19 +494,44 @@ a partial payload.
 
 Key behaviors:
 
+- **Priority:** lower number = higher priority. But **scope is evaluated first**:
+  an attribute-specific rule beats an "Apply to all attributes" rule even when the
+  attribute-specific rule has a higher (worse) priority number.
 - Child-class rules override parent-class rules.
 - A rule with an empty attribute list authorizes all attributes in the class; specific
   attribute rules override broader rules.
 - Overlapping static rules for the same attribute can coexist; IRE enforces them so
   sources do not overwrite each other.
-- **Data refresh rules** complement static rules: after an effective duration with no
-  update, the CI is treated as stale for that source and a lower-priority source may
-  write. Duration `0` (default) means immediately stale. Data refresh has no effect when
-  dynamic reconciliation is in effect.
 - `glide.reconciliation.override.null` (default `true`) allows a lower-priority source to
   fill an empty field.
+- Reconciliation is not a duplicate detector. If duplicate CIs are found, the handling
+  is governed by the duplicate properties and de-duplication tasks in §7.
 
-### 6.4 Reclassification
+### 6.6 Data Refresh Rules (update-only, staleness)
+
+**Purpose:** let a lower-priority source refresh a field when the higher-priority
+source's data has gone **stale**. Data Refresh is **update-only**; it never applies to a
+new insert.
+
+- In the official Brazil docs, Data Refresh Rules are created from **CI Class Manager →
+  Hierarchy → select the class → Class Info → Reconciliation Rules → Data Refresh
+  Rules → Add**, with fields: **Discovery source**, **Effective Duration**, and
+  **Active**.
+- The CMDB learning guide describes the same behavior as settings on a reconciliation
+  rule: **Refreshable** plus a **Stale threshold** (for example, 90 days). Treat these as
+  the same mechanism with different UI wording across releases.
+- **Effective Duration / Stale threshold = 0** (the default) means the CI is immediately
+  stale for that source, so a lower-priority source is always authorized to refresh.
+- The refresh can only write fields the lower-priority source is authorized to update
+  by Reconciliation Rules.
+- Data Refresh has **no effect** when dynamic reconciliation rules are in effect.
+- Field-specific rules are safer than "Apply to all": staleness on `name` should not
+  block a refresh of `serial_number`.
+- Avoid ping-pong between two sources alternately refreshing each other. Use strict
+  priority for identity fields (serial number, name) and staleness-aware refresh only
+  for non-identifying attributes.
+
+### 6.7 Reclassification
 
 IRE can upgrade, downgrade, or switch a CI's class when a match is found. Controls:
 
@@ -401,7 +544,7 @@ IRE can upgrade, downgrade, or switch a CI's class when a match is found. Contro
   `updateWithoutSwitch` take precedence over system settings
 - automatic reclassification can be disabled, producing a **reclassification task**
 
-### 6.5 Partial and incomplete payloads
+### 6.8 Partial and incomplete payloads
 
 - **Partial item:** lacks enough data for unique identification *but* has
   `source_name`/`source_native_key` or enough identifying context; stored in
@@ -415,7 +558,7 @@ IRE can upgrade, downgrade, or switch a CI's class when a match is found. Contro
   de-duplication, and optional summaries. `createOrUpdateCI()` does not allow partial
   commits: one blocked insert can fail the whole payload.
 
-### 6.6 IRE performance guardrails (documented best practices)
+### 6.9 IRE performance guardrails (documented best practices)
 
 - Limit each payload to **500 CIs**.
 - Do not send duplicate items in one payload.
@@ -425,12 +568,74 @@ IRE can upgrade, downgrade, or switch a CI's class when a match is found. Contro
 - When inserting many CIs that depend on the same parent, **serialize** API calls to
   avoid clogging the system.
 
+### 6.10 Terminology alignment and aliases
+
+**Canonical four (use these names):** Identification Rule, IRE Data Source Rule,
+Reconciliation Rule, Data Refresh Rule.
+
+| Alias seen in docs/UI | Canonical term | Note |
+|---|---|---|
+| CMDB identifier, IRE identifier, CI identifier | **Identification Rule** | "IRE identifier" is the CMDB guide's shorthand |
+| Data Source Rule, Data Sources (navigator) | **IRE Data Source Rule** | Create-only gate; class-level |
+| CI reconciliation rule, static/dynamic reconciliation | **Reconciliation Rule** | Update-only authority |
+| Staleness rule, Refreshable + Stale threshold | **Data Refresh Rule** | Update-only staleness override; same mechanism, different UI wording |
+
+> **Do not conflate** an **IRE Data Source Rule** with the CI field `discovery_source`
+> / `sys_object_source`. The rule is a configuration record that gates inserts; the field
+> records which source last wrote the CI. A blocked source can still be the
+> `discovery_source` of an update.
+
+**Adjacent mechanisms — not one of the four rule families:**
+
+| Mechanism | What it does | Why it is separate |
+|---|---|---|
+| **Identification Inclusion Rule** | Narrows which CIs participate in identification and in the duplicate Health metric | Scoping filter, not a matching rule |
+| **Reclassification** | Upgrades/downgrades/switches a matched CI's class; can produce a reclassification task | Class-change control, not identification/reconciliation authority |
+| **De-duplication Task** | Groups a set of duplicate CIs for remediation | Output of duplicate detection, not a rule |
+| **Dynamic IRE / dynamic reconciliation** | Value-based reconciliation via CMDB 360 | An extension of the Reconciliation Rule family, not a fifth family |
+| **Partial / incomplete payloads** | Error handling for payloads that cannot be uniquely identified or committed | Processing outcome, not a rule |
+
+**Terms from the Discovery learning guide that this document uses:**
+
+- **Discovery Behavior / Behaviour** — same object; the guide uses the British spelling
+  in one table, ServiceNow docs use **Discovery Behavior**.
+- **Discovery Configuration Console** — `All > Discovery > Discovery Definition >
+  Configuration Console`; role `admin`.
+- **File-Based Discovery (FBD)** — software discovery from files on disk:
+  `cmdb_file_information`, `samp_file_name` (vendor allow-list),
+  `samp_custom_file_name` (your additions), `cmdb_sam_sw_install`,
+  `cmdb_unidentified_file_set`, `cmdb_swid_tag`; properties
+  `glide.discovery.file_discovery.wildcard.windows` and
+  `glide.discovery.file_discovery.blacklist.windows`; default frequency **Monthly**;
+  requires the initial Content Data Service sync (~24 h). FBD is a Discovery feature,
+  not one of the four IRE rule families.
+
+**UI-path variance across releases (both are documented):**
+
+| Object | Brazil docs path | Learning-guide path |
+|---|---|---|
+| Discovery properties | `Discovery Definition > Properties` | `All > Discovery > Properties` / `discovery_private_properties.list` |
+| Discovery schedules | `Discovery > Discovery Schedules` | `Discovery Definition > Schedules` |
+| IRE Data Source Rule | `Configuration > Identification/Reconciliation > IRE Data Source Rule` | `Configuration > Identification/Reconciliation > Data Sources` |
+
+**What was corrected after cross-referencing the guides:** the earlier draft nested
+IRE Data Source Rules under Identification Rules and described them as "runtime writes."
+That was structurally wrong. They are a **separate, class-level, create-only** gate,
+checked only at insert time; Reconciliation and Data Refresh are the update-only
+mechanisms. No other contradictory terminology remains. Dynamic IRE/CMDB 360,
+inclusion rules, reclassification, partial payloads, and the Discovery Admin
+Workspace/Shazzam details are retained as **official-docs extensions** that the two
+learning guides do not cover in their four-pillar model.
+
 > Sources: [IRE](https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/ire.html),
 > [Components and process](https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/c_CompsandProcessIDandReconcil.html),
 > [Identification rules](https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/c_IdentificationRules.html),
 > [Reconciliation rules](https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/r_ReconciliationRulesPrinciples.html),
 > [Identification guidelines](https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/best-practices-id-reconcile.html),
 > [IRE properties](https://www.servicenow.com/docs/api/khub/maps/zf4CFrQ4oaR8UN3GV4kT5g/topics/rjKNaLRC6pTLNgUV3Yq9wA/content?target=DESIGNED_READER).
+>
+> Cross-reference (secondary): [CMDB — four-pillar rule comparison](https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/cmdb/cmdb-guide/#identification-vs-reconciliation-vs-data-source-vs-data-refresh-rules)
+> and [Discovery guide](https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/discovery/discovery-guide/).
 
 ---
 
@@ -441,8 +646,8 @@ IRE can upgrade, downgrade, or switch a CI's class when a match is found. Contro
 | Condition | IRE action | What you see |
 |---|---|---|
 | Identifier matches exactly one CI | **Update** | Attributes reconciled; `last_discovered`/`discovery_source` updated |
-| No identifier match and inserts allowed | **Insert** | New CI; reconciliation not applied |
-| No match but data source rule blocks insert | **Blocked** | `INSERT_NOT_ALLOWED_FOR_SOURCE`; Enhanced API stores a partial payload |
+| No identifier match and the **IRE Data Source Rule** permits insert | **Insert** | New CI; Reconciliation and Data Refresh are not applied |
+| No match but the **IRE Data Source Rule** blocks insert | **Blocked** | `INSERT_NOT_ALLOWED_FOR_SOURCE`; Enhanced API stores a partial payload |
 | Insufficient identifying data | **Partial / incomplete** | Partial stored for later merge, or incomplete logged and never retried |
 | Multiple matches, count < threshold, `skip_duplicates=true` | **Update oldest**, mark others | Oldest becomes main CI; others get `duplicate_of`; de-dup task created |
 | Multiple matches, count ≥ threshold, or `skip_duplicates=false` | **Identification fails** | Error logged; de-dup task created; no update |
@@ -458,7 +663,8 @@ IRE can upgrade, downgrade, or switch a CI's class when a match is found. Contro
 3. **IP reuse / DHCP** — two devices share an address over time; MAC/NIC bonding
    complicates this further.
 4. **Multiple sources with no authority model** — discovery, SCCM, monitoring, and
-   manual entry all insert without reconciliation/data-source rules.
+   manual entry all insert without **Reconciliation Rules** or **IRE Data Source
+   Rules** gating them.
 5. **Lookup-table duplication** — duplicate serial-number records pointing at different
    CIs; IRE selects the older referenced CI unless configured to create de-dup tasks.
 6. **Over-broad schedules** — scanning the same device through multiple ranges or
@@ -491,10 +697,10 @@ IRE can upgrade, downgrade, or switch a CI's class when a match is found. Contro
 - `glide.identification_engine.lookup_match.create_duplicate_task_ci.enabled = false`
   (default) selects the older CI for lookup matches without a de-dup task; set `true`
   when such lookup duplication must be remediated.
-- Use **IRE data source rules** to stop untrusted sources from inserting a class; allow
-  them to update only.
-- Use **reconciliation + data refresh** so only the authoritative source writes, and
-  stale data can be refreshed.
+- Use **IRE Data Source Rules** to stop untrusted sources from inserting a class; they
+  can still update existing CIs, subject to Reconciliation Rules.
+- Use **Reconciliation Rules + Data Refresh Rules** so only the authoritative source
+  writes, and stale data can be refreshed.
 - Enable **dynamic reconciliation** only with CMDB 360; it wins over static rules.
 - Set `glide.duplicate_ci_remediator.max.cis` deliberately for large duplicate sets.
 
@@ -551,11 +757,11 @@ CI Class Manager
         │   ├── Attributes
         │   └── Suggested relationships
         ├── Identification
-        │   ├── Identification rule (identifier entries, priorities)
-        │   └── Inclusion rule (advanced)
+        │   ├── Identification Rule (IRE identifier; identifier entries, priorities)
+        │   └── Identification Inclusion Rule (advanced scoping)
         ├── Reconciliation Rules
-        │   ├── Static reconciliation rules
-        │   └── Data refresh rules
+        │   ├── Reconciliation Rule (static priority; dynamic via CMDB 360)
+        │   └── Data Refresh Rule (staleness; Refreshable + Stale threshold)
         ├── Dependencies
         │   └── Hosting / containment dependent relationship rules
         └── Health
@@ -567,6 +773,12 @@ CI Class Manager
             └── Health inclusion rule
 ```
 
+**IRE Data Source Rules are not a CI Class Manager tab.** They are class-level and live
+outside the tool at `All > Configuration > Identification/Reconciliation > IRE Data
+Source Rule` (the CMDB learning guide calls the navigator entry **Data Sources**). This
+is intentional: the tool manages identification, reconciliation, dependencies, and
+Health; the insert gate is a separate screen.
+
 ### 8.3 Creating a child class — wizard order
 
 1. **Provide Basic Info** — display name, table name (`u_cmdb_ci…` prefix is fixed),
@@ -577,8 +789,9 @@ CI Class Manager
    class-specific identifier entries.
 4. **Dependencies** — add dependent rules (only shown when dependent identification
    rules exist).
-5. **Add Reconciliation Rules** — add static reconciliation rules and data refresh
-   rules.
+5. **Add Reconciliation Rules** — add Reconciliation Rules (update authority) and Data
+   Refresh Rules (staleness). These do not gate inserts; use an IRE Data Source Rule for
+   that.
 6. **Add Suggested Relationships** — review/add relationship targets.
 
 ### 8.4 Related screens outside the tool
@@ -586,7 +799,7 @@ CI Class Manager
 | Task | Path |
 |---|---|
 | Identification simulation | `All > Configuration > Identification/Reconciliation > Identification Simulation` |
-| IRE data source rules | `All > Configuration > Identification/Reconciliation > IRE Data Source Rule` |
+| IRE Data Source Rules (insert gate) | `All > Configuration > Identification/Reconciliation > IRE Data Source Rule` (guide: **Data Sources**) |
 | Identification inclusion rules list | `All > Configuration > Identification/Reconciliation > Identification Inclusion Rules` |
 | CMDB IRE properties | `All > Configuration > CMDB Properties > Identification/Reconciliation Properties` |
 | Discovery properties | `All > Discovery > Discovery Definition > Properties` |
@@ -631,8 +844,8 @@ Canceling an active discovery: started sensor jobs are terminated immediately; j
 | `skip_duplicates=false` everywhere | Any small duplicate set fails identification | Keep `true` with a deliberate threshold; investigate the cause |
 | Raising the threshold without fixing rules | Masks duplicates instead of preventing them | Fix rules, then re-tune threshold |
 | One giant schedule for everything | Long runs, stacked invocations, hard to isolate failures | Split by network/domain/credential; use behaviors and chaining |
-| Untrusted source allowed to insert | Low-quality CIs and duplicates | IRE data-source rule: update-only |
-| No reconciliation owner | Sources overwrite each other | Static priority + data refresh, or dynamic with CMDB 360 |
+| Untrusted source allowed to insert | Low-quality CIs and duplicates | Add an **IRE Data Source Rule** to block insert; the source can still update subject to Reconciliation Rules |
+| No reconciliation owner | Sources overwrite each other | **Reconciliation Rules** (static priority or dynamic) + **Data Refresh Rules** |
 | Deleting CIs to "clean up" | Breaks relationships/history; may be recreated next run | Use de-dup remediation and deletion strategies |
 | Changing serial-number syntax | Breaks asset tracking and matching | Preserve raw serial numbers |
 | Ignoring `max run time`/`max idle` | Stuck runs pile up | Set both; monitor status |
@@ -692,3 +905,22 @@ The complete topic list with content IDs and API URLs is in
 | Identification simulation | https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/identification-simulation.html |
 | CMDB 360 | https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/multisource-cmdb.html |
 | CMDB Health | https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/c_CMDBHealth.html |
+
+### Secondary cross-reference guides (terminology audit)
+
+Used on 2026-11-13 to verify the four rule-family names and the insert/update split:
+
+- **CMDB guide** — four-pillar comparison ("Identification vs Reconciliation vs Data
+  Source vs Data Refresh"), create-only vs update-only boundaries, field-specific
+  precedence, staleness:
+  https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/cmdb/cmdb-guide/
+- **Discovery guide** — four phases, Configuration Console, File-Based Discovery terms,
+  navigator paths, "IRE identifiers" shorthand:
+  https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/discovery/discovery-guide/
+
+The audit changed the structure of §6: IRE Data Source Rules are now a separate,
+insert-only family; Reconciliation and Data Refresh are explicitly update-only; and the
+four are presented as distinct mechanisms rather than as sub-bullets of Identification.
+Terms not covered by the two learning guides (dynamic IRE/CMDB 360, inclusion rules,
+reclassification, partial payloads, Discovery Admin Workspace, Shazzam batching) are
+retained from the official Brazil docs and labelled as extensions in §6.10.

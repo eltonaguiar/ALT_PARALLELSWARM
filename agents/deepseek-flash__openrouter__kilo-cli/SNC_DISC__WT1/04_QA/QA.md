@@ -3,6 +3,7 @@
 **Agent:** `deepseek-flash__openrouter__kilo-cli`
 **Model:** `deepseek/deepseek-flash` · **Provider:** OpenRouter (inferred) · **Harness:** Kilo CLI
 **Checked:** 2026-11-13T09:10Z
+**Re-checked:** 2026-11-13T09:25Z (terminology audit against the CMDB and Discovery learning guides)
 
 ## Success criteria
 
@@ -17,6 +18,7 @@
 | SC7 | Honest limitations | **PASS** | `02_CLARIFICATIONS/CLARIFY.md`, `00_MODEL/MODEL_PROVIDER.md`, §11 |
 | SC8 | Parallel orchestration demonstrated | **PASS** | 3 workers, 3 worktrees, 3 branches, all QA PASS; `swarm/ORCHESTRATION.md` |
 | SC9 | Safe free-tier usage | **PASS** | Ledger enforces inflight/daily calls/daily tokens; cost recorded; free run cost `$0.00` |
+| SC10 | Terminology aligned with the CMDB/Discovery guides | **PASS (corrected)** | Four rule families separated; IRE Data Source Rule insert-only; Reconciliation/Data Refresh update-only; see audit below |
 
 ## Property/default spot-check
 
@@ -55,6 +57,39 @@
 
 The automated worker gate checks length, headings, citations, and structure — **not truth**.
 All three worker drafts are marked as independent drafts in their own headers.
+
+## Terminology audit (2026-11-13T09:25Z)
+
+Cross-referenced against:
+
+- CMDB guide: https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/cmdb/cmdb-guide/
+- Discovery guide: https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/discovery/discovery-guide/
+
+**Confirmed four rule families:**
+
+| Mechanism | Question | Applies to | Level |
+|---|---|---|---|
+| Identification Rule (IRE identifier) | Does this CI exist? | match, then create if no match | class → entry → attributes |
+| IRE Data Source Rule | Can this source create a new CI? | **insert only**, only when no match | class only |
+| Reconciliation Rule | Which source may update this attribute? | **update only**, after match | class + attribute |
+| Data Refresh Rule | Is the higher-priority source stale? | **update only**, after reconciliation | class + refresh criteria |
+
+**Correction made:** the earlier draft nested IRE Data Source Rules under Identification
+Rules and described them as "runtime writes." That was wrong. The reference now:
+- presents the four families as distinct mechanisms (§6.2);
+- states IRE Data Source Rules are create-only/class-level and checked only at insert
+  (§6.4);
+- states Reconciliation and Data Refresh are update-only (§6.5–6.6);
+- fixes the anti-pattern row that incorrectly called an IRE Data Source Rule
+  "update-only";
+- distinguishes adjacent mechanisms (Identification Inclusion Rule, reclassification,
+  de-duplication tasks, partial payloads, dynamic IRE) from the four families (§6.10).
+
+**Extra terminology retained from official docs, not in the two learning guides:**
+Dynamic IRE/CMDB 360, identification inclusion rules, reclassification, partial/
+incomplete payloads, Discovery Admin Workspace, Shazzam batching/cluster support, and
+CMDB 360. These are labelled as official-docs extensions in §6.10; they do not replace
+the four canonical families.
 
 ## Things a reviewer should still verify
 

@@ -101,6 +101,19 @@ Total topics fetched: **68**.
 - https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/de-duplication-tasks.html
 - https://www.servicenow.com/docs/r/servicenow-platform/configuration-management-database-cmdb/identification-simulation.html
 
+## Secondary cross-reference guides (terminology audit, 2026-11-13)
+
+- **CMDB guide** — "Identification vs Reconciliation vs Data Source vs Data Refresh
+  Rules", create-only vs update-only, field-specific precedence, staleness:
+  https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/cmdb/cmdb-guide/
+- **Discovery guide** — four phases, Configuration Console, File-Based Discovery,
+  navigator paths, "IRE identifiers":
+  https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/discovery/discovery-guide/
+
+These guides were used only for terminology and conceptual cross-checks. The primary
+property names/defaults remain sourced from the official Brazil documentation topics in
+`topics.json`.
+
 ## Access notes
 
 - A naive HTTP fetch of a reader URL returns the SPA shell, not content.

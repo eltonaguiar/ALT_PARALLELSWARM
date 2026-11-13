@@ -31,6 +31,23 @@ configuration reference (Brazil release) covering the requested areas:
 | Final swarm wall time | 88.6 s |
 | Free-tier spend recorded | **$0.00** |
 
+## Terminology audit (post-review)
+
+Rechecked the four IRE rule families against the CMDB and Discovery learning guides on
+2026-11-13. Confirmed:
+
+- **Identification Rule** — match or create; class → entry → attributes.
+- **IRE Data Source Rule** — **insert-only** create gate, class-level, checked only when
+  no identification match was found.
+- **Reconciliation Rule** — **update-only** authority, after a match.
+- **Data Refresh Rule** — **update-only** staleness override, after reconciliation.
+
+The earlier draft's structure incorrectly nested IRE Data Source Rules under
+Identification Rules and called them "runtime writes"; the reference now presents the
+four as distinct mechanisms and fixes the one anti-pattern row that repeated the error.
+Adjacent mechanisms (inclusion rules, reclassification, de-duplication tasks, partial
+payloads, dynamic IRE) are labelled separately in §6.10.
+
 ## What was built beyond the reference
 
 1. `swarm/usage_tracker.py` — file-locked ledger enforcing `max_inflight`,

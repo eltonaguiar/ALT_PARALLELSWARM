@@ -26,6 +26,15 @@ This folder is self-contained. It does not modify any other agent's folder.
 | Parallel swarm harness | [`swarm/README.md`](swarm/README.md) |
 | Swarm run results | [`swarm/ORCHESTRATION.md`](swarm/ORCHESTRATION.md) |
 
+## Terminology audit
+
+The four IRE rule families were rechecked against the CMDB and Discovery learning
+guides on 2026-11-13. Canonical split: **Identification Rule** (match/create),
+**IRE Data Source Rule** (**insert-only** create gate), **Reconciliation Rule**
+(**update-only** authority), **Data Refresh Rule** (**update-only** staleness). See
+§6.2 and §6.10 of the reference. The audit corrected an earlier structural error that
+nested Data Source Rules under Identification Rules.
+
 ## What was built
 
 1. **The research itself** — a 12-section, source-cited ServiceNow Discovery

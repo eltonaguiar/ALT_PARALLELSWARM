@@ -34,7 +34,9 @@ options, exact property names/defaults, canonical docs links. Plus `04_QA/QA.md`
 - capability gate: **PASS** — browsing works via the ServiceNow docs khub JSON API;
   naive `webfetch` and Playwright body extraction do **not** work on the SPA.
 - primary reference: **complete** (12 sections, 68 documented topics indexed).
-- QA: **PASS** (SC1–SC9); one worker-draft imprecision flagged.
+- QA: **PASS** (SC1–SC10); one worker-draft imprecision flagged. Terminology audit
+  against the CMDB/Discovery learning guides passed after correcting the IRE Data Source
+  Rule to **insert-only** and keeping Reconciliation/Data Refresh **update-only**.
 - parallel workers: **3/3 QA PASS** — `qwen3.5:4b` (Ollama), `qwen2.5-coder:7b`
   (Ollama), `particle-ai/particle-1:free` (OpenRouter free).
 - free-tier spend: **$0.00** recorded.

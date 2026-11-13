@@ -87,6 +87,50 @@ Key extracted facts used in the reference:
 
 ---
 
+## 3a. Terminology audit against the learning guides
+
+After the first push, the user asked for a terminology double-check against:
+
+- **CMDB guide:** https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/cmdb/cmdb-guide/
+- **Discovery guide:** https://eltonaguiar.github.io/ServiceNow_Learning_TSOM-_CSM_FSM_SalesCRM_HAM_ITSM/docs/modules/discovery/discovery-guide/
+
+**Confirmed four rule families:**
+
+| Mechanism | Question it answers | Applies to |
+|---|---|---|
+| Identification Rule (IRE identifier) | Does this CI already exist? | Match, then create if no match |
+| IRE Data Source Rule | Can this source create a new CI of this class? | **Insert only**; no match path |
+| Reconciliation Rule | Which source may update this attribute? | **Update only**; after match |
+| Data Refresh Rule | Has the higher-priority source gone stale? | **Update only**; after reconciliation |
+
+**Finding:** the reference's facts were correct, but its **structure** was not. It had
+nested IRE Data Source Rules under Identification Rules and described them as "runtime
+writes." The CMDB guide is explicit that IRE Data Source Rules are **class-level,
+create-only gates**, checked only when no identification match is found, and that they
+cannot restrict updates. Reconciliation is update-only and is not applied to inserts.
+
+**Correction applied:**
+- §6 now presents the four families as distinct mechanisms with a shared terminology
+  table (§6.2).
+- IRE Data Source Rule has its own insert-only section (§6.4).
+- Reconciliation Rules and Data Refresh Rules are explicitly update-only (§6.5–6.6).
+- The anti-pattern row that incorrectly said "IRE data-source rule: update-only" was
+  fixed.
+- §6.10 adds aliases and separates adjacent mechanisms (Identification Inclusion Rule,
+  reclassification, de-duplication tasks, partial payloads, dynamic IRE).
+- §8 clarifies that IRE Data Source Rules are **not** a CI Class Manager tab; they live
+  at `All > Configuration > Identification/Reconciliation > IRE Data Source Rule`
+  (guide: **Data Sources**).
+- Navigator variances between the Brazil docs and the learning guide are recorded.
+
+**Extra terminology not covered by the two guides** (retained from official Brazil docs
+and labelled as extensions): Dynamic IRE / CMDB 360 dynamic reconciliation,
+Identification Inclusion Rules, reclassification, partial/incomplete payloads, Discovery
+Admin Workspace, Shazzam batch/cluster support, and CMDB 360. None of these replace or
+rename the four canonical families.
+
+---
+
 ## 4. Swarm design and run
 
 ### Worktrees
@@ -155,6 +199,8 @@ Final free-run spend recorded: **$0.00** (Ollama + OpenRouter `:free`).
 | 08:57–09:06 | Dispatched workers (note: system clock in container is 09:0x; report times are approximate) |
 | 09:06–09:10 | QA, final summary, filescope, this report |
 | 09:10+ | Commit/push self branch; merge to main |
+| 09:18–09:25 | User-requested terminology audit against the CMDB and Discovery learning guides; §6 restructured, IRE Data Source Rule made explicitly insert-only, Reconciliation/Data Refresh explicitly update-only |
+| 09:25+ | Re-push corrected reference and dated results |
 
 ---
 
